@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg-deep: #0a0a0f;
+  --color-bg-surface: #12121a;
+  --color-bg-elevated: #1a1a26;
+  --color-bg-hover: #222233;
+  --color-border-subtle: #2a2a3d;
+  --color-border-active: #4a4a6a;
+  --color-text-primary: #e8e8f0;
+  --color-text-secondary: #8888a8;
+  --color-text-muted: #55556a;
+  --color-accent-cyan: #00e5ff;
+  --color-accent-cyan-dim: #00e5ff22;
+  --color-accent-magenta: #ff2d8a;
+  --color-accent-magenta-dim: #ff2d8a22;
+  --color-accent-amber: #ffb800;
+  --color-accent-amber-dim: #ffb80022;
+  --color-accent-green: #00e676;
+  --color-accent-green-dim: #00e67622;
+  --color-accent-violet: #b388ff;
+  --color-accent-violet-dim: #b388ff22;
+}
+
+:root {
+  --bg-deep: #0a0a0f;
+  --bg-surface: #12121a;
+  --bg-elevated: #1a1a26;
+  --bg-hover: #222233;
+  --border-subtle: #2a2a3d;
+  --border-active: #4a4a6a;
+  --text-primary: #e8e8f0;
+  --text-secondary: #8888a8;
+  --text-muted: #55556a;
+  --accent-cyan: #00e5ff;
+  --accent-cyan-dim: #00e5ff22;
+  --accent-magenta: #ff2d8a;
+  --accent-magenta-dim: #ff2d8a22;
+  --accent-amber: #ffb800;
+  --accent-amber-dim: #ffb80022;
+  --accent-green: #00e676;
+  --accent-green-dim: #00e67622;
+  --accent-violet: #b388ff;
+  --accent-violet-dim: #b388ff22;
+  --radius: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-active); }
+
+/* Animations */
+@keyframes logSlide {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Pipeline buttons */
+.pipe-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pipe-btn:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.pipe-btn.playing {
+  background: var(--accent-cyan-dim);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
