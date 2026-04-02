@@ -1,0 +1,28 @@
+import SectionLabel from "./SectionLabel";
+
+interface ConceptSectionProps {
+  title: string;
+  description: string;
+  children: React.ReactNode;
+}
+
+export default function ConceptSection({
+  title,
+  description,
+  children,
+}: ConceptSectionProps) {
+  return (
+    <section className="mb-10">
+      <SectionLabel number="01" label="Concept" variant="concept" />
+      <h2 className="font-[family-name:var(--font-display)] text-[28px] font-bold tracking-tight mb-2">
+        {title}
+      </h2>
+      <p className="text-sm text-text-secondary leading-[1.7] max-w-[700px]">
+        {description}
+      </p>
+      <div className="bg-bg-surface border border-border-subtle rounded-[var(--radius)] p-6 mt-4">
+        {children}
+      </div>
+    </section>
+  );
+}
