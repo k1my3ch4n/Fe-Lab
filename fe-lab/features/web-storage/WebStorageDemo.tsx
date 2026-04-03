@@ -1,0 +1,288 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import {
+  STORAGE_TABS,
+  COMPARISON_ROWS,
+  type StorageTabId,
+  type StorageEntry,
+} from "./constants";
+
+export default function WebStorageDemo() {
+  const [activeTab, setActiveTab] = useState<StorageTabId>("local");
+  const [entries, setEntries] = useState<StorageEntry[]>([]);
+  const [keyInput, setKeyInput] = useState("");
+  const [valueInput, setValueInput] = useState("");
+  const [logs, setLogs] = useState<string[]>([]);
+  const [queryResult, setQueryResult] = useState<string | null>(null);
+
+  const addLog = useCallback((text: string) => {
+    setLogs((prev) => [...prev.slice(-30), text]);
+  }, []);
+
+  const storageLabel =
+    activeTab === "local"
+      ? "localStorage"
+      : activeTab === "session"
+        ? "sessionStorage"
+        : "IndexedDB";
+
+  const handleSet = () => {
+    if (!keyInput.trim()) {
+      return;
+    }
+
+    const now = Date.now();
+
+    setEntries((prev) => {
+      const exists = prev.findIndex((e) => e.key === keyInput);
+
+      if (exists >= 0) {
+        const updated = [...prev];
+        updated[exists] = { key: keyInput, value: valueInput, timestamp: now };
+
+        return updated;
+      }
+
+      return [...prev, { key: keyInput, value: valueInput, timestamp: now }];
+    });
+
+    addLog(`✅ ${storageLabel}.setItem("${keyInput}", "${valueInput}")`);
+    setKeyInput("");
+    setValueInput("");
+  };
+
+  const handleGet = () => {
+    if (!keyInput.trim()) {
+      return;
+    }
+
+    const found = entries.find((e) => e.key === keyInput);
+
+    if (found) {
+      setQueryResult(found.value);
+      addLog(`🔍 ${storageLabel}.getItem("${keyInput}") → "${found.value}"`);
+    } else {
+      setQueryResult("null");
+      addLog(`🔍 ${storageLabel}.getItem("${keyInput}") → null`);
+    }
+  };
+
+  const handleRemove = (key: string) => {
+    setEntries((prev) => prev.filter((e) => e.key !== key));
+    addLog(`🗑️ ${storageLabel}.removeItem("${key}")`);
+    setQueryResult(null);
+  };
+
+  const handleClear = () => {
+    setEntries([]);
+    addLog(`🧹 ${storageLabel}.clear()`);
+    setQueryResult(null);
+  };
+
+  const handleTabChange = (id: StorageTabId) => {
+    setActiveTab(id);
+    setEntries([]);
+    setLogs([]);
+    setKeyInput("");
+    setValueInput("");
+    setQueryResult(null);
+  };
+
+  const handleReset = () => {
+    setEntries([]);
+    setLogs([]);
+    setKeyInput("");
+    setValueInput("");
+    setQueryResult(null);
+  };
+
+  return (
+    <>
+      {/* Toolbar */}
+      <div className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated">
+        {STORAGE_TABS.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => handleTabChange(tab.id)}
+            className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
+              activeTab === tab.id
+                ? "border-accent-cyan text-accent-cyan bg-bg-surface"
+                : "border-transparent text-text-muted hover:text-text-secondary"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-[1fr_280px] min-h-[420px]">
+        {/* Left */}
+        <div className="p-6 flex flex-col gap-5">
+          {/* Input area */}
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={keyInput}
+              onChange={(e) => setKeyInput(e.target.value)}
+              placeholder="key"
+              className="flex-1 font-[family-name:var(--font-mono)] text-[12px] px-3 py-2 rounded-lg border border-border-subtle bg-bg-deep text-text-primary placeholder:text-text-muted outline-none focus:border-accent-cyan transition-colors"
+            />
+            <input
+              type="text"
+              value={valueInput}
+              onChange={(e) => setValueInput(e.target.value)}
+              placeholder="value"
+              className="flex-1 font-[family-name:var(--font-mono)] text-[12px] px-3 py-2 rounded-lg border border-border-subtle bg-bg-deep text-text-primary placeholder:text-text-muted outline-none focus:border-accent-cyan transition-colors"
+            />
+          </div>
+
+          {/* Action buttons */}
+          <div className="flex gap-2">
+            <button
+              onClick={handleSet}
+              className="font-[family-name:var(--font-mono)] text-[11px] px-4 py-2 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
+            >
+              setItem
+            </button>
+            <button
+              onClick={handleGet}
+              className="font-[family-name:var(--font-mono)] text-[11px] px-4 py-2 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33]"
+            >
+              getItem
+            </button>
+            <button
+              onClick={handleClear}
+              className="font-[family-name:var(--font-mono)] text-[11px] px-4 py-2 rounded-lg border border-accent-magenta text-accent-magenta bg-accent-magenta-dim cursor-pointer transition-all duration-200 hover:bg-[#ff2d8a33]"
+            >
+              clear
+            </button>
+          </div>
+
+          {/* Query result */}
+          {queryResult !== null && (
+            <div className="font-[family-name:var(--font-mono)] text-[12px] bg-bg-deep rounded-lg p-3 border border-border-subtle">
+              <span className="text-text-muted">결과: </span>
+              <span className="text-accent-amber">{queryResult}</span>
+            </div>
+          )}
+
+          {/* Stored entries */}
+          <div>
+            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-3">
+              저장된 데이터 ({entries.length}개)
+            </div>
+            <div className="flex flex-col gap-1.5 max-h-[140px] overflow-y-auto">
+              {entries.length === 0 ? (
+                <div className="font-[family-name:var(--font-mono)] text-[11px] text-text-muted text-center py-4">
+                  비어 있음
+                </div>
+              ) : (
+                entries.map((entry) => (
+                  <div
+                    key={entry.key}
+                    className="flex items-center justify-between bg-bg-deep rounded-lg px-3 py-2 border border-border-subtle"
+                  >
+                    <div className="font-[family-name:var(--font-mono)] text-[11px]">
+                      <span className="text-accent-cyan">{entry.key}</span>
+                      <span className="text-text-muted"> : </span>
+                      <span className="text-accent-amber">{entry.value}</span>
+                    </div>
+                    <button
+                      onClick={() => handleRemove(entry.key)}
+                      className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted cursor-pointer bg-transparent border-none hover:text-accent-magenta transition-colors"
+                    >
+                      삭제
+                    </button>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          {/* Comparison table */}
+          <div>
+            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-3">
+              Storage 비교
+            </div>
+            <div className="overflow-x-auto rounded-lg border border-border-subtle">
+              <table className="w-full font-[family-name:var(--font-mono)] text-[10px]">
+                <thead>
+                  <tr className="bg-bg-elevated">
+                    <th className="text-left px-3 py-2 text-text-muted font-normal">
+                      특성
+                    </th>
+                    <th className="text-left px-3 py-2 text-accent-cyan font-normal">
+                      localStorage
+                    </th>
+                    <th className="text-left px-3 py-2 text-accent-amber font-normal">
+                      sessionStorage
+                    </th>
+                    <th className="text-left px-3 py-2 text-accent-violet font-normal">
+                      IndexedDB
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARISON_ROWS.map((row) => (
+                    <tr
+                      key={row.feature}
+                      className="border-t border-border-subtle"
+                    >
+                      <td className="px-3 py-2 text-text-secondary">
+                        {row.feature}
+                      </td>
+                      <td className="px-3 py-2 text-text-primary">
+                        {row.localStorage}
+                      </td>
+                      <td className="px-3 py-2 text-text-primary">
+                        {row.sessionStorage}
+                      </td>
+                      <td className="px-3 py-2 text-text-primary">
+                        {row.indexedDB}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Log Panel */}
+        <div className="border-l border-border-subtle flex flex-col">
+          <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
+            <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
+              로그
+            </span>
+            <button
+              onClick={handleReset}
+              className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted cursor-pointer bg-transparent border-none px-2 py-1 rounded transition-all duration-200 hover:text-accent-magenta hover:bg-accent-magenta-dim"
+            >
+              Reset
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
+            {logs.length === 0 ? (
+              <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
+                key/value를 입력하고
+                <br />
+                버튼을 클릭하세요
+              </div>
+            ) : (
+              logs.map((log, i) => (
+                <div
+                  key={i}
+                  className="px-2 py-1 rounded mb-0.5 text-accent-cyan animate-[logSlide_0.3s_ease]"
+                >
+                  {log}
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
