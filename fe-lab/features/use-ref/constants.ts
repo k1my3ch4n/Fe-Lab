@@ -1,9 +1,4 @@
-export interface RefExample {
-  id: string;
-  label: string;
-  description: string;
-  code: string;
-}
+import type { RefExample } from "./types";
 
 export const REF_EXAMPLES: RefExample[] = [
   {

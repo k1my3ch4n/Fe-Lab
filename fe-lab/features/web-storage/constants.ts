@@ -4,14 +4,6 @@ export const STORAGE_TABS = [
   { id: "indexed", label: "IndexedDB" },
 ] as const;
 
-export type StorageTabId = (typeof STORAGE_TABS)[number]["id"];
-
-export interface StorageEntry {
-  key: string;
-  value: string;
-  timestamp: number;
-}
-
 export const STORAGE_LIMITS = {
   localStorage: "~5–10 MB",
   sessionStorage: "~5–10 MB",

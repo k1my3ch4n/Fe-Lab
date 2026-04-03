@@ -8,7 +8,7 @@ import {
   BOX_CONFIGS,
   LOG_TYPE_STYLES,
 } from "./constants";
-import type { LogEntry, LogType } from "./constants";
+import type { LogEntry, LogType } from "./types";
 
 export default function EventBubblingDemo() {
   const [logs, setLogs] = useState<LogEntry[]>([]);

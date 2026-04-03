@@ -1,12 +1,4 @@
-export interface TypeGuardExample {
-  id: string;
-  label: string;
-  code: string;
-  beforeType: string;
-  afterType: string;
-  guardMethod: string;
-  color: string;
-}
+import type { TypeGuardExample } from "./types";
 
 export const TYPE_GUARD_EXAMPLES: TypeGuardExample[] = [
   {
@@ -25,7 +17,7 @@ format("hello"); // "HELLO"
 format(3.14159); // "3.14"`,
     beforeType: "string | number",
     afterType: "string → string\nnumber → number",
-    guardMethod: "typeof value === \"string\"",
+    guardMethod: 'typeof value === "string"',
     color: "#00e5ff",
   },
   {
@@ -71,8 +63,8 @@ function move(animal: Fish | Bird) {
   }
 }`,
     beforeType: "Fish | Bird",
-    afterType: "\"swim\" in → Fish\nelse → Bird",
-    guardMethod: "\"swim\" in animal",
+    afterType: '"swim" in → Fish\nelse → Bird',
+    guardMethod: '"swim" in animal',
     color: "#00e676",
   },
   {

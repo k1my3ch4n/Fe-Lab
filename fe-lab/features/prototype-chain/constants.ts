@@ -1,14 +1,4 @@
-export interface PrototypeNode {
-  name: string;
-  properties: { name: string; value: string }[];
-  color: string;
-}
-
-export interface ChainExample {
-  id: string;
-  label: string;
-  chain: PrototypeNode[];
-}
+import type { ChainExample } from "./types";
 
 export const PROTOTYPE_CHAIN_EXAMPLES: ChainExample[] = [
   {

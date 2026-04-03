@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { HOOK_TIMINGS, type Phase } from "../constants";
+import { HOOK_TIMINGS } from "../constants";
+import type { Phase } from "../types";
 
 export interface LogEntry {
   hook: string;

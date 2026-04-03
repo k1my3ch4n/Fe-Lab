@@ -1,10 +1,6 @@
 import SectionLabel from "./SectionLabel";
 import InterviewCard from "../interview/InterviewCard";
-
-export interface InterviewQuestion {
-  question: string;
-  answer: React.ReactNode;
-}
+import type { InterviewQuestion } from "./types";
 
 interface InterviewSectionProps {
   questions: InterviewQuestion[];

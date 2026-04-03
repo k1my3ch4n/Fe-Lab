@@ -9,7 +9,7 @@ import {
   STEP_LABELS,
   DOM_COMPARISON,
 } from "./constants";
-import type { DomNode, DiffStatus } from "./constants";
+import type { DomNode, DiffStatus } from "./types";
 
 const STATUS_COLORS: Record<
   DiffStatus,

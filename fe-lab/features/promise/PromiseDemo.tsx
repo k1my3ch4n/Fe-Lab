@@ -1,13 +1,8 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
-import {
-  PROMISE_METHODS,
-  STATE_COLORS,
-  DEFAULT_PROMISES,
-  type PromiseState,
-  type PromiseItem,
-} from "./constants";
+import { PROMISE_METHODS, STATE_COLORS, DEFAULT_PROMISES } from "./constants";
+import type { PromiseState, PromiseItem } from "./types";
 import {
   TabBar,
   DemoLayout,

@@ -1,17 +1,4 @@
-export interface WaterfallPhase {
-  name: string;
-  duration: number;
-  color: string;
-  description: string;
-}
-
-export interface ResourceEntry {
-  name: string;
-  type: string;
-  phases: WaterfallPhase[];
-  totalTime: number;
-  size: string;
-}
+import type { ResourceEntry, StatusCode } from "./types";
 
 export const WATERFALL_RESOURCES: ResourceEntry[] = [
   {
@@ -147,14 +134,6 @@ export const WATERFALL_RESOURCES: ResourceEntry[] = [
     size: "85KB",
   },
 ];
-
-export interface StatusCode {
-  code: number;
-  name: string;
-  category: string;
-  description: string;
-  color: string;
-}
 
 export const STATUS_CODES: StatusCode[] = [
   {

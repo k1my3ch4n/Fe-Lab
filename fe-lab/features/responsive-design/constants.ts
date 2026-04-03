@@ -1,11 +1,4 @@
-export interface Breakpoint {
-  name: string;
-  minWidth: number;
-  maxWidth: number;
-  label: string;
-  color: string;
-  icon: string;
-}
+import type { Breakpoint, LayoutMode } from "./types";
 
 export const BREAKPOINTS: Breakpoint[] = [
   {
@@ -65,12 +58,6 @@ export const VIEWPORT_PRESETS = [
   { label: "iPad Pro", width: 1024 },
   { label: "MacBook", width: 1440 },
 ] as const;
-
-export interface LayoutMode {
-  id: string;
-  label: string;
-  description: string;
-}
 
 export const LAYOUT_MODES: LayoutMode[] = [
   {

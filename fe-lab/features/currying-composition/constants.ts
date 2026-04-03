@@ -1,16 +1,4 @@
-export interface CurryStep {
-  args: string[];
-  result: string;
-  description: string;
-}
-
-export interface DemoExample {
-  id: string;
-  label: string;
-  code: string;
-  steps: CurryStep[];
-  color: string;
-}
+import type { DemoExample } from "./types";
 
 export const DEMO_EXAMPLES: DemoExample[] = [
   {

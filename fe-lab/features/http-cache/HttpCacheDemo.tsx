@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { CACHE_SCENARIOS, STATUS_COLORS, ACTOR_CONFIG } from "./constants";
-import type { CacheStatus } from "./constants";
+import type { CacheStatus } from "./types";
 import {
   TabBar,
   DemoLayout,

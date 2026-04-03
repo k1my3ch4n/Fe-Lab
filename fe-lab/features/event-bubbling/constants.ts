@@ -1,9 +1,4 @@
-export type LogType = "capture" | "target" | "bubble" | "info" | "stopped";
-
-export interface LogEntry {
-  text: string;
-  type: LogType;
-}
+import type { BoxConfig, LogType } from "./types";
 
 export const LOG_TYPE_STYLES: Record<LogType, string> = {
   capture: "text-accent-violet bg-accent-violet-dim",
@@ -21,18 +16,6 @@ export const ELEMENTS = [
 ] as const;
 
 export const ANIM_DELAY = 300;
-
-interface BoxConfig {
-  id: string;
-  label: string;
-  color: string;
-  size: string;
-  defaultBorder: string;
-  defaultBg: string;
-  flashBorder: string;
-  flashShadow: string;
-  flashBg: string;
-}
 
 export const BOX_CONFIGS: BoxConfig[] = [
   {

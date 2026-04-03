@@ -1,19 +1,4 @@
-export type Phase = "mount" | "update" | "unmount";
-
-export interface HookTiming {
-  hook: string;
-  phase: Phase;
-  order: number;
-  color: string;
-  description: string;
-}
-
-export interface LifecyclePhase {
-  id: Phase;
-  label: string;
-  color: string;
-  description: string;
-}
+import type { LifecyclePhase, HookTiming, ClassToHookMapping } from "./types";
 
 export const PHASES: LifecyclePhase[] = [
   {
@@ -176,12 +161,6 @@ export const HOOK_TIMINGS: HookTiming[] = [
     description: "컴포넌트가 DOM에서 제거됨",
   },
 ];
-
-export interface ClassToHookMapping {
-  classMethod: string;
-  hookEquivalent: string;
-  description: string;
-}
 
 export const CLASS_TO_HOOKS_MAP: ClassToHookMapping[] = [
   {

@@ -1,9 +1,3 @@
-export interface TimelineEvent {
-  time: number;
-  type: "input" | "debounce" | "throttle" | "raw";
-  label: string;
-}
-
 export const DEMO_MODES = [
   {
     id: "comparison",

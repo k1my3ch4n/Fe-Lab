@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { TAB_ITEMS, type TabId } from "./constants";
+import { TAB_ITEMS } from "./constants";
+import type { TabId } from "./types";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
 import { useObserveTab } from "./tabs/ObserveTab";
 import { useLazyLoadTab } from "./tabs/LazyLoadTab";

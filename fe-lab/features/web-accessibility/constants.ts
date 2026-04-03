@@ -4,8 +4,6 @@ export const A11Y_TABS = [
   { id: "keyboard", label: "키보드 접근성" },
 ] as const;
 
-export type A11yTabId = (typeof A11Y_TABS)[number]["id"];
-
 export const SEMANTIC_COMPARISON = {
   bad: {
     label: "div 남용 (Bad)",

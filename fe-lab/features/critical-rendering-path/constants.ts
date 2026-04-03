@@ -1,17 +1,4 @@
-export interface TimelineResource {
-  label: string;
-  type: "html" | "css" | "js" | "render";
-  start: number;
-  end: number;
-}
-
-export interface CRPScenario {
-  id: string;
-  label: string;
-  description: string;
-  resources: TimelineResource[];
-  fcp: number;
-}
+import type { CRPScenario, TimelineResource } from "./types";
 
 export const RESOURCE_COLORS: Record<TimelineResource["type"], string> = {
   html: "#60a5fa", // blue

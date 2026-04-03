@@ -1,12 +1,4 @@
-export interface GenericExample {
-  id: string;
-  label: string;
-  code: string;
-  description: string;
-  inputType: string;
-  outputType: string;
-  color: string;
-}
+import type { GenericExample } from "./types";
 
 export const GENERIC_EXAMPLES: GenericExample[] = [
   {

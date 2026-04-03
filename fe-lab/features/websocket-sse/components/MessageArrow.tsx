@@ -1,4 +1,4 @@
-import type { SimMessage } from "../constants";
+import type { SimMessage } from "../types";
 
 export function MessageArrow({ message }: { message: SimMessage }) {
   const isClient = message.from === "client";
