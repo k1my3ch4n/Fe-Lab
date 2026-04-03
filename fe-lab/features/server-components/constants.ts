@@ -128,3 +128,5 @@ function TodoForm() {
     renderLocation: "서버 (RPC 호출)",
   },
 ];
+
+export const TABS = COMPONENT_TYPES.map((x) => ({ id: x.id, label: x.label }));

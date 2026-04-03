@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
-import { CORS_SCENARIOS } from "./constants";
+import { CORS_SCENARIOS, TABS } from "./constants";
 import type { CorsStep } from "./types";
 import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
 
@@ -52,12 +52,10 @@ export default function CorsDemo() {
     }
   };
 
-  const tabs = CORS_SCENARIOS.map((sc) => ({ id: sc.id, label: sc.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeScenario}
         onTabChange={handleScenarioChange}
       />

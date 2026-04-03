@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useLog } from "@shared/hooks";
-import { DEMO_MODES, DELAY_OPTIONS } from "./constants";
+import { DELAY_OPTIONS, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -81,12 +81,10 @@ export default function DebounceThrottleDemo() {
 
   const maxTime = Math.max(...timeline.map((e) => e.time), 1000);
 
-  const tabs = DEMO_MODES.map((m) => ({ id: m.id, label: m.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeMode}
         onTabChange={handleModeChange}
       />

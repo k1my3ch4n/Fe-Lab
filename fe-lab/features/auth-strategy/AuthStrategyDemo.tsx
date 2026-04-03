@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLog, useTimers } from "@shared/hooks";
-import { AUTH_METHODS } from "./constants";
+import { AUTH_METHODS, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -91,12 +91,10 @@ export default function AuthStrategyDemo() {
     }, 400);
   };
 
-  const tabs = AUTH_METHODS.map((m) => ({ id: m.id, label: m.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />

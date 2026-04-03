@@ -175,3 +175,5 @@ export const CORS_SCENARIOS: CorsScenario[] = [
       "서버가 적절한 CORS 헤더를 포함하지 않으면 브라우저가 응답을 차단합니다.",
   },
 ];
+
+export const TABS = CORS_SCENARIOS.map((x) => ({ id: x.id, label: x.label }));

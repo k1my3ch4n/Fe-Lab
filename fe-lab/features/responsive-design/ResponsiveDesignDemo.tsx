@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BREAKPOINTS, VIEWPORT_PRESETS, LAYOUT_MODES } from "./constants";
+import { BREAKPOINTS, VIEWPORT_PRESETS, TABS } from "./constants";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
 
 export default function ResponsiveDesignDemo() {
@@ -41,12 +41,10 @@ export default function ResponsiveDesignDemo() {
     48,
   );
 
-  const tabs = LAYOUT_MODES.map((m) => ({ id: m.id, label: m.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeMode}
         onTabChange={handleModeChange}
       />

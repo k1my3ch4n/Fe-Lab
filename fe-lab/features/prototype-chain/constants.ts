@@ -130,6 +130,11 @@ export const PROTOTYPE_CHAIN_EXAMPLES: ChainExample[] = [
   },
 ];
 
+export const TABS = PROTOTYPE_CHAIN_EXAMPLES.map((x) => ({
+  id: x.id,
+  label: x.label,
+}));
+
 /** Well-known property lookups for each example */
 export const PROPERTY_SUGGESTIONS: Record<string, string[]> = {
   array: ["push", "length", "toString", "hasOwnProperty", "foo"],

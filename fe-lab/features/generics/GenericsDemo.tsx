@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLog } from "@shared/hooks";
-import { GENERIC_EXAMPLES, UTILITY_TYPE_MAP } from "./constants";
+import { GENERIC_EXAMPLES, TABS, UTILITY_TYPE_MAP } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -41,12 +41,10 @@ export default function GenericsDemo() {
     addLog(`출력: ${example.outputType}`);
   };
 
-  const tabs = GENERIC_EXAMPLES.map((ex) => ({ id: ex.id, label: ex.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeExample}
         onTabChange={handleExampleChange}
       />

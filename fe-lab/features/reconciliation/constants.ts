@@ -203,3 +203,8 @@ export const RECONCILIATION_SCENARIOS: DiffScenario[] = [
     ],
   },
 ];
+
+export const TABS = RECONCILIATION_SCENARIOS.map((x) => ({
+  id: x.id,
+  label: x.label,
+}));

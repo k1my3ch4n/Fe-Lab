@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { DEMO_EXAMPLES } from "./constants";
+import { DEMO_EXAMPLES, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -65,12 +65,10 @@ export default function CurryingCompositionDemo() {
     runStep();
   };
 
-  const tabs = DEMO_EXAMPLES.map((ex) => ({ id: ex.id, label: ex.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeExample}
         onTabChange={handleExampleChange}
       />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CLOSURE_EXAMPLES } from "./constants";
+import { CLOSURE_EXAMPLES, TABS } from "./constants";
 import { useLog } from "@shared/hooks";
 import {
   TabBar,
@@ -36,12 +36,10 @@ export default function ClosureDemo() {
     clearLogs();
   };
 
-  const tabs = CLOSURE_EXAMPLES.map((ex) => ({ id: ex.id, label: ex.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeExample}
         onTabChange={handleExampleChange}
       />

@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useLog } from "@shared/hooks";
-import { REF_EXAMPLES } from "./constants";
+import { REF_EXAMPLES, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -42,12 +42,10 @@ export default function UseRefDemo() {
     handleReset();
   };
 
-  const tabs = REF_EXAMPLES.map((ex) => ({ id: ex.id, label: ex.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeExample}
         onTabChange={handleExampleChange}
       />

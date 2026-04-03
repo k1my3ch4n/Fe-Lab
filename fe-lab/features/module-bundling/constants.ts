@@ -44,3 +44,5 @@ export const BUNDLE_EXAMPLES: BundleExample[] = [
     optimizedSize: 4,
   },
 ];
+
+export const TABS = BUNDLE_EXAMPLES.map((x) => ({ id: x.id, label: x.label }));

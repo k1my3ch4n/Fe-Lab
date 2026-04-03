@@ -113,6 +113,12 @@ export const CACHE_RESULTS: CacheResult[] = [
   },
 ];
 
+export const TABS = [
+  { id: "flow", label: "요청 흐름" },
+  { id: "edge", label: "엣지 서버" },
+  { id: "invalidation", label: "캐시 무효화" },
+];
+
 export const CDN_FLOW_STEPS = {
   hit: [
     {

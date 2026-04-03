@@ -78,4 +78,6 @@ export const CRP_SCENARIOS: CRPScenario[] = [
   },
 ];
 
+export const TABS = CRP_SCENARIOS.map((x) => ({ id: x.id, label: x.label }));
+
 export const TIMELINE_MAX = 100;

@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { TabBar } from "@shared/ui";
-import { PROTOTYPE_CHAIN_EXAMPLES, PROPERTY_SUGGESTIONS } from "./constants";
+import {
+  PROTOTYPE_CHAIN_EXAMPLES,
+  TABS,
+  PROPERTY_SUGGESTIONS,
+} from "./constants";
 import { usePropertyLookup } from "./hooks/usePropertyLookup";
 import { ChainNode } from "./components/ChainNode";
 
@@ -36,15 +40,10 @@ export default function PrototypeChainDemo() {
     lookupProperty(propertyInput);
   };
 
-  const tabs = PROTOTYPE_CHAIN_EXAMPLES.map((ex) => ({
-    id: ex.id,
-    label: ex.label,
-  }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeExample}
         onTabChange={handleExampleChange}
       />

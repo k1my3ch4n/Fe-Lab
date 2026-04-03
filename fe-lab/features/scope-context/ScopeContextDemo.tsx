@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BINDING_EXAMPLES, SCOPE_CHAIN_LEVELS } from "./constants";
+import { BINDING_EXAMPLES, SCOPE_CHAIN_LEVELS, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -30,12 +30,10 @@ export default function ScopeContextDemo() {
     setHighlightedScope(null);
   };
 
-  const tabs = BINDING_EXAMPLES.map((ex) => ({ id: ex.id, label: ex.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />

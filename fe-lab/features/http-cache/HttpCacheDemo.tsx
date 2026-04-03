@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { CACHE_SCENARIOS, STATUS_COLORS, ACTOR_CONFIG } from "./constants";
-import type { CacheStatus } from "./types";
 import {
-  TabBar,
-  DemoLayout,
-  PanelHeader,
-  ActionButton,
-} from "@shared/ui";
+  CACHE_SCENARIOS,
+  TABS,
+  STATUS_COLORS,
+  ACTOR_CONFIG,
+} from "./constants";
+import type { CacheStatus } from "./types";
+import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
 
 export default function HttpCacheDemo() {
   const [activeScenario, setActiveScenario] = useState(0);
@@ -99,12 +99,10 @@ export default function HttpCacheDemo() {
     );
   };
 
-  const tabs = CACHE_SCENARIOS.map((s) => ({ id: s.id, label: s.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeScenario}
         onTabChange={handleScenarioChange}
       />

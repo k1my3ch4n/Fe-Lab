@@ -8,7 +8,7 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import { RECONCILIATION_SCENARIOS } from "./constants";
+import { RECONCILIATION_SCENARIOS, TABS } from "./constants";
 import type { DomOperation } from "./types";
 import TreeNodeView from "./components/TreeNodeView";
 
@@ -87,11 +87,6 @@ export default function ReconciliationDemo() {
 
   const visibleOps: DomOperation[] = operations.slice(0, currentStep + 1);
 
-  const tabs = RECONCILIATION_SCENARIOS.map((s) => ({
-    id: s.id,
-    label: s.label,
-  }));
-
   const rightPanel = (
     <>
       <PanelHeader label="제어" onReset={reset} />
@@ -142,7 +137,7 @@ export default function ReconciliationDemo() {
     <>
       {/* Toolbar */}
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeScenario}
         onTabChange={handleScenarioChange}
       />

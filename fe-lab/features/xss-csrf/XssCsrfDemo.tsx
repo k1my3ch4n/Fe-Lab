@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLog, useTimers } from "@shared/hooks";
-import { SECURITY_SCENARIOS, XSS_EXAMPLES } from "./constants";
+import { SECURITY_SCENARIOS, XSS_EXAMPLES, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -131,12 +131,10 @@ export default function XssCsrfDemo() {
     }
   };
 
-  const tabs = SECURITY_SCENARIOS.map((s) => ({ id: s.id, label: s.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />

@@ -2,14 +2,12 @@
 
 import { useState } from "react";
 import { TabBar, DemoLayout, SectionHeader } from "@shared/ui";
-import { RENDERING_PATTERNS } from "./constants";
+import { RENDERING_PATTERNS, TABS } from "./constants";
 
 export default function RenderingPatternsDemo() {
   const [activePattern, setActivePattern] = useState(0);
 
   const pattern = RENDERING_PATTERNS[activePattern];
-
-  const tabs = RENDERING_PATTERNS.map((p) => ({ id: p.id, label: p.label }));
 
   const rightPanel = (
     <>
@@ -74,7 +72,7 @@ export default function RenderingPatternsDemo() {
     <>
       {/* Toolbar */}
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activePattern}
         onTabChange={setActivePattern}
       />

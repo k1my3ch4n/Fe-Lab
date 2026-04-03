@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
+import { TABS } from "./constants";
 import { useFlowTab } from "./tabs/FlowTab";
 import { useEdgeTab } from "./tabs/EdgeTab";
 import { useInvalidationTab } from "./tabs/InvalidationTab";
@@ -32,21 +33,15 @@ export default function CdnDemo() {
     clearLogs();
   };
 
-  const tabs = [
-    { id: "flow", label: "요청 흐름" },
-    { id: "edge", label: "엣지 서버" },
-    { id: "invalidation", label: "캐시 무효화" },
-  ];
-
-  const activeIndex = tabs.findIndex((t) => t.id === activeTab);
+  const activeIndex = TABS.findIndex((t) => t.id === activeTab);
 
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeIndex}
         onTabChange={(i) => {
-          setActiveTab(tabs[i].id as typeof activeTab);
+          setActiveTab(TABS[i].id as typeof activeTab);
           handleReset();
         }}
       />

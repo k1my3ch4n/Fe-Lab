@@ -95,6 +95,8 @@ module.getCount();  // 1`,
   },
 ];
 
+export const TABS = BINDING_EXAMPLES.map((x) => ({ id: x.id, label: x.label }));
+
 export const SCOPE_CHAIN_LEVELS: ScopeLevel[] = [
   {
     name: "Global Scope",

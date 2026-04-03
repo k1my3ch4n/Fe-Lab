@@ -71,3 +71,5 @@ function usePrevious(value) {
 }`,
   },
 ];
+
+export const TABS = REF_EXAMPLES.map((x) => ({ id: x.id, label: x.label }));

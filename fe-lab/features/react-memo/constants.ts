@@ -70,3 +70,5 @@ function Parent() {
 }`,
   },
 ];
+
+export const TABS = MEMO_EXAMPLES.map((x) => ({ id: x.id, label: x.label }));

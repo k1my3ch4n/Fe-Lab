@@ -100,6 +100,8 @@ type Result = ReturnType<Fn>; // number`,
   },
 ];
 
+export const TABS = GENERIC_EXAMPLES.map((x) => ({ id: x.id, label: x.label }));
+
 export const UTILITY_TYPE_MAP = [
   { name: "Partial<T>", desc: "모든 속성 선택적", color: "#b388ff" },
   { name: "Required<T>", desc: "모든 속성 필수", color: "#00e5ff" },

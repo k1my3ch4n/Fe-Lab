@@ -9,7 +9,7 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import { BUNDLE_EXAMPLES } from "./constants";
+import { BUNDLE_EXAMPLES, TABS } from "./constants";
 
 export default function ModuleBundlingDemo() {
   const [activeExample, setActiveExample] = useState(0);
@@ -56,8 +56,6 @@ export default function ModuleBundlingDemo() {
     handleReset();
   };
 
-  const tabs = BUNDLE_EXAMPLES.map((ex) => ({ id: ex.id, label: ex.label }));
-
   const rightPanel = (
     <>
       <PanelHeader label="실행" onReset={handleReset} />
@@ -83,7 +81,7 @@ export default function ModuleBundlingDemo() {
     <>
       {/* Toolbar */}
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeExample}
         onTabChange={handleExampleChange}
       />

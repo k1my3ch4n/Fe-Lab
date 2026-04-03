@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MEMO_EXAMPLES } from "./constants";
+import { MEMO_EXAMPLES, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -76,8 +76,6 @@ export default function ReactMemoDemo() {
     handleReset();
   };
 
-  const tabs = MEMO_EXAMPLES.map((ex) => ({ id: ex.id, label: ex.label }));
-
   const logEntries = renderLogs.map((log) => ({
     text: `[${log.component}] ${log.reason}`,
     color: log.color,
@@ -86,7 +84,7 @@ export default function ReactMemoDemo() {
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeExample}
         onTabChange={handleExampleChange}
       />

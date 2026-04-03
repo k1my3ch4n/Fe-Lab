@@ -159,3 +159,5 @@ const route = compose(withAuth, withLogging)(handler);`,
     color: "#ffb800",
   },
 ];
+
+export const TABS = DEMO_EXAMPLES.map((x) => ({ id: x.id, label: x.label }));

@@ -2,7 +2,12 @@
 
 import { useState, useRef } from "react";
 import { useLog } from "@shared/hooks";
-import { PROMISE_METHODS, STATE_COLORS, DEFAULT_PROMISES } from "./constants";
+import {
+  PROMISE_METHODS,
+  STATE_COLORS,
+  DEFAULT_PROMISES,
+  TABS,
+} from "./constants";
 import type { PromiseState, PromiseItem } from "./types";
 import {
   TabBar,
@@ -93,12 +98,10 @@ export default function PromiseDemo() {
     });
   };
 
-  const tabs = PROMISE_METHODS.map((m) => ({ id: m.id, label: m.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />

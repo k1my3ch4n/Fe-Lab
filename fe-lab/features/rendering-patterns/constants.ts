@@ -80,3 +80,8 @@ export const RENDERING_PATTERNS: RenderingPattern[] = [
     ],
   },
 ];
+
+export const TABS = RENDERING_PATTERNS.map((x) => ({
+  id: x.id,
+  label: x.label,
+}));

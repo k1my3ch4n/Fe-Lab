@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLog } from "@shared/hooks";
-import { COPY_METHODS, ORIGINAL_OBJECT } from "./constants";
+import { COPY_METHODS, ORIGINAL_OBJECT, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -55,12 +55,10 @@ export default function DeepShallowCopyDemo() {
     setMutated((prev) => ({ ...prev, reference: true, isDeep }));
   };
 
-  const tabs = COPY_METHODS.map((m) => ({ id: m.id, label: m.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />

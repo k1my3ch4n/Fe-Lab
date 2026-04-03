@@ -120,3 +120,8 @@ function AsyncComponent() {
 }`,
   },
 ];
+
+export const TABS = SUSPENSE_SCENARIOS.map((x) => ({
+  id: x.id,
+  label: x.label,
+}));

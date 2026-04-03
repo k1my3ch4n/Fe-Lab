@@ -123,3 +123,8 @@ function area(shape: Shape): number {
     color: "#ff2d8a",
   },
 ];
+
+export const TABS = TYPE_GUARD_EXAMPLES.map((x) => ({
+  id: x.id,
+  label: x.label,
+}));

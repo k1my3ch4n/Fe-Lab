@@ -16,6 +16,8 @@ export const DEMO_MODES = [
   },
 ] as const;
 
+export const TABS = DEMO_MODES.map((x) => ({ id: x.id, label: x.label }));
+
 export const DELAY_OPTIONS = [
   { label: "200ms", value: 200 },
   { label: "500ms", value: 500 },

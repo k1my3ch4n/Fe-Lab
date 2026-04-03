@@ -10,7 +10,7 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import { COMPONENT_TYPES } from "./constants";
+import { COMPONENT_TYPES, TABS } from "./constants";
 
 export default function ServerComponentsDemo() {
   const [activeTab, setActiveTab] = useState(0);
@@ -72,8 +72,6 @@ export default function ServerComponentsDemo() {
     }, 400);
   };
 
-  const tabs = COMPONENT_TYPES.map((ct) => ({ id: ct.id, label: ct.label }));
-
   const rightPanel = (
     <>
       <PanelHeader label="실행" onReset={handleReset} />
@@ -99,7 +97,7 @@ export default function ServerComponentsDemo() {
     <>
       {/* Toolbar */}
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />

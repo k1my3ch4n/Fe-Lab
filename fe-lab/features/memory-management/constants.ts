@@ -107,6 +107,8 @@ elements.set('myDiv', new WeakRef(div));`,
   },
 ];
 
+export const TABS = LEAK_PATTERNS.map((x) => ({ id: x.id, label: x.label }));
+
 export const SEVERITY_COLORS = {
   high: "#ff2d8a",
   medium: "#ffb800",

@@ -72,3 +72,5 @@ export const LAYOUT_MODES: LayoutMode[] = [
     description: "부모 컨테이너 기반 반응형",
   },
 ];
+
+export const TABS = LAYOUT_MODES.map((x) => ({ id: x.id, label: x.label }));

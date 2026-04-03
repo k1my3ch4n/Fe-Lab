@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { LEAK_PATTERNS, SEVERITY_COLORS, GC_PHASES } from "./constants";
+import { LEAK_PATTERNS, SEVERITY_COLORS, GC_PHASES, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -103,12 +103,10 @@ export default function MemoryManagementDemo() {
     }, 2400);
   };
 
-  const tabs = LEAK_PATTERNS.map((p) => ({ id: p.id, label: p.label }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />

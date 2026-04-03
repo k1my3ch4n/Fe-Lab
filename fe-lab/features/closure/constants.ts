@@ -122,3 +122,5 @@ for (let i = 0; i < 3; i++) {
     ] as ScopeBlock[],
   },
 ];
+
+export const TABS = CLOSURE_EXAMPLES.map((x) => ({ id: x.id, label: x.label }));

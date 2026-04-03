@@ -101,3 +101,5 @@ export const DEFAULT_PROMISES: Omit<PromiseItem, "state" | "value">[] = [
   { id: 2, label: "API 호출 B", delay: 2000, shouldReject: false },
   { id: 3, label: "API 호출 C", delay: 1500, shouldReject: true },
 ];
+
+export const TABS = PROMISE_METHODS.map((x) => ({ id: x.id, label: x.label }));

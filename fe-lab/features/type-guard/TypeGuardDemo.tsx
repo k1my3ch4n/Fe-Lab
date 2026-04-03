@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TYPE_GUARD_EXAMPLES } from "./constants";
+import { TYPE_GUARD_EXAMPLES, TABS } from "./constants";
 import {
   TabBar,
   DemoLayout,
@@ -37,15 +37,10 @@ export default function TypeGuardDemo() {
     addLog(`→ 타입 좁히기: ${resultType}`);
   };
 
-  const tabs = TYPE_GUARD_EXAMPLES.map((ex) => ({
-    id: ex.id,
-    label: ex.label,
-  }));
-
   return (
     <>
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeExample}
         onTabChange={handleExampleChange}
       />

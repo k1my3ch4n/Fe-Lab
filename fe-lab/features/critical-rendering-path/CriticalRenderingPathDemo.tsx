@@ -6,6 +6,7 @@ import {
   CRP_SCENARIOS,
   RESOURCE_COLORS,
   RESOURCE_LABELS,
+  TABS,
   TIMELINE_MAX,
 } from "./constants";
 import type { TimelineResource } from "./types";
@@ -16,13 +17,11 @@ export default function CriticalRenderingPathDemo() {
 
   const fcpPercent = (scenario.fcp / TIMELINE_MAX) * 100;
 
-  const tabs = CRP_SCENARIOS.map((s) => ({ id: s.id, label: s.label }));
-
   return (
     <>
       {/* Scenario Tabs */}
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeScenario}
         onTabChange={setActiveScenario}
       />

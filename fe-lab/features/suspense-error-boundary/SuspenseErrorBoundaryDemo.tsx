@@ -10,7 +10,7 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import { SUSPENSE_SCENARIOS } from "./constants";
+import { SUSPENSE_SCENARIOS, TABS } from "./constants";
 
 export default function SuspenseErrorBoundaryDemo() {
   const [activeTab, setActiveTab] = useState(0);
@@ -89,8 +89,6 @@ export default function SuspenseErrorBoundaryDemo() {
     }
   };
 
-  const tabs = SUSPENSE_SCENARIOS.map((s) => ({ id: s.id, label: s.label }));
-
   const rightPanel = (
     <>
       <PanelHeader label="실행" onReset={handleReset} />
@@ -118,7 +116,7 @@ export default function SuspenseErrorBoundaryDemo() {
     <>
       {/* Toolbar */}
       <TabBar
-        tabs={tabs}
+        tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />

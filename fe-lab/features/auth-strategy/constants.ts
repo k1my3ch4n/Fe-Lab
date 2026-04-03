@@ -192,3 +192,5 @@ export const { handlers, auth } = NextAuth({
     ],
   },
 ];
+
+export const TABS = AUTH_METHODS.map((x) => ({ id: x.id, label: x.label }));

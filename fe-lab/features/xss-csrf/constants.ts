@@ -129,6 +129,11 @@ response.headers.set(
   },
 ];
 
+export const TABS = SECURITY_SCENARIOS.map((x) => ({
+  id: x.id,
+  label: x.label,
+}));
+
 export const XSS_EXAMPLES = {
   input: '<img src=x onerror="alert(document.cookie)">',
   escaped: "&lt;img src=x onerror=&quot;alert(document.cookie)&quot;&gt;",

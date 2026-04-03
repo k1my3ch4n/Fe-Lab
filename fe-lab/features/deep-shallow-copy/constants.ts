@@ -77,6 +77,8 @@ console.log(copy.set instanceof Set);    // true ✓
   },
 ];
 
+export const TABS = COPY_METHODS.map((x) => ({ id: x.id, label: x.label }));
+
 export const ORIGINAL_OBJECT: ObjectNode[] = [
   { key: "name", value: "'Kim'", isReference: false, color: "#00e5ff" },
   { key: "age", value: "25", isReference: false, color: "#00e5ff" },

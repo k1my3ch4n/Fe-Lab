@@ -167,6 +167,8 @@ export const CACHE_SCENARIOS: CacheScenario[] = [
   },
 ];
 
+export const TABS = CACHE_SCENARIOS.map((x) => ({ id: x.id, label: x.label }));
+
 export const STATUS_COLORS: Record<
   CacheStatus,
   { bg: string; text: string; label: string }
