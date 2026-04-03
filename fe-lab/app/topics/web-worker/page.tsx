@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { WebWorkerDemo } from "@features/web-worker";
+import dynamic from "next/dynamic";
+const WebWorkerDemo = dynamic(
+  () => import("@features/web-worker/WebWorkerDemo"),
+);
 import { codeExamples, interviewQuestions } from "@features/web-worker/data";
 
 export default function WebWorkerPage() {

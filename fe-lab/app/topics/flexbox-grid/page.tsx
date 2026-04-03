@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { FlexboxGridDemo } from "@features/flexbox-grid";
+import dynamic from "next/dynamic";
+const FlexboxGridDemo = dynamic(
+  () => import("@features/flexbox-grid/FlexboxGridDemo"),
+);
 import { codeExamples, interviewQuestions } from "@features/flexbox-grid/data";
 
 export default function FlexboxGridPage() {

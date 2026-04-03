@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { WebStorageDemo } from "@features/web-storage";
+import dynamic from "next/dynamic";
+const WebStorageDemo = dynamic(
+  () => import("@features/web-storage/WebStorageDemo"),
+);
 import { codeExamples, interviewQuestions } from "@features/web-storage/data";
 
 export default function WebStoragePage() {

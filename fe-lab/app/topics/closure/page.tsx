@@ -1,5 +1,6 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { ClosureDemo } from "@features/closure";
+import dynamic from "next/dynamic";
+const ClosureDemo = dynamic(() => import("@features/closure/ClosureDemo"));
 import { codeExamples, interviewQuestions } from "@features/closure/data";
 
 export default function ClosurePage() {

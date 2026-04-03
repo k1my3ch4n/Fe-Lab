@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { ReflowRepaintDemo } from "@features/reflow-repaint";
+import dynamic from "next/dynamic";
+const ReflowRepaintDemo = dynamic(
+  () => import("@features/reflow-repaint/ReflowRepaintDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

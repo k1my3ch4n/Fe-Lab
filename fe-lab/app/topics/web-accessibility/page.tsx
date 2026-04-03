@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { WebAccessibilityDemo } from "@features/web-accessibility";
+import dynamic from "next/dynamic";
+const WebAccessibilityDemo = dynamic(
+  () => import("@features/web-accessibility/WebAccessibilityDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

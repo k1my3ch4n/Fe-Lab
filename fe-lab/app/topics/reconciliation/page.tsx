@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { ReconciliationDemo } from "@features/reconciliation";
+import dynamic from "next/dynamic";
+const ReconciliationDemo = dynamic(
+  () => import("@features/reconciliation/ReconciliationDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

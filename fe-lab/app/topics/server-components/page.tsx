@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { ServerComponentsDemo } from "@features/server-components";
+import dynamic from "next/dynamic";
+const ServerComponentsDemo = dynamic(
+  () => import("@features/server-components/ServerComponentsDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

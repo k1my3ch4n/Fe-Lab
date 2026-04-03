@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { HooksLifecycleDemo } from "@features/hooks-lifecycle";
+import dynamic from "next/dynamic";
+const HooksLifecycleDemo = dynamic(
+  () => import("@features/hooks-lifecycle/HooksLifecycleDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

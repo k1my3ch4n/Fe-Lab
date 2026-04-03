@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { RenderPipelineDemo } from "@features/rendering-pipeline";
+import dynamic from "next/dynamic";
+const RenderPipelineDemo = dynamic(
+  () => import("@features/rendering-pipeline/RenderPipelineDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

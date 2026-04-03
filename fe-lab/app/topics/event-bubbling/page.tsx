@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode, PhaseChip } from "@shared/ui";
-import { EventBubblingDemo } from "@features/event-bubbling";
+import dynamic from "next/dynamic";
+const EventBubblingDemo = dynamic(
+  () => import("@features/event-bubbling/EventBubblingDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

@@ -1,6 +1,7 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { CdnDemo } from "@features/cdn";
+import dynamic from "next/dynamic";
 import { codeExamples, interviewQuestions } from "@features/cdn/data";
+const CdnDemo = dynamic(() => import("@features/cdn/CdnDemo"));
 
 export default function CdnPage() {
   return (

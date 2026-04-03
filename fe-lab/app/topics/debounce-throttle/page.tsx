@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { DebounceThrottleDemo } from "@features/debounce-throttle";
+import dynamic from "next/dynamic";
+const DebounceThrottleDemo = dynamic(
+  () => import("@features/debounce-throttle/DebounceThrottleDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

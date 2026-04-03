@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { CookieSessionDemo } from "@features/cookie-session";
+import dynamic from "next/dynamic";
+const CookieSessionDemo = dynamic(
+  () => import("@features/cookie-session/CookieSessionDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

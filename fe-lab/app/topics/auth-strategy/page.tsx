@@ -1,6 +1,10 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { AuthStrategyDemo } from "@features/auth-strategy";
+import dynamic from "next/dynamic";
 import { codeExamples, interviewQuestions } from "@features/auth-strategy/data";
+
+const AuthStrategyDemo = dynamic(
+  () => import("@features/auth-strategy/AuthStrategyDemo"),
+);
 
 export default function AuthStrategyPage() {
   return (

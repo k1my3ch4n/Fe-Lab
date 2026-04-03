@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { StateManagementDemo } from "@features/state-management";
+import dynamic from "next/dynamic";
+const StateManagementDemo = dynamic(
+  () => import("@features/state-management/StateManagementDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

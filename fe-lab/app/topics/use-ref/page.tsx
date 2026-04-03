@@ -1,5 +1,6 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { UseRefDemo } from "@features/use-ref";
+import dynamic from "next/dynamic";
+const UseRefDemo = dynamic(() => import("@features/use-ref/UseRefDemo"));
 import { codeExamples, interviewQuestions } from "@features/use-ref/data";
 
 export default function UseRefPage() {

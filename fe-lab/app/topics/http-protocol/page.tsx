@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { HttpProtocolDemo } from "@features/http-protocol";
+import dynamic from "next/dynamic";
+const HttpProtocolDemo = dynamic(
+  () => import("@features/http-protocol/HttpProtocolDemo"),
+);
 import { codeExamples, interviewQuestions } from "@features/http-protocol/data";
 
 export default function HttpProtocolPage() {

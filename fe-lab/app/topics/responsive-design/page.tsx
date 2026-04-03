@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { ResponsiveDesignDemo } from "@features/responsive-design";
+import dynamic from "next/dynamic";
+const ResponsiveDesignDemo = dynamic(
+  () => import("@features/responsive-design/ResponsiveDesignDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

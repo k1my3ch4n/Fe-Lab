@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { PrototypeChainDemo } from "@features/prototype-chain";
+import dynamic from "next/dynamic";
+const PrototypeChainDemo = dynamic(
+  () => import("@features/prototype-chain/PrototypeChainDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

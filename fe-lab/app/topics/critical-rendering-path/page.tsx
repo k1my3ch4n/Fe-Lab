@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { CriticalRenderingPathDemo } from "@features/critical-rendering-path";
+import dynamic from "next/dynamic";
+const CriticalRenderingPathDemo = dynamic(
+  () => import("@features/critical-rendering-path/CriticalRenderingPathDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

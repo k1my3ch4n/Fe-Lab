@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { MemoryManagementDemo } from "@features/memory-management";
+import dynamic from "next/dynamic";
+const MemoryManagementDemo = dynamic(
+  () => import("@features/memory-management/MemoryManagementDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

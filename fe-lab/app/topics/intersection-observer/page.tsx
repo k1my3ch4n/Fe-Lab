@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { IntersectionObserverDemo } from "@features/intersection-observer";
+import dynamic from "next/dynamic";
+const IntersectionObserverDemo = dynamic(
+  () => import("@features/intersection-observer/IntersectionObserverDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

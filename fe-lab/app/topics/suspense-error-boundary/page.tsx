@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { SuspenseErrorBoundaryDemo } from "@features/suspense-error-boundary";
+import dynamic from "next/dynamic";
+const SuspenseErrorBoundaryDemo = dynamic(
+  () => import("@features/suspense-error-boundary/SuspenseErrorBoundaryDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

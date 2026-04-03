@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { CurryingCompositionDemo } from "@features/currying-composition";
+import dynamic from "next/dynamic";
+const CurryingCompositionDemo = dynamic(
+  () => import("@features/currying-composition/CurryingCompositionDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

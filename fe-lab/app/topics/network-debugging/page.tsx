@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { NetworkDebuggingDemo } from "@features/network-debugging";
+import dynamic from "next/dynamic";
+const NetworkDebuggingDemo = dynamic(
+  () => import("@features/network-debugging/NetworkDebuggingDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

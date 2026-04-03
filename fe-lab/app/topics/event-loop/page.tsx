@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { EventLoopDemo } from "@features/event-loop";
+import dynamic from "next/dynamic";
+const EventLoopDemo = dynamic(
+  () => import("@features/event-loop/EventLoopDemo"),
+);
 import { codeExamples, interviewQuestions } from "@features/event-loop/data";
 
 export default function EventLoopPage() {

@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { DeepShallowCopyDemo } from "@features/deep-shallow-copy";
+import dynamic from "next/dynamic";
+const DeepShallowCopyDemo = dynamic(
+  () => import("@features/deep-shallow-copy/DeepShallowCopyDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,

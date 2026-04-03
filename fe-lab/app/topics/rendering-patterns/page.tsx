@@ -1,5 +1,8 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
-import { RenderingPatternsDemo } from "@features/rendering-patterns";
+import dynamic from "next/dynamic";
+const RenderingPatternsDemo = dynamic(
+  () => import("@features/rendering-patterns/RenderingPatternsDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,
