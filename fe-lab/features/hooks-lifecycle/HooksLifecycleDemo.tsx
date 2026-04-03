@@ -1,77 +1,26 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import {
-  TabBar,
-  DemoLayout,
-  PanelHeader,
-  SectionHeader,
-  ActionButton,
-} from "@shared/ui";
-import {
-  PHASES,
-  HOOK_TIMINGS,
-  CLASS_TO_HOOKS_MAP,
-  type Phase,
-} from "./constants";
+import { useState } from "react";
+import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
+import { PHASES } from "./constants";
+import { usePhaseAnimation } from "./hooks/usePhaseAnimation";
+import ComparisonView from "./components/ComparisonView";
 
 type Tab = "timeline" | "comparison";
 
-interface LogEntry {
-  hook: string;
-  color: string;
-  phase: Phase;
-  order: number;
-}
-
 export default function HooksLifecycleDemo() {
   const [activeTab, setActiveTab] = useState<Tab>("timeline");
-  const [activePhase, setActivePhase] = useState<Phase>("mount");
-  const [logs, setLogs] = useState<LogEntry[]>([]);
-  const [animatingIndex, setAnimatingIndex] = useState<number>(-1);
-  const [isAnimating, setIsAnimating] = useState(false);
 
-  const phaseTimings = HOOK_TIMINGS.filter((h) => h.phase === activePhase);
-
-  const animatePhase = useCallback(
-    (phase: Phase) => {
-      if (isAnimating) return;
-      setIsAnimating(true);
-      setActivePhase(phase);
-      setLogs([]);
-      setAnimatingIndex(-1);
-
-      const timings = HOOK_TIMINGS.filter((h) => h.phase === phase);
-
-      timings.forEach((timing, i) => {
-        setTimeout(
-          () => {
-            setAnimatingIndex(i);
-            setLogs((prev) => [
-              ...prev,
-              {
-                hook: timing.hook,
-                color: timing.color,
-                phase: timing.phase,
-                order: timing.order,
-              },
-            ]);
-            if (i === timings.length - 1) {
-              setTimeout(() => setIsAnimating(false), 300);
-            }
-          },
-          (i + 1) * 400,
-        );
-      });
-    },
-    [isAnimating],
-  );
-
-  const handleReset = () => {
-    setLogs([]);
-    setAnimatingIndex(-1);
-    setIsAnimating(false);
-  };
+  const {
+    activePhase,
+    logs,
+    animatingIndex,
+    isAnimating,
+    phaseTimings,
+    animatePhase,
+    reset,
+    selectPhase,
+  } = usePhaseAnimation();
 
   const tabs = [
     { id: "timeline" as Tab, label: "실행 타임라인" },
@@ -82,7 +31,7 @@ export default function HooksLifecycleDemo() {
 
   const handleTabChange = (index: number) => {
     setActiveTab(index === 0 ? "timeline" : "comparison");
-    handleReset();
+    reset();
   };
 
   return (
@@ -98,7 +47,7 @@ export default function HooksLifecycleDemo() {
         <DemoLayout
           rightPanel={
             <>
-              <PanelHeader label="실행" onReset={handleReset} />
+              <PanelHeader label="실행" onReset={reset} />
 
               {/* Action buttons */}
               <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
@@ -155,10 +104,7 @@ export default function HooksLifecycleDemo() {
             {PHASES.map((phase) => (
               <button
                 key={phase.id}
-                onClick={() => {
-                  setActivePhase(phase.id);
-                  handleReset();
-                }}
+                onClick={() => selectPhase(phase.id)}
                 className={`font-[family-name:var(--font-mono)] text-[11px] px-3 py-1.5 rounded-md border transition-all duration-200 cursor-pointer ${
                   activePhase === phase.id
                     ? "bg-bg-surface"
@@ -244,81 +190,7 @@ export default function HooksLifecycleDemo() {
           </div>
         </DemoLayout>
       ) : (
-        /* Comparison tab: Class Lifecycle vs Hooks */
-        <div className="p-6">
-          <SectionHeader>Class Lifecycle vs Hooks 매핑</SectionHeader>
-
-          <div className="rounded-lg border border-border-subtle overflow-hidden">
-            {/* Header */}
-            <div className="grid grid-cols-[1fr_1fr_1.2fr] bg-bg-elevated border-b border-border-subtle">
-              <div className="px-4 py-2.5 font-[family-name:var(--font-mono)] text-[10px] text-accent-magenta font-semibold uppercase tracking-wider">
-                Class Method
-              </div>
-              <div className="px-4 py-2.5 font-[family-name:var(--font-mono)] text-[10px] text-accent-cyan font-semibold uppercase tracking-wider">
-                Hook Equivalent
-              </div>
-              <div className="px-4 py-2.5 font-[family-name:var(--font-mono)] text-[10px] text-text-muted font-semibold uppercase tracking-wider">
-                설명
-              </div>
-            </div>
-
-            {/* Rows */}
-            {CLASS_TO_HOOKS_MAP.map((mapping, i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-[1fr_1fr_1.2fr] transition-all duration-200 hover:bg-bg-surface ${
-                  i < CLASS_TO_HOOKS_MAP.length - 1
-                    ? "border-b border-border-subtle"
-                    : ""
-                }`}
-              >
-                <div className="px-4 py-3 font-[family-name:var(--font-mono)] text-[11px] text-accent-magenta">
-                  {mapping.classMethod}
-                </div>
-                <div className="px-4 py-3 font-[family-name:var(--font-mono)] text-[11px] text-accent-cyan">
-                  {mapping.hookEquivalent}
-                </div>
-                <div className="px-4 py-3 font-[family-name:var(--font-mono)] text-[11px] text-text-secondary">
-                  {mapping.description}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Visual flow diagram */}
-          <div className="mt-8">
-            <SectionHeader>Hooks 실행 흐름</SectionHeader>
-            <div className="flex items-center gap-2 flex-wrap">
-              {(
-                [
-                  { label: "useState init", color: "#00e5ff" },
-                  { label: "useMemo", color: "#b388ff" },
-                  { label: "Render", color: "#ffffff" },
-                  { label: "DOM Update", color: "#888" },
-                  { label: "useLayoutEffect", color: "#ff2d8a" },
-                  { label: "Paint", color: "#888" },
-                  { label: "useEffect", color: "#00e676" },
-                ] as const
-              ).map((step, i, arr) => (
-                <div key={i} className="flex items-center gap-2">
-                  <span
-                    className="font-[family-name:var(--font-mono)] text-[10px] px-2.5 py-1.5 rounded-md border"
-                    style={{
-                      color: step.color,
-                      borderColor: `${step.color}44`,
-                      background: `${step.color}10`,
-                    }}
-                  >
-                    {step.label}
-                  </span>
-                  {i < arr.length - 1 && (
-                    <span className="text-text-muted text-[10px]">&rarr;</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <ComparisonView />
       )}
     </>
   );

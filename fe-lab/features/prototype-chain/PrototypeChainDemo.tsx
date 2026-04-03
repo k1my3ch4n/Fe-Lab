@@ -1,88 +1,40 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { TabBar } from "@shared/ui";
-import {
-  PROTOTYPE_CHAIN_EXAMPLES,
-  PROPERTY_SUGGESTIONS,
-  type PrototypeNode,
-} from "./constants";
+import { PROTOTYPE_CHAIN_EXAMPLES, PROPERTY_SUGGESTIONS } from "./constants";
+import { usePropertyLookup } from "./hooks/usePropertyLookup";
+import { ChainNode } from "./components/ChainNode";
 
 export default function PrototypeChainDemo() {
   const [activeExample, setActiveExample] = useState(0);
-  const [propertyInput, setPropertyInput] = useState("");
-  const [lookupResult, setLookupResult] = useState<{
-    property: string;
-    foundAt: number | null; // index in chain, null = not found
-    traversed: number[];
-  } | null>(null);
-  const [animatingIndex, setAnimatingIndex] = useState(-1);
-  const animationRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const example = PROTOTYPE_CHAIN_EXAMPLES[activeExample];
   const suggestions = PROPERTY_SUGGESTIONS[example.id] ?? [];
 
-  const clearAnimation = useCallback(() => {
-    if (animationRef.current) {
-      clearTimeout(animationRef.current);
-      animationRef.current = null;
-    }
-
-    setAnimatingIndex(-1);
-  }, []);
+  const {
+    propertyInput,
+    setPropertyInput,
+    lookupResult,
+    animatingIndex,
+    lookupProperty,
+    resetLookup,
+    clearAnimation,
+  } = usePropertyLookup(example.chain);
 
   const handleExampleChange = (index: number) => {
     setActiveExample(index);
-    setPropertyInput("");
-    setLookupResult(null);
-    clearAnimation();
-  };
-
-  const lookupProperty = useCallback(
-    (prop: string) => {
-      if (!prop.trim()) {
-        return;
-      }
-
-      clearAnimation();
-      setLookupResult(null);
-
-      const traversed: number[] = [];
-      let foundAt: number | null = null;
-
-      for (let i = 0; i < example.chain.length; i++) {
-        const node = example.chain[i];
-        traversed.push(i);
-        if (node.properties.some((p) => p.name === prop)) {
-          foundAt = i;
-          break;
-        }
-      }
-
-      // Animate traversal step by step
-      let step = 0;
-      const animate = () => {
-        if (step < traversed.length) {
-          setAnimatingIndex(traversed[step]);
-          step++;
-          animationRef.current = setTimeout(animate, 400);
-        } else {
-          setLookupResult({ property: prop, foundAt, traversed });
-        }
-      };
-      animate();
-    },
-    [example, clearAnimation],
-  );
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    lookupProperty(propertyInput);
+    resetLookup();
   };
 
   useEffect(() => {
     return () => clearAnimation();
   }, [clearAnimation]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    lookupProperty(propertyInput);
+  };
 
   const tabs = PROTOTYPE_CHAIN_EXAMPLES.map((ex) => ({
     id: ex.id,
@@ -91,7 +43,6 @@ export default function PrototypeChainDemo() {
 
   return (
     <>
-      {/* Toolbar */}
       <TabBar
         tabs={tabs}
         activeIndex={activeExample}
@@ -231,148 +182,5 @@ export default function PrototypeChainDemo() {
         </div>
       </div>
     </>
-  );
-}
-
-function ChainNode({
-  node,
-  index,
-  isLast,
-  isAnimating,
-  isFound,
-  isTraversed,
-  isNotFoundEnd,
-  searchProperty,
-}: {
-  node: PrototypeNode;
-  index: number;
-  isLast: boolean;
-  isAnimating: boolean;
-  isFound: boolean;
-  isTraversed: boolean;
-  isNotFoundEnd: boolean;
-  searchProperty: string | null;
-}) {
-  const isNull = node.name === "null";
-
-  const borderColor = isFound
-    ? "#00e676"
-    : isNotFoundEnd
-      ? "#ff2d8a"
-      : isAnimating
-        ? "#00e5ff"
-        : `${node.color}44`;
-
-  const bgColor = isFound
-    ? "#00e67610"
-    : isNotFoundEnd
-      ? "#ff2d8a10"
-      : isAnimating
-        ? "#00e5ff15"
-        : `${node.color}08`;
-
-  return (
-    <div className="flex flex-col items-start">
-      <div
-        className="rounded-lg border p-3 w-full transition-all duration-300"
-        style={{
-          borderColor,
-          background: bgColor,
-          marginLeft: `${index * 16}px`,
-          maxWidth: `calc(100% - ${index * 16}px)`,
-          boxShadow: isAnimating
-            ? "0 0 12px rgba(0, 229, 255, 0.2)"
-            : isFound
-              ? "0 0 12px rgba(0, 230, 118, 0.2)"
-              : "none",
-        }}
-      >
-        <div className="flex items-center gap-2 mb-1.5">
-          {isAnimating && (
-            <span className="text-[10px] text-accent-cyan animate-pulse">
-              {">>"}
-            </span>
-          )}
-          <span
-            className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
-            style={{ color: node.color }}
-          >
-            {isNull ? "null (체인 끝)" : node.name}
-          </span>
-          {isFound && (
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-accent-green bg-accent-green-dim px-1.5 py-0.5 rounded">
-              FOUND
-            </span>
-          )}
-          {isNotFoundEnd && (
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-accent-magenta bg-accent-magenta-dim px-1.5 py-0.5 rounded">
-              NOT FOUND
-            </span>
-          )}
-        </div>
-        {!isNull && (
-          <div className="flex flex-wrap gap-1.5">
-            {node.properties.map((p) => {
-              const isMatch = isFound && searchProperty === p.name;
-              return (
-                <span
-                  key={p.name}
-                  className="font-[family-name:var(--font-mono)] text-[10px] px-2 py-1 rounded transition-all duration-200"
-                  style={{
-                    background: isMatch ? "#00e67620" : "var(--bg-deep)",
-                    border: isMatch
-                      ? "1px solid #00e67644"
-                      : "1px solid transparent",
-                  }}
-                >
-                  <span
-                    style={{
-                      color: isMatch ? "#00e676" : node.color,
-                    }}
-                  >
-                    {p.name}
-                  </span>
-                  <span className="text-text-muted"> : </span>
-                  <span className="text-text-primary">{p.value}</span>
-                </span>
-              );
-            })}
-          </div>
-        )}
-      </div>
-
-      {/* Arrow connector */}
-      {!isLast && (
-        <div
-          className="flex flex-col items-center py-1"
-          style={{ marginLeft: `${index * 16 + 24}px` }}
-        >
-          <div
-            className={`w-px h-4 transition-colors duration-300 ${
-              isTraversed ? "bg-accent-cyan" : "bg-border-subtle"
-            }`}
-          />
-          <span
-            className={`font-[family-name:var(--font-mono)] text-[9px] leading-none transition-colors duration-300 ${
-              isTraversed ? "text-accent-cyan" : "text-text-muted"
-            }`}
-          >
-            __proto__
-          </span>
-          <div
-            className={`w-px h-4 transition-colors duration-300 ${
-              isTraversed ? "bg-accent-cyan" : "bg-border-subtle"
-            }`}
-          />
-          <span
-            className={`text-[10px] leading-none transition-colors duration-300 ${
-              isTraversed ? "text-accent-cyan" : "text-text-muted"
-            }`}
-          >
-            {"v"}
-          </span>
-        </div>
-      )}
-    </div>
   );
 }
