@@ -8,7 +8,6 @@ import {
   DemoLayout,
   PanelHeader,
   ActionButton,
-  LogPanel,
 } from "@shared/ui";
 
 export default function HttpCacheDemo() {
