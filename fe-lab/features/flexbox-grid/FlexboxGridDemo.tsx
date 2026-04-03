@@ -9,6 +9,7 @@ import {
   GRID_TEMPLATE_OPTIONS,
   DEMO_ITEMS,
 } from "./constants";
+import { TabBar, PanelHeader, SectionHeader } from "@shared/ui";
 
 type Mode = "flexbox" | "grid";
 
@@ -50,33 +51,28 @@ grid-template-columns: ${gridTemplate};
 align-items: ${gridAlignItems};
 gap: ${gridGap}px;`;
 
+  const tabs = [
+    { id: "flexbox", label: "FLEXBOX" },
+    { id: "grid", label: "GRID" },
+  ];
+
   return (
     <>
-      {/* Toolbar */}
-      <div className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated">
-        {(["flexbox", "grid"] as Mode[]).map((m) => (
-          <button
-            key={m}
-            onClick={() => setMode(m)}
-            className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer uppercase ${
-              m === mode
-                ? "border-accent-cyan text-accent-cyan bg-bg-surface"
-                : "border-transparent text-text-muted hover:text-text-secondary"
-            }`}
-          >
-            {m}
-          </button>
-        ))}
-      </div>
+      <TabBar
+        tabs={tabs}
+        activeIndex={mode === "flexbox" ? 0 : 1}
+        onTabChange={(i) => setMode(i === 0 ? "flexbox" : "grid")}
+      />
 
-      <div className="grid grid-cols-[1fr_260px] min-h-[420px]">
+      <div
+        className="min-h-[420px]"
+        style={{ display: "grid", gridTemplateColumns: "1fr 260px" }}
+      >
         {/* Left: Preview + Code */}
         <div className="p-6 flex flex-col gap-5">
           {/* Preview */}
           <div className="bg-bg-deep rounded-lg p-4 min-h-[200px] border border-border-subtle">
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-3">
-              Preview
-            </div>
+            <SectionHeader>Preview</SectionHeader>
             {mode === "flexbox" ? (
               <div
                 className="min-h-[160px] rounded border border-border-subtle p-2"
@@ -131,17 +127,7 @@ gap: ${gridGap}px;`;
 
         {/* Right: Controls */}
         <div className="border-l border-border-subtle flex flex-col">
-          <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
-            <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
-              속성 조절
-            </span>
-            <button
-              onClick={handleReset}
-              className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted cursor-pointer bg-transparent border-none px-2 py-1 rounded transition-all duration-200 hover:text-accent-magenta hover:bg-accent-magenta-dim"
-            >
-              Reset
-            </button>
-          </div>
+          <PanelHeader label="속성 조절" onReset={handleReset} />
 
           <div className="p-4 flex flex-col gap-4 overflow-y-auto flex-1">
             {mode === "flexbox" ? (

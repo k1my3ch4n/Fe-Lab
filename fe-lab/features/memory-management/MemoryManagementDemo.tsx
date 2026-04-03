@@ -2,6 +2,13 @@
 
 import { useState, useCallback } from "react";
 import { LEAK_PATTERNS, SEVERITY_COLORS, GC_PHASES } from "./constants";
+import {
+  TabBar,
+  DemoLayout,
+  PanelHeader,
+  LogPanel,
+  ActionButton,
+} from "@shared/ui";
 
 export default function MemoryManagementDemo() {
   const [activeTab, setActiveTab] = useState(0);
@@ -96,142 +103,97 @@ export default function MemoryManagementDemo() {
     }, 2400);
   };
 
+  const tabs = LEAK_PATTERNS.map((p) => ({ id: p.id, label: p.label }));
+
   return (
     <>
-      {/* Toolbar */}
-      <div className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated">
-        {LEAK_PATTERNS.map((p, i) => (
-          <button
-            key={p.id}
-            onClick={() => handleTabChange(i)}
-            className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
-              i === activeTab
-                ? "border-accent-cyan text-accent-cyan bg-bg-surface"
-                : "border-transparent text-text-muted hover:text-text-secondary"
-            }`}
-          >
-            {p.label}
-          </button>
-        ))}
-      </div>
+      <TabBar
+        tabs={tabs}
+        activeIndex={activeTab}
+        onTabChange={handleTabChange}
+      />
 
-      <div className="grid grid-cols-[1fr_280px] min-h-[420px]">
-        {/* Left: Code + GC Visualization */}
-        <div className="p-6 flex flex-col gap-5">
-          {/* Code */}
-          <pre className="font-[family-name:var(--font-mono)] text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto">
-            {pattern.code}
-          </pre>
+      <DemoLayout
+        rightPanel={
+          <>
+            <PanelHeader onReset={handleReset} />
 
-          {/* Severity + GC Phases */}
-          <div className="flex gap-4">
-            {/* Severity */}
-            <div className="flex items-center gap-2 p-3 rounded-lg border border-border-subtle bg-bg-surface">
-              <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase">
-                위험도:
-              </span>
-              <span
-                className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
-                style={{ color: SEVERITY_COLORS[pattern.severity] }}
-              >
-                {pattern.severity.toUpperCase()}
-              </span>
+            {/* Action buttons */}
+            <div className="p-4 border-b border-border-subtle">
+              <div className="flex flex-col gap-2">
+                <ActionButton variant="magenta" onClick={simulateLeak}>
+                  릭 시뮬레이션 (문제)
+                </ActionButton>
+                <ActionButton variant="green" onClick={simulateFix}>
+                  해결 패턴 실행
+                </ActionButton>
+                <ActionButton variant="cyan" onClick={simulateGC}>
+                  GC 사이클 시각화
+                </ActionButton>
+              </div>
             </div>
 
-            {/* GC Phase Indicator */}
-            <div className="flex-1 flex items-center gap-2">
-              {GC_PHASES.map((phase, i) => (
+            {/* Description */}
+            <div className="p-4 border-b border-border-subtle">
+              <div className="text-[11px] text-text-secondary leading-[1.8]">
+                {pattern.description}
+              </div>
+            </div>
+
+            <LogPanel
+              logs={logs}
+              emptyMessage={"버튼을 클릭하여\n메모리 릭 패턴을 확인하세요"}
+            />
+          </>
+        }
+      >
+        {/* Code */}
+        <pre className="font-[family-name:var(--font-mono)] text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto">
+          {pattern.code}
+        </pre>
+
+        {/* Severity + GC Phases */}
+        <div className="flex gap-4">
+          {/* Severity */}
+          <div className="flex items-center gap-2 p-3 rounded-lg border border-border-subtle bg-bg-surface">
+            <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase">
+              위험도:
+            </span>
+            <span
+              className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
+              style={{ color: SEVERITY_COLORS[pattern.severity] }}
+            >
+              {pattern.severity.toUpperCase()}
+            </span>
+          </div>
+
+          {/* GC Phase Indicator */}
+          <div className="flex-1 flex items-center gap-2">
+            {GC_PHASES.map((phase, i) => (
+              <div
+                key={phase.name}
+                className="flex-1 rounded-lg border p-2 text-center transition-all duration-500"
+                style={{
+                  borderColor:
+                    gcPhase === i ? `${phase.color}88` : `${phase.color}22`,
+                  background:
+                    gcPhase === i ? `${phase.color}18` : "transparent",
+                  transform: gcPhase === i ? "scale(1.05)" : "scale(1)",
+                }}
+              >
                 <div
-                  key={phase.name}
-                  className="flex-1 rounded-lg border p-2 text-center transition-all duration-500"
+                  className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
                   style={{
-                    borderColor:
-                      gcPhase === i ? `${phase.color}88` : `${phase.color}22`,
-                    background:
-                      gcPhase === i ? `${phase.color}18` : "transparent",
-                    transform: gcPhase === i ? "scale(1.05)" : "scale(1)",
+                    color: gcPhase === i ? phase.color : `${phase.color}66`,
                   }}
                 >
-                  <div
-                    className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
-                    style={{
-                      color: gcPhase === i ? phase.color : `${phase.color}66`,
-                    }}
-                  >
-                    {phase.name}
-                  </div>
+                  {phase.name}
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Interactive Panel */}
-        <div className="border-l border-border-subtle flex flex-col">
-          <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
-            <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
-              실행
-            </span>
-            <button
-              onClick={handleReset}
-              className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted cursor-pointer bg-transparent border-none px-2 py-1 rounded transition-all duration-200 hover:text-accent-magenta hover:bg-accent-magenta-dim"
-            >
-              Reset
-            </button>
-          </div>
-
-          {/* Action buttons */}
-          <div className="p-4 border-b border-border-subtle">
-            <div className="flex flex-col gap-2">
-              <button
-                onClick={simulateLeak}
-                className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border border-accent-magenta text-accent-magenta bg-accent-magenta-dim cursor-pointer transition-all duration-200 hover:bg-[#ff2d8a33]"
-              >
-                릭 시뮬레이션 (문제)
-              </button>
-              <button
-                onClick={simulateFix}
-                className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
-              >
-                해결 패턴 실행
-              </button>
-              <button
-                onClick={simulateGC}
-                className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33]"
-              >
-                GC 사이클 시각화
-              </button>
-            </div>
-          </div>
-
-          {/* Description */}
-          <div className="p-4 border-b border-border-subtle">
-            <div className="text-[11px] text-text-secondary leading-[1.8]">
-              {pattern.description}
-            </div>
-          </div>
-
-          {/* Log */}
-          <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
-            {logs.length === 0 ? (
-              <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
-                버튼을 클릭하여
-                <br />
-                메모리 릭 패턴을 확인하세요
               </div>
-            ) : (
-              logs.map((log, i) => (
-                <div
-                  key={i}
-                  className="px-2 py-1 rounded mb-0.5 text-accent-cyan animate-[logSlide_0.3s_ease]"
-                >
-                  {log}
-                </div>
-              ))
-            )}
+            ))}
           </div>
         </div>
-      </div>
+      </DemoLayout>
     </>
   );
 }

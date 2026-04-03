@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SectionHeader } from "@shared/ui";
 import {
   CSS_PROPERTIES,
   PIPELINE_STAGES,
@@ -106,9 +107,7 @@ export default function ReflowRepaintDemo() {
         <div className="p-6 flex flex-col gap-5">
           {/* Pipeline visualization */}
           <div>
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-3">
-              Rendering Pipeline
-            </div>
+            <SectionHeader>Rendering Pipeline</SectionHeader>
             <div className="flex items-center gap-2">
               {PIPELINE_STAGES.map((stage, i) => {
                 const colors = stageColor(stage.id);
@@ -146,9 +145,7 @@ export default function ReflowRepaintDemo() {
 
           {/* Sample box */}
           <div>
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-3">
-              Sample Element
-            </div>
+            <SectionHeader>Sample Element</SectionHeader>
             <div className="bg-bg-deep rounded-lg p-8 flex items-center justify-center min-h-[160px]">
               <div style={boxStyle()}>
                 <span className="font-[family-name:var(--font-mono)] text-[10px] text-accent-cyan">

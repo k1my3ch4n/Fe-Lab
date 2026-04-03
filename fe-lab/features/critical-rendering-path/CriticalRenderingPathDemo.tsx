@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { TabBar } from "@shared/ui";
 import {
   CRP_SCENARIOS,
   RESOURCE_COLORS,
@@ -15,24 +16,16 @@ export default function CriticalRenderingPathDemo() {
 
   const fcpPercent = (scenario.fcp / TIMELINE_MAX) * 100;
 
+  const tabs = CRP_SCENARIOS.map((s) => ({ id: s.id, label: s.label }));
+
   return (
     <>
       {/* Scenario Tabs */}
-      <div className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated">
-        {CRP_SCENARIOS.map((s, i) => (
-          <button
-            key={s.id}
-            onClick={() => setActiveScenario(i)}
-            className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
-              i === activeScenario
-                ? "border-accent-cyan text-accent-cyan bg-bg-surface"
-                : "border-transparent text-text-muted hover:text-text-secondary"
-            }`}
-          >
-            {s.label}
-          </button>
-        ))}
-      </div>
+      <TabBar
+        tabs={tabs}
+        activeIndex={activeScenario}
+        onTabChange={setActiveScenario}
+      />
 
       <div className="p-6 flex flex-col gap-6">
         {/* Description */}

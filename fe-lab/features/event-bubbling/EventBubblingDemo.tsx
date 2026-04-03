@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { ToggleSwitch } from "@shared/ui";
+import { ToggleSwitch, PanelHeader } from "@shared/ui";
 import {
   ELEMENTS,
   ANIM_DELAY,
@@ -246,17 +246,7 @@ function EventLogPanel({
 }) {
   return (
     <div className="border-l border-border-subtle flex flex-col">
-      <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
-        <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
-          Event Log
-        </span>
-        <button
-          onClick={onClear}
-          className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted cursor-pointer bg-transparent border-none px-2 py-1 rounded transition-all duration-200 hover:text-accent-magenta hover:bg-accent-magenta-dim"
-        >
-          Clear
-        </button>
-      </div>
+      <PanelHeader label="Event Log" onReset={onClear} />
       <div
         ref={logRef}
         className="flex-1 overflow-y-auto p-2 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed"

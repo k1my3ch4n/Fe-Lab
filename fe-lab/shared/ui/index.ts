@@ -9,3 +9,12 @@ export { default as InterviewCard } from "./interview/InterviewCard";
 export { default as InlineCode } from "./InlineCode";
 export { default as ToggleSwitch } from "./ToggleSwitch";
 export { default as PhaseChip } from "./PhaseChip";
+export {
+  TabBar,
+  PanelHeader,
+  LogPanel,
+  SectionHeader,
+  ActionButton,
+  DemoLayout,
+  InfoCard,
+} from "./demo";

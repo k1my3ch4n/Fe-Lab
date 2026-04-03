@@ -7,6 +7,7 @@ import {
   TAB_ITEMS,
   type TabId,
 } from "./constants";
+import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
 
 export default function IntersectionObserverDemo() {
   const [activeTab, setActiveTab] = useState<TabId>("observe");
@@ -182,201 +183,167 @@ export default function IntersectionObserverDemo() {
     setInfiniteItems([1, 2, 3, 4, 5]);
   };
 
+  const tabsForBar = TAB_ITEMS.map((t) => ({ id: t.id, label: t.label }));
+  const activeIndex = TAB_ITEMS.findIndex((t) => t.id === activeTab);
+
   return (
     <>
-      {/* Toolbar */}
-      <div className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated">
-        {TAB_ITEMS.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => handleTabChange(tab.id)}
-            className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
-              activeTab === tab.id
-                ? "border-accent-cyan text-accent-cyan bg-bg-surface"
-                : "border-transparent text-text-muted hover:text-text-secondary"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <TabBar
+        tabs={tabsForBar}
+        activeIndex={activeIndex}
+        onTabChange={(i) => handleTabChange(TAB_ITEMS[i].id)}
+      />
 
-      <div className="grid grid-cols-[1fr_280px] min-h-[420px]">
-        {/* Left: Scroll Area */}
-        <div className="p-6 flex flex-col gap-4">
-          {/* Threshold control (observe tab) */}
-          {activeTab === "observe" && (
-            <div className="flex items-center gap-3">
-              <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider">
-                Threshold
-              </span>
-              <div className="flex gap-1">
-                {THRESHOLD_OPTIONS.map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => setThreshold(t)}
-                    className={`font-[family-name:var(--font-mono)] text-[11px] px-3 py-1.5 rounded border cursor-pointer transition-all duration-200 ${
-                      threshold === t
-                        ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
-                        : "border-border-subtle text-text-muted hover:text-text-secondary"
-                    }`}
-                  >
-                    {t}
-                  </button>
-                ))}
-              </div>
-              <button
-                onClick={handleStartObserving}
-                className="ml-auto font-[family-name:var(--font-mono)] text-[11px] px-4 py-1.5 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
-              >
-                감지 시작
-              </button>
+      <DemoLayout
+        rightPanel={
+          <>
+            <PanelHeader label="로그" onReset={handleReset} />
+
+            <LogPanel
+              logs={logs}
+              emptyMessage={"버튼을 클릭하여\nObserver 동작을 확인하세요"}
+            />
+          </>
+        }
+      >
+        {/* Threshold control (observe tab) */}
+        {activeTab === "observe" && (
+          <div className="flex items-center gap-3">
+            <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider">
+              Threshold
+            </span>
+            <div className="flex gap-1">
+              {THRESHOLD_OPTIONS.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setThreshold(t)}
+                  className={`font-[family-name:var(--font-mono)] text-[11px] px-3 py-1.5 rounded border cursor-pointer transition-all duration-200 ${
+                    threshold === t
+                      ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
+                      : "border-border-subtle text-text-muted hover:text-text-secondary"
+                  }`}
+                >
+                  {t}
+                </button>
+              ))}
             </div>
-          )}
-
-          {activeTab === "lazy" && (
             <button
-              onClick={handleLazyLoad}
-              className="self-start font-[family-name:var(--font-mono)] text-[11px] px-4 py-1.5 rounded-lg border border-accent-amber text-accent-amber bg-accent-amber-dim cursor-pointer transition-all duration-200 hover:bg-[#ffb80033]"
+              onClick={handleStartObserving}
+              className="ml-auto font-[family-name:var(--font-mono)] text-[11px] px-4 py-1.5 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
             >
-              Lazy Loading 시작
+              감지 시작
             </button>
-          )}
+          </div>
+        )}
 
-          {activeTab === "infinite" && (
-            <button
-              onClick={handleInfiniteScroll}
-              className="self-start font-[family-name:var(--font-mono)] text-[11px] px-4 py-1.5 rounded-lg border border-accent-violet text-accent-violet bg-accent-violet-dim cursor-pointer transition-all duration-200 hover:bg-[#b388ff33]"
-            >
-              무한 스크롤 시작
-            </button>
-          )}
-
-          {/* Scroll container */}
-          <div
-            ref={scrollContainerRef}
-            className="h-[320px] overflow-y-auto rounded-lg border border-border-subtle bg-bg-deep p-4 flex flex-col gap-3"
+        {activeTab === "lazy" && (
+          <button
+            onClick={handleLazyLoad}
+            className="self-start font-[family-name:var(--font-mono)] text-[11px] px-4 py-1.5 rounded-lg border border-accent-amber text-accent-amber bg-accent-amber-dim cursor-pointer transition-all duration-200 hover:bg-[#ffb80033]"
           >
-            {activeTab === "observe" &&
-              OBSERVER_BOXES.map((box) => (
-                <div
-                  key={box.id}
-                  data-id={box.id}
-                  className="min-h-[100px] rounded-lg border-2 flex items-center justify-center transition-all duration-300"
+            Lazy Loading 시작
+          </button>
+        )}
+
+        {activeTab === "infinite" && (
+          <button
+            onClick={handleInfiniteScroll}
+            className="self-start font-[family-name:var(--font-mono)] text-[11px] px-4 py-1.5 rounded-lg border border-accent-violet text-accent-violet bg-accent-violet-dim cursor-pointer transition-all duration-200 hover:bg-[#b388ff33]"
+          >
+            무한 스크롤 시작
+          </button>
+        )}
+
+        {/* Scroll container */}
+        <div
+          ref={scrollContainerRef}
+          className="h-[320px] overflow-y-auto rounded-lg border border-border-subtle bg-bg-deep p-4 flex flex-col gap-3"
+        >
+          {activeTab === "observe" &&
+            OBSERVER_BOXES.map((box) => (
+              <div
+                key={box.id}
+                data-id={box.id}
+                className="min-h-[100px] rounded-lg border-2 flex items-center justify-center transition-all duration-300"
+                style={{
+                  borderColor: visibleIds.has(box.id)
+                    ? box.color
+                    : "var(--color-border-subtle)",
+                  background: visibleIds.has(box.id)
+                    ? `${box.color}15`
+                    : "transparent",
+                }}
+              >
+                <span
+                  className="font-[family-name:var(--font-mono)] text-[13px] font-semibold transition-all duration-300"
                   style={{
-                    borderColor: visibleIds.has(box.id)
+                    color: visibleIds.has(box.id)
                       ? box.color
-                      : "var(--color-border-subtle)",
-                    background: visibleIds.has(box.id)
-                      ? `${box.color}15`
-                      : "transparent",
+                      : "var(--color-text-muted)",
                   }}
                 >
-                  <span
-                    className="font-[family-name:var(--font-mono)] text-[13px] font-semibold transition-all duration-300"
-                    style={{
-                      color: visibleIds.has(box.id)
-                        ? box.color
-                        : "var(--color-text-muted)",
-                    }}
-                  >
-                    {box.label} {visibleIds.has(box.id) ? "👁 보임" : "숨김"}
+                  {box.label} {visibleIds.has(box.id) ? "👁 보임" : "숨김"}
+                </span>
+              </div>
+            ))}
+
+          {activeTab === "lazy" &&
+            Array.from({ length: 8 }, (_, i) => i + 1).map((id) => (
+              <div
+                key={id}
+                data-lazy={id}
+                className="min-h-[120px] rounded-lg border border-border-subtle flex items-center justify-center transition-all duration-500"
+                style={{
+                  background: loadedImages.has(id)
+                    ? "linear-gradient(135deg, #00e5ff15, #b388ff15)"
+                    : "var(--color-bg-surface)",
+                }}
+              >
+                {loadedImages.has(id) ? (
+                  <div className="text-center">
+                    <div className="text-2xl mb-1">🖼️</div>
+                    <span className="font-[family-name:var(--font-mono)] text-[11px] text-accent-green">
+                      이미지 {id} 로딩 완료
+                    </span>
+                  </div>
+                ) : (
+                  <span className="font-[family-name:var(--font-mono)] text-[11px] text-text-muted">
+                    이미지 {id} (대기 중...)
+                  </span>
+                )}
+              </div>
+            ))}
+
+          {activeTab === "infinite" && (
+            <>
+              {infiniteItems.map((item) => (
+                <div
+                  key={item}
+                  className="min-h-[60px] rounded-lg border border-border-subtle bg-bg-surface flex items-center px-4"
+                >
+                  <span className="font-[family-name:var(--font-mono)] text-[12px] text-text-secondary">
+                    항목 #{item}
                   </span>
                 </div>
               ))}
-
-            {activeTab === "lazy" &&
-              Array.from({ length: 8 }, (_, i) => i + 1).map((id) => (
-                <div
-                  key={id}
-                  data-lazy={id}
-                  className="min-h-[120px] rounded-lg border border-border-subtle flex items-center justify-center transition-all duration-500"
-                  style={{
-                    background: loadedImages.has(id)
-                      ? "linear-gradient(135deg, #00e5ff15, #b388ff15)"
-                      : "var(--color-bg-surface)",
-                  }}
-                >
-                  {loadedImages.has(id) ? (
-                    <div className="text-center">
-                      <div className="text-2xl mb-1">🖼️</div>
-                      <span className="font-[family-name:var(--font-mono)] text-[11px] text-accent-green">
-                        이미지 {id} 로딩 완료
-                      </span>
-                    </div>
-                  ) : (
-                    <span className="font-[family-name:var(--font-mono)] text-[11px] text-text-muted">
-                      이미지 {id} (대기 중...)
-                    </span>
-                  )}
-                </div>
-              ))}
-
-            {activeTab === "infinite" && (
-              <>
-                {infiniteItems.map((item) => (
-                  <div
-                    key={item}
-                    className="min-h-[60px] rounded-lg border border-border-subtle bg-bg-surface flex items-center px-4"
-                  >
-                    <span className="font-[family-name:var(--font-mono)] text-[12px] text-text-secondary">
-                      항목 #{item}
-                    </span>
-                  </div>
-                ))}
-                <div
-                  data-sentinel
-                  className="min-h-[40px] flex items-center justify-center"
-                >
-                  {isLoadingMore ? (
-                    <span className="font-[family-name:var(--font-mono)] text-[11px] text-accent-amber animate-pulse">
-                      로딩 중...
-                    </span>
-                  ) : (
-                    <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-                      ↓ 센티널 요소
-                    </span>
-                  )}
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* Right: Log Panel */}
-        <div className="border-l border-border-subtle flex flex-col">
-          <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
-            <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
-              로그
-            </span>
-            <button
-              onClick={handleReset}
-              className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted cursor-pointer bg-transparent border-none px-2 py-1 rounded transition-all duration-200 hover:text-accent-magenta hover:bg-accent-magenta-dim"
-            >
-              Reset
-            </button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
-            {logs.length === 0 ? (
-              <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
-                버튼을 클릭하여
-                <br />
-                Observer 동작을 확인하세요
+              <div
+                data-sentinel
+                className="min-h-[40px] flex items-center justify-center"
+              >
+                {isLoadingMore ? (
+                  <span className="font-[family-name:var(--font-mono)] text-[11px] text-accent-amber animate-pulse">
+                    로딩 중...
+                  </span>
+                ) : (
+                  <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+                    ↓ 센티널 요소
+                  </span>
+                )}
               </div>
-            ) : (
-              logs.map((log, i) => (
-                <div
-                  key={i}
-                  className="px-2 py-1 rounded mb-0.5 text-accent-cyan animate-[logSlide_0.3s_ease]"
-                >
-                  {log}
-                </div>
-              ))
-            )}
-          </div>
+            </>
+          )}
         </div>
-      </div>
+      </DemoLayout>
     </>
   );
 }

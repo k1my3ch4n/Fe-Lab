@@ -2,11 +2,17 @@
 
 import { useState, useCallback } from "react";
 import {
+  TabBar,
+  DemoLayout,
+  PanelHeader,
+  SectionHeader,
+  ActionButton,
+} from "@shared/ui";
+import {
   PHASES,
   HOOK_TIMINGS,
   CLASS_TO_HOOKS_MAP,
   type Phase,
-  type HookTiming,
 } from "./constants";
 
 type Tab = "timeline" | "comparison";
@@ -67,198 +73,180 @@ export default function HooksLifecycleDemo() {
     setIsAnimating(false);
   };
 
+  const tabs = [
+    { id: "timeline" as Tab, label: "실행 타임라인" },
+    { id: "comparison" as Tab, label: "Class vs Hooks" },
+  ];
+
+  const tabIndex = activeTab === "timeline" ? 0 : 1;
+
+  const handleTabChange = (index: number) => {
+    setActiveTab(index === 0 ? "timeline" : "comparison");
+    handleReset();
+  };
+
   return (
     <>
       {/* Tab bar */}
-      <div className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated">
-        {(
-          [
-            { id: "timeline" as Tab, label: "실행 타임라인" },
-            { id: "comparison" as Tab, label: "Class vs Hooks" },
-          ] as const
-        ).map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => {
-              setActiveTab(tab.id);
-              handleReset();
-            }}
-            className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
-              activeTab === tab.id
-                ? "border-accent-cyan text-accent-cyan bg-bg-surface"
-                : "border-transparent text-text-muted hover:text-text-secondary"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <TabBar
+        tabs={tabs}
+        activeIndex={tabIndex}
+        onTabChange={handleTabChange}
+      />
 
       {activeTab === "timeline" ? (
-        <div className="grid grid-cols-[1fr_280px] min-h-[420px]">
-          {/* Left: Timeline visualization */}
-          <div className="p-6 flex flex-col gap-5">
-            {/* Phase selector */}
-            <div className="flex gap-2">
-              {PHASES.map((phase) => (
-                <button
-                  key={phase.id}
-                  onClick={() => {
-                    setActivePhase(phase.id);
-                    handleReset();
-                  }}
-                  className={`font-[family-name:var(--font-mono)] text-[11px] px-3 py-1.5 rounded-md border transition-all duration-200 cursor-pointer ${
-                    activePhase === phase.id
-                      ? "bg-bg-surface"
-                      : "border-border-subtle text-text-muted hover:text-text-secondary"
-                  }`}
-                  style={
-                    activePhase === phase.id
-                      ? {
-                          borderColor: `${phase.color}66`,
-                          color: phase.color,
-                          background: `${phase.color}15`,
-                        }
-                      : undefined
-                  }
+        <DemoLayout
+          rightPanel={
+            <>
+              <PanelHeader label="실행" onReset={handleReset} />
+
+              {/* Action buttons */}
+              <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
+                <ActionButton
+                  variant="green"
+                  onClick={() => animatePhase("mount")}
+                  disabled={isAnimating}
                 >
-                  {phase.label}
-                </button>
-              ))}
-            </div>
+                  Mount 실행
+                </ActionButton>
+                <ActionButton
+                  variant="amber"
+                  onClick={() => animatePhase("update")}
+                  disabled={isAnimating}
+                >
+                  State Update 실행
+                </ActionButton>
+                <ActionButton
+                  variant="magenta"
+                  onClick={() => animatePhase("unmount")}
+                  disabled={isAnimating}
+                >
+                  Unmount 실행
+                </ActionButton>
+              </div>
 
-            {/* Phase description */}
-            <div className="text-[12px] text-text-muted font-[family-name:var(--font-mono)]">
-              {PHASES.find((p) => p.id === activePhase)?.description}
-            </div>
+              {/* Log */}
+              <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
+                {logs.length === 0 ? (
+                  <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
+                    버튼을 클릭하여
+                    <br />훅 실행 순서를 확인하세요
+                  </div>
+                ) : (
+                  logs.map((log, i) => (
+                    <div
+                      key={i}
+                      className="px-2 py-1 rounded mb-0.5 animate-[logSlide_0.3s_ease]"
+                      style={{ color: log.color }}
+                    >
+                      <span className="text-text-muted mr-1.5">
+                        {log.order}.
+                      </span>
+                      {log.hook}
+                    </div>
+                  ))
+                )}
+              </div>
+            </>
+          }
+        >
+          {/* Phase selector */}
+          <div className="flex gap-2">
+            {PHASES.map((phase) => (
+              <button
+                key={phase.id}
+                onClick={() => {
+                  setActivePhase(phase.id);
+                  handleReset();
+                }}
+                className={`font-[family-name:var(--font-mono)] text-[11px] px-3 py-1.5 rounded-md border transition-all duration-200 cursor-pointer ${
+                  activePhase === phase.id
+                    ? "bg-bg-surface"
+                    : "border-border-subtle text-text-muted hover:text-text-secondary"
+                }`}
+                style={
+                  activePhase === phase.id
+                    ? {
+                        borderColor: `${phase.color}66`,
+                        color: phase.color,
+                        background: `${phase.color}15`,
+                      }
+                    : undefined
+                }
+              >
+                {phase.label}
+              </button>
+            ))}
+          </div>
 
-            {/* Timeline */}
-            <div className="flex flex-col gap-1">
-              {phaseTimings.map((timing, i) => {
-                const isActive = logs.some(
-                  (l) => l.hook === timing.hook && l.phase === timing.phase,
-                );
-                const isCurrent = animatingIndex === i;
-                return (
-                  <div
-                    key={`${timing.phase}-${timing.order}`}
-                    className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all duration-300"
+          {/* Phase description */}
+          <div className="text-[12px] text-text-muted font-[family-name:var(--font-mono)]">
+            {PHASES.find((p) => p.id === activePhase)?.description}
+          </div>
+
+          {/* Timeline */}
+          <div className="flex flex-col gap-1">
+            {phaseTimings.map((timing, i) => {
+              const isActive = logs.some(
+                (l) => l.hook === timing.hook && l.phase === timing.phase,
+              );
+              const isCurrent = animatingIndex === i;
+              return (
+                <div
+                  key={`${timing.phase}-${timing.order}`}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all duration-300"
+                  style={{
+                    background: isCurrent
+                      ? `${timing.color}18`
+                      : isActive
+                        ? `${timing.color}08`
+                        : "transparent",
+                    borderLeft: `3px solid ${isActive ? timing.color : "#333"}`,
+                  }}
+                >
+                  {/* Order number */}
+                  <span
+                    className="font-[family-name:var(--font-mono)] text-[10px] w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all duration-300"
                     style={{
-                      background: isCurrent
-                        ? `${timing.color}18`
-                        : isActive
-                          ? `${timing.color}08`
-                          : "transparent",
-                      borderLeft: `3px solid ${isActive ? timing.color : "#333"}`,
+                      background: isActive ? `${timing.color}30` : "#1a1a2e",
+                      color: isActive ? timing.color : "#555",
+                      boxShadow: isCurrent
+                        ? `0 0 8px ${timing.color}40`
+                        : "none",
                     }}
                   >
-                    {/* Order number */}
-                    <span
-                      className="font-[family-name:var(--font-mono)] text-[10px] w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all duration-300"
-                      style={{
-                        background: isActive ? `${timing.color}30` : "#1a1a2e",
-                        color: isActive ? timing.color : "#555",
-                        boxShadow: isCurrent
-                          ? `0 0 8px ${timing.color}40`
-                          : "none",
-                      }}
-                    >
-                      {timing.order}
-                    </span>
+                    {timing.order}
+                  </span>
 
-                    {/* Hook name */}
-                    <span
-                      className="font-[family-name:var(--font-mono)] text-[12px] font-semibold min-w-[180px] transition-all duration-300"
-                      style={{ color: isActive ? timing.color : "#555" }}
-                    >
-                      {timing.hook}
-                    </span>
-
-                    {/* Description */}
-                    <span
-                      className="font-[family-name:var(--font-mono)] text-[10px] transition-all duration-300"
-                      style={{
-                        color: isActive
-                          ? "var(--text-secondary)"
-                          : "var(--text-muted)",
-                        opacity: isActive ? 1 : 0.5,
-                      }}
-                    >
-                      {timing.description}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right: Controls + Log */}
-          <div className="border-l border-border-subtle flex flex-col">
-            <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
-              <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
-                실행
-              </span>
-              <button
-                onClick={handleReset}
-                className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted cursor-pointer bg-transparent border-none px-2 py-1 rounded transition-all duration-200 hover:text-accent-magenta hover:bg-accent-magenta-dim"
-              >
-                Reset
-              </button>
-            </div>
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              <button
-                onClick={() => animatePhase("mount")}
-                disabled={isAnimating}
-                className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633] disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                Mount 실행
-              </button>
-              <button
-                onClick={() => animatePhase("update")}
-                disabled={isAnimating}
-                className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border border-accent-amber text-accent-amber bg-accent-amber-dim cursor-pointer transition-all duration-200 hover:bg-[#ffb80033] disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                State Update 실행
-              </button>
-              <button
-                onClick={() => animatePhase("unmount")}
-                disabled={isAnimating}
-                className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border border-accent-magenta text-accent-magenta bg-accent-magenta-dim cursor-pointer transition-all duration-200 hover:bg-[#ff2d8a33] disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                Unmount 실행
-              </button>
-            </div>
-
-            {/* Log */}
-            <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
-              {logs.length === 0 ? (
-                <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
-                  버튼을 클릭하여
-                  <br />훅 실행 순서를 확인하세요
-                </div>
-              ) : (
-                logs.map((log, i) => (
-                  <div
-                    key={i}
-                    className="px-2 py-1 rounded mb-0.5 animate-[logSlide_0.3s_ease]"
-                    style={{ color: log.color }}
+                  {/* Hook name */}
+                  <span
+                    className="font-[family-name:var(--font-mono)] text-[12px] font-semibold min-w-[180px] transition-all duration-300"
+                    style={{ color: isActive ? timing.color : "#555" }}
                   >
-                    <span className="text-text-muted mr-1.5">{log.order}.</span>
-                    {log.hook}
-                  </div>
-                ))
-              )}
-            </div>
+                    {timing.hook}
+                  </span>
+
+                  {/* Description */}
+                  <span
+                    className="font-[family-name:var(--font-mono)] text-[10px] transition-all duration-300"
+                    style={{
+                      color: isActive
+                        ? "var(--text-secondary)"
+                        : "var(--text-muted)",
+                      opacity: isActive ? 1 : 0.5,
+                    }}
+                  >
+                    {timing.description}
+                  </span>
+                </div>
+              );
+            })}
           </div>
-        </div>
+        </DemoLayout>
       ) : (
         /* Comparison tab: Class Lifecycle vs Hooks */
         <div className="p-6">
-          <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-4">
-            Class Lifecycle vs Hooks 매핑
-          </div>
+          <SectionHeader>Class Lifecycle vs Hooks 매핑</SectionHeader>
 
           <div className="rounded-lg border border-border-subtle overflow-hidden">
             {/* Header */}
@@ -299,9 +287,7 @@ export default function HooksLifecycleDemo() {
 
           {/* Visual flow diagram */}
           <div className="mt-8">
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-4">
-              Hooks 실행 흐름
-            </div>
+            <SectionHeader>Hooks 실행 흐름</SectionHeader>
             <div className="flex items-center gap-2 flex-wrap">
               {(
                 [

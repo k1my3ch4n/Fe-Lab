@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { EVENT_LOOP_SCENARIOS } from "./constants";
+import { LogPanel } from "@shared/ui";
 
 export default function EventLoopDemo() {
   const [activeScenario, setActiveScenario] = useState(0);
@@ -72,9 +73,14 @@ export default function EventLoopDemo() {
     };
   }, [isPlaying, totalSteps, stopAutoplay]);
 
+  const consoleLogs = step.console.map((line) => ({
+    text: `> ${line}`,
+    color: "#00e676",
+  }));
+
   return (
     <>
-      {/* Toolbar */}
+      {/* Toolbar - custom layout with playback controls */}
       <div className="flex items-center justify-between border-b border-border-subtle bg-bg-elevated">
         <div className="flex items-center gap-0">
           {EVENT_LOOP_SCENARIOS.map((sc, i) => (
@@ -125,7 +131,10 @@ export default function EventLoopDemo() {
         </div>
       </div>
 
-      <div className="grid grid-cols-[1fr_300px] min-h-[520px]">
+      <div
+        className="min-h-[520px]"
+        style={{ display: "grid", gridTemplateColumns: "1fr 300px" }}
+      >
         {/* Left: Visualization */}
         <div className="p-6 flex flex-col gap-5">
           {/* Step indicator */}
@@ -148,7 +157,7 @@ export default function EventLoopDemo() {
 
           {/* Three columns: Call Stack, Microtask Queue, Task Queue */}
           <div className="grid grid-cols-3 gap-4 flex-1">
-            {/* Call Stack — vertical, grows upward */}
+            {/* Call Stack */}
             <div className="flex flex-col">
               <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold text-accent-cyan uppercase tracking-wider mb-3 text-center">
                 Call Stack
@@ -176,7 +185,7 @@ export default function EventLoopDemo() {
               </div>
             </div>
 
-            {/* Microtask Queue — horizontal items stacked */}
+            {/* Microtask Queue */}
             <div className="flex flex-col">
               <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold text-accent-violet uppercase tracking-wider mb-3 text-center">
                 Microtask Queue
@@ -207,7 +216,7 @@ export default function EventLoopDemo() {
               </div>
             </div>
 
-            {/* Task Queue — horizontal items stacked */}
+            {/* Task Queue */}
             <div className="flex flex-col">
               <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold text-accent-amber uppercase tracking-wider mb-3 text-center">
                 Task Queue
@@ -259,24 +268,11 @@ export default function EventLoopDemo() {
               {step.console.length > 0 ? `${step.console.length}개 출력` : ""}
             </span>
           </div>
-          <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed bg-bg-deep">
-            {step.console.length === 0 ? (
-              <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
-                단계를 진행하여
-                <br />
-                실행 결과를 확인하세요
-              </div>
-            ) : (
-              step.console.map((line, i) => (
-                <div
-                  key={`${currentStep}-log-${i}`}
-                  className="px-2 py-1 rounded mb-0.5 text-accent-green animate-[logSlide_0.3s_ease]"
-                >
-                  <span className="text-text-muted select-none">&gt; </span>
-                  {line}
-                </div>
-              ))
-            )}
+          <div className="flex-1 overflow-y-auto bg-bg-deep">
+            <LogPanel
+              logs={consoleLogs}
+              emptyMessage={"단계를 진행하여\n실행 결과를 확인하세요"}
+            />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
+import { TabBar } from "@shared/ui";
 import {
   PROTOTYPE_CHAIN_EXAMPLES,
   PROPERTY_SUGGESTIONS,
@@ -83,24 +84,19 @@ export default function PrototypeChainDemo() {
     return () => clearAnimation();
   }, [clearAnimation]);
 
+  const tabs = PROTOTYPE_CHAIN_EXAMPLES.map((ex) => ({
+    id: ex.id,
+    label: ex.label,
+  }));
+
   return (
     <>
       {/* Toolbar */}
-      <div className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated">
-        {PROTOTYPE_CHAIN_EXAMPLES.map((ex, i) => (
-          <button
-            key={ex.id}
-            onClick={() => handleExampleChange(i)}
-            className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
-              i === activeExample
-                ? "border-accent-cyan text-accent-cyan bg-bg-surface"
-                : "border-transparent text-text-muted hover:text-text-secondary"
-            }`}
-          >
-            {ex.label}
-          </button>
-        ))}
-      </div>
+      <TabBar
+        tabs={tabs}
+        activeIndex={activeExample}
+        onTabChange={handleExampleChange}
+      />
 
       <div className="grid grid-cols-[1fr_280px] min-h-[420px]">
         {/* Left: Chain Visualization */}
