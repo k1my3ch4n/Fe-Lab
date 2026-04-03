@@ -17,12 +17,15 @@ export default function Topbar({ topicId }: TopbarProps) {
   }
 
   return (
-    <div className="flex items-center justify-between mb-8 pb-5 border-b border-border-subtle">
-      <div className="font-[family-name:var(--font-mono)] text-xs text-text-muted">
+    <header className="flex items-center justify-between mb-8 pb-5 border-b border-border-subtle">
+      <nav
+        aria-label="breadcrumb"
+        className="font-[family-name:var(--font-mono)] text-xs text-text-muted"
+      >
         {topic.category} /{" "}
         <span className="text-accent-cyan">{topic.name}</span>
-      </div>
-      <div className="flex gap-2">
+      </nav>
+      <nav aria-label="토픽 바로가기" className="flex gap-2">
         <TopbarLink
           href="/topics/event-bubbling"
           label="이벤트 버블링"
@@ -33,8 +36,8 @@ export default function Topbar({ topicId }: TopbarProps) {
           label="렌더링 파이프라인"
           currentPath={pathname}
         />
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }
 

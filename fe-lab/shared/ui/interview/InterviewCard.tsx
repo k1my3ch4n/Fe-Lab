@@ -16,9 +16,10 @@ export default function InterviewCard({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-bg-surface border border-border-subtle rounded-[var(--radius)] overflow-hidden transition-all duration-200">
+    <article className="bg-bg-surface border border-border-subtle rounded-[var(--radius)] overflow-hidden transition-all duration-200">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="w-full px-5 py-4 flex items-center justify-between cursor-pointer transition-all duration-200 hover:bg-bg-hover bg-transparent border-none text-left"
       >
         <div className="text-sm font-medium text-text-primary flex items-center gap-2.5">
@@ -40,6 +41,6 @@ export default function InterviewCard({
           {children}
         </div>
       </div>
-    </div>
+    </article>
   );
 }

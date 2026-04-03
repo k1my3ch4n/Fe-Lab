@@ -17,10 +17,15 @@ export default function TabBar({
   onTabChange,
 }: TabBarProps) {
   return (
-    <div className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated">
+    <div
+      role="tablist"
+      className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated"
+    >
       {tabs.map((tab, i) => (
         <button
           key={tab.id}
+          role="tab"
+          aria-selected={i === activeIndex}
           onClick={() => onTabChange(i)}
           className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
             i === activeIndex

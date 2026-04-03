@@ -19,9 +19,9 @@ export default async function TopicPage({
       <Topbar topicId={slug} />
       <div className="flex flex-col items-center justify-center py-32 text-center">
         <div className="text-5xl mb-6">🚧</div>
-        <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-text-primary mb-3">
+        <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold text-text-primary mb-3">
           Coming Soon
-        </h2>
+        </h1>
         <p className="text-text-secondary text-sm max-w-md leading-relaxed">
           <span className="text-accent-cyan font-medium">{topic.name}</span>{" "}
           토픽은 현재 준비 중입니다.

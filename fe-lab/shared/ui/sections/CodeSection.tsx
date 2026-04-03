@@ -27,10 +27,15 @@ export default function CodeSection({ examples }: CodeSectionProps) {
       </p>
       <div className="bg-bg-surface border border-border-subtle rounded-[var(--radius)] mt-4 overflow-hidden">
         {/* Tabs */}
-        <div className="flex gap-0 border-b border-border-subtle bg-bg-elevated">
+        <div
+          role="tablist"
+          className="flex gap-0 border-b border-border-subtle bg-bg-elevated"
+        >
           {examples.map((ex, i) => (
             <button
               key={i}
+              role="tab"
+              aria-selected={i === activeTab}
               onClick={() => setActiveTab(i)}
               className={`
                 font-[family-name:var(--font-mono)] text-[11px] px-4 py-3

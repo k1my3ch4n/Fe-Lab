@@ -15,9 +15,9 @@ export default function DemoLayout({
       style={{ display: "grid", gridTemplateColumns: `1fr ${rightWidth}` }}
     >
       <div className="p-6 flex flex-col gap-5">{children}</div>
-      <div className="border-l border-border-subtle flex flex-col">
+      <aside className="border-l border-border-subtle flex flex-col">
         {rightPanel}
-      </div>
+      </aside>
     </div>
   );
 }

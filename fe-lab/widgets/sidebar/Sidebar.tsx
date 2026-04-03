@@ -9,7 +9,7 @@ export default function Sidebar() {
   return (
     <aside className="bg-bg-surface border-r border-border-subtle flex flex-col overflow-y-auto">
       {/* Header */}
-      <div className="px-5 pt-6 pb-5 border-b border-border-subtle">
+      <header className="px-5 pt-6 pb-5 border-b border-border-subtle">
         <div className="font-[family-name:var(--font-display)] text-[22px] font-bold tracking-tight flex items-center gap-2">
           <div className="w-8 h-8 bg-gradient-to-br from-accent-cyan to-accent-magenta rounded-lg flex items-center justify-center text-base font-bold text-black">
             F
@@ -21,7 +21,7 @@ export default function Sidebar() {
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Navigation */}
       <nav className="flex-1 p-3 overflow-y-auto">

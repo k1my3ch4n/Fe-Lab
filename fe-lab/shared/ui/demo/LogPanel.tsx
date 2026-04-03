@@ -13,7 +13,11 @@ export default function LogPanel({
   emptyMessage = "버튼을 클릭하여\n동작을 확인하세요",
 }: LogPanelProps) {
   return (
-    <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
+    <div
+      role="log"
+      aria-live="polite"
+      className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed"
+    >
       {logs.length === 0 ? (
         <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8] whitespace-pre-line">
           {emptyMessage}
