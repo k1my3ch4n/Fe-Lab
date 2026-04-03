@@ -157,7 +157,7 @@ export default function EventBubblingDemo() {
       </div>
 
       {/* Demo body */}
-      <div className="grid grid-cols-[1fr_320px] min-h-[380px]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] lg:min-h-[380px]">
         <NestedBoxes flashingBoxes={flashingBoxes} onBoxClick={handleClick} />
         <EventLogPanel
           logs={logs}

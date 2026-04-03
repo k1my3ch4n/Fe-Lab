@@ -199,3 +199,13 @@ export const CLASS_TO_HOOKS_MAP: ClassToHookMapping[] = [
     description: "DOM 변경 직후 동기 작업",
   },
 ];
+
+export const FLOW_STEPS = [
+  { label: "useState init", color: "#00e5ff" },
+  { label: "useMemo", color: "#b388ff" },
+  { label: "Render", color: "#ffffff" },
+  { label: "DOM Update", color: "#888" },
+  { label: "useLayoutEffect", color: "#ff2d8a" },
+  { label: "Paint", color: "#888" },
+  { label: "useEffect", color: "#00e676" },
+] as const;

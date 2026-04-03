@@ -114,7 +114,7 @@ export default function ReflowRepaintDemo() {
         ))}
       </div>
 
-      <div className="grid grid-cols-[1fr_280px] min-h-[420px]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] lg:min-h-[420px]">
         {/* Left: Pipeline + Box */}
         <div className="p-6 flex flex-col gap-5">
           {/* Pipeline visualization */}

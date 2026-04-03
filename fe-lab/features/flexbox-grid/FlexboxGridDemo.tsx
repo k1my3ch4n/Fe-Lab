@@ -64,10 +64,7 @@ gap: ${gridGap}px;`;
         onTabChange={(i) => setMode(i === 0 ? "flexbox" : "grid")}
       />
 
-      <div
-        className="min-h-[420px]"
-        style={{ display: "grid", gridTemplateColumns: "1fr 260px" }}
-      >
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px]">
         {/* Left: Preview + Code */}
         <div className="p-6 flex flex-col gap-5">
           {/* Preview */}

@@ -100,98 +100,100 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
       </div>
 
       {/* Waterfall chart */}
-      <div className="rounded-lg border border-border-subtle bg-bg-deep overflow-hidden">
-        {/* Header */}
-        <div className="grid grid-cols-[140px_60px_1fr_60px] border-b border-border-subtle px-3 py-2">
-          <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase">
-            Name
-          </span>
-          <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase">
-            Type
-          </span>
-          <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase">
-            Waterfall
-          </span>
-          <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase text-right">
-            Size
-          </span>
-        </div>
+      <div className="overflow-x-auto">
+        <div className="rounded-lg border border-border-subtle bg-bg-deep overflow-hidden min-w-[500px]">
+          {/* Header */}
+          <div className="grid grid-cols-[140px_60px_1fr_60px] border-b border-border-subtle px-3 py-2">
+            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase">
+              Name
+            </span>
+            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase">
+              Type
+            </span>
+            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase">
+              Waterfall
+            </span>
+            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase text-right">
+              Size
+            </span>
+          </div>
 
-        {/* Rows */}
-        {WATERFALL_RESOURCES.map((resource, i) => {
-          const isSelected = selectedResource === i;
+          {/* Rows */}
+          {WATERFALL_RESOURCES.map((resource, i) => {
+            const isSelected = selectedResource === i;
 
-          let offset = 0;
+            let offset = 0;
 
-          if (i > 0) {
-            offset = i === 1 ? 155 : i === 2 ? 155 : i === 3 ? 160 : 165;
-          }
+            if (i > 0) {
+              offset = i === 1 ? 155 : i === 2 ? 155 : i === 3 ? 160 : 165;
+            }
 
-          const totalWidth = offset + resource.totalTime;
-          const scale = maxTime + 200;
+            const totalWidth = offset + resource.totalTime;
+            const scale = maxTime + 200;
 
-          return (
-            <div
-              key={resource.name}
-              className={`grid grid-cols-[140px_60px_1fr_60px] items-center px-3 py-2 cursor-pointer transition-all duration-200 ${
-                isSelected ? "bg-bg-surface" : "hover:bg-bg-surface/50"
-              } ${i < WATERFALL_RESOURCES.length - 1 ? "border-b border-border-subtle" : ""}`}
-              onClick={() => {
-                setSelectedResource(isSelected ? null : i);
-                if (!isSelected) {
-                  clearLogs();
-                  addLog(`${resource.name} (${resource.size})`);
-                  resource.phases.forEach((p) => {
-                    addLog(`  ${p.name}: ${p.duration}ms — ${p.description}`);
-                  });
-                  addLog(`  총: ${resource.totalTime}ms`);
-                }
-              }}
-            >
-              <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-primary truncate">
-                {resource.name}
-              </span>
-              <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
-                {resource.type}
-              </span>
-              <div className="h-4 relative">
-                {resource.phases.map((phase, j) => {
-                  const left =
-                    ((offset +
-                      resource.phases
-                        .slice(0, j)
-                        .reduce((a, p) => a + p.duration, 0)) /
-                      scale) *
-                    100;
-                  const width = (phase.duration / scale) * 100;
-                  return (
-                    <div
-                      key={j}
-                      className="absolute top-0.5 h-3 rounded-sm transition-all duration-300"
-                      style={{
-                        left: `${left}%`,
-                        width: `${Math.max(width, 0.5)}%`,
-                        backgroundColor: phase.color,
-                        opacity: isSelected ? 1 : 0.7,
-                      }}
-                      title={`${phase.name}: ${phase.duration}ms`}
-                    />
-                  );
-                })}
-                {/* Total time label */}
-                <span
-                  className="absolute top-0 font-[family-name:var(--font-mono)] text-[8px] text-text-muted"
-                  style={{ left: `${(totalWidth / scale) * 100 + 1}%` }}
-                >
-                  {resource.totalTime}ms
+            return (
+              <div
+                key={resource.name}
+                className={`grid grid-cols-[140px_60px_1fr_60px] items-center px-3 py-2 cursor-pointer transition-all duration-200 ${
+                  isSelected ? "bg-bg-surface" : "hover:bg-bg-surface/50"
+                } ${i < WATERFALL_RESOURCES.length - 1 ? "border-b border-border-subtle" : ""}`}
+                onClick={() => {
+                  setSelectedResource(isSelected ? null : i);
+                  if (!isSelected) {
+                    clearLogs();
+                    addLog(`${resource.name} (${resource.size})`);
+                    resource.phases.forEach((p) => {
+                      addLog(`  ${p.name}: ${p.duration}ms — ${p.description}`);
+                    });
+                    addLog(`  총: ${resource.totalTime}ms`);
+                  }
+                }}
+              >
+                <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-primary truncate">
+                  {resource.name}
+                </span>
+                <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+                  {resource.type}
+                </span>
+                <div className="h-4 relative">
+                  {resource.phases.map((phase, j) => {
+                    const left =
+                      ((offset +
+                        resource.phases
+                          .slice(0, j)
+                          .reduce((a, p) => a + p.duration, 0)) /
+                        scale) *
+                      100;
+                    const width = (phase.duration / scale) * 100;
+                    return (
+                      <div
+                        key={j}
+                        className="absolute top-0.5 h-3 rounded-sm transition-all duration-300"
+                        style={{
+                          left: `${left}%`,
+                          width: `${Math.max(width, 0.5)}%`,
+                          backgroundColor: phase.color,
+                          opacity: isSelected ? 1 : 0.7,
+                        }}
+                        title={`${phase.name}: ${phase.duration}ms`}
+                      />
+                    );
+                  })}
+                  {/* Total time label */}
+                  <span
+                    className="absolute top-0 font-[family-name:var(--font-mono)] text-[8px] text-text-muted"
+                    style={{ left: `${(totalWidth / scale) * 100 + 1}%` }}
+                  >
+                    {resource.totalTime}ms
+                  </span>
+                </div>
+                <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted text-right">
+                  {resource.size}
                 </span>
               </div>
-              <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted text-right">
-                {resource.size}
-              </span>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* Selected resource detail */}

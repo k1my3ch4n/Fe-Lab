@@ -17,7 +17,7 @@ export default function ConceptSection({
       <h2 className="font-[family-name:var(--font-display)] text-[28px] font-bold tracking-tight mb-3">
         {title}
       </h2>
-      <p className="text-sm text-text-secondary leading-[1.7] max-w-[700px]">
+      <p className="text-sm text-text-secondary leading-[1.7] max-w-full lg:max-w-[700px]">
         {description}
       </p>
       <div className="bg-bg-surface border border-border-subtle rounded-[var(--radius)] p-6 mt-6">

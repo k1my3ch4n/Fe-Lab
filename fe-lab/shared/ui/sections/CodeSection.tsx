@@ -22,7 +22,7 @@ export default function CodeSection({ examples }: CodeSectionProps) {
       <h2 className="font-[family-name:var(--font-display)] text-[28px] font-bold tracking-tight mb-3">
         코드 예시
       </h2>
-      <p className="text-sm text-text-secondary leading-[1.7] max-w-[700px]">
+      <p className="text-sm text-text-secondary leading-[1.7] max-w-full lg:max-w-[700px]">
         실제 코드로 동작 원리를 확인하세요.
       </p>
       <div className="bg-bg-surface border border-border-subtle rounded-[var(--radius)] mt-6 overflow-hidden">

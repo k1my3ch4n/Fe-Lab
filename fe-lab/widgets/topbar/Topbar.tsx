@@ -25,7 +25,7 @@ export default function Topbar({ topicId }: TopbarProps) {
         {topic.category} /{" "}
         <span className="text-accent-cyan">{topic.name}</span>
       </nav>
-      <nav aria-label="토픽 바로가기" className="flex gap-2">
+      <nav aria-label="토픽 바로가기" className="hidden md:flex gap-2">
         <TopbarLink
           href="/topics/event-bubbling"
           label="이벤트 버블링"

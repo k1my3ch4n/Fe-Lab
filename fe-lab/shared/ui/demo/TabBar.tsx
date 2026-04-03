@@ -19,7 +19,7 @@ export default function TabBar({
   return (
     <div
       role="tablist"
-      className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated"
+      className="flex items-center gap-0 border-b border-border-subtle bg-bg-elevated overflow-x-auto"
     >
       {tabs.map((tab, i) => (
         <button

@@ -131,10 +131,7 @@ export default function EventLoopDemo() {
         </div>
       </div>
 
-      <div
-        className="min-h-[520px]"
-        style={{ display: "grid", gridTemplateColumns: "1fr 300px" }}
-      >
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] lg:min-h-[520px]">
         {/* Left: Visualization */}
         <div className="p-6 flex flex-col gap-5">
           {/* Step indicator */}
