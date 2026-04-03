@@ -1,8 +1,4 @@
-export interface ScopeBlock {
-  name: string;
-  variables: { name: string; value: string }[];
-  color: string;
-}
+import type { ScopeBlock } from "./types";
 
 export const CLOSURE_EXAMPLES = [
   {

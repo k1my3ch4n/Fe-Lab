@@ -1,12 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import {
-  STORAGE_TABS,
-  COMPARISON_ROWS,
-  type StorageTabId,
-  type StorageEntry,
-} from "./constants";
+import { STORAGE_TABS, COMPARISON_ROWS } from "./constants";
+import type { StorageTabId, StorageEntry } from "./types";
 import {
   TabBar,
   DemoLayout,

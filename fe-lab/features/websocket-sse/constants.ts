@@ -1,18 +1,4 @@
-export type ProtocolType = "websocket" | "sse" | "long-polling";
-
-export interface ProtocolInfo {
-  id: ProtocolType;
-  label: string;
-  fullName: string;
-  direction: string;
-  protocol: string;
-  connectionFlow: string[];
-  messagePattern: string;
-  useCases: string[];
-  pros: string[];
-  cons: string[];
-  color: string;
-}
+import type { ProtocolInfo, ComparisonRow, SimMessage } from "./types";
 
 export const PROTOCOLS: ProtocolInfo[] = [
   {
@@ -109,13 +95,6 @@ export const PROTOCOLS: ProtocolInfo[] = [
   },
 ];
 
-export interface ComparisonRow {
-  label: string;
-  websocket: string;
-  sse: string;
-  longPolling: string;
-}
-
 export const COMPARISON_TABLE: ComparisonRow[] = [
   {
     label: "통신 방향",
@@ -160,13 +139,6 @@ export const COMPARISON_TABLE: ComparisonRow[] = [
     longPolling: "폴백, 레거시 시스템",
   },
 ];
-
-export interface SimMessage {
-  id: number;
-  from: "client" | "server";
-  text: string;
-  timestamp: number;
-}
 
 export const WS_SCENARIO: Omit<SimMessage, "id" | "timestamp">[] = [
   { from: "client", text: "connect: ws://api.example.com" },

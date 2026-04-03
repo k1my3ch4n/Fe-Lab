@@ -1,17 +1,4 @@
-export interface AuthStep {
-  label: string;
-  color: string;
-  description: string;
-}
-
-export interface AuthMethod {
-  id: string;
-  label: string;
-  steps: AuthStep[];
-  code: string;
-  pros: string[];
-  cons: string[];
-}
+import type { AuthMethod } from "./types";
 
 export const AUTH_METHODS: AuthMethod[] = [
   {

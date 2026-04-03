@@ -8,11 +8,8 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import {
-  RECONCILIATION_SCENARIOS,
-  type TreeNode,
-  type DomOperation,
-} from "./constants";
+import { RECONCILIATION_SCENARIOS } from "./constants";
+import type { TreeNode, DomOperation } from "./types";
 
 function TreeNodeView({
   node,

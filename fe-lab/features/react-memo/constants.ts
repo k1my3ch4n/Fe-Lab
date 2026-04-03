@@ -1,9 +1,4 @@
-export interface MemoExample {
-  id: string;
-  label: string;
-  description: string;
-  code: string;
-}
+import type { MemoExample } from "./types";
 
 export const MEMO_EXAMPLES: MemoExample[] = [
   {

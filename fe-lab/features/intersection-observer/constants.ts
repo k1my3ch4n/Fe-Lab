@@ -1,8 +1,4 @@
-export interface ObserverBox {
-  id: number;
-  label: string;
-  color: string;
-}
+import type { ObserverBox } from "./types";
 
 export const OBSERVER_BOXES: ObserverBox[] = [
   { id: 1, label: "Box 1", color: "#00e5ff" },
@@ -22,5 +18,3 @@ export const TAB_ITEMS = [
   { id: "lazy", label: "Lazy Loading" },
   { id: "infinite", label: "무한 스크롤" },
 ] as const;
-
-export type TabId = (typeof TAB_ITEMS)[number]["id"];

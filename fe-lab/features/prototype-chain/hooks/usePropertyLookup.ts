@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import type { PrototypeNode } from "../constants";
+import type { PrototypeNode } from "../types";
 
 interface LookupResult {
   property: string;

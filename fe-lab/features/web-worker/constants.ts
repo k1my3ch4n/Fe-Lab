@@ -1,8 +1,4 @@
-export interface WorkerComparison {
-  id: string;
-  label: string;
-  description: string;
-}
+import type { WorkerComparison } from "./types";
 
 export const WORKER_TYPES: WorkerComparison[] = [
   {

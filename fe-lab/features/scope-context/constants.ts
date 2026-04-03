@@ -1,17 +1,4 @@
-export interface BindingExample {
-  id: string;
-  label: string;
-  code: string;
-  thisValue: string;
-  explanation: string;
-  color: string;
-}
-
-export interface ScopeLevel {
-  name: string;
-  variables: { name: string; value: string }[];
-  color: string;
-}
+import type { BindingExample, ScopeLevel } from "./types";
 
 export const BINDING_EXAMPLES: BindingExample[] = [
   {

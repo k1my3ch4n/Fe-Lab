@@ -1,11 +1,4 @@
-export interface LeakPattern {
-  id: string;
-  label: string;
-  code: string;
-  description: string;
-  severity: "high" | "medium" | "low";
-  color: string;
-}
+import type { LeakPattern } from "./types";
 
 export const LEAK_PATTERNS: LeakPattern[] = [
   {

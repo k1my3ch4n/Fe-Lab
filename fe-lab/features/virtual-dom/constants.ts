@@ -1,15 +1,4 @@
-export interface DomNode {
-  id: string;
-  tag: string;
-  text?: string;
-  children?: DomNode[];
-}
-
-export interface ComparisonItem {
-  category: string;
-  realDom: string;
-  virtualDom: string;
-}
+import type { ComparisonItem, DiffEntry, DomNode } from "./types";
 
 export const DOM_COMPARISON: ComparisonItem[] = [
   {
@@ -79,15 +68,6 @@ export const UPDATED_TREE: DomNode = {
     },
   ],
 };
-
-// Diff result: which nodes changed and how
-export type DiffStatus = "unchanged" | "modified" | "added" | "removed";
-
-export interface DiffEntry {
-  id: string;
-  status: DiffStatus;
-  detail?: string;
-}
 
 export const DIFF_RESULT: DiffEntry[] = [
   { id: "root", status: "unchanged" },

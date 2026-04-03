@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { CORS_SCENARIOS } from "./constants";
-import type { CorsStep } from "./constants";
+import type { CorsStep } from "./types";
 import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
 
 export default function CorsDemo() {

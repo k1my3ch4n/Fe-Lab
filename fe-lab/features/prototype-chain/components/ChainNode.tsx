@@ -1,4 +1,4 @@
-import type { PrototypeNode } from "../constants";
+import type { PrototypeNode } from "../types";
 
 export function ChainNode({
   node,

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { A11Y_TABS, type A11yTabId } from "./constants";
+import { A11Y_TABS } from "./constants";
+import type { A11yTabId } from "./types";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
 import { useSemanticTab } from "./tabs/SemanticTab";
 import { useAriaTab } from "./tabs/AriaTab";

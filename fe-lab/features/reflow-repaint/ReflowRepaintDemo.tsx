@@ -7,9 +7,8 @@ import {
   PIPELINE_STAGES,
   CATEGORY_META,
   COST_META,
-  type CSSPropertyInfo,
-  type PipelineStage,
 } from "./constants";
+import type { CSSPropertyInfo, PipelineStage } from "./types";
 
 export default function ReflowRepaintDemo() {
   const [activeProperty, setActiveProperty] = useState<CSSPropertyInfo>(
@@ -49,7 +48,9 @@ export default function ReflowRepaintDemo() {
       justifyContent: "center",
     };
 
-    if (!animating) return base;
+    if (!animating) {
+      return base;
+    }
 
     switch (activeProperty.category) {
       case "layout":
