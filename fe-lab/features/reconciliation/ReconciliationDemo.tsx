@@ -155,7 +155,7 @@ export default function ReconciliationDemo() {
             <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
               <span
                 className="w-2 h-2 rounded-full"
-                style={{ background: "#ff2d8a" }}
+                style={{ background: "var(--accent-magenta)" }}
               />
               Old Tree
             </div>
@@ -171,7 +171,7 @@ export default function ReconciliationDemo() {
             <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
               <span
                 className="w-2 h-2 rounded-full"
-                style={{ background: "#00e676" }}
+                style={{ background: "var(--accent-green)" }}
               />
               New Tree
             </div>

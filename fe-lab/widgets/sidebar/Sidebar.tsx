@@ -2,6 +2,7 @@
 
 import { getCategories } from "@entities/topic";
 import NavItem from "./NavItem";
+import ThemeToggle from "@shared/ui/ThemeToggle";
 
 export default function Sidebar() {
   const categories = getCategories();
@@ -9,7 +10,7 @@ export default function Sidebar() {
   return (
     <aside className="bg-bg-surface border-r border-border-subtle flex flex-col overflow-y-auto">
       {/* Header */}
-      <header className="px-5 pt-6 pb-5 border-b border-border-subtle">
+      <header className="px-5 pt-6 pb-5 border-b border-border-subtle flex items-center justify-between">
         <div className="font-[family-name:var(--font-display)] text-[22px] font-bold tracking-tight flex items-center gap-2">
           <div className="w-8 h-8 bg-gradient-to-br from-accent-cyan to-accent-magenta rounded-lg flex items-center justify-center text-base font-bold text-black">
             F
@@ -21,6 +22,7 @@ export default function Sidebar() {
             </div>
           </div>
         </div>
+        <ThemeToggle />
       </header>
 
       {/* Navigation */}

@@ -30,10 +30,18 @@ export default function ReflowRepaintDemo() {
 
   const stageColor = (stage: PipelineStage) => {
     if (!isStageTriggered(stage)) {
-      return { bg: "#00e67622", border: "#00e67644", text: "#00e676" };
+      return {
+        bg: "var(--accent-green-dim)",
+        border: "var(--accent-green-dim)",
+        text: "var(--accent-green)",
+      };
     }
 
-    return { bg: "#ffb80022", border: "#ffb80066", text: "#ffb800" };
+    return {
+      bg: "#ffb80022",
+      border: "#ffb80066",
+      text: "var(--accent-amber)",
+    };
   };
 
   const costMeta = COST_META[activeProperty.cost];
@@ -43,7 +51,7 @@ export default function ReflowRepaintDemo() {
       width: 80,
       height: 80,
       borderRadius: 8,
-      background: "#00e5ff22",
+      background: "var(--accent-cyan-dim)",
       border: "2px solid #00e5ff44",
       transition: "all 0.4s ease",
       display: "flex",
@@ -61,9 +69,9 @@ export default function ReflowRepaintDemo() {
       case "paint":
         return {
           ...base,
-          background: "#ff2d8a33",
+          background: "var(--accent-magenta-dim)",
           border: "2px solid #ff2d8a66",
-          boxShadow: "0 0 20px #ff2d8a44",
+          boxShadow: "0 0 20px var(--accent-magenta-dim)",
         };
       case "composite":
         return {

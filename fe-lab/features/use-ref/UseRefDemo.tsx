@@ -173,7 +173,10 @@ export default function UseRefDemo() {
             <SectionHeader>DOM Reference</SectionHeader>
             <div
               className="rounded-lg border p-4"
-              style={{ borderColor: "#00e67644", background: "#00e67608" }}
+              style={{
+                borderColor: "var(--accent-green-dim)",
+                background: "var(--accent-green-dim)",
+              }}
             >
               <input
                 ref={inputRef}

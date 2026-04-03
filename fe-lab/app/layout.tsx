@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import ThemeProvider from "@shared/ui/ThemeProvider";
 import "./globals.css";
 
 const notoSansKR = Noto_Sans_KR({
@@ -33,9 +34,17 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${notoSansKR.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
+      className={`dark ${notoSansKR.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
+      suppressHydrationWarning
     >
-      <body>{children}</body>
+      <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem('fe-lab-theme');if(!t){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'}document.documentElement.classList.remove('dark','light');document.documentElement.classList.add(t)})()`,
+          }}
+        />
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

@@ -119,7 +119,7 @@ export function useEdgeTab({ addLog, clearLogs }: UseEdgeTabOptions) {
           <div className="flex items-center gap-1.5">
             <div
               className="w-3 h-3 rounded-full"
-              style={{ backgroundColor: "#ff2d8a" }}
+              style={{ backgroundColor: "var(--accent-magenta)" }}
             />
             <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
               Origin

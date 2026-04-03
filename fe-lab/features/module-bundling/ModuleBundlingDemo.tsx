@@ -156,14 +156,17 @@ export default function ModuleBundlingDemo() {
         <div className="flex gap-4">
           <div
             className="flex-1 rounded-lg border p-3"
-            style={{ borderColor: "#ff2d8a44", background: "#ff2d8a08" }}
+            style={{
+              borderColor: "var(--accent-magenta-dim)",
+              background: "var(--accent-magenta-dim)",
+            }}
           >
             <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
               최적화 전
             </div>
             <div
               className="font-[family-name:var(--font-mono)] text-[20px] font-bold"
-              style={{ color: "#ff2d8a" }}
+              style={{ color: "var(--accent-magenta)" }}
             >
               {example.totalSize}KB
             </div>
@@ -171,8 +174,12 @@ export default function ModuleBundlingDemo() {
           <div
             className="flex-1 rounded-lg border p-3 transition-all duration-300"
             style={{
-              borderColor: showOptimized ? "#00e67644" : "#ffffff11",
-              background: showOptimized ? "#00e67608" : "#ffffff04",
+              borderColor: showOptimized
+                ? "var(--accent-green-dim)"
+                : "#ffffff11",
+              background: showOptimized
+                ? "var(--accent-green-dim)"
+                : "#ffffff04",
             }}
           >
             <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
@@ -180,7 +187,9 @@ export default function ModuleBundlingDemo() {
             </div>
             <div
               className="font-[family-name:var(--font-mono)] text-[20px] font-bold transition-colors duration-300"
-              style={{ color: showOptimized ? "#00e676" : "#ffffff33" }}
+              style={{
+                color: showOptimized ? "var(--accent-green)" : "#ffffff33",
+              }}
             >
               {showOptimized ? `${example.optimizedSize}KB` : "—"}
             </div>

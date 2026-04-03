@@ -147,7 +147,7 @@ export default function HooksLifecycleDemo() {
                       : isActive
                         ? `${timing.color}08`
                         : "transparent",
-                    borderLeft: `3px solid ${isActive ? timing.color : "#333"}`,
+                    borderLeft: `3px solid ${isActive ? timing.color : "var(--color-text-muted)"}`,
                   }}
                 >
                   {/* Order number */}
@@ -155,7 +155,9 @@ export default function HooksLifecycleDemo() {
                     className="font-[family-name:var(--font-mono)] text-[10px] w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all duration-300"
                     style={{
                       background: isActive ? `${timing.color}30` : "#1a1a2e",
-                      color: isActive ? timing.color : "#555",
+                      color: isActive
+                        ? timing.color
+                        : "var(--color-text-muted)",
                       boxShadow: isCurrent
                         ? `0 0 8px ${timing.color}40`
                         : "none",
@@ -167,7 +169,11 @@ export default function HooksLifecycleDemo() {
                   {/* Hook name */}
                   <span
                     className="font-[family-name:var(--font-mono)] text-[12px] font-semibold min-w-[180px] transition-all duration-300"
-                    style={{ color: isActive ? timing.color : "#555" }}
+                    style={{
+                      color: isActive
+                        ? timing.color
+                        : "var(--color-text-muted)",
+                    }}
                   >
                     {timing.hook}
                   </span>
