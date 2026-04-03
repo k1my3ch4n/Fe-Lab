@@ -1,14 +1,11 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { ToggleSwitch, PanelHeader } from "@shared/ui";
-import {
-  ELEMENTS,
-  ANIM_DELAY,
-  BOX_CONFIGS,
-  LOG_TYPE_STYLES,
-} from "./constants";
+import { ToggleSwitch } from "@shared/ui";
+import { ELEMENTS, ANIM_DELAY } from "./constants";
 import type { LogEntry, LogType } from "./types";
+import NestedBoxes from "./components/NestedBoxes";
+import EventLogPanel from "./components/EventLogPanel";
 
 export default function EventBubblingDemo() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
@@ -164,110 +161,5 @@ export default function EventBubblingDemo() {
         />
       </div>
     </>
-  );
-}
-
-function NestedBoxes({
-  flashingBoxes,
-  onBoxClick,
-}: {
-  flashingBoxes: Set<string>;
-  onBoxClick: (index: number) => void;
-}) {
-  const renderBox = (
-    depth: number,
-    children: React.ReactNode,
-  ): React.ReactNode => {
-    if (depth >= BOX_CONFIGS.length) return children;
-
-    const config = BOX_CONFIGS[depth];
-    const isFlashing = flashingBoxes.has(config.id);
-
-    return (
-      <div
-        onClick={(e) => {
-          e.stopPropagation();
-          onBoxClick(depth);
-        }}
-        className={`flex items-center justify-center rounded-xl relative cursor-pointer transition-all duration-300 border-2 ${config.size} ${
-          isFlashing
-            ? `${config.flashBorder} ${config.flashShadow} ${config.flashBg}`
-            : `${config.defaultBorder} ${config.defaultBg}`
-        }`}
-      >
-        <BoxLabel text={config.label} color={config.color} />
-        {renderBox(depth + 1, children)}
-      </div>
-    );
-  };
-
-  const isButtonFlashing = flashingBoxes.has("box-button");
-
-  return (
-    <div className="flex items-center justify-center p-10">
-      {renderBox(
-        0,
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onBoxClick(3);
-          }}
-          className={`flex items-center justify-center rounded-lg cursor-pointer transition-all duration-300 w-[140px] h-[52px] border-2 font-[family-name:var(--font-display)] text-[13px] font-semibold text-accent-amber tracking-wide ${
-            isButtonFlashing
-              ? "border-accent-amber shadow-[0_0_30px_#ffb80033] bg-gradient-to-br from-[#ffb80033] to-[#ff2d8a33]"
-              : "border-[#ffb80055] bg-gradient-to-br from-[#ffb80022] to-[#ff2d8a22]"
-          }`}
-        >
-          Click me
-        </button>,
-      )}
-    </div>
-  );
-}
-
-function BoxLabel({ text, color }: { text: string; color: string }) {
-  return (
-    <span
-      className={`absolute top-2 left-3 font-[family-name:var(--font-mono)] text-[10px] opacity-60 ${color}`}
-    >
-      {text}
-    </span>
-  );
-}
-
-function EventLogPanel({
-  logs,
-  logRef,
-  onClear,
-}: {
-  logs: LogEntry[];
-  logRef: React.RefObject<HTMLDivElement | null>;
-  onClear: () => void;
-}) {
-  return (
-    <div className="border-l border-border-subtle flex flex-col">
-      <PanelHeader label="Event Log" onReset={onClear} />
-      <div
-        ref={logRef}
-        className="flex-1 overflow-y-auto p-2 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed"
-      >
-        {logs.length === 0 ? (
-          <div className="text-text-muted text-center px-4 py-10 text-xs leading-[1.8]">
-            요소를 클릭하면
-            <br />
-            이벤트 전파 로그가 표시됩니다
-          </div>
-        ) : (
-          logs.map((log, i) => (
-            <div
-              key={i}
-              className={`px-2 py-1 rounded mb-0.5 animate-[logSlide_0.3s_ease] ${LOG_TYPE_STYLES[log.type]}`}
-            >
-              {log.text}
-            </div>
-          ))
-        )}
-      </div>
-    </div>
   );
 }

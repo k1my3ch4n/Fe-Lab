@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getTopic } from "@entities/topic";
+import TopbarLink from "./TopbarLink";
 
 interface TopbarProps {
   topicId: string;
@@ -38,34 +38,5 @@ export default function Topbar({ topicId }: TopbarProps) {
         />
       </nav>
     </header>
-  );
-}
-
-function TopbarLink({
-  href,
-  label,
-  currentPath,
-}: {
-  href: string;
-  label: string;
-  currentPath: string;
-}) {
-  const isActive = currentPath === href;
-
-  return (
-    <Link
-      href={href}
-      className={`
-        font-[family-name:var(--font-mono)] text-[11px] px-3.5 py-1.5 rounded-md
-        border transition-all duration-200 no-underline
-        ${
-          isActive
-            ? "bg-accent-cyan-dim border-accent-cyan text-accent-cyan"
-            : "border-border-subtle bg-transparent text-text-secondary hover:border-accent-cyan hover:text-accent-cyan"
-        }
-      `}
-    >
-      {label}
-    </Link>
   );
 }
