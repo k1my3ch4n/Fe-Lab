@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { LEAK_PATTERNS, SEVERITY_COLORS, GC_PHASES } from "./constants";
 import {
   TabBar,
@@ -14,19 +14,36 @@ export default function MemoryManagementDemo() {
   const [activeTab, setActiveTab] = useState(0);
   const [logs, setLogs] = useState<string[]>([]);
   const [gcPhase, setGcPhase] = useState<number | null>(null);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const pattern = LEAK_PATTERNS[activeTab];
+
+  useEffect(() => {
+    const timers = timersRef.current;
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const clearTimers = () => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  };
+
+  const addTimer = (fn: () => void, delay: number) => {
+    timersRef.current.push(setTimeout(fn, delay));
+  };
 
   const addLog = useCallback((text: string) => {
     setLogs((prev) => [...prev, text]);
   }, []);
 
   const handleReset = () => {
+    clearTimers();
     setLogs([]);
     setGcPhase(null);
   };
 
   const handleTabChange = (index: number) => {
+    clearTimers();
     setActiveTab(index);
     setLogs([]);
     setGcPhase(null);
@@ -85,17 +102,17 @@ export default function MemoryManagementDemo() {
     addLog("// Garbage Collection 시작");
     setGcPhase(0);
 
-    setTimeout(() => {
+    addTimer(() => {
       addLog("1. Mark: 루트에서 도달 가능한 객체 탐색");
       setGcPhase(1);
     }, 800);
 
-    setTimeout(() => {
+    addTimer(() => {
       addLog("2. Sweep: 마킹되지 않은 객체 메모리 해제");
       setGcPhase(2);
     }, 1600);
 
-    setTimeout(() => {
+    addTimer(() => {
       addLog("3. Compact: 메모리 압축 (V8 선택적)");
       addLog("");
       addLog("// GC 완료 — 도달 불가 객체 수거됨");

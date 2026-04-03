@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { SECURITY_SCENARIOS, XSS_EXAMPLES } from "./constants";
 import {
   TabBar,
@@ -17,14 +17,21 @@ export default function XssCsrfDemo() {
   const [activeStep, setActiveStep] = useState(-1);
   const [xssInput, setXssInput] = useState("");
   const [showEscaped, setShowEscaped] = useState(false);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const scenario = SECURITY_SCENARIOS[activeTab];
+
+  useEffect(() => {
+    const timers = timersRef.current;
+    return () => timers.forEach(clearTimeout);
+  }, []);
 
   const addLog = useCallback((text: string) => {
     setLogs((prev) => [...prev, text]);
   }, []);
 
   const handleTabChange = (index: number) => {
+    clearTimers();
     setActiveTab(index);
     setLogs([]);
     setActiveStep(-1);
@@ -32,7 +39,17 @@ export default function XssCsrfDemo() {
     setShowEscaped(false);
   };
 
+  const clearTimers = () => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  };
+
+  const addTimer = (fn: () => void, delay: number) => {
+    timersRef.current.push(setTimeout(fn, delay));
+  };
+
   const handleReset = () => {
+    clearTimers();
     setLogs([]);
     setActiveStep(-1);
     setXssInput("");
@@ -52,7 +69,7 @@ export default function XssCsrfDemo() {
           `${step + 1}. [${steps[step].label}] ${steps[step].description}`,
         );
         step++;
-        setTimeout(runStep, 600);
+        addTimer(runStep, 600);
       } else {
         if (scenario.id === "xss") {
           addLog("--- 공격 성공: 쿠키 탈취됨!");
@@ -72,12 +89,12 @@ export default function XssCsrfDemo() {
     setShowEscaped(false);
     setLogs([]);
     addLog(`입력: ${malicious}`);
-    setTimeout(() => {
+    addTimer(() => {
       addLog("innerHTML 사용 시 → 스크립트 실행됨! ❌");
-      setTimeout(() => {
+      addTimer(() => {
         setShowEscaped(true);
         addLog("textContent 사용 시 → 문자열로 표시 ✓");
-        setTimeout(() => {
+        addTimer(() => {
           addLog(`이스케이프 결과: ${XSS_EXAMPLES.escaped}`);
         }, 400);
       }, 600);
@@ -88,13 +105,13 @@ export default function XssCsrfDemo() {
     setLogs([]);
     if (scenario.id === "xss") {
       addLog("=== XSS 방어 전략 ===");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("1. 입력 검증 + 이스케이프 (서버/클라이언트)");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("2. CSP 헤더로 인라인 스크립트 차단");
-          setTimeout(() => {
+          addTimer(() => {
             addLog("3. HttpOnly 쿠키로 JS 접근 차단");
-            setTimeout(() => {
+            addTimer(() => {
               addLog("4. React는 JSX에서 자동 이스케이프 ✓");
             }, 400);
           }, 400);
@@ -102,13 +119,13 @@ export default function XssCsrfDemo() {
       }, 400);
     } else if (scenario.id === "csrf") {
       addLog("=== CSRF 방어 전략 ===");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("1. CSRF 토큰 — 폼마다 고유 토큰 발급/검증");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("2. SameSite 쿠키 — cross-origin 요청에 쿠키 미전송");
-          setTimeout(() => {
+          addTimer(() => {
             addLog("3. Origin/Referer 헤더 검증");
-            setTimeout(() => {
+            addTimer(() => {
               addLog("4. Custom 헤더 (X-Requested-With)");
             }, 400);
           }, 400);
@@ -116,13 +133,13 @@ export default function XssCsrfDemo() {
       }, 400);
     } else {
       addLog("=== CSP 설정 가이드 ===");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("1. default-src 'self' — 기본 차단");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("2. script-src 'nonce-xxx' — nonce 기반 허용");
-          setTimeout(() => {
+          addTimer(() => {
             addLog("3. report-uri — 위반 리포팅");
-            setTimeout(() => {
+            addTimer(() => {
               addLog("4. 점진적 적용: Report-Only → Enforce");
             }, 400);
           }, 400);

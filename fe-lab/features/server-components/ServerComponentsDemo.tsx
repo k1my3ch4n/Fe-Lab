@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import {
   TabBar,
   DemoLayout,
@@ -15,20 +15,37 @@ export default function ServerComponentsDemo() {
   const [activeTab, setActiveTab] = useState(0);
   const [logs, setLogs] = useState<string[]>([]);
   const [activePhase, setActivePhase] = useState(-1);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const compType = COMPONENT_TYPES[activeTab];
+
+  useEffect(() => {
+    const timers = timersRef.current;
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const clearTimers = () => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  };
+
+  const addTimer = (fn: () => void, delay: number) => {
+    timersRef.current.push(setTimeout(fn, delay));
+  };
 
   const addLog = useCallback((text: string) => {
     setLogs((prev) => [...prev, text]);
   }, []);
 
   const handleTabChange = (index: number) => {
+    clearTimers();
     setActiveTab(index);
     setLogs([]);
     setActivePhase(-1);
   };
 
   const handleReset = () => {
+    clearTimers();
     setLogs([]);
     setActivePhase(-1);
   };
@@ -46,7 +63,7 @@ export default function ServerComponentsDemo() {
           `${step + 1}. [${phases[step].label}] ${phases[step].description}`,
         );
         step++;
-        setTimeout(runStep, 600);
+        addTimer(runStep, 600);
       } else {
         addLog(`--- 번들 사이즈: ${compType.bundleSize}`);
         addLog(`--- 렌더 위치: ${compType.renderLocation}`);
@@ -58,13 +75,13 @@ export default function ServerComponentsDemo() {
   const handleCompare = () => {
     setLogs([]);
     addLog("=== Server vs Client 비교 ===");
-    setTimeout(() => {
+    addTimer(() => {
       addLog("Server: DB 직접 접근 ✓ | useState ✗");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("Client: useState ✓ | DB 직접 접근 ✗");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("Server: 번들 0KB | Client: 2-10KB+");
-          setTimeout(() => {
+          addTimer(() => {
             addLog("→ 인터랙션 없으면 Server Component 권장");
           }, 400);
         }, 400);

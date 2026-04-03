@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { ToggleSwitch } from "@shared/ui";
 import { ELEMENTS, ANIM_DELAY } from "./constants";
 import type { LogEntry, LogType } from "./types";
@@ -14,33 +14,47 @@ export default function EventBubblingDemo() {
   const [stopAtTarget, setStopAtTarget] = useState(false);
   const [flashingBoxes, setFlashingBoxes] = useState<Set<string>>(new Set());
   const logRef = useRef<HTMLDivElement>(null);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  useEffect(() => {
+    const timers = timersRef.current;
+    return () => timers.forEach(clearTimeout);
+  }, []);
 
   const flashBox = useCallback((id: string, delay: number) => {
-    setTimeout(() => {
-      setFlashingBoxes((prev) => new Set(prev).add(id));
+    timersRef.current.push(
       setTimeout(() => {
-        setFlashingBoxes((prev) => {
-          const next = new Set(prev);
-          next.delete(id);
+        setFlashingBoxes((prev) => new Set(prev).add(id));
+        timersRef.current.push(
+          setTimeout(() => {
+            setFlashingBoxes((prev) => {
+              const next = new Set(prev);
+              next.delete(id);
 
-          return next;
-        });
-      }, 600);
-    }, delay);
+              return next;
+            });
+          }, 600),
+        );
+      }, delay),
+    );
   }, []);
 
   const addLogs = useCallback(
     (newLogs: { text: string; type: LogType; delay: number }[]) => {
       newLogs.forEach(({ text, type, delay }) => {
-        setTimeout(() => {
-          setLogs((prev) => [...prev, { text, type }]);
+        timersRef.current.push(
+          setTimeout(() => {
+            setLogs((prev) => [...prev, { text, type }]);
 
-          if (logRef.current) {
-            setTimeout(() => {
-              logRef.current!.scrollTop = logRef.current!.scrollHeight;
-            }, 10);
-          }
-        }, delay);
+            if (logRef.current) {
+              timersRef.current.push(
+                setTimeout(() => {
+                  logRef.current!.scrollTop = logRef.current!.scrollHeight;
+                }, 10),
+              );
+            }
+          }, delay),
+        );
       });
     },
     [],

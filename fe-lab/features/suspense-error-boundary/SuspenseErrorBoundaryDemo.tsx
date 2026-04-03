@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import {
   TabBar,
   DemoLayout,
@@ -15,20 +15,37 @@ export default function SuspenseErrorBoundaryDemo() {
   const [activeTab, setActiveTab] = useState(0);
   const [logs, setLogs] = useState<string[]>([]);
   const [activeStep, setActiveStep] = useState(-1);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const scenario = SUSPENSE_SCENARIOS[activeTab];
+
+  useEffect(() => {
+    const timers = timersRef.current;
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const clearTimers = () => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  };
+
+  const addTimer = (fn: () => void, delay: number) => {
+    timersRef.current.push(setTimeout(fn, delay));
+  };
 
   const addLog = useCallback((text: string) => {
     setLogs((prev) => [...prev, text]);
   }, []);
 
   const handleTabChange = (index: number) => {
+    clearTimers();
     setActiveTab(index);
     setLogs([]);
     setActiveStep(-1);
   };
 
   const handleReset = () => {
+    clearTimers();
     setLogs([]);
     setActiveStep(-1);
   };
@@ -46,7 +63,7 @@ export default function SuspenseErrorBoundaryDemo() {
           `${step + 1}. [${steps[step].label}] ${steps[step].description}`,
         );
         step++;
-        setTimeout(runStep, 600);
+        addTimer(runStep, 600);
       } else {
         if (scenario.id === "suspense") {
           addLog("--- 로딩 완료! 컴포넌트가 정상 렌더됩니다 ✓");
@@ -64,25 +81,25 @@ export default function SuspenseErrorBoundaryDemo() {
     setLogs([]);
     if (scenario.id === "suspense") {
       addLog("❌ Suspense 없이 use() 호출 시:");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("→ Unhandled Promise — 앱 크래시!");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("→ 반드시 <Suspense>로 감싸야 합니다");
         }, 400);
       }, 400);
     } else if (scenario.id === "error-boundary") {
       addLog("❌ Error Boundary 없이 에러 발생 시:");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("→ 전체 컴포넌트 트리 언마운트!");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("→ 사용자에게 빈 화면 표시됨");
         }, 400);
       }, 400);
     } else {
       addLog("❌ 조합 없이 사용 시:");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("→ 로딩 중 에러 발생 → 처리 불가!");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("→ 항상 Error Boundary + Suspense 조합 권장");
         }, 400);
       }, 400);

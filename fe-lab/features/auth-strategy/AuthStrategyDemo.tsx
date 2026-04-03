@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { AUTH_METHODS } from "./constants";
 import {
   TabBar,
@@ -15,20 +15,37 @@ export default function AuthStrategyDemo() {
   const [activeTab, setActiveTab] = useState(0);
   const [logs, setLogs] = useState<string[]>([]);
   const [activeStep, setActiveStep] = useState(-1);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const method = AUTH_METHODS[activeTab];
+
+  useEffect(() => {
+    const timers = timersRef.current;
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const clearTimers = () => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  };
+
+  const addTimer = (fn: () => void, delay: number) => {
+    timersRef.current.push(setTimeout(fn, delay));
+  };
 
   const addLog = useCallback((text: string) => {
     setLogs((prev) => [...prev, text]);
   }, []);
 
   const handleTabChange = (index: number) => {
+    clearTimers();
     setActiveTab(index);
     setLogs([]);
     setActiveStep(-1);
   };
 
   const handleReset = () => {
+    clearTimers();
     setLogs([]);
     setActiveStep(-1);
   };
@@ -46,7 +63,7 @@ export default function AuthStrategyDemo() {
           `${step + 1}. [${steps[step].label}] ${steps[step].description}`,
         );
         step++;
-        setTimeout(runStep, 500);
+        addTimer(runStep, 500);
       } else {
         addLog("--- 인증 완료! ✓");
       }
@@ -57,13 +74,13 @@ export default function AuthStrategyDemo() {
   const handleCompare = () => {
     setLogs([]);
     addLog("=== Session vs JWT vs OAuth ===");
-    setTimeout(() => {
+    addTimer(() => {
       addLog("Session: 서버 상태 ✓ | 확장성 ✗ | 즉시 무효화 ✓");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("JWT: Stateless ✓ | 확장성 ✓ | 즉시 무효화 ✗");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("OAuth: 소셜 로그인 ✓ | 구현 복잡도 ✗ | 표준 ✓");
-          setTimeout(() => {
+          addTimer(() => {
             addLog("→ 실무: JWT(Access) + 리프레시 토큰 조합 권장");
           }, 400);
         }, 400);
@@ -74,15 +91,15 @@ export default function AuthStrategyDemo() {
   const handleRefreshFlow = () => {
     setLogs([]);
     addLog("=== 리프레시 토큰 흐름 ===");
-    setTimeout(() => {
+    addTimer(() => {
       addLog("1. Access Token 만료 (15분)");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("2. API 응답: 401 Unauthorized");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("3. Refresh Token으로 새 Access Token 발급");
-          setTimeout(() => {
+          addTimer(() => {
             addLog("4. 원래 요청 재시도 → 성공");
-            setTimeout(() => {
+            addTimer(() => {
               addLog("5. Refresh Token도 만료 시 → 재로그인");
             }, 400);
           }, 400);

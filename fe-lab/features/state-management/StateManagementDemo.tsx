@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import {
   DemoLayout,
   PanelHeader,
@@ -15,14 +15,30 @@ export default function StateManagementDemo() {
   const [showDrilling, setShowDrilling] = useState(false);
   const [logs, setLogs] = useState<string[]>([]);
   const [highlightLevel, setHighlightLevel] = useState(-1);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const approach = STATE_APPROACHES[activeTab];
+
+  useEffect(() => {
+    const timers = timersRef.current;
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const clearTimers = () => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  };
+
+  const addTimer = (fn: () => void, delay: number) => {
+    timersRef.current.push(setTimeout(fn, delay));
+  };
 
   const addLog = useCallback((text: string) => {
     setLogs((prev) => [...prev, text]);
   }, []);
 
   const handleTabChange = (index: number) => {
+    clearTimers();
     setActiveTab(index);
     setLogs([]);
     setShowDrilling(false);
@@ -30,6 +46,7 @@ export default function StateManagementDemo() {
   };
 
   const handleReset = () => {
+    clearTimers();
     setLogs([]);
     setHighlightLevel(-1);
     setShowDrilling(false);
@@ -51,7 +68,7 @@ export default function StateManagementDemo() {
           }`,
         );
         step++;
-        setTimeout(runStep, 500);
+        addTimer(runStep, 500);
       } else {
         addLog("⚠ 5단계 prop drilling — 유지보수 어려움!");
       }
@@ -63,25 +80,25 @@ export default function StateManagementDemo() {
     setLogs([]);
     if (approach.id === "context") {
       addLog("1. Provider에서 값 변경");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("2. 모든 Consumer 리렌더 발생");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("3. 불필요한 리렌더 포함 ⚠");
         }, 400);
       }, 400);
     } else if (approach.id === "redux") {
       addLog("1. dispatch(increment()) 호출");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("2. Reducer가 새 state 반환");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("3. useSelector 구독 컴포넌트만 리렌더 ✓");
         }, 400);
       }, 400);
     } else {
       addLog("1. set({ count: count + 1 }) 호출");
-      setTimeout(() => {
+      addTimer(() => {
         addLog("2. selector 비교 후 변경된 구독자만 리렌더 ✓");
-        setTimeout(() => {
+        addTimer(() => {
           addLog("3. Provider 없이 어디서든 접근 가능 ✓");
         }, 400);
       }, 400);

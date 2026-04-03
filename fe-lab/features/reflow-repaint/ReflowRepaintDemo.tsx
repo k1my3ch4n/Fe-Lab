@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SectionHeader } from "@shared/ui";
 import {
   CSS_PROPERTIES,
@@ -15,11 +15,19 @@ export default function ReflowRepaintDemo() {
     CSS_PROPERTIES[0],
   );
   const [animating, setAnimating] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const handlePropertyClick = (prop: CSSPropertyInfo) => {
     setActiveProperty(prop);
     setAnimating(true);
-    setTimeout(() => setAnimating(false), 600);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setAnimating(false), 600);
   };
 
   const isStageTriggered = (stage: PipelineStage) =>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { DEMO_EXAMPLES } from "./constants";
 import {
   TabBar,
@@ -15,20 +15,37 @@ export default function CurryingCompositionDemo() {
   const [activeExample, setActiveExample] = useState(0);
   const [currentStep, setCurrentStep] = useState(-1);
   const [logs, setLogs] = useState<string[]>([]);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const example = DEMO_EXAMPLES[activeExample];
+
+  useEffect(() => {
+    const timers = timersRef.current;
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const clearTimers = () => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  };
+
+  const addTimer = (fn: () => void, delay: number) => {
+    timersRef.current.push(setTimeout(fn, delay));
+  };
 
   const addLog = useCallback((text: string) => {
     setLogs((prev) => [...prev, text]);
   }, []);
 
   const handleExampleChange = (index: number) => {
+    clearTimers();
     setActiveExample(index);
     setCurrentStep(-1);
     setLogs([]);
   };
 
   const handleReset = () => {
+    clearTimers();
     setCurrentStep(-1);
     setLogs([]);
   };
@@ -62,7 +79,7 @@ export default function CurryingCompositionDemo() {
           `  → ${step.result}`,
         ]);
         stepIndex++;
-        setTimeout(runStep, 600);
+        addTimer(runStep, 600);
       }
     };
     runStep();
