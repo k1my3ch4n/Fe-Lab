@@ -17,7 +17,7 @@ export default function Topbar({ topicId }: TopbarProps) {
   }
 
   return (
-    <header className="flex items-center justify-between mb-8 pb-5 border-b border-border-subtle">
+    <header className="flex items-center justify-between mb-10 pb-6 border-b border-border-subtle">
       <nav
         aria-label="breadcrumb"
         className="font-[family-name:var(--font-mono)] text-xs text-text-muted"

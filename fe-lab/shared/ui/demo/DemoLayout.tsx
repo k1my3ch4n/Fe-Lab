@@ -14,7 +14,7 @@ export default function DemoLayout({
       className="min-h-[420px]"
       style={{ display: "grid", gridTemplateColumns: `1fr ${rightWidth}` }}
     >
-      <div className="p-6 flex flex-col gap-5">{children}</div>
+      <div className="p-7 flex flex-col gap-6">{children}</div>
       <aside className="border-l border-border-subtle flex flex-col">
         {rightPanel}
       </aside>
