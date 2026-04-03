@@ -34,7 +34,7 @@ export default function TopicPageLayout({
   interviewQuestions,
 }: TopicPageLayoutProps) {
   return (
-    <>
+    <div className="animate-[fadeIn_0.3s_ease]">
       <Topbar topicId={topicId} />
 
       <ConceptSection title={concept.title} description={concept.description}>
@@ -48,6 +48,6 @@ export default function TopicPageLayout({
       <CodeSection examples={codeExamples} />
 
       <InterviewSection questions={interviewQuestions} />
-    </>
+    </div>
   );
 }

@@ -1,18 +1,5 @@
 import Link from "next/link";
-import { getCategories } from "@entities/topic";
-
-const categoryIcons: Record<string, string> = {
-  JavaScript: "JS",
-  Browser: "BR",
-  React: "RE",
-  Network: "NW",
-  Performance: "PF",
-  TypeScript: "TS",
-  CSS: "CS",
-  Security: "SC",
-  "Web API": "WA",
-  Accessibility: "A11",
-};
+import { getCategories, categoryIcons } from "@entities/topic";
 
 export default function Home() {
   const categories = getCategories();

@@ -366,6 +366,19 @@ export function getTopic(id: string): Topic | undefined {
   return topicList.find((t) => t.id === id);
 }
 
+export const categoryIcons: Record<string, string> = {
+  JavaScript: "JS",
+  Browser: "BR",
+  React: "RE",
+  Network: "NW",
+  Performance: "PF",
+  TypeScript: "TS",
+  CSS: "CS",
+  Security: "SC",
+  "Web API": "WA",
+  Accessibility: "A11",
+};
+
 export const difficultyConfig: Record<
   Difficulty,
   { label: string; className: string }
