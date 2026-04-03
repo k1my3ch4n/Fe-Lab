@@ -3,22 +3,23 @@
 import { useState, useMemo, useRef, useCallback } from "react";
 import { getCategories } from "@entities/topic";
 import { useKeyboardNav } from "@shared/hooks";
+import { useSidebarStore, useViewportStore } from "@shared/stores";
 import NavItem from "./NavItem";
 import SearchInput from "./SearchInput";
 import ThemeToggle from "@shared/ui/ThemeToggle";
 import SidebarToggle from "./SidebarToggle";
 
-interface SidebarProps {
-  collapsed: boolean;
-  onToggle: () => void;
-}
-
-export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
+export default function Sidebar() {
   const categories = getCategories();
+  const { collapsed, toggleCollapsed, closeDrawer } = useSidebarStore();
+  const { isMobile } = useViewportStore();
   const [search, setSearch] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const clearSearch = useCallback(() => setSearch(""), []);
   useKeyboardNav(searchInputRef, clearSearch);
+
+  const isCollapsed = isMobile ? false : collapsed;
+  const handleToggle = isMobile ? closeDrawer : toggleCollapsed;
 
   const filteredCategories = useMemo(() => {
     if (!search.trim()) {
@@ -43,15 +44,15 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <aside
       className="bg-bg-surface border-r border-border-subtle flex flex-col overflow-hidden transition-[width] duration-300"
-      style={{ width: collapsed ? 60 : 260 }}
+      style={{ width: isCollapsed ? 60 : 260 }}
     >
       {/* Header */}
-      {collapsed ? (
+      {isCollapsed ? (
         <header className="px-3 pt-6 pb-5 border-b border-border-subtle flex flex-col items-center gap-3">
           <div className="w-8 h-8 bg-gradient-to-br from-accent-cyan to-accent-magenta rounded-lg flex items-center justify-center text-base font-bold text-black shrink-0">
             F
           </div>
-          <SidebarToggle collapsed={collapsed} onToggle={onToggle} />
+          <SidebarToggle collapsed={isCollapsed} onToggle={handleToggle} />
         </header>
       ) : (
         <header className="px-5 pt-6 pb-5 border-b border-border-subtle flex items-center justify-between">
@@ -68,13 +69,13 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
           </div>
           <div className="flex items-center gap-1">
             <ThemeToggle />
-            <SidebarToggle collapsed={collapsed} onToggle={onToggle} />
+            <SidebarToggle collapsed={isCollapsed} onToggle={handleToggle} />
           </div>
         </header>
       )}
 
       {/* Navigation */}
-      {collapsed ? (
+      {isCollapsed ? (
         <div className="flex-1 flex flex-col items-center pt-3 gap-2">
           <ThemeToggle />
         </div>

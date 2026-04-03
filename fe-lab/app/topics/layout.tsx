@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Sidebar } from "@widgets/sidebar";
-import { useMediaQuery } from "@shared/hooks";
+import { useSidebarStore, useViewportStore } from "@shared/stores";
 import { ScrollProgress } from "@shared/ui";
+import MenuIcon from "@shared/ui/icons/MenuIcon";
 
 export default function TopicsLayout({
   children,
@@ -11,19 +12,14 @@ export default function TopicsLayout({
   children: React.ReactNode;
 }) {
   const mainRef = useRef<HTMLElement>(null);
-  const isMobile = useMediaQuery("(max-width: 767px)");
-  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1023px)");
-  const [collapsed, setCollapsed] = useState(isTablet);
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const { isMobile } = useViewportStore();
+  const { drawerOpen, openDrawer, closeDrawer } = useSidebarStore();
 
   return (
     <div className="flex h-screen">
       {/* Mobile drawer overlay */}
       {isMobile && drawerOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40"
-          onClick={() => setDrawerOpen(false)}
-        />
+        <div className="fixed inset-0 bg-black/50 z-40" onClick={closeDrawer} />
       )}
 
       {/* Sidebar */}
@@ -33,13 +29,10 @@ export default function TopicsLayout({
             drawerOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <Sidebar collapsed={false} onToggle={() => setDrawerOpen(false)} />
+          <Sidebar />
         </aside>
       ) : (
-        <Sidebar
-          collapsed={collapsed}
-          onToggle={() => setCollapsed(!collapsed)}
-        />
+        <Sidebar />
       )}
 
       {/* Main content */}
@@ -60,24 +53,11 @@ export default function TopicsLayout({
         {isMobile && (
           <div className="sticky top-0 z-30 bg-bg-surface/90 backdrop-blur border-b border-border-subtle px-4 py-3 flex items-center gap-3">
             <button
-              onClick={() => setDrawerOpen(true)}
+              onClick={openDrawer}
               aria-label="메뉴 열기"
               className="w-8 h-8 rounded-md border border-border-subtle bg-transparent flex items-center justify-center cursor-pointer text-text-muted hover:text-accent-cyan hover:border-accent-cyan transition-all duration-200"
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
+              <MenuIcon />
             </button>
             <span className="font-[family-name:var(--font-display)] text-sm font-bold text-text-primary">
               FE Lab

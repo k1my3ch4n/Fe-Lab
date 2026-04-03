@@ -38,11 +38,6 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('fe-lab-theme');if(!t){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'}document.documentElement.classList.remove('dark','light');document.documentElement.classList.add(t)})()`,
-          }}
-        />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

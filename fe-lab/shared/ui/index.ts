@@ -19,6 +19,6 @@ export {
   DemoLayout,
   InfoCard,
 } from "./demo";
-export { default as ThemeProvider, useTheme } from "./ThemeProvider";
+export { default as ThemeProvider } from "./ThemeProvider";
 export { default as ThemeToggle } from "./ThemeToggle";
 export { default as ScrollProgress } from "./ScrollProgress";
