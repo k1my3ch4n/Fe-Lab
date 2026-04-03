@@ -240,15 +240,136 @@ const topicList: Topic[] = [
     color: "var(--accent-cyan)",
     implemented: true,
   },
+  // JavaScript 실전 (신규)
+  {
+    id: "debounce-throttle",
+    name: "디바운스 / 쓰로틀",
+    category: "JavaScript",
+    difficulty: "mid",
+    color: "var(--accent-amber)",
+    implemented: true,
+  },
+  {
+    id: "currying-composition",
+    name: "커링과 함수 합성",
+    category: "JavaScript",
+    difficulty: "mid",
+    color: "var(--accent-violet)",
+    implemented: true,
+  },
+  // TypeScript (신규 카테고리)
+  {
+    id: "generics",
+    name: "제네릭과 유틸리티 타입",
+    category: "TypeScript",
+    difficulty: "mid",
+    color: "var(--accent-cyan)",
+    implemented: true,
+  },
+  {
+    id: "type-guard",
+    name: "타입 가드와 타입 좁히기",
+    category: "TypeScript",
+    difficulty: "mid",
+    color: "var(--accent-amber)",
+    implemented: true,
+  },
+  // CSS (신규 카테고리)
+  {
+    id: "flexbox-grid",
+    name: "Flexbox vs Grid",
+    category: "CSS",
+    difficulty: "junior",
+    color: "var(--accent-green)",
+    implemented: true,
+  },
+  {
+    id: "responsive-design",
+    name: "반응형 디자인",
+    category: "CSS",
+    difficulty: "mid",
+    color: "var(--accent-violet)",
+    implemented: true,
+  },
+  // React 심화 (신규)
+  {
+    id: "state-management",
+    name: "상태 관리 패턴",
+    category: "React",
+    difficulty: "mid",
+    color: "var(--accent-green)",
+    implemented: true,
+  },
+  {
+    id: "suspense-error-boundary",
+    name: "Suspense / Error Boundary",
+    category: "React",
+    difficulty: "mid",
+    color: "var(--accent-magenta)",
+    implemented: true,
+  },
+  {
+    id: "server-components",
+    name: "React Server Components",
+    category: "React",
+    difficulty: "senior",
+    color: "var(--accent-cyan)",
+    implemented: true,
+  },
+  // Security (신규 카테고리)
+  {
+    id: "xss-csrf",
+    name: "XSS / CSRF 방지",
+    category: "Security",
+    difficulty: "mid",
+    color: "var(--accent-magenta)",
+    implemented: true,
+  },
+  {
+    id: "auth-strategy",
+    name: "인증/인가 전략",
+    category: "Security",
+    difficulty: "mid",
+    color: "var(--accent-amber)",
+    implemented: true,
+  },
+  // Web API (신규 카테고리)
+  {
+    id: "intersection-observer",
+    name: "Intersection Observer",
+    category: "Web API",
+    difficulty: "mid",
+    color: "var(--accent-cyan)",
+    implemented: true,
+  },
+  {
+    id: "web-storage",
+    name: "Web Storage",
+    category: "Web API",
+    difficulty: "junior",
+    color: "var(--accent-green)",
+    implemented: true,
+  },
+  // Accessibility (신규 카테고리)
+  {
+    id: "web-accessibility",
+    name: "웹 접근성 (a11y)",
+    category: "Accessibility",
+    difficulty: "mid",
+    color: "var(--accent-violet)",
+    implemented: true,
+  },
 ];
 
 export function getCategories(): Category[] {
   const categoryMap = new Map<string, Topic[]>();
+
   for (const topic of topicList) {
     const list = categoryMap.get(topic.category) ?? [];
     list.push(topic);
     categoryMap.set(topic.category, list);
   }
+
   return Array.from(categoryMap.entries()).map(([name, topics]) => ({
     name,
     topics,
