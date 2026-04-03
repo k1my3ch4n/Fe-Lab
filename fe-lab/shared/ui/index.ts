@@ -9,6 +9,7 @@ export { default as InterviewCard } from "./interview/InterviewCard";
 export { default as InlineCode } from "./InlineCode";
 export { default as ToggleSwitch } from "./ToggleSwitch";
 export { default as PhaseChip } from "./PhaseChip";
+export { default as TopicPageLayout } from "./TopicPageLayout";
 export {
   TabBar,
   PanelHeader,
