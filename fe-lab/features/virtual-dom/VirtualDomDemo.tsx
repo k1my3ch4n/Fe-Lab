@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { useLog } from "@shared/hooks";
 import {
   INITIAL_TREE,
   UPDATED_TREE,
@@ -13,60 +14,45 @@ import TreeNode from "./components/TreeNode";
 
 export default function VirtualDomDemo() {
   const [step, setStep] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
 
   const activeTree = step >= 1 ? UPDATED_TREE : INITIAL_TREE;
   const removedNodes =
     step >= 2 ? DIFF_RESULT.filter((d) => d.status === "removed") : [];
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleStep = () => {
     const next = Math.min(step + 1, 3);
     setStep(next);
 
     if (next === 1) {
-      addLog("setState() 호출 → 새 Virtual DOM 트리 생성");
-      addLog('h1: "Hello" → "Hi!"');
-      addLog('li#item-2: "Item B" → "Item B*"');
-      addLog("li#item-3: 새 노드 추가");
-      addLog("p#footer: 노드 삭제");
+      addLog("setState() 호출 → 새 Virtual DOM 트리 생성", "#00e5ff");
+      addLog('h1: "Hello" → "Hi!"', "#00e5ff");
+      addLog('li#item-2: "Item B" → "Item B*"', "#00e5ff");
+      addLog("li#item-3: 새 노드 추가", "#00e5ff");
+      addLog("p#footer: 노드 삭제", "#00e5ff");
     } else if (next === 2) {
-      addLog("─── Diffing 시작 ───");
-      addLog("root(div) → 동일, 자식 비교");
-      addLog("h1 → text 변경 감지");
-      addLog("ul → 동일, 자식 비교");
-      addLog("li#1 → 변경 없음");
-      addLog("li#2 → text 변경 감지");
-      addLog("li#3 → 새 노드 발견");
-      addLog("p#footer → 삭제 감지");
+      addLog("─── Diffing 시작 ───", "#ffb800");
+      addLog("root(div) → 동일, 자식 비교", "#00e5ff");
+      addLog("h1 → text 변경 감지", "#00e5ff");
+      addLog("ul → 동일, 자식 비교", "#00e5ff");
+      addLog("li#1 → 변경 없음", "#00e5ff");
+      addLog("li#2 → text 변경 감지", "#00e5ff");
+      addLog("li#3 → 새 노드 발견", "#00e5ff");
+      addLog("p#footer → 삭제 감지", "#00e5ff");
     } else if (next === 3) {
-      addLog("─── 최소 DOM 업데이트 ───");
-      addLog("patch: h1.textContent = 'Hi!'");
-      addLog("patch: li#2.textContent = 'Item B*'");
-      addLog("patch: ul.appendChild(li#3)");
-      addLog("patch: root.removeChild(p#footer)");
-      addLog("✓ 4개 조작만으로 업데이트 완료");
+      addLog("─── 최소 DOM 업데이트 ───", "#ffb800");
+      addLog("patch: h1.textContent = 'Hi!'", "#00e676");
+      addLog("patch: li#2.textContent = 'Item B*'", "#00e676");
+      addLog("patch: ul.appendChild(li#3)", "#00e676");
+      addLog("patch: root.removeChild(p#footer)", "#00e676");
+      addLog("✓ 4개 조작만으로 업데이트 완료", "#ff2d8a");
     }
   };
 
   const handleReset = () => {
     setStep(0);
-    setLogs([]);
+    clearLogs();
   };
-
-  const coloredLogs = logs.map((log) => ({
-    text: log,
-    color: log.startsWith("───")
-      ? "#ffb800"
-      : log.startsWith("patch:")
-        ? "#00e676"
-        : log.startsWith("✓")
-          ? "#ff2d8a"
-          : "#00e5ff",
-  }));
 
   const rightPanel = (
     <>
@@ -108,7 +94,7 @@ export default function VirtualDomDemo() {
 
       {/* Log */}
       <LogPanel
-        logs={coloredLogs}
+        logs={logs}
         emptyMessage={"버튼을 클릭하여\nVirtual DOM 동작을 확인하세요"}
       />
     </>

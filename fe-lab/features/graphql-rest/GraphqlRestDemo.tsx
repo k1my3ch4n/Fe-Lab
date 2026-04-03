@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
+import { useLog } from "@shared/hooks";
 import {
   FETCH_EXAMPLES,
   UNDER_FETCH_EXAMPLE,
@@ -19,14 +20,10 @@ export default function GraphqlRestDemo() {
   const [activeTab, setActiveTab] = useState<
     "overfetch" | "underfetch" | "compare"
   >("overfetch");
-  const [logs, setLogs] = useState<string[]>([]);
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
+  const { logs, addLog, clearLogs } = useLog();
 
   const handleReset = () => {
-    setLogs([]);
+    clearLogs();
   };
 
   const tabs = [
@@ -56,7 +53,7 @@ export default function GraphqlRestDemo() {
               <ActionButton
                 variant="cyan"
                 onClick={() => {
-                  setLogs([]);
+                  clearLogs();
                   addLog("REST: GET /api/users/1");
                   addLog("→ 응답: 8개 필드 (200B)");
                   addLog("→ 사용: 2개 필드 (50B)");
@@ -73,7 +70,7 @@ export default function GraphqlRestDemo() {
               <ActionButton
                 variant="amber"
                 onClick={() => {
-                  setLogs([]);
+                  clearLogs();
                   addLog("REST 요청 흐름:");
                   addLog("  1. GET /users/1 → 50ms");
                   addLog("  2. GET /users/1/posts → 80ms");
@@ -90,7 +87,7 @@ export default function GraphqlRestDemo() {
               <ActionButton
                 variant="magenta"
                 onClick={() => {
-                  setLogs([]);
+                  clearLogs();
                   addLog("N+1 문제 (GraphQL):");
                   addLog("  query { users { posts { title } } }");
                   addLog("");

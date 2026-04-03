@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
+import { useLog } from "@shared/hooks";
 import { GENERIC_EXAMPLES, UTILITY_TYPE_MAP } from "./constants";
 import {
   TabBar,
@@ -14,23 +15,19 @@ import {
 export default function GenericsDemo() {
   const [activeExample, setActiveExample] = useState(0);
   const [resolvedType, setResolvedType] = useState<string | null>(null);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
 
   const example = GENERIC_EXAMPLES[activeExample];
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleExampleChange = (index: number) => {
     setActiveExample(index);
     setResolvedType(null);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleReset = () => {
     setResolvedType(null);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleTypeCall = (typeArg: string) => {

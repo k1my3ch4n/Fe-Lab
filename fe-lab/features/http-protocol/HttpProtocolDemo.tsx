@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { PROTOCOL_FLOWS, TLS_HANDSHAKE_STEPS } from "./constants";
 import {
   TabBar,
@@ -10,21 +10,18 @@ import {
   LogPanel,
   SectionHeader,
 } from "@shared/ui";
+import { useLog } from "@shared/hooks";
 
 export default function HttpProtocolDemo() {
   const [activeTab, setActiveTab] = useState<"compare" | "tls">("compare");
   const [animating, setAnimating] = useState(false);
   const [progress, setProgress] = useState<number[]>([0, 0, 0]);
-  const [logs, setLogs] = useState<string[]>([]);
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
+  const { logs, addLog, clearLogs } = useLog();
 
   const handleReset = () => {
     setAnimating(false);
     setProgress([0, 0, 0]);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleAnimate = () => {
@@ -134,7 +131,7 @@ export default function HttpProtocolDemo() {
                   <ActionButton
                     variant="cyan"
                     onClick={() => {
-                      setLogs([]);
+                      clearLogs();
                       addLog("1. Client → Server: ClientHello");
                       addLog("   (지원 암호 스위트, 랜덤 값)");
                       addLog("2. Server → Client: ServerHello");

@@ -6,12 +6,12 @@ import { ActionButton } from "@shared/ui";
 
 interface UseStatusCodesTabOptions {
   addLog: (text: string) => void;
-  setLogs: React.Dispatch<React.SetStateAction<string[]>>;
+  clearLogs: () => void;
 }
 
 export function useStatusCodesTab({
   addLog,
-  setLogs,
+  clearLogs,
 }: UseStatusCodesTabOptions) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -26,7 +26,7 @@ export function useStatusCodesTab({
       <ActionButton
         variant="cyan"
         onClick={() => {
-          setLogs([]);
+          clearLogs();
           addLog("200 OK → 성공적으로 처리됨");
           addLog("301 → 영구 이동 (브라우저 캐시)");
           addLog("302 → 임시 이동 (캐시 안 함)");
@@ -43,7 +43,7 @@ export function useStatusCodesTab({
       <ActionButton
         variant="magenta"
         onClick={() => {
-          setLogs([]);
+          clearLogs();
           addLog("401 vs 403 차이:");
           addLog("  401: 인증되지 않음 (로그인 필요)");
           addLog("  403: 인증됨 but 권한 없음");

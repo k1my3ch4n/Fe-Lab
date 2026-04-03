@@ -1,20 +1,17 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { TAB_ITEMS } from "./constants";
 import type { TabId } from "./types";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { useLog } from "@shared/hooks";
 import { useObserveTab } from "./tabs/ObserveTab";
 import { useLazyLoadTab } from "./tabs/LazyLoadTab";
 import { useInfiniteScrollTab } from "./tabs/InfiniteScrollTab";
 
 export default function IntersectionObserverDemo() {
   const [activeTab, setActiveTab] = useState<TabId>("observe");
-  const [logs, setLogs] = useState<string[]>([]);
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev.slice(-30), text]);
-  }, []);
+  const { logs, addLog, clearLogs } = useLog();
 
   const observeTab = useObserveTab({ addLog });
   const lazyLoadTab = useLazyLoadTab({ addLog });
@@ -25,14 +22,14 @@ export default function IntersectionObserverDemo() {
     lazyLoadTab.reset();
     infiniteScrollTab.reset();
     setActiveTab(id);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleReset = () => {
     observeTab.reset();
     lazyLoadTab.reset();
     infiniteScrollTab.reset();
-    setLogs([]);
+    clearLogs();
   };
 
   const tabsForBar = TAB_ITEMS.map((t) => ({ id: t.id, label: t.label }));

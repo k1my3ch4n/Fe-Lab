@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useRef } from "react";
+import { useLog } from "@shared/hooks";
 import { DEMO_MODES, DELAY_OPTIONS } from "./constants";
 import {
   TabBar,
@@ -22,15 +23,11 @@ export default function DebounceThrottleDemo() {
   const [debounceCount, setDebounceCount] = useState(0);
   const [throttleCount, setThrottleCount] = useState(0);
   const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
 
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const throttleLastRef = useRef<number>(0);
   const startTimeRef = useRef<number>(0);
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleModeChange = (index: number) => {
     setActiveMode(index);
@@ -42,7 +39,7 @@ export default function DebounceThrottleDemo() {
     setDebounceCount(0);
     setThrottleCount(0);
     setTimeline([]);
-    setLogs([]);
+    clearLogs();
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
       debounceTimerRef.current = null;

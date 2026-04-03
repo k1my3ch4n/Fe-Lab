@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { CLOSURE_EXAMPLES } from "./constants";
+import { useLog } from "@shared/hooks";
 import {
   TabBar,
   DemoLayout,
@@ -14,13 +15,9 @@ import {
 export default function ClosureDemo() {
   const [activeExample, setActiveExample] = useState(0);
   const [counterValue, setCounterValue] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
 
   const example = CLOSURE_EXAMPLES[activeExample];
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleCounterClick = () => {
     const next = counterValue + 1;
@@ -30,13 +27,13 @@ export default function ClosureDemo() {
 
   const handleReset = () => {
     setCounterValue(0);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleExampleChange = (index: number) => {
     setActiveExample(index);
     setCounterValue(0);
-    setLogs([]);
+    clearLogs();
   };
 
   const tabs = CLOSURE_EXAMPLES.map((ex) => ({ id: ex.id, label: ex.label }));
@@ -88,7 +85,7 @@ export default function ClosureDemo() {
                   <ActionButton
                     variant="magenta"
                     onClick={() => {
-                      setLogs([]);
+                      clearLogs();
                       addLog("// var 사용 (문제)");
                       addLog("→ 3, 3, 3");
                     }}
@@ -98,7 +95,7 @@ export default function ClosureDemo() {
                   <ActionButton
                     variant="green"
                     onClick={() => {
-                      setLogs([]);
+                      clearLogs();
                       addLog("// IIFE 클로저 사용");
                       addLog("→ 0, 1, 2 ✓");
                     }}
@@ -108,7 +105,7 @@ export default function ClosureDemo() {
                   <ActionButton
                     variant="cyan"
                     onClick={() => {
-                      setLogs([]);
+                      clearLogs();
                       addLog("// let 블록 스코프 사용");
                       addLog("→ 0, 1, 2 ✓");
                     }}

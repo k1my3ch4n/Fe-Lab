@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useLog } from "@shared/hooks";
 import { REF_EXAMPLES } from "./constants";
 import {
   TabBar,
@@ -15,7 +16,7 @@ import {
 export default function UseRefDemo() {
   const [activeExample, setActiveExample] = useState(0);
   const [stateCount, setStateCount] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
   const [refDisplay, setRefDisplay] = useState(0);
   const [prevDisplay, setPrevDisplay] = useState<number | undefined>(undefined);
   const refCount = useRef(0);
@@ -27,17 +28,13 @@ export default function UseRefDemo() {
   // stateCount가 변경될 때마다 렌더링이 발생하므로 stateCount 자체가 렌더 카운트
   const renderCount = stateCount;
 
-  const addLog = (text: string) => {
-    setLogs((prev) => [...prev, text]);
-  };
-
   const handleReset = () => {
     setStateCount(0);
     refCount.current = 0;
     setRefDisplay(0);
     setInputValue(0);
     setPrevDisplay(undefined);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleExampleChange = (index: number) => {

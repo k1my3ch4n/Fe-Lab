@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState } from "react";
+import { useLog, useTimers } from "@shared/hooks";
 import {
   TabBar,
   DemoLayout,
@@ -13,45 +14,27 @@ import { SUSPENSE_SCENARIOS } from "./constants";
 
 export default function SuspenseErrorBoundaryDemo() {
   const [activeTab, setActiveTab] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
   const [activeStep, setActiveStep] = useState(-1);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
+  const { addTimer, clearTimers } = useTimers();
 
   const scenario = SUSPENSE_SCENARIOS[activeTab];
-
-  useEffect(() => {
-    const timers = timersRef.current;
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const clearTimers = () => {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-  };
-
-  const addTimer = (fn: () => void, delay: number) => {
-    timersRef.current.push(setTimeout(fn, delay));
-  };
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleTabChange = (index: number) => {
     clearTimers();
     setActiveTab(index);
-    setLogs([]);
+    clearLogs();
     setActiveStep(-1);
   };
 
   const handleReset = () => {
     clearTimers();
-    setLogs([]);
+    clearLogs();
     setActiveStep(-1);
   };
 
   const handleSimulate = () => {
-    setLogs([]);
+    clearLogs();
     setActiveStep(0);
     const steps = scenario.steps;
     let step = 0;
@@ -78,7 +61,7 @@ export default function SuspenseErrorBoundaryDemo() {
   };
 
   const handleErrorScenario = () => {
-    setLogs([]);
+    clearLogs();
     if (scenario.id === "suspense") {
       addLog("❌ Suspense 없이 use() 호출 시:");
       addTimer(() => {

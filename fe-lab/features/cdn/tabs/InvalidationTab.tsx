@@ -4,13 +4,13 @@ import { INVALIDATION_STRATEGIES } from "../constants";
 import { ActionButton, SectionHeader } from "@shared/ui";
 
 interface UseInvalidationTabOptions {
-  addLog: (text: string) => void;
-  setLogs: React.Dispatch<React.SetStateAction<string[]>>;
+  addLog: (text: string, color?: string) => void;
+  clearLogs: () => void;
 }
 
 export function useInvalidationTab({
   addLog,
-  setLogs,
+  clearLogs,
 }: UseInvalidationTabOptions) {
   const reset = () => {};
 
@@ -19,7 +19,7 @@ export function useInvalidationTab({
       <ActionButton
         variant="cyan"
         onClick={() => {
-          setLogs([]);
+          clearLogs();
           addLog("Cache-Control: public, max-age=3600");
           addLog("→ 1시간 동안 엣지에서 캐시");
           addLog("→ 만료 후 오리진에 재검증");
@@ -33,7 +33,7 @@ export function useInvalidationTab({
       <ActionButton
         variant="magenta"
         onClick={() => {
-          setLogs([]);
+          clearLogs();
           addLog("퍼지 요청: /api/cdn/purge");
           addLog("→ 대상: /assets/style.css");
           addLog("→ 전 세계 엣지 서버에서 삭제");

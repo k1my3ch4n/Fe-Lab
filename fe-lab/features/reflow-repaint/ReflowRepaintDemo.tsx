@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { SectionHeader } from "@shared/ui";
 import {
   CSS_PROPERTIES,
@@ -9,25 +9,20 @@ import {
   COST_META,
 } from "./constants";
 import type { CSSPropertyInfo, PipelineStage } from "./types";
+import { useTimers } from "@shared/hooks";
 
 export default function ReflowRepaintDemo() {
   const [activeProperty, setActiveProperty] = useState<CSSPropertyInfo>(
     CSS_PROPERTIES[0],
   );
   const [animating, setAnimating] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
+  const { addTimer, clearTimers } = useTimers();
 
   const handlePropertyClick = (prop: CSSPropertyInfo) => {
     setActiveProperty(prop);
     setAnimating(true);
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setAnimating(false), 600);
+    clearTimers();
+    addTimer(() => setAnimating(false), 600);
   };
 
   const isStageTriggered = (stage: PipelineStage) =>

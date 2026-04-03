@@ -1,20 +1,17 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { A11Y_TABS } from "./constants";
 import type { A11yTabId } from "./types";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { useLog } from "@shared/hooks";
 import { useSemanticTab } from "./tabs/SemanticTab";
 import { useAriaTab } from "./tabs/AriaTab";
 import { useKeyboardTab } from "./tabs/KeyboardTab";
 
 export default function WebAccessibilityDemo() {
   const [activeTab, setActiveTab] = useState<A11yTabId>("semantic");
-  const [logs, setLogs] = useState<string[]>([]);
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev.slice(-30), text]);
-  }, []);
+  const { logs, addLog, clearLogs } = useLog();
 
   const semanticTab = useSemanticTab({ addLog });
   const ariaTab = useAriaTab({ addLog });
@@ -22,14 +19,14 @@ export default function WebAccessibilityDemo() {
 
   const handleTabChange = (id: A11yTabId) => {
     setActiveTab(id);
-    setLogs([]);
+    clearLogs();
     semanticTab.reset();
     ariaTab.reset();
     keyboardTab.reset();
   };
 
   const handleReset = () => {
-    setLogs([]);
+    clearLogs();
     semanticTab.reset();
     ariaTab.reset();
     keyboardTab.reset();

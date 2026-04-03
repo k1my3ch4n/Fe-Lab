@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState } from "react";
+import { useLog, useTimers } from "@shared/hooks";
 import { SECURITY_SCENARIOS, XSS_EXAMPLES } from "./constants";
 import {
   TabBar,
@@ -13,51 +14,33 @@ import {
 
 export default function XssCsrfDemo() {
   const [activeTab, setActiveTab] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
   const [activeStep, setActiveStep] = useState(-1);
   const [xssInput, setXssInput] = useState("");
   const [showEscaped, setShowEscaped] = useState(false);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
+  const { addTimer, clearTimers } = useTimers();
 
   const scenario = SECURITY_SCENARIOS[activeTab];
-
-  useEffect(() => {
-    const timers = timersRef.current;
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleTabChange = (index: number) => {
     clearTimers();
     setActiveTab(index);
-    setLogs([]);
+    clearLogs();
     setActiveStep(-1);
     setXssInput("");
     setShowEscaped(false);
   };
 
-  const clearTimers = () => {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-  };
-
-  const addTimer = (fn: () => void, delay: number) => {
-    timersRef.current.push(setTimeout(fn, delay));
-  };
-
   const handleReset = () => {
     clearTimers();
-    setLogs([]);
+    clearLogs();
     setActiveStep(-1);
     setXssInput("");
     setShowEscaped(false);
   };
 
   const handleAttackSimulate = () => {
-    setLogs([]);
+    clearLogs();
     setActiveStep(0);
     const steps = scenario.steps;
     let step = 0;
@@ -87,7 +70,7 @@ export default function XssCsrfDemo() {
     const malicious = XSS_EXAMPLES.input;
     setXssInput(malicious);
     setShowEscaped(false);
-    setLogs([]);
+    clearLogs();
     addLog(`입력: ${malicious}`);
     addTimer(() => {
       addLog("innerHTML 사용 시 → 스크립트 실행됨! ❌");
@@ -102,7 +85,7 @@ export default function XssCsrfDemo() {
   };
 
   const handleDefense = () => {
-    setLogs([]);
+    clearLogs();
     if (scenario.id === "xss") {
       addLog("=== XSS 방어 전략 ===");
       addTimer(() => {

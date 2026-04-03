@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
+import { useLog } from "@shared/hooks";
 import { COPY_METHODS, ORIGINAL_OBJECT } from "./constants";
 import {
   TabBar,
@@ -13,23 +14,19 @@ import {
 
 export default function DeepShallowCopyDemo() {
   const [activeTab, setActiveTab] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
   const [mutated, setMutated] = useState<Record<string, boolean>>({});
 
   const method = COPY_METHODS[activeTab];
 
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
-
   const handleReset = () => {
-    setLogs([]);
+    clearLogs();
     setMutated({});
   };
 
   const handleTabChange = (index: number) => {
     setActiveTab(index);
-    setLogs([]);
+    clearLogs();
     setMutated({});
   };
 

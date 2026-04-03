@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState } from "react";
+import { useLog, useTimers } from "@shared/hooks";
 import {
   DemoLayout,
   PanelHeader,
@@ -13,48 +14,30 @@ import { STATE_APPROACHES, PROP_DRILLING_LEVELS } from "./constants";
 export default function StateManagementDemo() {
   const [activeTab, setActiveTab] = useState(0);
   const [showDrilling, setShowDrilling] = useState(false);
-  const [logs, setLogs] = useState<string[]>([]);
   const [highlightLevel, setHighlightLevel] = useState(-1);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
+  const { addTimer, clearTimers } = useTimers();
 
   const approach = STATE_APPROACHES[activeTab];
-
-  useEffect(() => {
-    const timers = timersRef.current;
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const clearTimers = () => {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-  };
-
-  const addTimer = (fn: () => void, delay: number) => {
-    timersRef.current.push(setTimeout(fn, delay));
-  };
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleTabChange = (index: number) => {
     clearTimers();
     setActiveTab(index);
-    setLogs([]);
+    clearLogs();
     setShowDrilling(false);
     setHighlightLevel(-1);
   };
 
   const handleReset = () => {
     clearTimers();
-    setLogs([]);
+    clearLogs();
     setHighlightLevel(-1);
     setShowDrilling(false);
   };
 
   const handleShowDrilling = () => {
     setShowDrilling(true);
-    setLogs([]);
+    clearLogs();
     setHighlightLevel(0);
 
     let step = 0;
@@ -77,7 +60,7 @@ export default function StateManagementDemo() {
   };
 
   const handleSimulate = () => {
-    setLogs([]);
+    clearLogs();
     if (approach.id === "context") {
       addLog("1. Provider에서 값 변경");
       addTimer(() => {

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState } from "react";
+import { useLog, useTimers } from "@shared/hooks";
 import { AUTH_METHODS } from "./constants";
 import {
   TabBar,
@@ -13,45 +14,27 @@ import {
 
 export default function AuthStrategyDemo() {
   const [activeTab, setActiveTab] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
   const [activeStep, setActiveStep] = useState(-1);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
+  const { addTimer, clearTimers } = useTimers();
 
   const method = AUTH_METHODS[activeTab];
-
-  useEffect(() => {
-    const timers = timersRef.current;
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const clearTimers = () => {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-  };
-
-  const addTimer = (fn: () => void, delay: number) => {
-    timersRef.current.push(setTimeout(fn, delay));
-  };
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleTabChange = (index: number) => {
     clearTimers();
     setActiveTab(index);
-    setLogs([]);
+    clearLogs();
     setActiveStep(-1);
   };
 
   const handleReset = () => {
     clearTimers();
-    setLogs([]);
+    clearLogs();
     setActiveStep(-1);
   };
 
   const handleSimulate = () => {
-    setLogs([]);
+    clearLogs();
     setActiveStep(0);
     const steps = method.steps;
     let step = 0;
@@ -72,7 +55,7 @@ export default function AuthStrategyDemo() {
   };
 
   const handleCompare = () => {
-    setLogs([]);
+    clearLogs();
     addLog("=== Session vs JWT vs OAuth ===");
     addTimer(() => {
       addLog("Session: 서버 상태 ✓ | 확장성 ✗ | 즉시 무효화 ✓");
@@ -89,7 +72,7 @@ export default function AuthStrategyDemo() {
   };
 
   const handleRefreshFlow = () => {
-    setLogs([]);
+    clearLogs();
     addLog("=== 리프레시 토큰 흐름 ===");
     addTimer(() => {
       addLog("1. Access Token 만료 (15분)");

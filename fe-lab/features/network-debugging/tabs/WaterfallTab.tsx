@@ -6,10 +6,10 @@ import { ActionButton } from "@shared/ui";
 
 interface UseWaterfallTabOptions {
   addLog: (text: string) => void;
-  setLogs: React.Dispatch<React.SetStateAction<string[]>>;
+  clearLogs: () => void;
 }
 
-export function useWaterfallTab({ addLog, setLogs }: UseWaterfallTabOptions) {
+export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
   const [selectedResource, setSelectedResource] = useState<number | null>(null);
 
   const maxTime = Math.max(...WATERFALL_RESOURCES.map((r) => r.totalTime));
@@ -23,7 +23,7 @@ export function useWaterfallTab({ addLog, setLogs }: UseWaterfallTabOptions) {
       <ActionButton
         variant="cyan"
         onClick={() => {
-          setLogs([]);
+          clearLogs();
           addLog("병목 분석:");
           addLog("");
           addLog("api/data — TTFB 200ms ⚠️");
@@ -43,7 +43,7 @@ export function useWaterfallTab({ addLog, setLogs }: UseWaterfallTabOptions) {
       <ActionButton
         variant="amber"
         onClick={() => {
-          setLogs([]);
+          clearLogs();
           addLog("네트워크 병목 vs CPU 병목:");
           addLog("");
           addLog("네트워크 병목 징후:");
@@ -62,7 +62,7 @@ export function useWaterfallTab({ addLog, setLogs }: UseWaterfallTabOptions) {
       <ActionButton
         variant="green"
         onClick={() => {
-          setLogs([]);
+          clearLogs();
           addLog("Performance API 측정:");
           addLog("");
           addLog("const entries = performance");
@@ -139,7 +139,7 @@ export function useWaterfallTab({ addLog, setLogs }: UseWaterfallTabOptions) {
               onClick={() => {
                 setSelectedResource(isSelected ? null : i);
                 if (!isSelected) {
-                  setLogs([]);
+                  clearLogs();
                   addLog(`${resource.name} (${resource.size})`);
                   resource.phases.forEach((p) => {
                     addLog(`  ${p.name}: ${p.duration}ms — ${p.description}`);

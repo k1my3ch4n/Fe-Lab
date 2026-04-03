@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useRef } from "react";
+import { useLog } from "@shared/hooks";
 import { PROMISE_METHODS, STATE_COLORS, DEFAULT_PROMISES } from "./constants";
 import type { PromiseState, PromiseItem } from "./types";
 import {
@@ -14,7 +15,7 @@ import {
 
 export default function PromiseDemo() {
   const [activeTab, setActiveTab] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
   const [promises, setPromises] = useState<PromiseItem[]>(
     DEFAULT_PROMISES.map((p) => ({ ...p, state: "pending" as PromiseState })),
   );
@@ -23,14 +24,10 @@ export default function PromiseDemo() {
 
   const method = PROMISE_METHODS[activeTab];
 
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
-
   const handleReset = () => {
     timersRef.current.forEach(clearTimeout);
     timersRef.current = [];
-    setLogs([]);
+    clearLogs();
     setIsRunning(false);
     setPromises(
       DEFAULT_PROMISES.map((p) => ({ ...p, state: "pending" as PromiseState })),
@@ -118,7 +115,7 @@ export default function PromiseDemo() {
                   <ActionButton
                     variant="green"
                     onClick={() => {
-                      setLogs([]);
+                      clearLogs();
                       addLog("new Promise(resolve => ...)");
                       setTimeout(
                         () => addLog("→ resolve('성공!') → fulfilled"),
@@ -132,7 +129,7 @@ export default function PromiseDemo() {
                   <ActionButton
                     variant="magenta"
                     onClick={() => {
-                      setLogs([]);
+                      clearLogs();
                       addLog("new Promise((_, reject) => ...)");
                       setTimeout(
                         () => addLog("→ reject('실패!') → rejected"),

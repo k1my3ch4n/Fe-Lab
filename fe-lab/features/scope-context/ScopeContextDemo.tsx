@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { BINDING_EXAMPLES, SCOPE_CHAIN_LEVELS } from "./constants";
 import {
   TabBar,
@@ -10,26 +10,23 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
+import { useLog } from "@shared/hooks";
 
 export default function ScopeContextDemo() {
   const [activeTab, setActiveTab] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
   const [highlightedScope, setHighlightedScope] = useState<number | null>(null);
 
   const example = BINDING_EXAMPLES[activeTab];
 
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
-
   const handleReset = () => {
-    setLogs([]);
+    clearLogs();
     setHighlightedScope(null);
   };
 
   const handleTabChange = (index: number) => {
     setActiveTab(index);
-    setLogs([]);
+    clearLogs();
     setHighlightedScope(null);
   };
 
@@ -127,7 +124,7 @@ export default function ScopeContextDemo() {
                   <ActionButton
                     variant="violet"
                     onClick={() => {
-                      setLogs([]);
+                      clearLogs();
                       addLog("// IIFE 실행");
                       addLog("secret = 'hidden'");
                       addLog("// 외부에서 접근 불가 → ReferenceError");
@@ -138,7 +135,7 @@ export default function ScopeContextDemo() {
                   <ActionButton
                     variant="amber"
                     onClick={() => {
-                      setLogs([]);
+                      clearLogs();
                       addLog("module.increment() → 1");
                       addLog("module.increment() → 2");
                       addLog("module.getCount() → 2");

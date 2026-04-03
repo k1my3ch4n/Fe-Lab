@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { ToggleSwitch } from "@shared/ui";
 import { ELEMENTS, ANIM_DELAY } from "./constants";
 import type { LogEntry, LogType } from "./types";
 import NestedBoxes from "./components/NestedBoxes";
 import EventLogPanel from "./components/EventLogPanel";
+import { useTimers } from "@shared/hooks";
 
 export default function EventBubblingDemo() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
@@ -14,50 +15,40 @@ export default function EventBubblingDemo() {
   const [stopAtTarget, setStopAtTarget] = useState(false);
   const [flashingBoxes, setFlashingBoxes] = useState<Set<string>>(new Set());
   const logRef = useRef<HTMLDivElement>(null);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { addTimer } = useTimers();
 
-  useEffect(() => {
-    const timers = timersRef.current;
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const flashBox = useCallback((id: string, delay: number) => {
-    timersRef.current.push(
-      setTimeout(() => {
+  const flashBox = useCallback(
+    (id: string, delay: number) => {
+      addTimer(() => {
         setFlashingBoxes((prev) => new Set(prev).add(id));
-        timersRef.current.push(
-          setTimeout(() => {
-            setFlashingBoxes((prev) => {
-              const next = new Set(prev);
-              next.delete(id);
+        addTimer(() => {
+          setFlashingBoxes((prev) => {
+            const next = new Set(prev);
+            next.delete(id);
 
-              return next;
-            });
-          }, 600),
-        );
-      }, delay),
-    );
-  }, []);
+            return next;
+          });
+        }, 600);
+      }, delay);
+    },
+    [addTimer],
+  );
 
   const addLogs = useCallback(
     (newLogs: { text: string; type: LogType; delay: number }[]) => {
       newLogs.forEach(({ text, type, delay }) => {
-        timersRef.current.push(
-          setTimeout(() => {
-            setLogs((prev) => [...prev, { text, type }]);
+        addTimer(() => {
+          setLogs((prev) => [...prev, { text, type }]);
 
-            if (logRef.current) {
-              timersRef.current.push(
-                setTimeout(() => {
-                  logRef.current!.scrollTop = logRef.current!.scrollHeight;
-                }, 10),
-              );
-            }
-          }, delay),
-        );
+          if (logRef.current) {
+            addTimer(() => {
+              logRef.current!.scrollTop = logRef.current!.scrollHeight;
+            }, 10);
+          }
+        }, delay);
       });
     },
-    [],
+    [addTimer],
   );
 
   const handleClick = useCallback(

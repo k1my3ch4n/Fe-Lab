@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { TYPE_GUARD_EXAMPLES } from "./constants";
 import {
   TabBar,
@@ -10,27 +10,24 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
+import { useLog } from "@shared/hooks";
 
 export default function TypeGuardDemo() {
   const [activeExample, setActiveExample] = useState(0);
   const [narrowedType, setNarrowedType] = useState<string | null>(null);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
 
   const example = TYPE_GUARD_EXAMPLES[activeExample];
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleExampleChange = (index: number) => {
     setActiveExample(index);
     setNarrowedType(null);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleReset = () => {
     setNarrowedType(null);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleGuardCheck = (inputLabel: string, resultType: string) => {

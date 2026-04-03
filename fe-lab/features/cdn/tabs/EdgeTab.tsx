@@ -5,11 +5,11 @@ import { EDGE_SERVERS, ORIGIN_SERVER } from "../constants";
 import { ActionButton, SectionHeader } from "@shared/ui";
 
 interface UseEdgeTabOptions {
-  addLog: (text: string) => void;
-  setLogs: React.Dispatch<React.SetStateAction<string[]>>;
+  addLog: (text: string, color?: string) => void;
+  clearLogs: () => void;
 }
 
-export function useEdgeTab({ addLog, setLogs }: UseEdgeTabOptions) {
+export function useEdgeTab({ addLog, clearLogs }: UseEdgeTabOptions) {
   const [highlightEdge, setHighlightEdge] = useState<string | null>(null);
 
   const reset = () => {
@@ -21,7 +21,7 @@ export function useEdgeTab({ addLog, setLogs }: UseEdgeTabOptions) {
       <ActionButton
         variant="cyan"
         onClick={() => {
-          setLogs([]);
+          clearLogs();
           addLog("서울 사용자 → Seoul 엣지 (~5ms)");
           addLog("도쿄 사용자 → Tokyo 엣지 (~8ms)");
           addLog("뉴욕 사용자 → Virginia 엣지 (~10ms)");
@@ -35,7 +35,7 @@ export function useEdgeTab({ addLog, setLogs }: UseEdgeTabOptions) {
       <ActionButton
         variant="green"
         onClick={() => {
-          setLogs([]);
+          clearLogs();
           addLog("엣지 서버 수: 10개 리전");
           addLog("Asia: Seoul, Tokyo, Singapore, Mumbai");
           addLog("Europe: Frankfurt, London");

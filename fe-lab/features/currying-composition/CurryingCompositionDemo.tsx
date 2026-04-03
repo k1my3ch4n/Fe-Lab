@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState } from "react";
 import { DEMO_EXAMPLES } from "./constants";
 import {
   TabBar,
@@ -10,44 +10,27 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
+import { useLog, useTimers } from "@shared/hooks";
 
 export default function CurryingCompositionDemo() {
   const [activeExample, setActiveExample] = useState(0);
   const [currentStep, setCurrentStep] = useState(-1);
-  const [logs, setLogs] = useState<string[]>([]);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
+  const { addTimer, clearTimers } = useTimers();
 
   const example = DEMO_EXAMPLES[activeExample];
-
-  useEffect(() => {
-    const timers = timersRef.current;
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const clearTimers = () => {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-  };
-
-  const addTimer = (fn: () => void, delay: number) => {
-    timersRef.current.push(setTimeout(fn, delay));
-  };
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleExampleChange = (index: number) => {
     clearTimers();
     setActiveExample(index);
     setCurrentStep(-1);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleReset = () => {
     clearTimers();
     setCurrentStep(-1);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleNextStep = () => {
@@ -66,18 +49,15 @@ export default function CurryingCompositionDemo() {
 
   const handleRunAll = () => {
     setCurrentStep(-1);
-    setLogs([]);
+    clearLogs();
 
     let stepIndex = 0;
     const runStep = () => {
       if (stepIndex < example.steps.length) {
         const step = example.steps[stepIndex];
         setCurrentStep(stepIndex);
-        setLogs((prev) => [
-          ...prev,
-          `Step ${stepIndex + 1}: ${step.description}`,
-          `  → ${step.result}`,
-        ]);
+        addLog(`Step ${stepIndex + 1}: ${step.description}`);
+        addLog(`  → ${step.result}`);
         stepIndex++;
         addTimer(runStep, 600);
       }

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { AUTH_FLOWS, COOKIE_ATTRIBUTES } from "./constants";
+import { useLog } from "@shared/hooks";
 import {
   TabBar,
   DemoLayout,
@@ -15,17 +16,13 @@ export default function CookieSessionDemo() {
   const [activeTab, setActiveTab] = useState<"auth" | "cookie">("auth");
   const [activeFlow, setActiveFlow] = useState(0);
   const [activeStep, setActiveStep] = useState(-1);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
 
   const flow = AUTH_FLOWS[activeFlow];
 
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
-
   const handleReset = () => {
     setActiveStep(-1);
-    setLogs([]);
+    clearLogs();
   };
 
   const handleFlowChange = (index: number) => {

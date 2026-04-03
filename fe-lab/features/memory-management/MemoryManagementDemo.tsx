@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState } from "react";
 import { LEAK_PATTERNS, SEVERITY_COLORS, GC_PHASES } from "./constants";
 import {
   TabBar,
@@ -9,48 +9,31 @@ import {
   LogPanel,
   ActionButton,
 } from "@shared/ui";
+import { useLog, useTimers } from "@shared/hooks";
 
 export default function MemoryManagementDemo() {
   const [activeTab, setActiveTab] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
   const [gcPhase, setGcPhase] = useState<number | null>(null);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { addTimer, clearTimers } = useTimers();
 
   const pattern = LEAK_PATTERNS[activeTab];
 
-  useEffect(() => {
-    const timers = timersRef.current;
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const clearTimers = () => {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-  };
-
-  const addTimer = (fn: () => void, delay: number) => {
-    timersRef.current.push(setTimeout(fn, delay));
-  };
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
-
   const handleReset = () => {
     clearTimers();
-    setLogs([]);
+    clearLogs();
     setGcPhase(null);
   };
 
   const handleTabChange = (index: number) => {
     clearTimers();
     setActiveTab(index);
-    setLogs([]);
+    clearLogs();
     setGcPhase(null);
   };
 
   const simulateLeak = () => {
-    setLogs([]);
+    clearLogs();
     if (activeTab === 0) {
       addLog("// 이벤트 리스너 등록 (해제 없음)");
       addLog("addEventListener('click', handler)");
@@ -75,7 +58,7 @@ export default function MemoryManagementDemo() {
   };
 
   const simulateFix = () => {
-    setLogs([]);
+    clearLogs();
     if (activeTab === 0) {
       addLog("// cleanup 함수로 리스너 해제");
       addLog("removeEventListener('click', handler)");
@@ -98,7 +81,7 @@ export default function MemoryManagementDemo() {
   };
 
   const simulateGC = () => {
-    setLogs([]);
+    clearLogs();
     addLog("// Garbage Collection 시작");
     setGcPhase(0);
 

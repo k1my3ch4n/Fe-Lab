@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState } from "react";
+import { useLog, useTimers } from "@shared/hooks";
 import {
   TabBar,
   DemoLayout,
@@ -13,45 +14,27 @@ import { COMPONENT_TYPES } from "./constants";
 
 export default function ServerComponentsDemo() {
   const [activeTab, setActiveTab] = useState(0);
-  const [logs, setLogs] = useState<string[]>([]);
   const [activePhase, setActivePhase] = useState(-1);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
+  const { addTimer, clearTimers } = useTimers();
 
   const compType = COMPONENT_TYPES[activeTab];
-
-  useEffect(() => {
-    const timers = timersRef.current;
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const clearTimers = () => {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-  };
-
-  const addTimer = (fn: () => void, delay: number) => {
-    timersRef.current.push(setTimeout(fn, delay));
-  };
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
 
   const handleTabChange = (index: number) => {
     clearTimers();
     setActiveTab(index);
-    setLogs([]);
+    clearLogs();
     setActivePhase(-1);
   };
 
   const handleReset = () => {
     clearTimers();
-    setLogs([]);
+    clearLogs();
     setActivePhase(-1);
   };
 
   const handleSimulate = () => {
-    setLogs([]);
+    clearLogs();
     setActivePhase(0);
     const phases = compType.phases;
     let step = 0;
@@ -73,7 +56,7 @@ export default function ServerComponentsDemo() {
   };
 
   const handleCompare = () => {
-    setLogs([]);
+    clearLogs();
     addLog("=== Server vs Client 비교 ===");
     addTimer(() => {
       addLog("Server: DB 직접 접근 ✓ | useState ✗");

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { useLog } from "@shared/hooks";
 import { useWaterfallTab } from "./tabs/WaterfallTab";
 import { useStatusCodesTab } from "./tabs/StatusCodesTab";
 
@@ -9,14 +10,10 @@ export default function NetworkDebuggingDemo() {
   const [activeTab, setActiveTab] = useState<"waterfall" | "status">(
     "waterfall",
   );
-  const [logs, setLogs] = useState<string[]>([]);
+  const { logs, addLog, clearLogs } = useLog();
 
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
-
-  const waterfallTab = useWaterfallTab({ addLog, setLogs });
-  const statusCodesTab = useStatusCodesTab({ addLog, setLogs });
+  const waterfallTab = useWaterfallTab({ addLog, clearLogs });
+  const statusCodesTab = useStatusCodesTab({ addLog, clearLogs });
 
   const tabMap = { waterfall: waterfallTab, status: statusCodesTab };
   const current = tabMap[activeTab];
@@ -24,7 +21,7 @@ export default function NetworkDebuggingDemo() {
   const handleReset = () => {
     waterfallTab.reset();
     statusCodesTab.reset();
-    setLogs([]);
+    clearLogs();
   };
 
   const tabs = [

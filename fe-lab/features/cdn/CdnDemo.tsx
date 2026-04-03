@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { useLog } from "@shared/hooks";
 import { useFlowTab } from "./tabs/FlowTab";
 import { useEdgeTab } from "./tabs/EdgeTab";
 import { useInvalidationTab } from "./tabs/InvalidationTab";
@@ -10,15 +11,11 @@ export default function CdnDemo() {
   const [activeTab, setActiveTab] = useState<"flow" | "edge" | "invalidation">(
     "flow",
   );
-  const [logs, setLogs] = useState<string[]>([]);
-
-  const addLog = useCallback((text: string) => {
-    setLogs((prev) => [...prev, text]);
-  }, []);
+  const { logs, addLog, clearLogs } = useLog();
 
   const flowTab = useFlowTab({ addLog });
-  const edgeTab = useEdgeTab({ addLog, setLogs });
-  const invalidationTab = useInvalidationTab({ addLog, setLogs });
+  const edgeTab = useEdgeTab({ addLog, clearLogs });
+  const invalidationTab = useInvalidationTab({ addLog, clearLogs });
 
   const tabMap = {
     flow: flowTab,
@@ -32,7 +29,7 @@ export default function CdnDemo() {
     flowTab.reset();
     edgeTab.reset();
     invalidationTab.reset();
-    setLogs([]);
+    clearLogs();
   };
 
   const tabs = [
