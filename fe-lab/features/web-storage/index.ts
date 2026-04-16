@@ -1,1 +1,1 @@
-export { default as WebStorageDemo } from "./WebStorageDemo";
+export { default as WebStorageDemo } from "./ui/WebStorageDemo";

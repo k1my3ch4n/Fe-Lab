@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const WebAccessibilityDemo = dynamic(
-  () => import("@features/web-accessibility/WebAccessibilityDemo"),
+  () => import("@features/web-accessibility/ui/WebAccessibilityDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/web-accessibility/data";
+} from "@features/web-accessibility/model/data";
 
 export default function WebAccessibilityPage() {
   return (

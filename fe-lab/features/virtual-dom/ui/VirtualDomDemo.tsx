@@ -9,7 +9,7 @@ import {
   DIFF_RESULT,
   STEP_LABELS,
   DOM_COMPARISON,
-} from "./constants";
+} from "../model/constants";
 import TreeNode from "./components/TreeNode";
 
 export default function VirtualDomDemo() {

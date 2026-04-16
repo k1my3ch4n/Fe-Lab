@@ -1,1 +1,1 @@
-export { default as WebAccessibilityDemo } from "./WebAccessibilityDemo";
+export { default as WebAccessibilityDemo } from "./ui/WebAccessibilityDemo";

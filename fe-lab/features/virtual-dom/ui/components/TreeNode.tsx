@@ -1,5 +1,5 @@
-import type { DomNode, DiffStatus } from "../types";
-import { DIFF_RESULT } from "../constants";
+import type { DomNode, DiffStatus } from "../../model/types";
+import { DIFF_RESULT } from "../../model/constants";
 
 const STATUS_COLORS: Record<
   DiffStatus,

@@ -1,1 +1,1 @@
-export { default as VirtualDomDemo } from "./VirtualDomDemo";
+export { default as VirtualDomDemo } from "./ui/VirtualDomDemo";

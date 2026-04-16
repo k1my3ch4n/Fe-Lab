@@ -1,9 +1,9 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const VirtualDomDemo = dynamic(
-  () => import("@features/virtual-dom/VirtualDomDemo"),
+  () => import("@features/virtual-dom/ui/VirtualDomDemo"),
 );
-import { codeExamples, interviewQuestions } from "@features/virtual-dom/data";
+import { codeExamples, interviewQuestions } from "@features/virtual-dom/model/data";
 
 export default function VirtualDomPage() {
   return (

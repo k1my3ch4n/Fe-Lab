@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SEMANTIC_COMPARISON } from "../constants";
+import { SEMANTIC_COMPARISON } from "../../model/constants";
 import { SectionHeader } from "@shared/ui";
 
 interface UseSemanticTabOptions {

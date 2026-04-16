@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ARIA_EXAMPLES } from "../constants";
+import { ARIA_EXAMPLES } from "../../model/constants";
 
 interface UseAriaTabOptions {
   addLog: (text: string) => void;
