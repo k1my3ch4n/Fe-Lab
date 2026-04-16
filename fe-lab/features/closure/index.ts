@@ -1,1 +1,1 @@
-export { default as ClosureDemo } from "./ClosureDemo";
+export { default as ClosureDemo } from "./ui/ClosureDemo";

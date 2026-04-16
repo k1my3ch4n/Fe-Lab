@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CLOSURE_EXAMPLES, TABS } from "./constants";
+import { CLOSURE_EXAMPLES, TABS } from "../model/constants";
 import { useLog } from "@shared/hooks";
 import {
   TabBar,
