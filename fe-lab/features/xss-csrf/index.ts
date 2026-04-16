@@ -1,1 +1,1 @@
-export { default as XssCsrfDemo } from "./XssCsrfDemo";
+export { default as XssCsrfDemo } from "./ui/XssCsrfDemo";

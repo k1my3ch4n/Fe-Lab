@@ -1,4 +1,4 @@
-import { PROTOCOLS, COMPARISON_TABLE } from "../constants";
+import { PROTOCOLS, COMPARISON_TABLE } from "../../model/constants";
 
 export function ComparisonTable() {
   return (

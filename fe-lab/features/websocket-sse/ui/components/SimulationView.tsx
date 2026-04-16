@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import type { SimMessage, ProtocolInfo } from "../types";
+import type { SimMessage, ProtocolInfo } from "../../model/types";
 import { MessageArrow } from "./MessageArrow";
 import { SectionHeader, InfoCard } from "@shared/ui";
 

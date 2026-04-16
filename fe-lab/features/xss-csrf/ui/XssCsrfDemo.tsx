@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLog, useTimers } from "@shared/hooks";
-import { SECURITY_SCENARIOS, XSS_EXAMPLES, TABS } from "./constants";
+import { SECURITY_SCENARIOS, XSS_EXAMPLES, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,

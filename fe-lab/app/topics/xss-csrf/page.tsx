@@ -1,7 +1,7 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
-const XssCsrfDemo = dynamic(() => import("@features/xss-csrf/XssCsrfDemo"));
-import { codeExamples, interviewQuestions } from "@features/xss-csrf/data";
+const XssCsrfDemo = dynamic(() => import("@features/xss-csrf/ui/XssCsrfDemo"));
+import { codeExamples, interviewQuestions } from "@features/xss-csrf/model/data";
 
 export default function XssCsrfPage() {
   return (

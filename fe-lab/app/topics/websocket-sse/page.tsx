@@ -1,9 +1,9 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const WebSocketSseDemo = dynamic(
-  () => import("@features/websocket-sse/WebSocketSseDemo"),
+  () => import("@features/websocket-sse/ui/WebSocketSseDemo"),
 );
-import { codeExamples, interviewQuestions } from "@features/websocket-sse/data";
+import { codeExamples, interviewQuestions } from "@features/websocket-sse/model/data";
 
 export default function WebSocketSsePage() {
   return (

@@ -1,4 +1,4 @@
-import type { SimMessage } from "../types";
+import type { SimMessage } from "../../model/types";
 
 export function MessageArrow({ message }: { message: SimMessage }) {
   const isClient = message.from === "client";

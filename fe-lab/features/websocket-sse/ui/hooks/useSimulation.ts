@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { WS_SCENARIO, SSE_SCENARIO } from "../constants";
-import type { SimMessage } from "../types";
+import { WS_SCENARIO, SSE_SCENARIO } from "../../model/constants";
+import type { SimMessage } from "../../model/types";
 
 type ProtocolTab = "websocket" | "sse";
 

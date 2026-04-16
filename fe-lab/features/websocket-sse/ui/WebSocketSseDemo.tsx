@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { PROTOCOLS } from "./constants";
+import { PROTOCOLS } from "../model/constants";
 import { TabBar, DemoLayout, PanelHeader, SectionHeader } from "@shared/ui";
 import { useSimulation } from "./hooks/useSimulation";
 import { ComparisonTable } from "./components/ComparisonTable";

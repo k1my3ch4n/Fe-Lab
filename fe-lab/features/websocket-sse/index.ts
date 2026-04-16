@@ -1,1 +1,1 @@
-export { default as WebSocketSseDemo } from "./WebSocketSseDemo";
+export { default as WebSocketSseDemo } from "./ui/WebSocketSseDemo";
