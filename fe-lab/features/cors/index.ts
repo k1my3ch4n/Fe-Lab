@@ -1,1 +1,1 @@
-export { default as CorsDemo } from "./CorsDemo";
+export { default as CorsDemo } from "./ui/CorsDemo";

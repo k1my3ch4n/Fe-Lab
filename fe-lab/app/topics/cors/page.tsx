@@ -1,7 +1,7 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
-const CorsDemo = dynamic(() => import("@features/cors/CorsDemo"));
-import { codeExamples, interviewQuestions } from "@features/cors/data";
+const CorsDemo = dynamic(() => import("@features/cors/ui/CorsDemo"));
+import { codeExamples, interviewQuestions } from "@features/cors/model/data";
 
 export default function CorsPage() {
   return (

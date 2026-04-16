@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
-import { CORS_SCENARIOS, TABS } from "./constants";
-import type { CorsStep } from "./types";
+import { CORS_SCENARIOS, TABS } from "../model/constants";
+import type { CorsStep } from "../model/types";
 import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
 
 export default function CorsDemo() {
