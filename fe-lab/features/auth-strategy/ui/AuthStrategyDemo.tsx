@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLog, useTimers } from "@shared/hooks";
-import { AUTH_METHODS, TABS } from "./constants";
+import { AUTH_METHODS, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,

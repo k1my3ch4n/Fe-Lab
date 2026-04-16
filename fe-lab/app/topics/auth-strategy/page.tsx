@@ -1,9 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
-import { codeExamples, interviewQuestions } from "@features/auth-strategy/data";
+import {
+  codeExamples,
+  interviewQuestions,
+} from "@features/auth-strategy/model/data";
 
 const AuthStrategyDemo = dynamic(
-  () => import("@features/auth-strategy/AuthStrategyDemo"),
+  () => import("@features/auth-strategy/ui/AuthStrategyDemo"),
 );
 
 export default function AuthStrategyPage() {
