@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const DebounceThrottleDemo = dynamic(
-  () => import("@features/debounce-throttle/DebounceThrottleDemo"),
+  () => import("@features/debounce-throttle/ui/DebounceThrottleDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/debounce-throttle/data";
+} from "@features/debounce-throttle/model/data";
 
 export default function DebounceThrottlePage() {
   return (

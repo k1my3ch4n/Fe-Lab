@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useLog } from "@shared/hooks";
-import { DELAY_OPTIONS, TABS } from "./constants";
+import { DELAY_OPTIONS, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
