@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLog } from "@shared/hooks";
-import { GENERIC_EXAMPLES, TABS, UTILITY_TYPE_MAP } from "./constants";
+import { GENERIC_EXAMPLES, TABS, UTILITY_TYPE_MAP } from "../model/constants";
 import {
   TabBar,
   DemoLayout,

@@ -1,7 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
-const GenericsDemo = dynamic(() => import("@features/generics/GenericsDemo"));
-import { codeExamples, interviewQuestions } from "@features/generics/data";
+const GenericsDemo = dynamic(
+  () => import("@features/generics/ui/GenericsDemo"),
+);
+import {
+  codeExamples,
+  interviewQuestions,
+} from "@features/generics/model/data";
 
 export default function GenericsPage() {
   return (
