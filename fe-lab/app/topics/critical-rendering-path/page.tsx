@@ -1,12 +1,13 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const CriticalRenderingPathDemo = dynamic(
-  () => import("@features/critical-rendering-path/CriticalRenderingPathDemo"),
+  () =>
+    import("@features/critical-rendering-path/ui/CriticalRenderingPathDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/critical-rendering-path/data";
+} from "@features/critical-rendering-path/model/data";
 
 export default function CriticalRenderingPathPage() {
   return (

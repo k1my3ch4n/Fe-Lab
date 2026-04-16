@@ -8,8 +8,8 @@ import {
   RESOURCE_LABELS,
   TABS,
   TIMELINE_MAX,
-} from "./constants";
-import type { TimelineResource } from "./types";
+} from "../model/constants";
+import type { TimelineResource } from "../model/types";
 
 export default function CriticalRenderingPathDemo() {
   const [activeScenario, setActiveScenario] = useState(0);
