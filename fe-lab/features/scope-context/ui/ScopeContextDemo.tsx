@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BINDING_EXAMPLES, SCOPE_CHAIN_LEVELS, TABS } from "./constants";
+import { BINDING_EXAMPLES, SCOPE_CHAIN_LEVELS, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,

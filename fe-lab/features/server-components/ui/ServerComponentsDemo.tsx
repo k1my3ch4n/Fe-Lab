@@ -10,7 +10,7 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import { COMPONENT_TYPES, TABS } from "./constants";
+import { COMPONENT_TYPES, TABS } from "../model/constants";
 
 export default function ServerComponentsDemo() {
   const [activeTab, setActiveTab] = useState(0);

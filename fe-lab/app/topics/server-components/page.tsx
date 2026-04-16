@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const ServerComponentsDemo = dynamic(
-  () => import("@features/server-components/ServerComponentsDemo"),
+  () => import("@features/server-components/ui/ServerComponentsDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/server-components/data";
+} from "@features/server-components/model/data";
 
 export default function ServerComponentsPage() {
   return (

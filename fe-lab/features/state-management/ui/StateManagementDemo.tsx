@@ -9,7 +9,7 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import { STATE_APPROACHES, PROP_DRILLING_LEVELS } from "./constants";
+import { STATE_APPROACHES, PROP_DRILLING_LEVELS } from "../model/constants";
 
 export default function StateManagementDemo() {
   const [activeTab, setActiveTab] = useState(0);

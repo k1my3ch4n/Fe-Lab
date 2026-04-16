@@ -1,1 +1,1 @@
-export { default as ServerComponentsDemo } from "./ServerComponentsDemo";
+export { default as ServerComponentsDemo } from "./ui/ServerComponentsDemo";

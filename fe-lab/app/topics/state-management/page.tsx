@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const StateManagementDemo = dynamic(
-  () => import("@features/state-management/StateManagementDemo"),
+  () => import("@features/state-management/ui/StateManagementDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/state-management/data";
+} from "@features/state-management/model/data";
 
 export default function StateManagementPage() {
   return (

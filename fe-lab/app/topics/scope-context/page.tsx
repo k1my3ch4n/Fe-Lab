@@ -1,9 +1,9 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const ScopeContextDemo = dynamic(
-  () => import("@features/scope-context/ScopeContextDemo"),
+  () => import("@features/scope-context/ui/ScopeContextDemo"),
 );
-import { codeExamples, interviewQuestions } from "@features/scope-context/data";
+import { codeExamples, interviewQuestions } from "@features/scope-context/model/data";
 
 export default function ScopeContextPage() {
   return (
