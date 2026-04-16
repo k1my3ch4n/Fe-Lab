@@ -1,6 +1,6 @@
 "use client";
 
-import { INVALIDATION_STRATEGIES } from "../constants";
+import { INVALIDATION_STRATEGIES } from "../../model/constants";
 import { ActionButton, SectionHeader } from "@shared/ui";
 
 interface UseInvalidationTabOptions {

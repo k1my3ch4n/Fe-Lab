@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { EDGE_SERVERS, ORIGIN_SERVER } from "../constants";
+import { EDGE_SERVERS, ORIGIN_SERVER } from "../../model/constants";
 import { ActionButton, SectionHeader } from "@shared/ui";
 
 interface UseEdgeTabOptions {

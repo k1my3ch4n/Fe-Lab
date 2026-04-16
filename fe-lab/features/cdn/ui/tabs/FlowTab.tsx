@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CDN_FLOW_STEPS, CACHE_RESULTS } from "../constants";
+import { CDN_FLOW_STEPS, CACHE_RESULTS } from "../../model/constants";
 import { ActionButton } from "@shared/ui";
 
 interface UseFlowTabOptions {

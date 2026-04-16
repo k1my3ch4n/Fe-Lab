@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
-import { TABS } from "./constants";
+import { TABS } from "../model/constants";
 import { useFlowTab } from "./tabs/FlowTab";
 import { useEdgeTab } from "./tabs/EdgeTab";
 import { useInvalidationTab } from "./tabs/InvalidationTab";
