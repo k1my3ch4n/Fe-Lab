@@ -6,7 +6,7 @@ import {
   FETCH_EXAMPLES,
   UNDER_FETCH_EXAMPLE,
   COMPARISON_TABLE,
-} from "./constants";
+} from "../model/constants";
 import {
   TabBar,
   DemoLayout,

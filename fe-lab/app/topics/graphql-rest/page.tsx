@@ -1,9 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const GraphqlRestDemo = dynamic(
-  () => import("@features/graphql-rest/GraphqlRestDemo"),
+  () => import("@features/graphql-rest/ui/GraphqlRestDemo"),
 );
-import { codeExamples, interviewQuestions } from "@features/graphql-rest/data";
+import {
+  codeExamples,
+  interviewQuestions,
+} from "@features/graphql-rest/model/data";
 
 export default function GraphqlRestPage() {
   return (
