@@ -1,6 +1,6 @@
 import { PanelHeader } from "@shared/ui";
-import { LOG_TYPE_STYLES } from "../constants";
-import type { LogEntry } from "../types";
+import { LOG_TYPE_STYLES } from "../../model/constants";
+import type { LogEntry } from "../../model/types";
 
 interface EventLogPanelProps {
   logs: LogEntry[];

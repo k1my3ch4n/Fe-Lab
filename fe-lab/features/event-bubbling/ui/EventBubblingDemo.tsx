@@ -2,8 +2,8 @@
 
 import { useState, useRef, useCallback } from "react";
 import { ToggleSwitch } from "@shared/ui";
-import { ELEMENTS, ANIM_DELAY } from "./constants";
-import type { LogEntry, LogType } from "./types";
+import { ELEMENTS, ANIM_DELAY } from "../model/constants";
+import type { LogEntry, LogType } from "../model/types";
 import NestedBoxes from "./components/NestedBoxes";
 import EventLogPanel from "./components/EventLogPanel";
 import { useTimers } from "@shared/hooks";

@@ -1,1 +1,1 @@
-export { default as EventBubblingDemo } from "./EventBubblingDemo";
+export { default as EventBubblingDemo } from "./ui/EventBubblingDemo";

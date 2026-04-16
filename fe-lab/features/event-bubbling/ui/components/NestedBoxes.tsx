@@ -1,4 +1,4 @@
-import { BOX_CONFIGS } from "../constants";
+import { BOX_CONFIGS } from "../../model/constants";
 import BoxLabel from "./BoxLabel";
 
 interface NestedBoxesProps {

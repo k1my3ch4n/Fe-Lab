@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode, PhaseChip } from "@shared/ui";
 import dynamic from "next/dynamic";
 const EventBubblingDemo = dynamic(
-  () => import("@features/event-bubbling/EventBubblingDemo"),
+  () => import("@features/event-bubbling/ui/EventBubblingDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/event-bubbling/data";
+} from "@features/event-bubbling/model/data";
 
 export default function EventBubblingPage() {
   return (
