@@ -1,4 +1,4 @@
-import type { TreeNode } from "../types";
+import type { TreeNode } from "../../model/types";
 
 const ACTION_LABELS: Record<string, string> = {
   compared: "비교",

@@ -1,1 +1,1 @@
-export { default as ReactMemoDemo } from "./ReactMemoDemo";
+export { default as ReactMemoDemo } from "./ui/ReactMemoDemo";

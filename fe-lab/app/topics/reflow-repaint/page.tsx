@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const ReflowRepaintDemo = dynamic(
-  () => import("@features/reflow-repaint/ReflowRepaintDemo"),
+  () => import("@features/reflow-repaint/ui/ReflowRepaintDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/reflow-repaint/data";
+} from "@features/reflow-repaint/model/data";
 
 export default function ReflowRepaintPage() {
   return (

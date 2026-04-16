@@ -1,9 +1,9 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const ReactMemoDemo = dynamic(
-  () => import("@features/react-memo/ReactMemoDemo"),
+  () => import("@features/react-memo/ui/ReactMemoDemo"),
 );
-import { codeExamples, interviewQuestions } from "@features/react-memo/data";
+import { codeExamples, interviewQuestions } from "@features/react-memo/model/data";
 
 export default function ReactMemoPage() {
   return (

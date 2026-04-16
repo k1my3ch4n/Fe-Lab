@@ -1,1 +1,1 @@
-export { default as ReflowRepaintDemo } from "./ReflowRepaintDemo";
+export { default as ReflowRepaintDemo } from "./ui/ReflowRepaintDemo";

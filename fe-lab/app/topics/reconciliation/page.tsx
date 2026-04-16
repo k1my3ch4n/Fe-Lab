@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const ReconciliationDemo = dynamic(
-  () => import("@features/reconciliation/ReconciliationDemo"),
+  () => import("@features/reconciliation/ui/ReconciliationDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/reconciliation/data";
+} from "@features/reconciliation/model/data";
 
 export default function ReconciliationPage() {
   return (

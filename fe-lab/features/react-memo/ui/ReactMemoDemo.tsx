@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MEMO_EXAMPLES, TABS } from "./constants";
+import { MEMO_EXAMPLES, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,

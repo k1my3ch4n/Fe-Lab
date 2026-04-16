@@ -7,8 +7,8 @@ import {
   PIPELINE_STAGES,
   CATEGORY_META,
   COST_META,
-} from "./constants";
-import type { CSSPropertyInfo, PipelineStage } from "./types";
+} from "../model/constants";
+import type { CSSPropertyInfo, PipelineStage } from "../model/types";
 import { useTimers } from "@shared/hooks";
 
 export default function ReflowRepaintDemo() {

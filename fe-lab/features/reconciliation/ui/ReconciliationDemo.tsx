@@ -8,8 +8,8 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import { RECONCILIATION_SCENARIOS, TABS } from "./constants";
-import type { DomOperation } from "./types";
+import { RECONCILIATION_SCENARIOS, TABS } from "../model/constants";
+import type { DomOperation } from "../model/types";
 import TreeNodeView from "./components/TreeNodeView";
 
 export default function ReconciliationDemo() {
