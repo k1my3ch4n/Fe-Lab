@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FE Lab — 프론트엔드 면접 인터랙티브 학습</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0a0a0f;
+    --bg-surface: #12121a;
+    --bg-elevated: #1a1a26;
+    --bg-hover: #222233;
+    --border-subtle: #2a2a3d;
+    --border-active: #4a4a6a;
+    --text-primary: #e8e8f0;
+    --text-secondary: #8888a8;
+    --text-muted: #55556a;
+    --accent-cyan: #00e5ff;
+    --accent-cyan-dim: #00e5ff22;
+    --accent-magenta: #ff2d8a;
+    --accent-magenta-dim: #ff2d8a22;
+    --accent-amber: #ffb800;
+    --accent-amber-dim: #ffb80022;
+    --accent-green: #00e676;
+    --accent-green-dim: #00e67622;
+    --accent-violet: #b388ff;
+    --accent-violet-dim: #b388ff22;
+    --radius: 10px;
+    --font-sans: 'Noto Sans KR', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Space Grotesk', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* ==================== LAYOUT ==================== */
+  .app {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    height: 100vh;
+  }
+
+  /* ==================== SIDEBAR ==================== */
+  .sidebar {
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .sidebar-header {
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .logo-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 4px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 16px 12px;
+    overflow-y: auto;
+  }
+
+  .nav-category {
+    margin-bottom: 20px;
+  }
+
+  .nav-category-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0 8px;
+    margin-bottom: 6px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    position: relative;
+  }
+
+  .nav-item:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+
+  .nav-item.active {
+    background: var(--accent-cyan-dim);
+    color: var(--accent-cyan);
+    font-weight: 500;
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: var(--accent-cyan);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .nav-badge {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: auto;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-junior { background: var(--accent-green-dim); color: var(--accent-green); }
+  .badge-mid { background: var(--accent-amber-dim); color: var(--accent-amber); }
+  .badge-senior { background: var(--accent-magenta-dim); color: var(--accent-magenta); }
+
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ==================== MAIN CONTENT ==================== */
+  .main {
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .main-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 40px 60px;
+  }
+
+  /* Top bar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .breadcrumb {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .breadcrumb span { color: var(--accent-cyan); }
+
+  .topbar-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .topbar-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .topbar-btn:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+  }
+
+  .topbar-btn.active-btn {
+    background: var(--accent-cyan-dim);
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+  }
+
+  /* ==================== SECTION STRUCTURE ==================== */
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label .line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+  }
+
+  .label-concept { color: var(--accent-cyan); }
+  .label-demo { color: var(--accent-amber); }
+  .label-interview { color: var(--accent-magenta); }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  .concept-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-top: 16px;
+  }
+
+  .concept-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .concept-card code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--bg-elevated);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent-cyan);
+  }
+
+  .concept-phases {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .phase-chip {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .phase-chip.capture { background: var(--accent-violet-dim); color: var(--accent-violet); border: 1px solid #b388ff33; }
+  .phase-chip.target { background: var(--accent-amber-dim); color: var(--accent-amber); border: 1px solid #ffb80033; }
+  .phase-chip.bubble { background: var(--accent-green-dim); color: var(--accent-green); border: 1px solid #00e67633; }
+
+  /* ==================== DEMO AREA ==================== */
+  .demo-container {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    margin-top: 16px;
+    overflow: hidden;
+  }
+
+  .demo-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    flex-wrap: wrap;
+  }
+
+  .demo-toolbar label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+
+  .toggle-switch {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    appearance: none;
+    background: var(--bg-deep);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .toggle-switch:checked {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+  }
+
+  .toggle-switch::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s;
+  }
+
+  .toggle-switch:checked::after {
+    left: 18px;
+    background: var(--bg-deep);
+  }
+
+  .demo-body {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    min-height: 380px;
+  }
+
+  /* Event bubbling demo */
+  .bubble-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+  }
+
+  .event-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .event-box::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    opacity: 0.6;
+  }
+
+  .box-window {
+    width: 340px;
+    height: 310px;
+    background: #1e1044;
+    border: 2px solid #b388ff44;
+  }
+  .box-window::after { color: var(--accent-violet); }
+  .box-window.flash { background: #b388ff18; border-color: var(--accent-violet); box-shadow: 0 0 30px #b388ff22; }
+
+  .box-document {
+    width: 280px;
+    height: 250px;
+    background: #0d2a3a;
+    border: 2px solid #00e5ff33;
+  }
+  .box-document::after { color: var(--accent-cyan); }
+  .box-document.flash { background: #00e5ff12; border-color: var(--accent-cyan); box-shadow: 0 0 30px #00e5ff22; }
+
+  .box-parent {
+    width: 220px;
+    height: 190px;
+    background: #1a2e1a;
+    border: 2px solid #00e67633;
+  }
+  .box-parent::after { color: var(--accent-green); }
+  .box-parent.flash { background: #00e67612; border-color: var(--accent-green); box-shadow: 0 0 30px #00e67622; }
+
+  .box-button {
+    width: 140px;
+    height: 52px;
+    background: linear-gradient(135deg, #ffb80022, #ff2d8a22);
+    border: 2px solid #ffb80055;
+    border-radius: 8px !important;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-amber);
+    letter-spacing: 0.5px;
+  }
+  .box-button::after { display: none; }
+  .box-button.flash { background: linear-gradient(135deg, #ffb80033, #ff2d8a33); border-color: var(--accent-amber); box-shadow: 0 0 30px #ffb80033; }
+
+  /* Log panel */
+  .log-panel {
+    border-left: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .log-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .log-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .log-clear {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .log-clear:hover { color: var(--accent-magenta); background: var(--accent-magenta-dim); }
+
+  .log-entries {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .log-entry {
+    padding: 4px 8px;
+    border-radius: 4px;
+    animation: logSlide 0.3s ease;
+    margin-bottom: 2px;
+  }
+
+  @keyframes logSlide {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .log-capture { color: var(--accent-violet); background: var(--accent-violet-dim); }
+  .log-target { color: var(--accent-amber); background: var(--accent-amber-dim); }
+  .log-bubble { color: var(--accent-green); background: var(--accent-green-dim); }
+  .log-info { color: var(--text-muted); }
+  .log-stopped { color: var(--accent-magenta); background: var(--accent-magenta-dim); }
+
+  .log-empty {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 40px 16px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  /* ==================== INTERVIEW SECTION ==================== */
+  .interview-cards {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .interview-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+
+  .interview-q {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .interview-q:hover {
+    background: var(--bg-hover);
+  }
+
+  .interview-q-text {
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .q-marker {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-magenta-dim);
+    color: var(--accent-magenta);
+    flex-shrink: 0;
+  }
+
+  .interview-toggle {
+    font-size: 18px;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+  }
+
+  .interview-card.open .interview-toggle {
+    transform: rotate(180deg);
+  }
+
+  .interview-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .interview-card.open .interview-a {
+    max-height: 500px;
+  }
+
+  .interview-a-inner {
+    padding: 0 20px 20px;
+    padding-left: 54px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .interview-a-inner code {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--bg-elevated);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent-cyan);
+  }
+
+  /* ==================== RENDERING PIPELINE ==================== */
+  .pipeline-container {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    margin-top: 16px;
+    overflow: hidden;
+  }
+
+  .pipeline-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+  }
+
+  .pipe-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 6px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pipe-btn:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+  .pipe-btn.playing { background: var(--accent-cyan-dim); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+
+  .pipeline-progress {
+    flex: 1;
+    height: 3px;
+    background: var(--bg-deep);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 8px;
+  }
+
+  .pipeline-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  .pipe-step-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .pipeline-body {
+    padding: 32px;
+  }
+
+  .pipeline-steps {
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+    overflow-x: auto;
+    padding-bottom: 16px;
+  }
+
+  .pipe-step {
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .pipe-step-card {
+    width: 115px;
+    text-align: center;
+    opacity: 0.25;
+    transition: all 0.5s ease;
+    transform: translateY(8px);
+  }
+
+  .pipe-step-card.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pipe-step-card.done {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+
+  .pipe-step-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 0 auto 10px;
+    transition: all 0.5s;
+    position: relative;
+  }
+
+  .pipe-step-card.active .pipe-step-icon {
+    box-shadow: 0 0 30px var(--step-glow);
+    transform: scale(1.1);
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+
+  .pipe-step-card.active .pipe-step-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid var(--step-glow);
+    animation: pulse-ring 1.5s ease infinite;
+  }
+
+  .pipe-step-name {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .pipe-step-time {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-muted);
+  }
+
+  .pipe-arrow {
+    color: var(--text-muted);
+    font-size: 16px;
+    padding: 20px 4px 0;
+    opacity: 0.3;
+    flex-shrink: 0;
+    transition: opacity 0.5s;
+  }
+
+  .pipe-arrow.active { opacity: 1; color: var(--accent-cyan); }
+
+  .pipe-detail {
+    margin-top: 28px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    padding: 24px;
+    min-height: 130px;
+    transition: all 0.3s;
+  }
+
+  .pipe-detail-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pipe-detail-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .pipe-detail-visual {
+    margin-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-cyan);
+    background: var(--bg-deep);
+    padding: 16px;
+    border-radius: 8px;
+    line-height: 1.8;
+    overflow-x: auto;
+  }
+
+  /* ==================== PAGE CONTENT AREAS ==================== */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ==================== SCROLLBAR ==================== */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border-active); }
+
+  /* ==================== GRID BACKGROUND ==================== */
+  .main {
+    background:
+      radial-gradient(ellipse 600px 400px at 70% 10%, #00e5ff06 0%, transparent 100%),
+      radial-gradient(ellipse 400px 300px at 30% 80%, #ff2d8a04 0%, transparent 100%),
+      var(--bg-deep);
+  }
+
+  /* Separator */
+  .toolbar-sep {
+    width: 1px;
+    height: 20px;
+    background: var(--border-subtle);
+  }
+
+  /* Phase indicator animation */
+  @keyframes phaseFlow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .phase-indicator {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+
+  .phase-indicator.animating {
+    animation: phaseFlow 1s ease infinite;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon">F</div>
+        <div>
+          FE Lab
+          <div class="logo-sub">Interview Prep</div>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-category">
+        <div class="nav-category-title">JavaScript</div>
+        <div class="nav-item active" onclick="showPage('event-bubbling')">
+          <div class="nav-dot" style="background: var(--accent-green)"></div>
+          이벤트 버블링 / 캡쳐링
+          <span class="nav-badge badge-junior">Jr</span>
+        </div>
+        <div class="nav-item" onclick="showPage('event-bubbling')">
+          <div class="nav-dot" style="background: var(--accent-amber)"></div>
+          클로저
+          <span class="nav-badge badge-junior">Jr</span>
+        </div>
+        <div class="nav-item" onclick="showPage('event-bubbling')">
+          <div class="nav-dot" style="background: var(--accent-violet)"></div>
+          프로토타입 체인
+          <span class="nav-badge badge-mid">Mid</span>
+        </div>
+        <div class="nav-item" onclick="showPage('event-bubbling')">
+          <div class="nav-dot" style="background: var(--accent-cyan)"></div>
+          이벤트 루프
+          <span class="nav-badge badge-mid">Mid</span>
+        </div>
+      </div>
+      <div class="nav-category">
+        <div class="nav-category-title">Browser</div>
+        <div class="nav-item" onclick="showPage('rendering-pipeline')">
+          <div class="nav-dot" style="background: var(--accent-cyan)"></div>
+          렌더링 파이프라인
+          <span class="nav-badge badge-mid">Mid</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-dot" style="background: var(--accent-magenta)"></div>
+          리플로우 / 리페인트
+          <span class="nav-badge badge-mid">Mid</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-dot" style="background: var(--accent-amber)"></div>
+          크리티컬 렌더링 패스
+          <span class="nav-badge badge-senior">Sr</span>
+        </div>
+      </div>
+      <div class="nav-category">
+        <div class="nav-category-title">React</div>
+        <div class="nav-item">
+          <div class="nav-dot" style="background: var(--accent-cyan)"></div>
+          Virtual DOM
+          <span class="nav-badge badge-junior">Jr</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-dot" style="background: var(--accent-green)"></div>
+          재조정 (Reconciliation)
+          <span class="nav-badge badge-senior">Sr</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-dot" style="background: var(--accent-violet)"></div>
+          Hooks 라이프사이클
+          <span class="nav-badge badge-mid">Mid</span>
+        </div>
+      </div>
+      <div class="nav-category">
+        <div class="nav-category-title">Network</div>
+        <div class="nav-item">
+          <div class="nav-dot" style="background: var(--accent-amber)"></div>
+          CORS
+          <span class="nav-badge badge-junior">Jr</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-dot" style="background: var(--accent-magenta)"></div>
+          HTTP 캐시 전략
+          <span class="nav-badge badge-mid">Mid</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-dot" style="background: var(--accent-cyan)"></div>
+          WebSocket vs SSE
+          <span class="nav-badge badge-senior">Sr</span>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <!-- ======= PAGE 1: EVENT BUBBLING ======= -->
+    <div class="page active" id="page-event-bubbling">
+      <div class="main-inner">
+        <div class="topbar">
+          <div class="breadcrumb">JavaScript / <span>이벤트 버블링 · 캡쳐링</span></div>
+          <div class="topbar-actions">
+            <button class="topbar-btn active-btn" onclick="showPage('event-bubbling')">이벤트 버블링</button>
+            <button class="topbar-btn" onclick="showPage('rendering-pipeline')">렌더링 파이프라인</button>
+          </div>
+        </div>
+
+        <!-- CONCEPT -->
+        <div class="section">
+          <div class="section-label label-concept">
+            01 · Concept <span class="line"></span>
+          </div>
+          <div class="section-title">이벤트 전파 (Event Propagation)</div>
+          <div class="section-desc">
+            DOM 이벤트는 단순히 타겟 요소에서만 발생하지 않습니다. 이벤트는 <strong>캡쳐링 → 타겟 → 버블링</strong> 3단계를 거쳐 전파됩니다.
+          </div>
+          <div class="concept-card">
+            <p>
+              사용자가 버튼을 클릭하면, 이벤트는 먼저 <code>window</code>에서 시작해 타겟까지 내려갑니다 (캡쳐링).
+              타겟에 도달한 후, 다시 <code>window</code>까지 올라갑니다 (버블링).
+              <code>addEventListener</code>의 세 번째 인자로 <code>{ capture: true }</code>를 전달하면 캡쳐링 단계에서 이벤트를 잡을 수 있습니다.
+            </p>
+            <div class="concept-phases">
+              <div class="phase-chip capture">
+                <span class="phase-indicator" style="background: var(--accent-violet)"></span>
+                ① 캡쳐링 (Capturing) — window → target
+              </div>
+              <div class="phase-chip target">
+                <span class="phase-indicator" style="background: var(--accent-amber)"></span>
+                ② 타겟 (Target) — 이벤트 발생 지점
+              </div>
+              <div class="phase-chip bubble">
+                <span class="phase-indicator" style="background: var(--accent-green)"></span>
+                ③ 버블링 (Bubbling) — target → window
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEMO -->
+        <div class="section">
+          <div class="section-label label-demo">
+            02 · Interactive Demo <span class="line"></span>
+          </div>
+          <div class="section-title">직접 클릭해 보세요</div>
+          <div class="section-desc">
+            중첩된 요소를 클릭하면 이벤트가 어떻게 전파되는지 실시간으로 확인할 수 있습니다.
+          </div>
+          <div class="demo-container">
+            <div class="demo-toolbar">
+              <label>
+                <input type="checkbox" class="toggle-switch" id="toggle-capture">
+                캡쳐링 표시
+              </label>
+              <div class="toolbar-sep"></div>
+              <label>
+                <input type="checkbox" class="toggle-switch" id="toggle-stop">
+                stopPropagation()
+              </label>
+              <div class="toolbar-sep"></div>
+              <label>
+                <input type="checkbox" class="toggle-switch" id="toggle-stop-target">
+                타겟에서 중단
+              </label>
+            </div>
+            <div class="demo-body">
+              <div class="bubble-visual">
+                <div class="event-box box-window" data-label="window" id="box-window">
+                  <div class="event-box box-document" data-label="document" id="box-document">
+                    <div class="event-box box-parent" data-label="div.parent" id="box-parent">
+                      <div class="event-box box-button" id="box-button">Click me</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="log-panel">
+                <div class="log-header">
+                  <span class="log-title">Event Log</span>
+                  <button class="log-clear" onclick="clearLog()">Clear</button>
+                </div>
+                <div class="log-entries" id="log-entries">
+                  <div class="log-empty">
+                    요소를 클릭하면<br>이벤트 전파 로그가 표시됩니다
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INTERVIEW -->
+        <div class="section">
+          <div class="section-label label-interview">
+            03 · Interview Point <span class="line"></span>
+          </div>
+          <div class="section-title">면접 핵심 질문</div>
+          <div class="interview-cards">
+            <div class="interview-card" onclick="toggleAnswer(this)">
+              <div class="interview-q">
+                <div class="interview-q-text">
+                  <div class="q-marker">Q1</div>
+                  이벤트 버블링과 캡쳐링의 차이를 설명해주세요.
+                </div>
+                <span class="interview-toggle">▾</span>
+              </div>
+              <div class="interview-a">
+                <div class="interview-a-inner">
+                  이벤트 전파는 3단계로 진행됩니다. <strong>캡쳐링</strong>은 최상위(window)에서 타겟까지 내려가는 단계이고,
+                  <strong>버블링</strong>은 타겟에서 다시 최상위로 올라가는 단계입니다.
+                  기본적으로 이벤트 리스너는 버블링 단계에서 동작하며,
+                  <code>addEventListener</code>의 세 번째 인자에 <code>true</code> 또는 <code>{ capture: true }</code>를
+                  전달하면 캡쳐링 단계에서 이벤트를 처리할 수 있습니다.
+                </div>
+              </div>
+            </div>
+            <div class="interview-card" onclick="toggleAnswer(this)">
+              <div class="interview-q">
+                <div class="interview-q-text">
+                  <div class="q-marker">Q2</div>
+                  event.stopPropagation()과 event.preventDefault()의 차이는?
+                </div>
+                <span class="interview-toggle">▾</span>
+              </div>
+              <div class="interview-a">
+                <div class="interview-a-inner">
+                  <code>stopPropagation()</code>은 이벤트의 <strong>전파를 중단</strong>합니다. 현재 요소에서 이벤트 처리 후
+                  부모/자식 요소로 더 이상 전파되지 않습니다.<br><br>
+                  <code>preventDefault()</code>는 이벤트의 <strong>기본 동작을 취소</strong>합니다.
+                  예를 들어 링크 클릭 시 페이지 이동, 폼 제출 시 새로고침 등을 막습니다.
+                  이벤트 전파는 그대로 진행됩니다.
+                </div>
+              </div>
+            </div>
+            <div class="interview-card" onclick="toggleAnswer(this)">
+              <div class="interview-q">
+                <div class="interview-q-text">
+                  <div class="q-marker">Q3</div>
+                  이벤트 위임(Event Delegation)이란 무엇이며 왜 사용하나요?
+                </div>
+                <span class="interview-toggle">▾</span>
+              </div>
+              <div class="interview-a">
+                <div class="interview-a-inner">
+                  이벤트 위임은 버블링을 활용한 패턴입니다. 자식 요소마다 이벤트 리스너를 붙이는 대신,
+                  <strong>공통 부모 요소 하나에 리스너를 등록</strong>하여 <code>event.target</code>으로
+                  실제 클릭된 요소를 판별합니다.<br><br>
+                  장점: ① 메모리 효율 (리스너 수 감소) ② 동적으로 추가되는 요소도 자동 처리
+                  ③ 관리 포인트가 하나로 집중
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= PAGE 2: RENDERING PIPELINE ======= -->
+    <div class="page" id="page-rendering-pipeline">
+      <div class="main-inner">
+        <div class="topbar">
+          <div class="breadcrumb">Browser / <span>렌더링 파이프라인</span></div>
+          <div class="topbar-actions">
+            <button class="topbar-btn" onclick="showPage('event-bubbling')">이벤트 버블링</button>
+            <button class="topbar-btn active-btn" onclick="showPage('rendering-pipeline')">렌더링 파이프라인</button>
+          </div>
+        </div>
+
+        <!-- CONCEPT -->
+        <div class="section">
+          <div class="section-label label-concept">
+            01 · Concept <span class="line"></span>
+          </div>
+          <div class="section-title">브라우저 렌더링 과정</div>
+          <div class="section-desc">
+            URL을 입력한 순간부터 화면에 픽셀이 그려지기까지, 브라우저는 일련의 정교한 파이프라인을 수행합니다.
+          </div>
+          <div class="concept-card">
+            <p>
+              브라우저가 웹페이지를 렌더링하는 과정은 크게 <strong>네트워크 단계</strong>와 <strong>렌더링 단계</strong>로 나뉩니다.
+              네트워크 단계에서 리소스를 받아오고, 렌더링 엔진이 이를 파싱하여 화면에 그립니다.
+              각 단계를 이해하면 <code>성능 최적화</code>의 핵심 포인트를 잡을 수 있습니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- DEMO -->
+        <div class="section">
+          <div class="section-label label-demo">
+            02 · Interactive Demo <span class="line"></span>
+          </div>
+          <div class="section-title">렌더링 파이프라인 시각화</div>
+          <div class="section-desc">
+            각 단계를 순서대로 살펴보며 브라우저가 어떻게 화면을 그리는지 확인하세요.
+          </div>
+          <div class="pipeline-container">
+            <div class="pipeline-toolbar">
+              <button class="pipe-btn" id="pipe-play" onclick="pipelinePlay()">
+                ▶ 자동 재생
+              </button>
+              <button class="pipe-btn" id="pipe-prev" onclick="pipelineStep(-1)">
+                ← 이전
+              </button>
+              <button class="pipe-btn" id="pipe-next" onclick="pipelineStep(1)">
+                다음 →
+              </button>
+              <div class="pipeline-progress">
+                <div class="pipeline-progress-bar" id="pipe-progress"></div>
+              </div>
+              <span class="pipe-step-label" id="pipe-counter">0 / 10</span>
+              <button class="pipe-btn" onclick="pipelineReset()">↺ 리셋</button>
+            </div>
+            <div class="pipeline-body">
+              <div class="pipeline-steps" id="pipeline-steps">
+                <!-- Steps injected by JS -->
+              </div>
+              <div class="pipe-detail" id="pipe-detail">
+                <div class="pipe-detail-title">▶ 재생 버튼을 누르거나 '다음'을 클릭하세요</div>
+                <div class="pipe-detail-desc" style="color: var(--text-muted)">
+                  브라우저 렌더링의 각 단계를 순서대로 살펴볼 수 있습니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INTERVIEW -->
+        <div class="section">
+          <div class="section-label label-interview">
+            03 · Interview Point <span class="line"></span>
+          </div>
+          <div class="section-title">면접 핵심 질문</div>
+          <div class="interview-cards">
+            <div class="interview-card" onclick="toggleAnswer(this)">
+              <div class="interview-q">
+                <div class="interview-q-text">
+                  <div class="q-marker">Q1</div>
+                  브라우저 주소창에 URL을 입력하면 어떤 일이 일어나나요?
+                </div>
+                <span class="interview-toggle">▾</span>
+              </div>
+              <div class="interview-a">
+                <div class="interview-a-inner">
+                  ① DNS 조회로 도메인을 IP로 변환 → ② TCP 3-way handshake (HTTPS면 TLS 핸드셰이크 추가) →
+                  ③ HTTP 요청 전송 → ④ HTML 응답 수신 → ⑤ HTML 파싱하여 DOM 트리 구성 →
+                  ⑥ CSS 파싱하여 CSSOM 구성 → ⑦ DOM + CSSOM 결합하여 렌더 트리 생성 →
+                  ⑧ 레이아웃(각 요소의 위치/크기 계산) → ⑨ 페인트(픽셀 그리기) → ⑩ 합성(레이어 조합하여 화면 표시)
+                </div>
+              </div>
+            </div>
+            <div class="interview-card" onclick="toggleAnswer(this)">
+              <div class="interview-q">
+                <div class="interview-q-text">
+                  <div class="q-marker">Q2</div>
+                  리플로우(Reflow)와 리페인트(Repaint)의 차이와 성능 영향은?
+                </div>
+                <span class="interview-toggle">▾</span>
+              </div>
+              <div class="interview-a">
+                <div class="interview-a-inner">
+                  <strong>리플로우</strong>는 레이아웃(위치/크기)이 변경될 때 발생합니다. 리플로우가 발생하면 반드시 리페인트도 뒤따릅니다.
+                  <code>width</code>, <code>height</code>, <code>margin</code> 변경 시 발생합니다.<br><br>
+                  <strong>리페인트</strong>는 시각적 속성만 변경될 때 발생합니다. <code>color</code>, <code>background</code>,
+                  <code>visibility</code> 변경 시 리플로우 없이 리페인트만 발생합니다.<br><br>
+                  최적화: <code>transform</code>과 <code>opacity</code>는 합성(Composite) 단계에서만 처리되어 리플로우/리페인트를 건너뜁니다.
+                </div>
+              </div>
+            </div>
+            <div class="interview-card" onclick="toggleAnswer(this)">
+              <div class="interview-q">
+                <div class="interview-q-text">
+                  <div class="q-marker">Q3</div>
+                  크리티컬 렌더링 패스(Critical Rendering Path) 최적화 방법은?
+                </div>
+                <span class="interview-toggle">▾</span>
+              </div>
+              <div class="interview-a">
+                <div class="interview-a-inner">
+                  ① CSS는 <code>&lt;head&gt;</code>에 배치 (렌더 차단 리소스)
+                  ② JS는 <code>&lt;body&gt;</code> 하단 또는 <code>defer/async</code> 사용
+                  ③ 중요 CSS를 인라인으로 삽입
+                  ④ 불필요한 CSS/JS를 제거하여 크리티컬 리소스 최소화
+                  ⑤ 리소스 압축 (gzip/brotli) 및 캐시 활용
+                  ⑥ <code>preload</code>, <code>prefetch</code>로 중요 리소스 우선 로드
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+// ================ PAGE NAVIGATION ================
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  const navItems = document.querySelectorAll('.nav-item');
+  if (pageId === 'event-bubbling') navItems[0].classList.add('active');
+  if (pageId === 'rendering-pipeline') navItems[4].classList.add('active');
+
+  if (pageId === 'rendering-pipeline') pipelineReset();
+}
+
+// ================ INTERVIEW TOGGLE ================
+function toggleAnswer(card) {
+  card.classList.toggle('open');
+}
+
+// ================ EVENT BUBBLING DEMO ================
+const logEntries = document.getElementById('log-entries');
+let logCount = 0;
+
+function clearLog() {
+  logEntries.innerHTML = '<div class="log-empty">요소를 클릭하면<br>이벤트 전파 로그가 표시됩니다</div>';
+  logCount = 0;
+}
+
+function addLog(text, type) {
+  if (logCount === 0) logEntries.innerHTML = '';
+  logCount++;
+  const entry = document.createElement('div');
+  entry.className = 'log-entry log-' + type;
+  entry.textContent = text;
+  logEntries.appendChild(entry);
+  logEntries.scrollTop = logEntries.scrollHeight;
+}
+
+function flashBox(id, delay) {
+  setTimeout(() => {
+    const box = document.getElementById(id);
+    box.classList.add('flash');
+    setTimeout(() => box.classList.remove('flash'), 600);
+  }, delay);
+}
+
+const elements = [
+  { id: 'box-window', name: 'window' },
+  { id: 'box-document', name: 'document' },
+  { id: 'box-parent', name: 'div.parent' },
+  { id: 'box-button', name: 'button' }
+];
+
+function handleEventClick(e) {
+  e.stopPropagation();
+
+  const showCapture = document.getElementById('toggle-capture').checked;
+  const stopProp = document.getElementById('toggle-stop').checked;
+  const stopAtTarget = document.getElementById('toggle-stop-target').checked;
+
+  const clickedId = e.currentTarget.id;
+  const clickedIndex = elements.findIndex(el => el.id === clickedId);
+
+  addLog('─── Click Event ───', 'info');
+
+  let delay = 0;
+  const animDelay = 300;
+
+  // Capturing phase
+  if (showCapture) {
+    for (let i = 0; i <= clickedIndex; i++) {
+      const el = elements[i];
+      const isTarget = i === clickedIndex;
+
+      if (isTarget) {
+        setTimeout(() => {
+          addLog(`▪ ${el.name} (타겟)`, 'target');
+        }, delay);
+        flashBox(el.id, delay);
+        delay += animDelay;
+
+        if (stopAtTarget) {
+          setTimeout(() => {
+            addLog('✕ stopPropagation() — 전파 중단', 'stopped');
+          }, delay);
+          return;
+        }
+      } else {
+        setTimeout(() => {
+          addLog(`▾ ${el.name} (캡쳐링 ↓)`, 'capture');
+        }, delay);
+        flashBox(el.id, delay);
+        delay += animDelay;
+      }
+    }
+  } else {
+    // Just show target
+    addLog(`▪ ${elements[clickedIndex].name} (타겟)`, 'target');
+    flashBox(clickedId, 0);
+    delay = animDelay;
+
+    if (stopAtTarget) {
+      setTimeout(() => {
+        addLog('✕ stopPropagation() — 전파 중단', 'stopped');
+      }, delay);
+      return;
+    }
+  }
+
+  // Bubbling phase
+  for (let i = clickedIndex - 1; i >= 0; i--) {
+    const el = elements[i];
+
+    if (stopProp && i === clickedIndex - 1) {
+      setTimeout(() => {
+        addLog('✕ stopPropagation() — 버블링 중단', 'stopped');
+      }, delay);
+      flashBox(el.id, delay);
+      return;
+    }
+
+    ((d, element) => {
+      setTimeout(() => {
+        addLog(`▴ ${element.name} (버블링 ↑)`, 'bubble');
+      }, d);
+      flashBox(element.id, d);
+    })(delay, el);
+
+    delay += animDelay;
+  }
+}
+
+elements.forEach(el => {
+  document.getElementById(el.id).addEventListener('click', handleEventClick);
+});
+
+// ================ RENDERING PIPELINE ================
+const pipelineData = [
+  {
+    icon: '🔍',
+    name: 'DNS 조회',
+    time: '~20-120ms',
+    color: '#00e5ff',
+    title: 'DNS 조회 (DNS Lookup)',
+    desc: '브라우저가 도메인 이름(예: google.com)을 IP 주소로 변환합니다. 먼저 브라우저 캐시 → OS 캐시 → 라우터 캐시 → ISP DNS 서버 순으로 확인하고, 없으면 재귀적 DNS 조회를 수행합니다.',
+    visual: 'google.com\n    ↓ 브라우저 캐시 ❌\n    ↓ OS 캐시 ❌\n    ↓ ISP DNS 서버\n    ↓ Root → .com → google.com\n    → 142.250.196.110 ✓'
+  },
+  {
+    icon: '🤝',
+    name: 'TCP 연결',
+    time: '~30-100ms',
+    color: '#b388ff',
+    title: 'TCP 연결 (3-way Handshake)',
+    desc: '클라이언트와 서버 간 신뢰할 수 있는 연결을 수립합니다. HTTPS의 경우 추가로 TLS 핸드셰이크가 진행되어 암호화 통신 채널을 만듭니다.',
+    visual: 'Client          Server\n  ├── SYN ──────→│\n  │←── SYN+ACK ──┤\n  ├── ACK ──────→│\n  │   연결 수립 ✓   │\n  ├── TLS Hello →│  (HTTPS)\n  │←── 인증서 ────┤\n  │   암호화 완료 ✓  │'
+  },
+  {
+    icon: '📨',
+    name: 'HTTP 요청',
+    time: '~10-50ms',
+    color: '#ffb800',
+    title: 'HTTP 요청/응답',
+    desc: '브라우저가 서버에 HTML 문서를 요청합니다. 서버는 요청을 처리하고 HTML 응답을 보냅니다. 응답 헤더에는 캐시 정책, 콘텐츠 타입 등 메타데이터가 포함됩니다.',
+    visual: 'GET / HTTP/2\nHost: google.com\nAccept: text/html\n\n← HTTP/2 200 OK\n← Content-Type: text/html\n← Cache-Control: max-age=3600\n← Content-Length: 45KB\n← [HTML 데이터...]'
+  },
+  {
+    icon: '🌳',
+    name: 'DOM 파싱',
+    time: '~50-200ms',
+    color: '#00e676',
+    title: 'HTML 파싱 → DOM 트리',
+    desc: 'HTML 바이트를 토큰화하고, 토큰을 노드로 변환하여 DOM 트리를 구성합니다. <script> 태그를 만나면 파싱을 중단하고 JS를 실행합니다 (렌더 차단).',
+    visual: '   document\n   ├── html\n   │   ├── head\n   │   │   ├── meta\n   │   │   ├── title\n   │   │   └── link[stylesheet]\n   │   └── body\n   │       ├── div#app\n   │       │   ├── h1\n   │       │   └── p\n   │       └── script[src]'
+  },
+  {
+    icon: '🎨',
+    name: 'CSSOM',
+    time: '~30-100ms',
+    color: '#ff2d8a',
+    title: 'CSS 파싱 → CSSOM 트리',
+    desc: 'CSS를 파싱하여 CSSOM(CSS Object Model) 트리를 구성합니다. CSS는 렌더 차단 리소스이므로, CSSOM이 완성되기 전까지 렌더링이 진행되지 않습니다.',
+    visual: '   CSSOM\n   ├── body\n   │   font-size: 16px\n   │   color: #333\n   ├── h1\n   │   font-size: 2em\n   │   font-weight: bold\n   ├── .container\n   │   max-width: 1200px\n   │   margin: 0 auto\n   └── #app\n       display: flex'
+  },
+  {
+    icon: '🔗',
+    name: '렌더 트리',
+    time: '~10-30ms',
+    color: '#00e5ff',
+    title: 'DOM + CSSOM → 렌더 트리',
+    desc: 'DOM과 CSSOM을 결합하여 화면에 실제로 표시될 요소만 포함하는 렌더 트리를 생성합니다. display: none인 요소는 포함되지 않습니다.',
+    visual: '   DOM          CSSOM\n    │              │\n    └──── 결합 ────┘\n           ↓\n     Render Tree\n     ├── body {font: 16px}\n     │   ├── h1 {font: 2em, bold}\n     │   └── p {color: #333}\n     │\n     ✕ display:none 제외\n     ✕ <head> 내용 제외'
+  },
+  {
+    icon: '📐',
+    name: '레이아웃',
+    time: '~10-50ms',
+    color: '#b388ff',
+    title: '레이아웃 (Layout / Reflow)',
+    desc: '렌더 트리의 각 노드에 대해 뷰포트 내 정확한 위치와 크기를 계산합니다. 상대적 단위(%,em)를 절대적 픽셀 값으로 변환합니다.',
+    visual: '  ┌─ viewport: 1920 x 1080 ──────┐\n  │                                │\n  │  ┌─ body: 1920 x auto ──────┐ │\n  │  │                            │ │\n  │  │  ┌─ h1: 1920 x 44px ──┐  │ │\n  │  │  └─ x:0, y:0 ─────────┘  │ │\n  │  │  ┌─ p: 1920 x 24px ───┐  │ │\n  │  │  └─ x:0, y:52px ──────┘  │ │\n  │  └────────────────────────────┘ │\n  └────────────────────────────────┘'
+  },
+  {
+    icon: '🖌️',
+    name: '페인트',
+    time: '~10-50ms',
+    color: '#ffb800',
+    title: '페인트 (Paint)',
+    desc: '레이아웃 결과를 바탕으로 실제 픽셀을 그립니다. 텍스트, 색상, 이미지, 그림자, 보더 등 시각적 요소를 레이어별로 래스터화합니다.',
+    visual: '  Paint Order:\n  1. 배경색/이미지    ████████████\n  2. 보더             ┌──────────┐\n  3. 텍스트           Hello World\n  4. 그림자           ░░░░░░░░░░░\n  5. 아웃라인         ╔══════════╗\n\n  → Layer 1: 배경\n  → Layer 2: 콘텐츠\n  → Layer 3: 오버레이'
+  },
+  {
+    icon: '🧩',
+    name: '합성',
+    time: '~5-10ms',
+    color: '#00e676',
+    title: '합성 (Compositing)',
+    desc: '여러 레이어를 올바른 순서로 합성하여 최종 화면을 만듭니다. GPU가 이 작업을 처리하며, transform/opacity 애니메이션이 여기서 처리되어 성능이 좋습니다.',
+    visual: '  ┌── Layer 3 (overlay) ──────┐\n  │  z-index: 100, opacity: 0.8│\n  ├── Layer 2 (content) ──────┤\n  │  position: relative        │\n  ├── Layer 1 (background) ───┤\n  │  will-change: transform    │\n  └───────────────────────────┘\n         ↓ GPU 합성\n  ┌── Final Frame ────────────┐\n  │  ██████ 완성된 화면 ██████  │\n  └───────────────────────────┘'
+  },
+  {
+    icon: '✅',
+    name: '완료',
+    time: 'FCP',
+    color: '#00e676',
+    title: '🎉 First Contentful Paint (FCP)',
+    desc: '사용자가 처음으로 의미 있는 콘텐츠를 볼 수 있는 시점입니다! 이 시점까지의 시간을 줄이는 것이 웹 성능 최적화의 핵심 목표입니다.',
+    visual: '  Performance Metrics:\n  ┌─────────────────────────────┐\n  │ TTFB         ████░░░░░░░░░  │\n  │ FCP          ████████░░░░░  │\n  │ LCP          ██████████░░░  │\n  │ TTI          ████████████░  │\n  │ CLS          ░░░░░░░░░░░░░  │\n  └─────────────────────────────┘\n  목표: FCP < 1.8s, LCP < 2.5s'
+  }
+];
+
+let currentStep = -1;
+let pipeInterval = null;
+
+function renderPipelineSteps() {
+  const container = document.getElementById('pipeline-steps');
+  container.innerHTML = '';
+
+  pipelineData.forEach((step, i) => {
+    const stepEl = document.createElement('div');
+    stepEl.className = 'pipe-step';
+    stepEl.innerHTML = `
+      <div class="pipe-step-card" id="pipe-card-${i}" onclick="goToStep(${i})" style="cursor:pointer; --step-glow: ${step.color}">
+        <div class="pipe-step-icon" style="background: ${step.color}15; border: 1px solid ${step.color}33">
+          ${step.icon}
+        </div>
+        <div class="pipe-step-name">${step.name}</div>
+        <div class="pipe-step-time">${step.time}</div>
+      </div>
+      ${i < pipelineData.length - 1 ? `<div class="pipe-arrow" id="pipe-arrow-${i}">→</div>` : ''}
+    `;
+    container.appendChild(stepEl);
+  });
+}
+
+function updatePipelineUI() {
+  pipelineData.forEach((_, i) => {
+    const card = document.getElementById(`pipe-card-${i}`);
+    const arrow = document.getElementById(`pipe-arrow-${i}`);
+
+    card.classList.remove('active', 'done');
+    if (i < currentStep) card.classList.add('done');
+    if (i === currentStep) card.classList.add('active');
+
+    if (arrow) {
+      arrow.classList.remove('active');
+      if (i < currentStep) arrow.classList.add('active');
+    }
+  });
+
+  const progress = document.getElementById('pipe-progress');
+  progress.style.width = currentStep >= 0 ? `${((currentStep + 1) / pipelineData.length) * 100}%` : '0%';
+
+  document.getElementById('pipe-counter').textContent = `${currentStep + 1} / ${pipelineData.length}`;
+
+  const detail = document.getElementById('pipe-detail');
+  if (currentStep >= 0) {
+    const step = pipelineData[currentStep];
+    detail.style.borderColor = step.color + '44';
+    detail.innerHTML = `
+      <div class="pipe-detail-title" style="color: ${step.color}">
+        ${step.icon} ${step.title}
+      </div>
+      <div class="pipe-detail-desc">${step.desc}</div>
+      <div class="pipe-detail-visual">${step.visual}</div>
+    `;
+  }
+}
+
+function goToStep(step) {
+  currentStep = step;
+  updatePipelineUI();
+}
+
+function pipelineStep(dir) {
+  if (pipeInterval) { clearInterval(pipeInterval); pipeInterval = null; document.getElementById('pipe-play').classList.remove('playing'); }
+  const next = currentStep + dir;
+  if (next >= 0 && next < pipelineData.length) {
+    currentStep = next;
+    updatePipelineUI();
+  }
+}
+
+function pipelinePlay() {
+  const btn = document.getElementById('pipe-play');
+  if (pipeInterval) {
+    clearInterval(pipeInterval);
+    pipeInterval = null;
+    btn.classList.remove('playing');
+    btn.innerHTML = '▶ 자동 재생';
+    return;
+  }
+
+  btn.classList.add('playing');
+  btn.innerHTML = '⏸ 일시 정지';
+
+  if (currentStep >= pipelineData.length - 1) currentStep = -1;
+
+  pipeInterval = setInterval(() => {
+    currentStep++;
+    updatePipelineUI();
+    if (currentStep >= pipelineData.length - 1) {
+      clearInterval(pipeInterval);
+      pipeInterval = null;
+      btn.classList.remove('playing');
+      btn.innerHTML = '▶ 자동 재생';
+    }
+  }, 1500);
+}
+
+function pipelineReset() {
+  if (pipeInterval) { clearInterval(pipeInterval); pipeInterval = null; }
+  document.getElementById('pipe-play').classList.remove('playing');
+  document.getElementById('pipe-play').innerHTML = '▶ 자동 재생';
+  currentStep = -1;
+  updatePipelineUI();
+  document.getElementById('pipe-detail').innerHTML = `
+    <div class="pipe-detail-title">▶ 재생 버튼을 누르거나 '다음'을 클릭하세요</div>
+    <div class="pipe-detail-desc" style="color: var(--text-muted)">브라우저 렌더링의 각 단계를 순서대로 살펴볼 수 있습니다.</div>
+  `;
+  document.getElementById('pipe-progress').style.width = '0%';
+  document.getElementById('pipe-counter').textContent = '0 / 10';
+}
+
+// Init
+renderPipelineSteps();
+</script>
+</body>
+</html>
