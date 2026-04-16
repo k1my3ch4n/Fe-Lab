@@ -1,7 +1,7 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
-const PromiseDemo = dynamic(() => import("@features/promise/PromiseDemo"));
-import { codeExamples, interviewQuestions } from "@features/promise/data";
+const PromiseDemo = dynamic(() => import("@features/promise/ui/PromiseDemo"));
+import { codeExamples, interviewQuestions } from "@features/promise/model/data";
 
 export default function PromisePage() {
   return (

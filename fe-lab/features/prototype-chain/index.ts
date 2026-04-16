@@ -1,1 +1,1 @@
-export { default as PrototypeChainDemo } from "./PrototypeChainDemo";
+export { default as PrototypeChainDemo } from "./ui/PrototypeChainDemo";

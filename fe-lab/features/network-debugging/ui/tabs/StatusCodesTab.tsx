@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { STATUS_CODES } from "../constants";
+import { STATUS_CODES } from "../../model/constants";
 import { ActionButton } from "@shared/ui";
 
 interface UseStatusCodesTabOptions {

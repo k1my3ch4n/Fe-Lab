@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const PrototypeChainDemo = dynamic(
-  () => import("@features/prototype-chain/PrototypeChainDemo"),
+  () => import("@features/prototype-chain/ui/PrototypeChainDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/prototype-chain/data";
+} from "@features/prototype-chain/model/data";
 
 export default function PrototypeChainPage() {
   return (

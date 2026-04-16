@@ -1,4 +1,4 @@
-import type { PrototypeNode } from "../types";
+import type { PrototypeNode } from "../../model/types";
 
 export function ChainNode({
   node,

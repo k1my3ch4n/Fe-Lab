@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { WATERFALL_RESOURCES, PHASE_LEGEND } from "../constants";
+import { WATERFALL_RESOURCES, PHASE_LEGEND } from "../../model/constants";
 import { ActionButton } from "@shared/ui";
 
 interface UseWaterfallTabOptions {

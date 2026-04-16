@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const NetworkDebuggingDemo = dynamic(
-  () => import("@features/network-debugging/NetworkDebuggingDemo"),
+  () => import("@features/network-debugging/ui/NetworkDebuggingDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/network-debugging/data";
+} from "@features/network-debugging/model/data";
 
 export default function NetworkDebuggingPage() {
   return (

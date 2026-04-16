@@ -7,8 +7,8 @@ import {
   STATE_COLORS,
   DEFAULT_PROMISES,
   TABS,
-} from "./constants";
-import type { PromiseState, PromiseItem } from "./types";
+} from "../model/constants";
+import type { PromiseState, PromiseItem } from "../model/types";
 import {
   TabBar,
   DemoLayout,

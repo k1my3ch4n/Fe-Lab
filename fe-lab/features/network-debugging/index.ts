@@ -1,1 +1,1 @@
-export { default as NetworkDebuggingDemo } from "./NetworkDebuggingDemo";
+export { default as NetworkDebuggingDemo } from "./ui/NetworkDebuggingDemo";

@@ -6,7 +6,7 @@ import {
   PROTOTYPE_CHAIN_EXAMPLES,
   TABS,
   PROPERTY_SUGGESTIONS,
-} from "./constants";
+} from "../model/constants";
 import { usePropertyLookup } from "./hooks/usePropertyLookup";
 import { ChainNode } from "./components/ChainNode";
 
