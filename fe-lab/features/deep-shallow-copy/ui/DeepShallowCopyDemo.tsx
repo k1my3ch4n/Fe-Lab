@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLog } from "@shared/hooks";
-import { COPY_METHODS, ORIGINAL_OBJECT, TABS } from "./constants";
+import { COPY_METHODS, ORIGINAL_OBJECT, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
