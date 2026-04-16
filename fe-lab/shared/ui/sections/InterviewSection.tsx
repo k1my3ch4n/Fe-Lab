@@ -1,5 +1,5 @@
 import SectionLabel from "./SectionLabel";
-import InterviewCard from "../interview/InterviewCard";
+import InterviewCard from "./InterviewCard";
 import type { InterviewQuestion } from "./types";
 
 interface InterviewSectionProps {
