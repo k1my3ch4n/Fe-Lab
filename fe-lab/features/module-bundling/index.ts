@@ -1,1 +1,1 @@
-export { default as ModuleBundlingDemo } from "./ModuleBundlingDemo";
+export { default as ModuleBundlingDemo } from "./ui/ModuleBundlingDemo";

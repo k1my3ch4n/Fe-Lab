@@ -1,1 +1,1 @@
-export { default as MemoryManagementDemo } from "./MemoryManagementDemo";
+export { default as MemoryManagementDemo } from "./ui/MemoryManagementDemo";

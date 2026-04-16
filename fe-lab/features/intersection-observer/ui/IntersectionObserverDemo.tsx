@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { TAB_ITEMS } from "./constants";
-import type { TabId } from "./types";
+import { TAB_ITEMS } from "../model/constants";
+import type { TabId } from "../model/types";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
 import { useObserveTab } from "./tabs/ObserveTab";

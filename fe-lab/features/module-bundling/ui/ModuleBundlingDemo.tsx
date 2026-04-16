@@ -9,7 +9,7 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import { BUNDLE_EXAMPLES, TABS } from "./constants";
+import { BUNDLE_EXAMPLES, TABS } from "../model/constants";
 
 export default function ModuleBundlingDemo() {
   const [activeExample, setActiveExample] = useState(0);

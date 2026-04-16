@@ -1,10 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
-const ModuleBundlingDemo = dynamic(() => import("@features/module-bundling/ModuleBundlingDemo"));
+const ModuleBundlingDemo = dynamic(
+  () => import("@features/module-bundling/ui/ModuleBundlingDemo"),
+);
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/module-bundling/data";
+} from "@features/module-bundling/model/data";
 
 export default function ModuleBundlingPage() {
   return (

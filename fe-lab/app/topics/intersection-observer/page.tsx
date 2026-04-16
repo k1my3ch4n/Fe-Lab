@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const IntersectionObserverDemo = dynamic(
-  () => import("@features/intersection-observer/IntersectionObserverDemo"),
+  () => import("@features/intersection-observer/ui/IntersectionObserverDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/intersection-observer/data";
+} from "@features/intersection-observer/model/data";
 
 export default function IntersectionObserverPage() {
   return (

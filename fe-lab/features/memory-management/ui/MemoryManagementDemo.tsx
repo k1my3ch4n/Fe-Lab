@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { LEAK_PATTERNS, SEVERITY_COLORS, GC_PHASES, TABS } from "./constants";
+import {
+  LEAK_PATTERNS,
+  SEVERITY_COLORS,
+  GC_PHASES,
+  TABS,
+} from "../model/constants";
 import {
   TabBar,
   DemoLayout,

@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const MemoryManagementDemo = dynamic(
-  () => import("@features/memory-management/MemoryManagementDemo"),
+  () => import("@features/memory-management/ui/MemoryManagementDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/memory-management/data";
+} from "@features/memory-management/model/data";
 
 export default function MemoryManagementPage() {
   return (

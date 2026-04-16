@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { OBSERVER_BOXES, THRESHOLD_OPTIONS } from "../constants";
+import { OBSERVER_BOXES, THRESHOLD_OPTIONS } from "../../model/constants";
 
 interface UseObserveTabOptions {
   addLog: (text: string) => void;
