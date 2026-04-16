@@ -1,9 +1,9 @@
 import { Topbar } from "@widgets/topbar";
-import ConceptSection from "./sections/ConceptSection";
-import DemoSection from "./sections/DemoSection";
-import CodeSection from "./sections/CodeSection";
-import InterviewSection from "./sections/InterviewSection";
-import type { InterviewQuestion } from "./sections/types";
+import ConceptSection from "../sections/ConceptSection";
+import DemoSection from "../sections/DemoSection";
+import CodeSection from "../sections/CodeSection";
+import InterviewSection from "../sections/InterviewSection";
+import type { InterviewQuestion } from "../sections/types";
 
 interface CodeExample {
   title: string;

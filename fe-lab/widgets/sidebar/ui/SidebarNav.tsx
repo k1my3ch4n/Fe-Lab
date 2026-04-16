@@ -1,6 +1,6 @@
 import { type RefObject } from "react";
 import { type Category } from "@entities/topic";
-import ThemeToggle from "@shared/ui/ThemeToggle";
+import { ThemeToggle } from "@shared/ui";
 import NavItem from "./NavItem";
 import SearchInput from "./SearchInput";
 

@@ -1,4 +1,4 @@
-import ThemeToggle from "@shared/ui/ThemeToggle";
+import { ThemeToggle } from "@shared/ui";
 import SidebarToggle from "./SidebarToggle";
 
 interface SidebarHeaderProps {
