@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AUTH_FLOWS, COOKIE_ATTRIBUTES } from "./constants";
+import { AUTH_FLOWS, COOKIE_ATTRIBUTES } from "../model/constants";
 import { useLog } from "@shared/hooks";
 import {
   TabBar,

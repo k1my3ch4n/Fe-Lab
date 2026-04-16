@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const CookieSessionDemo = dynamic(
-  () => import("@features/cookie-session/CookieSessionDemo"),
+  () => import("@features/cookie-session/ui/CookieSessionDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/cookie-session/data";
+} from "@features/cookie-session/model/data";
 
 export default function CookieSessionPage() {
   return (
