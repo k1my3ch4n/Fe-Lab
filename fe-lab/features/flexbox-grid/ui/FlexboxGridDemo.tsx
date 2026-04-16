@@ -8,7 +8,7 @@ import {
   WRAP_OPTIONS,
   GRID_TEMPLATE_OPTIONS,
   DEMO_ITEMS,
-} from "./constants";
+} from "../model/constants";
 import { TabBar, PanelHeader, SectionHeader } from "@shared/ui";
 
 type Mode = "flexbox" | "grid";
