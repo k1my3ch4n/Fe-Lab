@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { EVENT_LOOP_SCENARIOS } from "./constants";
+import { EVENT_LOOP_SCENARIOS } from "../model/constants";
 import { LogPanel } from "@shared/ui";
 
 export default function EventLoopDemo() {
