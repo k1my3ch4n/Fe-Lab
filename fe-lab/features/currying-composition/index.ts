@@ -1,1 +1,1 @@
-export { default as CurryingCompositionDemo } from "./CurryingCompositionDemo";
+export { default as CurryingCompositionDemo } from "./ui/CurryingCompositionDemo";

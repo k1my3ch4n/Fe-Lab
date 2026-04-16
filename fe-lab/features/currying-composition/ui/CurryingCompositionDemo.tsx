@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { DEMO_EXAMPLES, TABS } from "./constants";
+import { DEMO_EXAMPLES, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,

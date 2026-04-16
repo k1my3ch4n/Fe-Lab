@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const CurryingCompositionDemo = dynamic(
-  () => import("@features/currying-composition/CurryingCompositionDemo"),
+  () => import("@features/currying-composition/ui/CurryingCompositionDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/currying-composition/data";
+} from "@features/currying-composition/model/data";
 
 export default function CurryingCompositionPage() {
   return (
