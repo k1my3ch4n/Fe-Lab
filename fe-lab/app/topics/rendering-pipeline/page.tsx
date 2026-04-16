@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const RenderPipelineDemo = dynamic(
-  () => import("@features/rendering-pipeline/RenderPipelineDemo"),
+  () => import("@features/rendering-pipeline/ui/RenderPipelineDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/rendering-pipeline/data";
+} from "@features/rendering-pipeline/model/data";
 
 export default function RenderingPipelinePage() {
   return (

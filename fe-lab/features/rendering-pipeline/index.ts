@@ -1,1 +1,1 @@
-export { default as RenderPipelineDemo } from "./RenderPipelineDemo";
+export { default as RenderPipelineDemo } from "./ui/RenderPipelineDemo";

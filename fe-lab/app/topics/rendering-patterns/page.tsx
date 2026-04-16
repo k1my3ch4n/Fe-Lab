@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const RenderingPatternsDemo = dynamic(
-  () => import("@features/rendering-patterns/RenderingPatternsDemo"),
+  () => import("@features/rendering-patterns/ui/RenderingPatternsDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/rendering-patterns/data";
+} from "@features/rendering-patterns/model/data";
 
 export default function RenderingPatternsPage() {
   return (

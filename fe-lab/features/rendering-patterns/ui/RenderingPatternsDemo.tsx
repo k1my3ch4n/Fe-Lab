@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { TabBar, DemoLayout, SectionHeader } from "@shared/ui";
-import { RENDERING_PATTERNS, TABS } from "./constants";
+import { RENDERING_PATTERNS, TABS } from "../model/constants";
 
 export default function RenderingPatternsDemo() {
   const [activePattern, setActivePattern] = useState(0);

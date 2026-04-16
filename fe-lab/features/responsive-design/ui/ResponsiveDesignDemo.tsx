@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BREAKPOINTS, VIEWPORT_PRESETS, TABS } from "./constants";
+import { BREAKPOINTS, VIEWPORT_PRESETS, TABS } from "../model/constants";
 import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
 
 export default function ResponsiveDesignDemo() {

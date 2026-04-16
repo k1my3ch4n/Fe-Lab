@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { pipelineData } from "./pipeline-steps";
+import { pipelineData } from "../model/pipeline-steps";
 import StepCard from "./components/StepCard";
 import StepDetail from "./components/StepDetail";
 

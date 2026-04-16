@@ -1,1 +1,1 @@
-export { default as ResponsiveDesignDemo } from "./ResponsiveDesignDemo";
+export { default as ResponsiveDesignDemo } from "./ui/ResponsiveDesignDemo";

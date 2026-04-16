@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const ResponsiveDesignDemo = dynamic(
-  () => import("@features/responsive-design/ResponsiveDesignDemo"),
+  () => import("@features/responsive-design/ui/ResponsiveDesignDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/responsive-design/data";
+} from "@features/responsive-design/model/data";
 
 export default function ResponsiveDesignPage() {
   return (
