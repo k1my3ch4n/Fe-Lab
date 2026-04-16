@@ -6,8 +6,8 @@ import {
   TABS,
   STATUS_COLORS,
   ACTOR_CONFIG,
-} from "./constants";
-import type { CacheStatus } from "./types";
+} from "../model/constants";
+import type { CacheStatus } from "../model/types";
 import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
 
 export default function HttpCacheDemo() {

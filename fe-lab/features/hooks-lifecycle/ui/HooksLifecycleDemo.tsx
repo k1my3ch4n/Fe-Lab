@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
-import { PHASES } from "./constants";
+import { PHASES } from "../model/constants";
 import { usePhaseAnimation } from "./hooks/usePhaseAnimation";
 import ComparisonView from "./components/ComparisonView";
 

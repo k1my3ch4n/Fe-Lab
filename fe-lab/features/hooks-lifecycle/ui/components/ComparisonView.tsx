@@ -1,7 +1,7 @@
 "use client";
 
 import { SectionHeader } from "@shared/ui";
-import { CLASS_TO_HOOKS_MAP, FLOW_STEPS } from "../constants";
+import { CLASS_TO_HOOKS_MAP, FLOW_STEPS } from "../../model/constants";
 
 export default function ComparisonView() {
   return (

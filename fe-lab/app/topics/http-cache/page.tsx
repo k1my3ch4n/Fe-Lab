@@ -1,9 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const HttpCacheDemo = dynamic(
-  () => import("@features/http-cache/HttpCacheDemo"),
+  () => import("@features/http-cache/ui/HttpCacheDemo"),
 );
-import { codeExamples, interviewQuestions } from "@features/http-cache/data";
+import {
+  codeExamples,
+  interviewQuestions,
+} from "@features/http-cache/model/data";
 
 export default function HttpCachePage() {
   return (

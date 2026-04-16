@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { PROTOCOL_FLOWS, TLS_HANDSHAKE_STEPS } from "./constants";
+import { PROTOCOL_FLOWS, TLS_HANDSHAKE_STEPS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,

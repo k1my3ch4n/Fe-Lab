@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const HooksLifecycleDemo = dynamic(
-  () => import("@features/hooks-lifecycle/HooksLifecycleDemo"),
+  () => import("@features/hooks-lifecycle/ui/HooksLifecycleDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/hooks-lifecycle/data";
+} from "@features/hooks-lifecycle/model/data";
 
 export default function HooksLifecyclePage() {
   return (

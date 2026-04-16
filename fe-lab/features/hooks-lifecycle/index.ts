@@ -1,1 +1,1 @@
-export { default as HooksLifecycleDemo } from "./HooksLifecycleDemo";
+export { default as HooksLifecycleDemo } from "./ui/HooksLifecycleDemo";

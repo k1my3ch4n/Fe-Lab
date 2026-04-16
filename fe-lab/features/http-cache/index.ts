@@ -1,1 +1,1 @@
-export { default as HttpCacheDemo } from "./HttpCacheDemo";
+export { default as HttpCacheDemo } from "./ui/HttpCacheDemo";
