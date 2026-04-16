@@ -1,12 +1,12 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
 const SuspenseErrorBoundaryDemo = dynamic(
-  () => import("@features/suspense-error-boundary/SuspenseErrorBoundaryDemo"),
+  () => import("@features/suspense-error-boundary/ui/SuspenseErrorBoundaryDemo"),
 );
 import {
   codeExamples,
   interviewQuestions,
-} from "@features/suspense-error-boundary/data";
+} from "@features/suspense-error-boundary/model/data";
 
 export default function SuspenseErrorBoundaryPage() {
   return (

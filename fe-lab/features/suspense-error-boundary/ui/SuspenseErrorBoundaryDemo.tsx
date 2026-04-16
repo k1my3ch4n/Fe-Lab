@@ -10,7 +10,7 @@ import {
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
-import { SUSPENSE_SCENARIOS, TABS } from "./constants";
+import { SUSPENSE_SCENARIOS, TABS } from "../model/constants";
 
 export default function SuspenseErrorBoundaryDemo() {
   const [activeTab, setActiveTab] = useState(0);

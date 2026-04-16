@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useLog } from "@shared/hooks";
-import { REF_EXAMPLES, TABS } from "./constants";
+import { REF_EXAMPLES, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,

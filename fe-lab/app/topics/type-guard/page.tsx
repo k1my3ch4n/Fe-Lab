@@ -1,7 +1,7 @@
 import { TopicPageLayout, InlineCode } from "@shared/ui";
 import dynamic from "next/dynamic";
-const TypeGuardDemo = dynamic(() => import("@features/type-guard/TypeGuardDemo"));
-import { codeExamples, interviewQuestions } from "@features/type-guard/data";
+const TypeGuardDemo = dynamic(() => import("@features/type-guard/ui/TypeGuardDemo"));
+import { codeExamples, interviewQuestions } from "@features/type-guard/model/data";
 
 export default function TypeGuardPage() {
   return (
