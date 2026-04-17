@@ -7,11 +7,12 @@ import {
   DemoLayout,
   RightPanel,
   LogPanel,
-  SectionHeader,
   ActionButton,
   CodeBlock,
 } from "@shared/ui";
 import { COMPONENT_TYPES, TABS } from "../model/constants";
+import { RenderFlowVisualization } from "./components/RenderFlowVisualization";
+import { BundleSizeIndicator } from "./components/BundleSizeIndicator";
 
 export default function ServerComponentsDemo() {
   const [activeTab, setActiveTab] = useState(0);
@@ -43,9 +44,7 @@ export default function ServerComponentsDemo() {
     const runStep = () => {
       if (step < phases.length) {
         setActivePhase(step);
-        addLog(
-          `${step + 1}. [${phases[step].label}] ${phases[step].description}`,
-        );
+        addLog(`${step + 1}. [${phases[step].label}] ${phases[step].description}`);
         step++;
         addTimer(runStep, 600);
       } else {
@@ -73,95 +72,47 @@ export default function ServerComponentsDemo() {
     }, 400);
   };
 
-  const rightPanel = (
-    <RightPanel
-      onReset={handleReset}
-      actions={
-        <>
-          <ActionButton variant="cyan" onClick={handleSimulate}>
-            렌더 흐름 시뮬레이션
-          </ActionButton>
-          <ActionButton variant="amber" onClick={handleCompare}>
-            Server vs Client 비교
-          </ActionButton>
-        </>
-      }
-    >
-      <LogPanel
-        logs={logs}
-        emptyMessage={"버튼을 클릭하여\nRSC 렌더링 흐름을\n확인하세요"}
-      />
-    </RightPanel>
-  );
-
   return (
     <>
-      {/* Toolbar */}
       <TabBar
         tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />
 
-      <DemoLayout rightPanel={rightPanel}>
-        {/* Code */}
-        <CodeBlock>
-          {compType.code}
-        </CodeBlock>
-
-        {/* Phase Visualization */}
-        <div>
-          <SectionHeader>Render Flow</SectionHeader>
-          <div className="flex flex-col gap-2">
-            {compType.phases.map((phase, i) => (
-              <div
-                key={i}
-                className="rounded-lg border p-3 transition-all duration-300"
-                style={{
-                  borderColor:
-                    activePhase >= i ? `${phase.color}88` : `${phase.color}22`,
-                  background:
-                    activePhase >= i ? `${phase.color}15` : `${phase.color}05`,
-                  marginLeft: `${i * 16}px`,
-                }}
-              >
-                <div
-                  className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
-                  style={{ color: phase.color }}
-                >
-                  {i + 1}. {phase.label}
-                </div>
-                <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mt-1">
-                  {phase.description}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Bundle Size Indicator */}
-        <div className="flex items-center gap-3 bg-bg-deep rounded-lg p-3">
-          <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-            Bundle:
-          </span>
-          <div className="flex-1 h-2 bg-bg-surface rounded-full overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all duration-500"
-              style={{
-                width:
-                  compType.id === "server"
-                    ? "2%"
-                    : compType.id === "client"
-                      ? "60%"
-                      : "2%",
-                background: compType.id === "client" ? "#ff2d8a" : "#00e676",
-              }}
+      <DemoLayout
+        rightPanel={
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                <ActionButton variant="cyan" onClick={handleSimulate}>
+                  렌더 흐름 시뮬레이션
+                </ActionButton>
+                <ActionButton variant="amber" onClick={handleCompare}>
+                  Server vs Client 비교
+                </ActionButton>
+              </>
+            }
+          >
+            <LogPanel
+              logs={logs}
+              emptyMessage={"버튼을 클릭하여\nRSC 렌더링 흐름을\n확인하세요"}
             />
-          </div>
-          <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-secondary">
-            {compType.bundleSize}
-          </span>
-        </div>
+          </RightPanel>
+        }
+      >
+        <CodeBlock>{compType.code}</CodeBlock>
+
+        <RenderFlowVisualization
+          phases={compType.phases}
+          activePhase={activePhase}
+        />
+
+        <BundleSizeIndicator
+          componentId={compType.id}
+          bundleSize={compType.bundleSize}
+        />
       </DemoLayout>
     </>
   );

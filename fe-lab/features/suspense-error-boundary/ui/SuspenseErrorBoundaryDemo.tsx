@@ -7,11 +7,11 @@ import {
   DemoLayout,
   RightPanel,
   LogPanel,
-  SectionHeader,
   ActionButton,
   CodeBlock,
 } from "@shared/ui";
 import { SUSPENSE_SCENARIOS, TABS } from "../model/constants";
+import { SuspenseFlowVisualization } from "./components/SuspenseFlowVisualization";
 
 export default function SuspenseErrorBoundaryDemo() {
   const [activeTab, setActiveTab] = useState(0);
@@ -43,9 +43,7 @@ export default function SuspenseErrorBoundaryDemo() {
     const runStep = () => {
       if (step < steps.length) {
         setActiveStep(step);
-        addLog(
-          `${step + 1}. [${steps[step].label}] ${steps[step].description}`,
-        );
+        addLog(`${step + 1}. [${steps[step].label}] ${steps[step].description}`);
         step++;
         addTimer(runStep, 600);
       } else {
@@ -90,73 +88,44 @@ export default function SuspenseErrorBoundaryDemo() {
     }
   };
 
-  const rightPanel = (
-    <RightPanel
-      onReset={handleReset}
-      actions={
-        <>
-          <ActionButton variant="cyan" onClick={handleSimulate}>
-            정상 흐름 시뮬레이션
-          </ActionButton>
-          <ActionButton variant="magenta" onClick={handleErrorScenario}>
-            에러 시나리오
-          </ActionButton>
-        </>
-      }
-    >
-      <LogPanel
-        logs={logs}
-        emptyMessage={
-          "버튼을 클릭하여\nSuspense / Error Boundary\n동작을 확인하세요"
-        }
-      />
-    </RightPanel>
-  );
-
   return (
     <>
-      {/* Toolbar */}
       <TabBar
         tabs={TABS}
         activeIndex={activeTab}
         onTabChange={handleTabChange}
       />
 
-      <DemoLayout rightPanel={rightPanel}>
-        {/* Code */}
-        <CodeBlock>
-          {scenario.code}
-        </CodeBlock>
+      <DemoLayout
+        rightPanel={
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                <ActionButton variant="cyan" onClick={handleSimulate}>
+                  정상 흐름 시뮬레이션
+                </ActionButton>
+                <ActionButton variant="magenta" onClick={handleErrorScenario}>
+                  에러 시나리오
+                </ActionButton>
+              </>
+            }
+          >
+            <LogPanel
+              logs={logs}
+              emptyMessage={
+                "버튼을 클릭하여\nSuspense / Error Boundary\n동작을 확인하세요"
+              }
+            />
+          </RightPanel>
+        }
+      >
+        <CodeBlock>{scenario.code}</CodeBlock>
 
-        {/* Flow Visualization */}
-        <div>
-          <SectionHeader>Flow</SectionHeader>
-          <div className="flex flex-col gap-2">
-            {scenario.steps.map((step, i) => (
-              <div
-                key={i}
-                className="rounded-lg border p-3 transition-all duration-300"
-                style={{
-                  borderColor:
-                    activeStep >= i ? `${step.color}88` : `${step.color}22`,
-                  background:
-                    activeStep >= i ? `${step.color}15` : `${step.color}05`,
-                  marginLeft: `${i * 16}px`,
-                }}
-              >
-                <div
-                  className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
-                  style={{ color: step.color }}
-                >
-                  {i + 1}. {step.label}
-                </div>
-                <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mt-1">
-                  {step.description}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <SuspenseFlowVisualization
+          steps={scenario.steps}
+          activeStep={activeStep}
+        />
       </DemoLayout>
     </>
   );
