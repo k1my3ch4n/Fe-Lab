@@ -2,8 +2,8 @@
 
 import { useState, useCallback, useRef } from "react";
 import { CORS_SCENARIOS, TABS } from "../model/constants";
-import type { CorsStep } from "../model/types";
 import { TabBar, DemoLayout, RightPanel, ActionButton } from "@shared/ui";
+import { StepRow, BrowserServerBox } from "./components";
 
 export default function CorsDemo() {
   const [activeScenario, setActiveScenario] = useState(0);
@@ -77,7 +77,9 @@ export default function CorsDemo() {
                 <ActionButton
                   variant="amber"
                   onClick={stepForward}
-                  disabled={isPlaying || currentStep >= scenario.steps.length - 1}
+                  disabled={
+                    isPlaying || currentStep >= scenario.steps.length - 1
+                  }
                 >
                   다음 단계 →
                 </ActionButton>
@@ -122,37 +124,10 @@ export default function CorsDemo() {
           </RightPanel>
         }
       >
-        {/* Browser / Server Boxes */}
-        <div className="flex items-start justify-between gap-4">
-          {/* Browser */}
-          <div className="flex-1 rounded-lg border border-accent-cyan/30 bg-accent-cyan/5 p-4 text-center">
-            <div className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-accent-cyan mb-1">
-              Browser
-            </div>
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-              https://app.example.com
-            </div>
-          </div>
-
-          {/* Arrow area */}
-          <div className="flex-1 flex items-center justify-center pt-2">
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider">
-              {currentStep === -1
-                ? "대기 중"
-                : `Step ${currentStep + 1} / ${scenario.steps.length}`}
-            </div>
-          </div>
-
-          {/* Server */}
-          <div className="flex-1 rounded-lg border border-accent-amber/30 bg-accent-amber/5 p-4 text-center">
-            <div className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-accent-amber mb-1">
-              Server
-            </div>
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-              https://api.other.com
-            </div>
-          </div>
-        </div>
+        <BrowserServerBox
+          currentStep={currentStep}
+          totalSteps={scenario.steps.length}
+        />
 
         {/* Step-by-step flow */}
         <div className="flex flex-col gap-3">
@@ -189,103 +164,5 @@ export default function CorsDemo() {
         </div>
       </DemoLayout>
     </>
-  );
-}
-
-function StepRow({
-  step,
-  index,
-  active,
-  current,
-  isError,
-}: {
-  step: CorsStep;
-  index: number;
-  active: boolean;
-  current: boolean;
-  isError: boolean;
-}) {
-  const isRight = step.direction === "right";
-
-  return (
-    <div
-      className={`flex items-center gap-3 rounded-lg border p-3 transition-all duration-300 ${
-        current
-          ? isError
-            ? "border-accent-magenta/40 bg-accent-magenta/5"
-            : "border-accent-cyan/40 bg-accent-cyan/5"
-          : active
-            ? "border-border-subtle bg-bg-surface opacity-70"
-            : "border-border-subtle bg-bg-deep opacity-40"
-      }`}
-    >
-      {/* Step number */}
-      <div
-        className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center font-[family-name:var(--font-mono)] text-[10px] font-bold ${
-          current
-            ? isError
-              ? "bg-accent-magenta/20 text-accent-magenta"
-              : "bg-accent-cyan/20 text-accent-cyan"
-            : active
-              ? "bg-bg-elevated text-text-muted"
-              : "bg-bg-deep text-text-muted"
-        }`}
-      >
-        {index + 1}
-      </div>
-
-      {/* Arrow */}
-      <div
-        className={`font-[family-name:var(--font-mono)] text-[12px] flex-shrink-0 ${
-          current
-            ? isError
-              ? "text-accent-magenta"
-              : "text-accent-cyan"
-            : "text-text-muted"
-        }`}
-      >
-        {isRight ? "→" : "←"}
-      </div>
-
-      {/* Label */}
-      <div className="flex-1 min-w-0">
-        <div
-          className={`font-[family-name:var(--font-mono)] text-[11px] font-semibold ${
-            current
-              ? isError
-                ? "text-accent-magenta"
-                : "text-accent-cyan"
-              : "text-text-secondary"
-          }`}
-        >
-          {step.label}
-        </div>
-        {active && (
-          <div className="flex flex-wrap gap-1.5 mt-1.5">
-            {step.headers.map((h, j) => (
-              <span
-                key={j}
-                className="font-[family-name:var(--font-mono)] text-[9px] bg-bg-deep px-1.5 py-0.5 rounded"
-              >
-                <span style={{ color: h.color }}>{h.name}</span>
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Direction indicator */}
-      <div
-        className={`font-[family-name:var(--font-mono)] text-[9px] flex-shrink-0 uppercase tracking-wider ${
-          isRight
-            ? "text-accent-cyan"
-            : isError
-              ? "text-accent-magenta"
-              : "text-accent-green"
-        }`}
-      >
-        {isRight ? "REQ" : "RES"}
-      </div>
-    </div>
   );
 }
