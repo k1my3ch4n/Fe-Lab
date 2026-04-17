@@ -3,6 +3,12 @@
 import { useState } from "react";
 import { BREAKPOINTS, VIEWPORT_PRESETS, TABS } from "../model/constants";
 import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
+import {
+  ViewportControls,
+  MediaQueryPreview,
+  ClampPreview,
+  ContainerQueryPreview,
+} from "./components";
 
 export default function ResponsiveDesignDemo() {
   const [activeMode, setActiveMode] = useState(0);
@@ -78,67 +84,11 @@ export default function ResponsiveDesignDemo() {
           </RightPanel>
         }
       >
-        {/* Viewport width indicator */}
-        <div className="flex items-center gap-3">
-          <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-            Viewport:
-          </span>
-          <span
-            className="font-[family-name:var(--font-mono)] text-[14px] font-bold"
-            style={{ color: activeBreakpoint?.color }}
-          >
-            {viewportWidth}px
-          </span>
-          <span
-            className="font-[family-name:var(--font-mono)] text-[10px] px-2 py-0.5 rounded"
-            style={{
-              color: activeBreakpoint?.color,
-              background: `${activeBreakpoint?.color}22`,
-            }}
-          >
-            {activeBreakpoint?.name} — {activeBreakpoint?.label}
-          </span>
-        </div>
-
-        {/* Width slider */}
-        <div>
-          <input
-            type="range"
-            min={320}
-            max={1440}
-            value={viewportWidth}
-            onChange={(e) => setViewportWidth(Number(e.target.value))}
-            className="w-full"
-          />
-        </div>
-
-        {/* Breakpoint bar */}
-        <div className="relative h-8 bg-bg-deep rounded overflow-hidden">
-          {BREAKPOINTS.map((bp) => {
-            const left = (bp.minWidth / 1440) * 100;
-            const width =
-              ((Math.min(bp.maxWidth, 1440) - bp.minWidth) / 1440) * 100;
-            return (
-              <div
-                key={bp.name}
-                className="absolute top-0 h-full flex items-center justify-center font-[family-name:var(--font-mono)] text-[9px] font-semibold border-r border-bg-surface"
-                style={{
-                  left: `${left}%`,
-                  width: `${width}%`,
-                  background: `${bp.color}22`,
-                  color: bp.color,
-                }}
-              >
-                {bp.name}
-              </div>
-            );
-          })}
-          {/* Current position indicator */}
-          <div
-            className="absolute top-0 h-full w-0.5 bg-white z-10 transition-all duration-200"
-            style={{ left: `${(viewportWidth / 1440) * 100}%` }}
-          />
-        </div>
+        <ViewportControls
+          viewportWidth={viewportWidth}
+          activeBreakpoint={activeBreakpoint}
+          onWidthChange={setViewportWidth}
+        />
 
         {/* Layout preview */}
         <div
@@ -149,100 +99,16 @@ export default function ResponsiveDesignDemo() {
           }}
         >
           {activeMode === 0 && (
-            /* Media query demo */
-            <div className="p-3">
-              <div
-                className="rounded border border-border-subtle p-2 transition-all duration-300"
-                style={{
-                  display: viewportWidth >= 768 ? "grid" : "flex",
-                  gridTemplateColumns:
-                    viewportWidth >= 768 ? "1fr 1fr 1fr" : undefined,
-                  flexDirection: viewportWidth >= 768 ? undefined : "column",
-                  gap: "8px",
-                }}
-              >
-                {["Header", "Sidebar", "Main", "Footer"].map((area, i) => (
-                  <div
-                    key={area}
-                    className="rounded px-3 py-2 font-[family-name:var(--font-mono)] text-[10px] text-center"
-                    style={{
-                      background: `${BREAKPOINTS[i % BREAKPOINTS.length].color}33`,
-                      color: BREAKPOINTS[i % BREAKPOINTS.length].color,
-                      gridColumn:
-                        viewportWidth >= 768 &&
-                        (area === "Header" || area === "Footer")
-                          ? "1 / -1"
-                          : undefined,
-                    }}
-                  >
-                    {area}
-                  </div>
-                ))}
-              </div>
-            </div>
+            <MediaQueryPreview viewportWidth={viewportWidth} />
           )}
-
           {activeMode === 1 && (
-            /* Clamp demo */
-            <div className="p-3">
-              <div
-                className="rounded border border-border-subtle transition-all duration-300"
-                style={{ padding: `${clampPadding}px` }}
-              >
-                <div
-                  className="font-bold text-accent-cyan mb-2 transition-all duration-300"
-                  style={{ fontSize: `${clampFontSize}px` }}
-                >
-                  Fluid Text
-                </div>
-                <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-                  font-size: clamp(1rem, 2vw, 2rem)
-                </div>
-                <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-                  padding: clamp(0.5rem, 3vw, 3rem)
-                </div>
-                <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-amber mt-2">
-                  현재: {clampFontSize.toFixed(1)}px / {clampPadding.toFixed(1)}
-                  px
-                </div>
-              </div>
-            </div>
+            <ClampPreview
+              clampFontSize={clampFontSize}
+              clampPadding={clampPadding}
+            />
           )}
-
           {activeMode === 2 && (
-            /* Container query demo */
-            <div className="p-3">
-              <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted mb-2">
-                @container (min-width: 400px)
-              </div>
-              <div
-                className="rounded border border-border-subtle p-3 transition-all duration-300"
-                style={{
-                  display: viewportWidth >= 500 ? "flex" : "block",
-                  gap: "8px",
-                }}
-              >
-                <div
-                  className="rounded bg-accent-cyan-dim px-3 py-2 font-[family-name:var(--font-mono)] text-[10px] text-accent-cyan mb-2"
-                  style={{
-                    width: viewportWidth >= 500 ? "80px" : "100%",
-                    flexShrink: 0,
-                  }}
-                >
-                  Thumb
-                </div>
-                <div>
-                  <div className="font-[family-name:var(--font-mono)] text-[11px] text-text-primary mb-1">
-                    카드 제목
-                  </div>
-                  <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-                    {viewportWidth >= 500
-                      ? "가로 레이아웃 (컨테이너 넓음)"
-                      : "세로 레이아웃 (컨테이너 좁음)"}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ContainerQueryPreview viewportWidth={viewportWidth} />
           )}
         </div>
       </DemoLayout>
