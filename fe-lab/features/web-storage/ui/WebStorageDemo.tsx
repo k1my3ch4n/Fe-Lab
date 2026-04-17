@@ -1,15 +1,11 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { STORAGE_TABS, COMPARISON_ROWS } from "../model/constants";
+import { STORAGE_TABS } from "../model/constants";
 import type { StorageTabId, StorageEntry } from "../model/types";
-import {
-  TabBar,
-  DemoLayout,
-  RightPanel,
-  LogPanel,
-  SectionHeader,
-} from "@shared/ui";
+import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
+import { StorageTable } from "./components/StorageTable";
+import { EntryList } from "./components/EntryList";
 
 export default function WebStorageDemo() {
   const [activeTab, setActiveTab] = useState<StorageTabId>("local");
@@ -169,82 +165,8 @@ export default function WebStorageDemo() {
           </div>
         )}
 
-        {/* Stored entries */}
-        <div>
-          <SectionHeader>저장된 데이터 ({entries.length}개)</SectionHeader>
-          <div className="flex flex-col gap-1.5 max-h-[140px] overflow-y-auto">
-            {entries.length === 0 ? (
-              <div className="font-[family-name:var(--font-mono)] text-[11px] text-text-muted text-center py-4">
-                비어 있음
-              </div>
-            ) : (
-              entries.map((entry) => (
-                <div
-                  key={entry.key}
-                  className="flex items-center justify-between bg-bg-deep rounded-lg px-3 py-2 border border-border-subtle"
-                >
-                  <div className="font-[family-name:var(--font-mono)] text-[11px]">
-                    <span className="text-accent-cyan">{entry.key}</span>
-                    <span className="text-text-muted"> : </span>
-                    <span className="text-accent-amber">{entry.value}</span>
-                  </div>
-                  <button
-                    onClick={() => handleRemove(entry.key)}
-                    className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted cursor-pointer bg-transparent border-none hover:text-accent-magenta transition-colors"
-                  >
-                    삭제
-                  </button>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-
-        {/* Comparison table */}
-        <div>
-          <SectionHeader>Storage 비교</SectionHeader>
-          <div className="overflow-x-auto rounded-lg border border-border-subtle">
-            <table className="w-full font-[family-name:var(--font-mono)] text-[10px]">
-              <thead>
-                <tr className="bg-bg-elevated">
-                  <th className="text-left px-3 py-2 text-text-muted font-normal">
-                    특성
-                  </th>
-                  <th className="text-left px-3 py-2 text-accent-cyan font-normal">
-                    localStorage
-                  </th>
-                  <th className="text-left px-3 py-2 text-accent-amber font-normal">
-                    sessionStorage
-                  </th>
-                  <th className="text-left px-3 py-2 text-accent-violet font-normal">
-                    IndexedDB
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON_ROWS.map((row) => (
-                  <tr
-                    key={row.feature}
-                    className="border-t border-border-subtle"
-                  >
-                    <td className="px-3 py-2 text-text-secondary">
-                      {row.feature}
-                    </td>
-                    <td className="px-3 py-2 text-text-primary">
-                      {row.localStorage}
-                    </td>
-                    <td className="px-3 py-2 text-text-primary">
-                      {row.sessionStorage}
-                    </td>
-                    <td className="px-3 py-2 text-text-primary">
-                      {row.indexedDB}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <EntryList entries={entries} onRemove={handleRemove} />
+        <StorageTable />
       </DemoLayout>
     </>
   );

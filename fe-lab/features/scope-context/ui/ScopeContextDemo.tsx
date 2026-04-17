@@ -1,17 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { BINDING_EXAMPLES, SCOPE_CHAIN_LEVELS, TABS } from "../model/constants";
+import { BINDING_EXAMPLES, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
   RightPanel,
   LogPanel,
-  SectionHeader,
   ActionButton,
   CodeBlock,
 } from "@shared/ui";
 import { useLog } from "@shared/hooks";
+import { ScopeChainVisualization } from "./components/ScopeChainVisualization";
 
 export default function ScopeContextDemo() {
   const [activeTab, setActiveTab] = useState(0);
@@ -182,53 +182,11 @@ export default function ScopeContextDemo() {
           </span>
         </div>
 
-        {/* Scope Chain Animation */}
-        {activeTab === 3 ? null : (
-          <div>
-            <SectionHeader>Scope Chain</SectionHeader>
-            <div className="flex flex-col gap-2">
-              {SCOPE_CHAIN_LEVELS.map((scope, i) => (
-                <div
-                  key={i}
-                  onMouseEnter={() => setHighlightedScope(i)}
-                  onMouseLeave={() => setHighlightedScope(null)}
-                  className="rounded-lg border p-3 transition-all duration-300 cursor-pointer"
-                  style={{
-                    borderColor:
-                      highlightedScope === i
-                        ? `${scope.color}88`
-                        : `${scope.color}44`,
-                    background:
-                      highlightedScope === i
-                        ? `${scope.color}18`
-                        : `${scope.color}08`,
-                    marginLeft: `${i * 20}px`,
-                    transform:
-                      highlightedScope === i ? "scale(1.02)" : "scale(1)",
-                  }}
-                >
-                  <div
-                    className="font-[family-name:var(--font-mono)] text-[10px] font-semibold mb-1.5"
-                    style={{ color: scope.color }}
-                  >
-                    {scope.name}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {scope.variables.map((v, j) => (
-                      <span
-                        key={j}
-                        className="font-[family-name:var(--font-mono)] text-[10px] bg-bg-deep px-2 py-1 rounded"
-                      >
-                        <span style={{ color: scope.color }}>{v.name}</span>
-                        <span className="text-text-muted"> = </span>
-                        <span className="text-text-primary">{v.value}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {activeTab !== 3 && (
+          <ScopeChainVisualization
+            highlightedScope={highlightedScope}
+            onHighlight={setHighlightedScope}
+          />
         )}
       </DemoLayout>
     </>

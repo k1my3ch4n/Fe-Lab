@@ -11,8 +11,8 @@ import {
   LogPanel,
   SectionHeader,
   CodeBlock,
-  StepFlowBox,
 } from "@shared/ui";
+import { AttackFlowSection } from "./components/AttackFlowSection";
 
 export default function XssCsrfDemo() {
   const [activeTab, setActiveTab] = useState(0);
@@ -200,15 +200,7 @@ export default function XssCsrfDemo() {
           </div>
         )}
 
-        {/* Attack Flow Visualization */}
-        <div>
-          <SectionHeader>Attack Flow</SectionHeader>
-          <StepFlowBox
-            steps={scenario.steps}
-            activeStep={activeStep}
-            indentMultiplier={16}
-          />
-        </div>
+        <AttackFlowSection steps={scenario.steps} activeStep={activeStep} />
       </DemoLayout>
     </>
   );
