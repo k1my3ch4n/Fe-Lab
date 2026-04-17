@@ -8,11 +8,10 @@ import {
   DemoLayout,
   RightPanel,
   LogPanel,
-  SectionHeader,
-  ActionButton,
-  InfoCard,
   CodeBlock,
 } from "@shared/ui";
+import { UseRefActions } from "./components/UseRefActions";
+import { UseRefVisualization } from "./components/UseRefVisualization";
 
 export default function UseRefDemo() {
   const [activeExample, setActiveExample] = useState(0);
@@ -25,8 +24,6 @@ export default function UseRefDemo() {
   const [inputValue, setInputValue] = useState(0);
 
   const example = REF_EXAMPLES[activeExample];
-
-  // stateCount가 변경될 때마다 렌더링이 발생하므로 stateCount 자체가 렌더 카운트
   const renderCount = stateCount;
 
   const handleReset = () => {
@@ -56,84 +53,18 @@ export default function UseRefDemo() {
           <RightPanel
             onReset={handleReset}
             actions={
-              <>
-                {activeExample === 0 && (
-                  <>
-                    <ActionButton
-                      variant="cyan"
-                      onClick={() => {
-                        setStateCount((c) => c + 1);
-                        addLog(`setState → ${stateCount + 1} (리렌더링 O)`);
-                      }}
-                    >
-                      setState +1
-                    </ActionButton>
-                    <ActionButton
-                      variant="violet"
-                      onClick={() => {
-                        refCount.current += 1;
-                        addLog(
-                          `ref.current → ${refCount.current} (리렌더링 X)`,
-                        );
-                      }}
-                    >
-                      ref.current +1
-                    </ActionButton>
-                  </>
-                )}
-                {activeExample === 1 && (
-                  <>
-                    <ActionButton
-                      variant="green"
-                      onClick={() => {
-                        inputRef.current?.focus();
-                        addLog("inputRef.current.focus()");
-                      }}
-                    >
-                      focus()
-                    </ActionButton>
-                    <ActionButton
-                      variant="amber"
-                      onClick={() => {
-                        inputRef.current?.blur();
-                        addLog("inputRef.current.blur()");
-                      }}
-                    >
-                      blur()
-                    </ActionButton>
-                  </>
-                )}
-                {activeExample === 2 && (
-                  <>
-                    <ActionButton
-                      variant="cyan"
-                      onClick={() => {
-                        const next = inputValue + 1;
-                        addLog(
-                          `값 변경: ${inputValue} → ${next} (이전 값: ${prevDisplay ?? "없음"})`,
-                        );
-                        setPrevDisplay(inputValue);
-                        setInputValue(next);
-                      }}
-                    >
-                      값 +1
-                    </ActionButton>
-                    <ActionButton
-                      variant="amber"
-                      onClick={() => {
-                        const next = inputValue + 10;
-                        addLog(
-                          `값 변경: ${inputValue} → ${next} (이전 값: ${prevDisplay ?? "없음"})`,
-                        );
-                        setPrevDisplay(inputValue);
-                        setInputValue(next);
-                      }}
-                    >
-                      값 +10
-                    </ActionButton>
-                  </>
-                )}
-              </>
+              <UseRefActions
+                activeExample={activeExample}
+                stateCount={stateCount}
+                refCountRef={refCount}
+                inputRef={inputRef}
+                inputValue={inputValue}
+                prevDisplay={prevDisplay}
+                addLog={addLog}
+                setStateCount={setStateCount}
+                setPrevDisplay={setPrevDisplay}
+                setInputValue={setInputValue}
+              />
             }
           >
             <LogPanel
@@ -143,68 +74,21 @@ export default function UseRefDemo() {
           </RightPanel>
         }
       >
-        {/* Description */}
         <div className="text-sm text-text-secondary leading-[1.8]">
           {example.description}
         </div>
 
-        {/* Code */}
-        <CodeBlock>
-          {example.code}
-        </CodeBlock>
+        <CodeBlock>{example.code}</CodeBlock>
 
-        {/* Visualization */}
-        {activeExample === 0 && (
-          <div>
-            <SectionHeader>Value Comparison</SectionHeader>
-            <div className="flex gap-4">
-              <InfoCard label="useState" value={stateCount} color="#00e5ff" />
-              <InfoCard label="useRef" value={refDisplay} color="#b388ff" />
-            </div>
-            <div className="flex gap-4 mt-2">
-              <div className="flex-1 font-[family-name:var(--font-mono)] text-[9px] text-text-muted pl-3">
-                렌더링 횟수: {renderCount}
-              </div>
-              <div className="flex-1 font-[family-name:var(--font-mono)] text-[9px] text-text-muted pl-3">
-                리렌더링 없음
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeExample === 1 && (
-          <div>
-            <SectionHeader>DOM Reference</SectionHeader>
-            <div
-              className="rounded-lg border p-4"
-              style={{
-                borderColor: "var(--accent-green-dim)",
-                background: "var(--accent-green-dim)",
-              }}
-            >
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder="useRef로 포커스 대상"
-                className="w-full bg-bg-deep text-text-primary font-[family-name:var(--font-mono)] text-[12px] px-3 py-2 rounded border border-border-subtle outline-none focus:border-accent-cyan transition-colors"
-              />
-            </div>
-          </div>
-        )}
-
-        {activeExample === 2 && (
-          <div>
-            <SectionHeader>Previous Value Tracking</SectionHeader>
-            <div className="flex gap-4">
-              <InfoCard label="현재 값" value={inputValue} color="#00e5ff" />
-              <InfoCard
-                label="이전 값 (ref)"
-                value={prevDisplay ?? "—"}
-                color="#ffb800"
-              />
-            </div>
-          </div>
-        )}
+        <UseRefVisualization
+          activeExample={activeExample}
+          stateCount={stateCount}
+          renderCount={renderCount}
+          refDisplay={refDisplay}
+          inputRef={inputRef}
+          inputValue={inputValue}
+          prevDisplay={prevDisplay}
+        />
       </DemoLayout>
     </>
   );
