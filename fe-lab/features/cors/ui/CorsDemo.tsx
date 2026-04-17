@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef } from "react";
 import { CORS_SCENARIOS, TABS } from "../model/constants";
 import type { CorsStep } from "../model/types";
-import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
+import { TabBar, DemoLayout, RightPanel, ActionButton } from "@shared/ui";
 
 export default function CorsDemo() {
   const [activeScenario, setActiveScenario] = useState(0);
@@ -62,27 +62,28 @@ export default function CorsDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="제어" onReset={resetDemo} />
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              <ActionButton
-                variant="cyan"
-                onClick={playSteps}
-                disabled={isPlaying}
-              >
-                {isPlaying ? "재생 중..." : "▶ 전체 재생"}
-              </ActionButton>
-              <ActionButton
-                variant="amber"
-                onClick={stepForward}
-                disabled={isPlaying || currentStep >= scenario.steps.length - 1}
-              >
-                다음 단계 →
-              </ActionButton>
-            </div>
-
+          <RightPanel
+            label="제어"
+            onReset={resetDemo}
+            actions={
+              <>
+                <ActionButton
+                  variant="cyan"
+                  onClick={playSteps}
+                  disabled={isPlaying}
+                >
+                  {isPlaying ? "재생 중..." : "▶ 전체 재생"}
+                </ActionButton>
+                <ActionButton
+                  variant="amber"
+                  onClick={stepForward}
+                  disabled={isPlaying || currentStep >= scenario.steps.length - 1}
+                >
+                  다음 단계 →
+                </ActionButton>
+              </>
+            }
+          >
             {/* Current step detail */}
             <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
               {currentStep === -1 ? (
@@ -118,7 +119,7 @@ export default function CorsDemo() {
                 </div>
               )}
             </div>
-          </>
+          </RightPanel>
         }
       >
         {/* Browser / Server Boxes */}

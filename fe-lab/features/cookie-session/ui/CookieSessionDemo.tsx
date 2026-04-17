@@ -6,7 +6,7 @@ import { useLog } from "@shared/hooks";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   ActionButton,
   LogPanel,
   SectionHeader,
@@ -62,12 +62,10 @@ export default function CookieSessionDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="실행" onReset={handleReset} />
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              {activeTab === "auth" ? (
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              activeTab === "auth" ? (
                 <>
                   <ActionButton
                     variant="cyan"
@@ -116,15 +114,14 @@ export default function CookieSessionDemo() {
                     XSS 공격 시뮬레이션
                   </ActionButton>
                 </>
-              )}
-            </div>
-
-            {/* Log */}
+              )
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\n쿠키/세션 동작을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {activeTab === "auth" ? (

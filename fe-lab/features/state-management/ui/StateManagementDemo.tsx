@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLog, useTimers } from "@shared/hooks";
 import {
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -89,12 +89,10 @@ export default function StateManagementDemo() {
   };
 
   const rightPanel = (
-    <>
-      <PanelHeader label="실행" onReset={handleReset} />
-
-      {/* Action buttons */}
-      <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-        {activeTab === -1 ? (
+    <RightPanel
+      onReset={handleReset}
+      actions={
+        activeTab === -1 ? (
           <ActionButton variant="magenta" onClick={handleShowDrilling}>
             Prop Drilling 시뮬레이션
           </ActionButton>
@@ -129,15 +127,14 @@ export default function StateManagementDemo() {
               ))}
             </div>
           </>
-        )}
-      </div>
-
-      {/* Log */}
+        )
+      }
+    >
       <LogPanel
         logs={logs}
         emptyMessage={"버튼을 클릭하여\n상태 관리 흐름을 확인하세요"}
       />
-    </>
+    </RightPanel>
   );
 
   return (

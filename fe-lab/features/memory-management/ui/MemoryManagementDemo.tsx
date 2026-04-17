@@ -10,7 +10,7 @@ import {
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   ActionButton,
 } from "@shared/ui";
@@ -118,12 +118,10 @@ export default function MemoryManagementDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader onReset={handleReset} />
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle">
-              <div className="flex flex-col gap-2">
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
                 <ActionButton variant="magenta" onClick={simulateLeak}>
                   릭 시뮬레이션 (문제)
                 </ActionButton>
@@ -133,9 +131,9 @@ export default function MemoryManagementDemo() {
                 <ActionButton variant="cyan" onClick={simulateGC}>
                   GC 사이클 시각화
                 </ActionButton>
-              </div>
-            </div>
-
+              </>
+            }
+          >
             {/* Description */}
             <div className="p-4 border-b border-border-subtle">
               <div className="text-[11px] text-text-secondary leading-[1.8]">
@@ -147,7 +145,7 @@ export default function MemoryManagementDemo() {
               logs={logs}
               emptyMessage={"버튼을 클릭하여\n메모리 릭 패턴을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Code */}

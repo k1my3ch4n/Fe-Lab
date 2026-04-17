@@ -6,7 +6,7 @@ import { GENERIC_EXAMPLES, TABS, UTILITY_TYPE_MAP } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -51,114 +51,114 @@ export default function GenericsDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader onReset={handleReset} />
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle">
-              {activeExample === 0 && (
-                <div className="flex flex-col gap-2">
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                {activeExample === 0 && (
+                  <div className="flex flex-col gap-2">
+                    <ActionButton
+                      variant="cyan"
+                      onClick={() => handleTypeCall("string")}
+                    >
+                      identity&lt;string&gt;()
+                    </ActionButton>
+                    <ActionButton
+                      variant="amber"
+                      onClick={() => handleTypeCall("number")}
+                    >
+                      identity&lt;number&gt;()
+                    </ActionButton>
+                    <ActionButton
+                      variant="green"
+                      onClick={() => handleTypeCall("boolean")}
+                    >
+                      identity&lt;boolean&gt;()
+                    </ActionButton>
+                  </div>
+                )}
+                {activeExample === 1 && (
                   <ActionButton
-                    variant="cyan"
-                    onClick={() => handleTypeCall("string")}
+                    variant="violet"
+                    onClick={() => handleUtilityApply("Partial<User>")}
                   >
-                    identity&lt;string&gt;()
+                    Partial&lt;User&gt; 적용
                   </ActionButton>
-                  <ActionButton
-                    variant="amber"
-                    onClick={() => handleTypeCall("number")}
-                  >
-                    identity&lt;number&gt;()
-                  </ActionButton>
-                  <ActionButton
-                    variant="green"
-                    onClick={() => handleTypeCall("boolean")}
-                  >
-                    identity&lt;boolean&gt;()
-                  </ActionButton>
-                </div>
-              )}
-              {activeExample === 1 && (
-                <ActionButton
-                  variant="violet"
-                  onClick={() => handleUtilityApply("Partial<User>")}
-                >
-                  Partial&lt;User&gt; 적용
-                </ActionButton>
-              )}
-              {activeExample === 2 && (
-                <div className="flex flex-col gap-2">
-                  <ActionButton
-                    variant="green"
-                    onClick={() => {
-                      addLog('Pick<User, "name" | "email">');
-                      addLog("→ { name: string; email: string }");
-                    }}
-                  >
-                    Pick 적용
-                  </ActionButton>
-                  <ActionButton
-                    variant="magenta"
-                    onClick={() => {
-                      addLog('Omit<User, "password">');
-                      addLog("→ { name: string; age: number; email: string }");
-                    }}
-                  >
-                    Omit 적용
-                  </ActionButton>
-                </div>
-              )}
-              {activeExample === 3 && (
-                <ActionButton
-                  variant="amber"
-                  onClick={() => {
-                    addLog("Record<Status, string> 적용");
-                    addLog(
-                      "→ { loading: string; success: string; error: string }",
-                    );
-                  }}
-                >
-                  Record 적용
-                </ActionButton>
-              )}
-              {activeExample === 4 && (
-                <div className="flex flex-col gap-2">
-                  <ActionButton
-                    variant="cyan"
-                    onClick={() => {
-                      addLog('IsString<string> → "yes"');
-                      addLog('string extends string ? ✓ → "yes"');
-                    }}
-                  >
-                    IsString&lt;string&gt;
-                  </ActionButton>
-                  <ActionButton
-                    variant="magenta"
-                    onClick={() => {
-                      addLog('IsString<number> → "no"');
-                      addLog('number extends string ? ✗ → "no"');
-                    }}
-                  >
-                    IsString&lt;number&gt;
-                  </ActionButton>
+                )}
+                {activeExample === 2 && (
+                  <div className="flex flex-col gap-2">
+                    <ActionButton
+                      variant="green"
+                      onClick={() => {
+                        addLog('Pick<User, "name" | "email">');
+                        addLog("→ { name: string; email: string }");
+                      }}
+                    >
+                      Pick 적용
+                    </ActionButton>
+                    <ActionButton
+                      variant="magenta"
+                      onClick={() => {
+                        addLog('Omit<User, "password">');
+                        addLog("→ { name: string; age: number; email: string }");
+                      }}
+                    >
+                      Omit 적용
+                    </ActionButton>
+                  </div>
+                )}
+                {activeExample === 3 && (
                   <ActionButton
                     variant="amber"
                     onClick={() => {
-                      addLog("ReturnType<() => number>");
-                      addLog("infer R → number");
+                      addLog("Record<Status, string> 적용");
+                      addLog(
+                        "→ { loading: string; success: string; error: string }",
+                      );
                     }}
                   >
-                    ReturnType 추론
+                    Record 적용
                   </ActionButton>
-                </div>
-              )}
-            </div>
-
+                )}
+                {activeExample === 4 && (
+                  <div className="flex flex-col gap-2">
+                    <ActionButton
+                      variant="cyan"
+                      onClick={() => {
+                        addLog('IsString<string> → "yes"');
+                        addLog('string extends string ? ✓ → "yes"');
+                      }}
+                    >
+                      IsString&lt;string&gt;
+                    </ActionButton>
+                    <ActionButton
+                      variant="magenta"
+                      onClick={() => {
+                        addLog('IsString<number> → "no"');
+                        addLog('number extends string ? ✗ → "no"');
+                      }}
+                    >
+                      IsString&lt;number&gt;
+                    </ActionButton>
+                    <ActionButton
+                      variant="amber"
+                      onClick={() => {
+                        addLog("ReturnType<() => number>");
+                        addLog("infer R → number");
+                      }}
+                    >
+                      ReturnType 추론
+                    </ActionButton>
+                  </div>
+                )}
+              </>
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\n제네릭 타입 동작을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Code */}

@@ -1,4 +1,4 @@
-import { PanelHeader } from "@shared/ui";
+import { RightPanel } from "@shared/ui";
 import { LOG_TYPE_STYLES } from "../../model/constants";
 import type { LogEntry } from "../../model/types";
 
@@ -15,7 +15,7 @@ export default function EventLogPanel({
 }: EventLogPanelProps) {
   return (
     <div className="border-l border-border-subtle flex flex-col">
-      <PanelHeader label="Event Log" onReset={onClear} />
+      <RightPanel label="Event Log" onReset={onClear}>
       <div
         ref={logRef}
         role="log"
@@ -39,6 +39,7 @@ export default function EventLogPanel({
           ))
         )}
       </div>
+      </RightPanel>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -57,24 +57,22 @@ export default function ModuleBundlingDemo() {
   };
 
   const rightPanel = (
-    <>
-      <PanelHeader label="실행" onReset={handleReset} />
-
-      <div className="p-4 border-b border-border-subtle">
+    <RightPanel
+      onReset={handleReset}
+      actions={
         <ActionButton
           variant={showOptimized ? "magenta" : "green"}
           onClick={handleToggleOptimize}
         >
           {showOptimized ? "최적화 해제" : "최적화 적용"}
         </ActionButton>
-      </div>
-
-      {/* Log */}
+      }
+    >
       <LogPanel
         logs={logs}
         emptyMessage={"최적화를 적용하여\n번들 변화를 확인하세요"}
       />
-    </>
+    </RightPanel>
   );
 
   return (

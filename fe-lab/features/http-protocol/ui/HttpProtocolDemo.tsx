@@ -5,7 +5,7 @@ import { PROTOCOL_FLOWS, TLS_HANDSHAKE_STEPS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   ActionButton,
   LogPanel,
   SectionHeader,
@@ -91,12 +91,10 @@ export default function HttpProtocolDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="실행" onReset={handleReset} />
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              {activeTab === "compare" ? (
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              activeTab === "compare" ? (
                 <>
                   <ActionButton
                     variant="cyan"
@@ -157,15 +155,14 @@ export default function HttpProtocolDemo() {
                     HTTP vs HTTPS 비교
                   </ActionButton>
                 </>
-              )}
-            </div>
-
-            {/* Log */}
+              )
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\nHTTP 프로토콜 동작을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {activeTab === "compare" ? (

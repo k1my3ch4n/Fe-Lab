@@ -4,7 +4,7 @@ import { useState, useRef, useCallback } from "react";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
@@ -117,10 +117,9 @@ export default function WebWorkerDemo() {
   };
 
   const rightPanel = (
-    <>
-      <PanelHeader label="실행" onReset={handleReset} />
-
-      <div className="p-4 border-b border-border-subtle">
+    <RightPanel
+      onReset={handleReset}
+      actions={
         <ActionButton
           variant={activeTab === "main" ? "magenta" : "green"}
           onClick={activeTab === "main" ? runOnMainThread : runOnWorker}
@@ -130,8 +129,8 @@ export default function WebWorkerDemo() {
             ? "계산 중..."
             : `fibonacci(38) ${activeTab === "main" ? "— 메인 스레드" : "— 워커"}`}
         </ActionButton>
-      </div>
-
+      }
+    >
       {/* Result */}
       <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
         {result === null ? (
@@ -159,7 +158,7 @@ export default function WebWorkerDemo() {
           </div>
         )}
       </div>
-    </>
+    </RightPanel>
   );
 
   return (

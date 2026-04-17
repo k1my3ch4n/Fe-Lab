@@ -5,7 +5,7 @@ import { MEMO_EXAMPLES, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -91,20 +91,19 @@ export default function ReactMemoDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader onReset={handleReset} />
-
-            <div className="p-4 border-b border-border-subtle">
+          <RightPanel
+            onReset={handleReset}
+            actions={
               <ActionButton variant="cyan" onClick={handleParentRender}>
                 Parent 리렌더링 트리거
               </ActionButton>
-            </div>
-
+            }
+          >
             <LogPanel
               logs={logEntries}
               emptyMessage={"버튼을 클릭하여\n리렌더링 동작을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Description */}

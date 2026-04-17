@@ -6,7 +6,7 @@ import { AUTH_METHODS, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   ActionButton,
   LogPanel,
   SectionHeader,
@@ -101,53 +101,53 @@ export default function AuthStrategyDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="실행" onReset={handleReset} />
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                <ActionButton variant="cyan" onClick={handleSimulate}>
+                  인증 흐름 시뮬레이션
+                </ActionButton>
+                <ActionButton variant="amber" onClick={handleCompare}>
+                  3가지 방식 비교
+                </ActionButton>
+                <ActionButton variant="green" onClick={handleRefreshFlow}>
+                  리프레시 토큰 흐름
+                </ActionButton>
 
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              <ActionButton variant="cyan" onClick={handleSimulate}>
-                인증 흐름 시뮬레이션
-              </ActionButton>
-              <ActionButton variant="amber" onClick={handleCompare}>
-                3가지 방식 비교
-              </ActionButton>
-              <ActionButton variant="green" onClick={handleRefreshFlow}>
-                리프레시 토큰 흐름
-              </ActionButton>
-
-              {/* Pros / Cons */}
-              <div className="mt-2">
-                <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-green mb-1">
-                  장점
-                </div>
-                {method.pros.map((p, i) => (
-                  <div
-                    key={i}
-                    className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted leading-[1.8]"
-                  >
-                    + {p}
+                {/* Pros / Cons */}
+                <div className="mt-2">
+                  <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-green mb-1">
+                    장점
                   </div>
-                ))}
-                <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-magenta mt-2 mb-1">
-                  단점
-                </div>
-                {method.cons.map((c, i) => (
-                  <div
-                    key={i}
-                    className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted leading-[1.8]"
-                  >
-                    - {c}
+                  {method.pros.map((p, i) => (
+                    <div
+                      key={i}
+                      className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted leading-[1.8]"
+                    >
+                      + {p}
+                    </div>
+                  ))}
+                  <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-magenta mt-2 mb-1">
+                    단점
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Log */}
+                  {method.cons.map((c, i) => (
+                    <div
+                      key={i}
+                      className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted leading-[1.8]"
+                    >
+                      - {c}
+                    </div>
+                  ))}
+                </div>
+              </>
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\n인증 흐름을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Code */}

@@ -5,7 +5,7 @@ import { useLog, useTimers } from "@shared/hooks";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -90,26 +90,26 @@ export default function SuspenseErrorBoundaryDemo() {
   };
 
   const rightPanel = (
-    <>
-      <PanelHeader label="실행" onReset={handleReset} />
-
-      <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-        <ActionButton variant="cyan" onClick={handleSimulate}>
-          정상 흐름 시뮬레이션
-        </ActionButton>
-        <ActionButton variant="magenta" onClick={handleErrorScenario}>
-          에러 시나리오
-        </ActionButton>
-      </div>
-
-      {/* Log */}
+    <RightPanel
+      onReset={handleReset}
+      actions={
+        <>
+          <ActionButton variant="cyan" onClick={handleSimulate}>
+            정상 흐름 시뮬레이션
+          </ActionButton>
+          <ActionButton variant="magenta" onClick={handleErrorScenario}>
+            에러 시나리오
+          </ActionButton>
+        </>
+      }
+    >
       <LogPanel
         logs={logs}
         emptyMessage={
           "버튼을 클릭하여\nSuspense / Error Boundary\n동작을 확인하세요"
         }
       />
-    </>
+    </RightPanel>
   );
 
   return (

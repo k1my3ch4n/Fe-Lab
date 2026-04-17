@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
+import { TabBar, DemoLayout, RightPanel, ActionButton } from "@shared/ui";
 import { PHASES } from "../model/constants";
 import { usePhaseAnimation } from "./hooks/usePhaseAnimation";
 import ComparisonView from "./components/ComparisonView";
@@ -46,34 +46,35 @@ export default function HooksLifecycleDemo() {
       {activeTab === "timeline" ? (
         <DemoLayout
           rightPanel={
-            <>
-              <PanelHeader label="실행" onReset={reset} />
-
-              {/* Action buttons */}
-              <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-                <ActionButton
-                  variant="green"
-                  onClick={() => animatePhase("mount")}
-                  disabled={isAnimating}
-                >
-                  Mount 실행
-                </ActionButton>
-                <ActionButton
-                  variant="amber"
-                  onClick={() => animatePhase("update")}
-                  disabled={isAnimating}
-                >
-                  State Update 실행
-                </ActionButton>
-                <ActionButton
-                  variant="magenta"
-                  onClick={() => animatePhase("unmount")}
-                  disabled={isAnimating}
-                >
-                  Unmount 실행
-                </ActionButton>
-              </div>
-
+            <RightPanel
+              label="실행"
+              onReset={reset}
+              actions={
+                <>
+                  <ActionButton
+                    variant="green"
+                    onClick={() => animatePhase("mount")}
+                    disabled={isAnimating}
+                  >
+                    Mount 실행
+                  </ActionButton>
+                  <ActionButton
+                    variant="amber"
+                    onClick={() => animatePhase("update")}
+                    disabled={isAnimating}
+                  >
+                    State Update 실행
+                  </ActionButton>
+                  <ActionButton
+                    variant="magenta"
+                    onClick={() => animatePhase("unmount")}
+                    disabled={isAnimating}
+                  >
+                    Unmount 실행
+                  </ActionButton>
+                </>
+              }
+            >
               {/* Log */}
               <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
                 {logs.length === 0 ? (
@@ -96,7 +97,7 @@ export default function HooksLifecycleDemo() {
                   ))
                 )}
               </div>
-            </>
+            </RightPanel>
           }
         >
           {/* Phase selector */}

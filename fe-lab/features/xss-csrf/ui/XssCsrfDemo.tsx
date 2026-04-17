@@ -6,7 +6,7 @@ import { SECURITY_SCENARIOS, XSS_EXAMPLES, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   ActionButton,
   LogPanel,
   SectionHeader,
@@ -141,29 +141,29 @@ export default function XssCsrfDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="실행" onReset={handleReset} />
-
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              <ActionButton variant="magenta" onClick={handleAttackSimulate}>
-                공격 시뮬레이션
-              </ActionButton>
-              {activeTab === 0 && (
-                <ActionButton variant="amber" onClick={handleXssDemo}>
-                  XSS 이스케이프 비교
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                <ActionButton variant="magenta" onClick={handleAttackSimulate}>
+                  공격 시뮬레이션
                 </ActionButton>
-              )}
-              <ActionButton variant="green" onClick={handleDefense}>
-                방어 전략
-              </ActionButton>
-            </div>
-
-            {/* Log */}
+                {activeTab === 0 && (
+                  <ActionButton variant="amber" onClick={handleXssDemo}>
+                    XSS 이스케이프 비교
+                  </ActionButton>
+                )}
+                <ActionButton variant="green" onClick={handleDefense}>
+                  방어 전략
+                </ActionButton>
+              </>
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\n보안 공격과 방어를\n확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Code */}

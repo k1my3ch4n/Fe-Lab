@@ -4,7 +4,7 @@ import { useState } from "react";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   SectionHeader,
   ActionButton,
 } from "@shared/ui";
@@ -88,23 +88,24 @@ export default function ReconciliationDemo() {
   const visibleOps: DomOperation[] = operations.slice(0, currentStep + 1);
 
   const rightPanel = (
-    <>
-      <PanelHeader label="제어" onReset={reset} />
-
-      {/* Controls */}
-      <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-        <ActionButton variant="cyan" onClick={handlePlay} disabled={isPlaying}>
-          {isPlaying ? "재생 중..." : "자동 재생"}
-        </ActionButton>
-        <ActionButton
-          variant="green"
-          onClick={handleStep}
-          disabled={isPlaying || currentStep >= operations.length - 1}
-        >
-          다음 단계 ({currentStep + 1}/{operations.length})
-        </ActionButton>
-      </div>
-
+    <RightPanel
+      label="제어"
+      onReset={reset}
+      actions={
+        <>
+          <ActionButton variant="cyan" onClick={handlePlay} disabled={isPlaying}>
+            {isPlaying ? "재생 중..." : "자동 재생"}
+          </ActionButton>
+          <ActionButton
+            variant="green"
+            onClick={handleStep}
+            disabled={isPlaying || currentStep >= operations.length - 1}
+          >
+            다음 단계 ({currentStep + 1}/{operations.length})
+          </ActionButton>
+        </>
+      }
+    >
       {/* Step info */}
       <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
         {visibleOps.length === 0 ? (
@@ -130,7 +131,7 @@ export default function ReconciliationDemo() {
           ))
         )}
       </div>
-    </>
+    </RightPanel>
   );
 
   return (

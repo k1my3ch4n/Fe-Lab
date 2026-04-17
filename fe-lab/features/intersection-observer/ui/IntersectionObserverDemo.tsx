@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { TAB_ITEMS } from "../model/constants";
 import type { TabId } from "../model/types";
-import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
 import { useObserveTab } from "./tabs/ObserveTab";
 import { useLazyLoadTab } from "./tabs/LazyLoadTab";
@@ -45,14 +45,12 @@ export default function IntersectionObserverDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="로그" onReset={handleReset} />
-
+          <RightPanel label="로그" onReset={handleReset}>
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\nObserver 동작을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {activeTab === "observe" && (

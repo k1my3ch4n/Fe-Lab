@@ -10,7 +10,7 @@ import {
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   ActionButton,
   LogPanel,
   SectionHeader,
@@ -46,72 +46,72 @@ export default function GraphqlRestDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="실행" onReset={handleReset} />
-
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              <ActionButton
-                variant="cyan"
-                onClick={() => {
-                  clearLogs();
-                  addLog("REST: GET /api/users/1");
-                  addLog("→ 응답: 8개 필드 (200B)");
-                  addLog("→ 사용: 2개 필드 (50B)");
-                  addLog("→ 낭비: 75% Over-fetching ⚠️");
-                  addLog("");
-                  addLog("GraphQL: POST /graphql");
-                  addLog("→ 응답: 2개 필드 (50B)");
-                  addLog("→ 사용: 2개 필드 (50B)");
-                  addLog("→ 낭비: 0% ✓");
-                }}
-              >
-                Over-fetching 비교 실행
-              </ActionButton>
-              <ActionButton
-                variant="amber"
-                onClick={() => {
-                  clearLogs();
-                  addLog("REST 요청 흐름:");
-                  addLog("  1. GET /users/1 → 50ms");
-                  addLog("  2. GET /users/1/posts → 80ms");
-                  addLog("  3. GET /users/1/followers → 60ms");
-                  addLog("  총: 190ms (순차) / 140ms (병렬)");
-                  addLog("");
-                  addLog("GraphQL 요청:");
-                  addLog("  1. POST /graphql → 100ms");
-                  addLog("  총: 100ms ✓");
-                }}
-              >
-                Under-fetching 비교 실행
-              </ActionButton>
-              <ActionButton
-                variant="magenta"
-                onClick={() => {
-                  clearLogs();
-                  addLog("N+1 문제 (GraphQL):");
-                  addLog("  query { users { posts { title } } }");
-                  addLog("");
-                  addLog("  1. users 쿼리 → 1번 DB 조회");
-                  addLog("  2. user[0].posts → 1번 DB 조회");
-                  addLog("  3. user[1].posts → 1번 DB 조회");
-                  addLog("  ...");
-                  addLog("  N+1번 DB 조회 발생! ⚠️");
-                  addLog("");
-                  addLog("  해결: DataLoader로 배치 처리");
-                  addLog("  → SELECT * FROM posts");
-                  addLog("    WHERE userId IN (1, 2, ...) ✓");
-                }}
-              >
-                N+1 문제 시뮬레이션
-              </ActionButton>
-            </div>
-
-            {/* Log */}
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                <ActionButton
+                  variant="cyan"
+                  onClick={() => {
+                    clearLogs();
+                    addLog("REST: GET /api/users/1");
+                    addLog("→ 응답: 8개 필드 (200B)");
+                    addLog("→ 사용: 2개 필드 (50B)");
+                    addLog("→ 낭비: 75% Over-fetching ⚠️");
+                    addLog("");
+                    addLog("GraphQL: POST /graphql");
+                    addLog("→ 응답: 2개 필드 (50B)");
+                    addLog("→ 사용: 2개 필드 (50B)");
+                    addLog("→ 낭비: 0% ✓");
+                  }}
+                >
+                  Over-fetching 비교 실행
+                </ActionButton>
+                <ActionButton
+                  variant="amber"
+                  onClick={() => {
+                    clearLogs();
+                    addLog("REST 요청 흐름:");
+                    addLog("  1. GET /users/1 → 50ms");
+                    addLog("  2. GET /users/1/posts → 80ms");
+                    addLog("  3. GET /users/1/followers → 60ms");
+                    addLog("  총: 190ms (순차) / 140ms (병렬)");
+                    addLog("");
+                    addLog("GraphQL 요청:");
+                    addLog("  1. POST /graphql → 100ms");
+                    addLog("  총: 100ms ✓");
+                  }}
+                >
+                  Under-fetching 비교 실행
+                </ActionButton>
+                <ActionButton
+                  variant="magenta"
+                  onClick={() => {
+                    clearLogs();
+                    addLog("N+1 문제 (GraphQL):");
+                    addLog("  query { users { posts { title } } }");
+                    addLog("");
+                    addLog("  1. users 쿼리 → 1번 DB 조회");
+                    addLog("  2. user[0].posts → 1번 DB 조회");
+                    addLog("  3. user[1].posts → 1번 DB 조회");
+                    addLog("  ...");
+                    addLog("  N+1번 DB 조회 발생! ⚠️");
+                    addLog("");
+                    addLog("  해결: DataLoader로 배치 처리");
+                    addLog("  → SELECT * FROM posts");
+                    addLog("    WHERE userId IN (1, 2, ...) ✓");
+                  }}
+                >
+                  N+1 문제 시뮬레이션
+                </ActionButton>
+              </>
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\nREST/GraphQL 비교를 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {activeTab === "overfetch" ? (

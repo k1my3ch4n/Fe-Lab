@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { DemoLayout, RightPanel, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
 import {
   INITIAL_TREE,
@@ -55,49 +55,49 @@ export default function VirtualDomDemo() {
   };
 
   const rightPanel = (
-    <>
-      <PanelHeader label="실행" onReset={handleReset} />
-
-      {/* Action buttons */}
-      <div className="p-4 border-b border-border-subtle">
-        <button
-          onClick={handleStep}
-          disabled={step >= 3}
-          className={`w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border transition-all duration-200 cursor-pointer ${
-            step >= 3
-              ? "border-border-subtle text-text-muted bg-bg-deep cursor-not-allowed"
-              : step === 0
-                ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim hover:bg-[#00e5ff33]"
-                : step === 1
-                  ? "border-accent-amber text-accent-amber bg-accent-amber-dim hover:bg-[#ffb80033]"
-                  : "border-accent-green text-accent-green bg-accent-green-dim hover:bg-[#00e67633]"
-          }`}
-        >
-          {step === 0
-            ? "상태 변경"
-            : step === 1
-              ? "Diffing 시작"
-              : step === 2
-                ? "DOM 업데이트 적용"
-                : "✓ 완료"}
-        </button>
-        {step < 3 && (
-          <p className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mt-2 text-center">
+    <RightPanel
+      label="실행"
+      onReset={handleReset}
+      actions={
+        <>
+          <button
+            onClick={handleStep}
+            disabled={step >= 3}
+            className={`w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+              step >= 3
+                ? "border-border-subtle text-text-muted bg-bg-deep cursor-not-allowed"
+                : step === 0
+                  ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim hover:bg-[#00e5ff33]"
+                  : step === 1
+                    ? "border-accent-amber text-accent-amber bg-accent-amber-dim hover:bg-[#ffb80033]"
+                    : "border-accent-green text-accent-green bg-accent-green-dim hover:bg-[#00e67633]"
+            }`}
+          >
             {step === 0
-              ? "클릭하여 상태를 변경하세요"
+              ? "상태 변경"
               : step === 1
-                ? "이전 트리와 새 트리를 비교합니다"
-                : "변경된 부분만 Real DOM에 반영합니다"}
-          </p>
-        )}
-      </div>
-
-      {/* Log */}
+                ? "Diffing 시작"
+                : step === 2
+                  ? "DOM 업데이트 적용"
+                  : "✓ 완료"}
+          </button>
+          {step < 3 && (
+            <p className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted text-center">
+              {step === 0
+                ? "클릭하여 상태를 변경하세요"
+                : step === 1
+                  ? "이전 트리와 새 트리를 비교합니다"
+                  : "변경된 부분만 Real DOM에 반영합니다"}
+            </p>
+          )}
+        </>
+      }
+    >
       <LogPanel
         logs={logs}
         emptyMessage={"버튼을 클릭하여\nVirtual DOM 동작을 확인하세요"}
       />
-    </>
+    </RightPanel>
   );
 
   return (

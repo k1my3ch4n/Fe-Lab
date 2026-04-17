@@ -5,7 +5,7 @@ import { DEMO_EXAMPLES, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -75,28 +75,28 @@ export default function CurryingCompositionDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader onReset={handleReset} />
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              <ActionButton
-                variant="cyan"
-                onClick={handleNextStep}
-                disabled={currentStep >= example.steps.length - 1}
-              >
-                다음 단계 →
-              </ActionButton>
-              <ActionButton variant="green" onClick={handleRunAll}>
-                전체 실행 ▶
-              </ActionButton>
-            </div>
-
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                <ActionButton
+                  variant="cyan"
+                  onClick={handleNextStep}
+                  disabled={currentStep >= example.steps.length - 1}
+                >
+                  다음 단계 →
+                </ActionButton>
+                <ActionButton variant="green" onClick={handleRunAll}>
+                  전체 실행 ▶
+                </ActionButton>
+              </>
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\n단계별 실행을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Code */}

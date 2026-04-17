@@ -6,7 +6,7 @@ import { useLog } from "@shared/hooks";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -46,79 +46,79 @@ export default function ClosureDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader onReset={handleReset} />
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle">
-              {activeExample === 0 && (
-                <ActionButton variant="cyan" onClick={handleCounterClick}>
-                  counter() 호출
-                </ActionButton>
-              )}
-              {activeExample === 1 && (
-                <div className="flex flex-col gap-2">
-                  <ActionButton
-                    variant="green"
-                    onClick={() => addLog("wallet.deposit(500) → 1500")}
-                  >
-                    wallet.deposit(500)
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                {activeExample === 0 && (
+                  <ActionButton variant="cyan" onClick={handleCounterClick}>
+                    counter() 호출
                   </ActionButton>
-                  <ActionButton
-                    variant="amber"
-                    onClick={() => addLog("wallet.getBalance() → 1500")}
-                  >
-                    wallet.getBalance()
-                  </ActionButton>
-                  <ActionButton
-                    variant="magenta"
-                    onClick={() => addLog("wallet.balance → undefined ❌")}
-                  >
-                    wallet.balance (직접 접근)
-                  </ActionButton>
-                </div>
-              )}
-              {activeExample === 2 && (
-                <div className="flex flex-col gap-2">
-                  <ActionButton
-                    variant="magenta"
-                    onClick={() => {
-                      clearLogs();
-                      addLog("// var 사용 (문제)");
-                      addLog("→ 3, 3, 3");
-                    }}
-                  >
-                    var로 실행 (버그)
-                  </ActionButton>
-                  <ActionButton
-                    variant="green"
-                    onClick={() => {
-                      clearLogs();
-                      addLog("// IIFE 클로저 사용");
-                      addLog("→ 0, 1, 2 ✓");
-                    }}
-                  >
-                    IIFE로 실행 (해결)
-                  </ActionButton>
-                  <ActionButton
-                    variant="cyan"
-                    onClick={() => {
-                      clearLogs();
-                      addLog("// let 블록 스코프 사용");
-                      addLog("→ 0, 1, 2 ✓");
-                    }}
-                  >
-                    let으로 실행 (해결)
-                  </ActionButton>
-                </div>
-              )}
-            </div>
-
+                )}
+                {activeExample === 1 && (
+                  <>
+                    <ActionButton
+                      variant="green"
+                      onClick={() => addLog("wallet.deposit(500) → 1500")}
+                    >
+                      wallet.deposit(500)
+                    </ActionButton>
+                    <ActionButton
+                      variant="amber"
+                      onClick={() => addLog("wallet.getBalance() → 1500")}
+                    >
+                      wallet.getBalance()
+                    </ActionButton>
+                    <ActionButton
+                      variant="magenta"
+                      onClick={() => addLog("wallet.balance → undefined ❌")}
+                    >
+                      wallet.balance (직접 접근)
+                    </ActionButton>
+                  </>
+                )}
+                {activeExample === 2 && (
+                  <>
+                    <ActionButton
+                      variant="magenta"
+                      onClick={() => {
+                        clearLogs();
+                        addLog("// var 사용 (문제)");
+                        addLog("→ 3, 3, 3");
+                      }}
+                    >
+                      var로 실행 (버그)
+                    </ActionButton>
+                    <ActionButton
+                      variant="green"
+                      onClick={() => {
+                        clearLogs();
+                        addLog("// IIFE 클로저 사용");
+                        addLog("→ 0, 1, 2 ✓");
+                      }}
+                    >
+                      IIFE로 실행 (해결)
+                    </ActionButton>
+                    <ActionButton
+                      variant="cyan"
+                      onClick={() => {
+                        clearLogs();
+                        addLog("// let 블록 스코프 사용");
+                        addLog("→ 0, 1, 2 ✓");
+                      }}
+                    >
+                      let으로 실행 (해결)
+                    </ActionButton>
+                  </>
+                )}
+              </>
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\n클로저 동작을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Code */}

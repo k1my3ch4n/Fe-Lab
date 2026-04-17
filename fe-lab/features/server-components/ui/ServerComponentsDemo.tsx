@@ -5,7 +5,7 @@ import { useLog, useTimers } from "@shared/hooks";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -73,24 +73,24 @@ export default function ServerComponentsDemo() {
   };
 
   const rightPanel = (
-    <>
-      <PanelHeader label="실행" onReset={handleReset} />
-
-      <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-        <ActionButton variant="cyan" onClick={handleSimulate}>
-          렌더 흐름 시뮬레이션
-        </ActionButton>
-        <ActionButton variant="amber" onClick={handleCompare}>
-          Server vs Client 비교
-        </ActionButton>
-      </div>
-
-      {/* Log */}
+    <RightPanel
+      onReset={handleReset}
+      actions={
+        <>
+          <ActionButton variant="cyan" onClick={handleSimulate}>
+            렌더 흐름 시뮬레이션
+          </ActionButton>
+          <ActionButton variant="amber" onClick={handleCompare}>
+            Server vs Client 비교
+          </ActionButton>
+        </>
+      }
+    >
       <LogPanel
         logs={logs}
         emptyMessage={"버튼을 클릭하여\nRSC 렌더링 흐름을\n확인하세요"}
       />
-    </>
+    </RightPanel>
   );
 
   return (

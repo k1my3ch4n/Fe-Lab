@@ -6,7 +6,7 @@ import { COPY_METHODS, ORIGINAL_OBJECT, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -65,12 +65,10 @@ export default function DeepShallowCopyDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader onReset={handleReset} />
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle">
-              <div className="flex flex-col gap-2">
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
                 <ActionButton
                   variant="cyan"
                   onClick={simulatePrimitiveMutation}
@@ -83,9 +81,9 @@ export default function DeepShallowCopyDemo() {
                 >
                   중첩 객체 변경 (address)
                 </ActionButton>
-              </div>
-            </div>
-
+              </>
+            }
+          >
             {/* Description */}
             <div className="p-4 border-b border-border-subtle">
               <div className="text-[11px] text-text-secondary leading-[1.8]">
@@ -97,7 +95,7 @@ export default function DeepShallowCopyDemo() {
               logs={logs}
               emptyMessage={"버튼을 클릭하여\n복사 동작을 비교하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Code */}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { BREAKPOINTS, VIEWPORT_PRESETS, TABS } from "../model/constants";
-import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
 
 export default function ResponsiveDesignDemo() {
   const [activeMode, setActiveMode] = useState(0);
@@ -51,30 +51,31 @@ export default function ResponsiveDesignDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="프리셋" onReset={handleReset} />
-
-            {/* Preset buttons */}
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              {VIEWPORT_PRESETS.map((preset) => (
-                <button
-                  key={preset.label}
-                  onClick={() => handlePresetClick(preset.width, preset.label)}
-                  className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33] flex items-center justify-between"
-                >
-                  <span>{preset.label}</span>
-                  <span className="text-text-muted text-[10px]">
-                    {preset.width}px
-                  </span>
-                </button>
-              ))}
-            </div>
-
+          <RightPanel
+            label="프리셋"
+            onReset={handleReset}
+            actions={
+              <>
+                {VIEWPORT_PRESETS.map((preset) => (
+                  <button
+                    key={preset.label}
+                    onClick={() => handlePresetClick(preset.width, preset.label)}
+                    className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33] flex items-center justify-between"
+                  >
+                    <span>{preset.label}</span>
+                    <span className="text-text-muted text-[10px]">
+                      {preset.width}px
+                    </span>
+                  </button>
+                ))}
+              </>
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"프리셋을 선택하거나\n슬라이더를 조절하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Viewport width indicator */}

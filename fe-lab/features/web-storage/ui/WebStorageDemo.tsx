@@ -6,7 +6,7 @@ import type { StorageTabId, StorageEntry } from "../model/types";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
 } from "@shared/ui";
@@ -113,14 +113,12 @@ export default function WebStorageDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="로그" onReset={handleReset} />
-
+          <RightPanel label="로그" onReset={handleReset}>
             <LogPanel
               logs={logs}
               emptyMessage={"key/value를 입력하고\n버튼을 클릭하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Input area */}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
 import { TABS } from "../model/constants";
 import { useFlowTab } from "./tabs/FlowTab";
@@ -48,18 +48,12 @@ export default function CdnDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="실행" onReset={handleReset} />
-
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              {current.actions}
-            </div>
-
+          <RightPanel onReset={handleReset} actions={current.actions}>
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\nCDN 동작을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {current.content}

@@ -8,7 +8,7 @@ import {
   ACTOR_CONFIG,
 } from "../model/constants";
 import type { CacheStatus } from "../model/types";
-import { TabBar, DemoLayout, PanelHeader, ActionButton } from "@shared/ui";
+import { TabBar, DemoLayout, RightPanel, ActionButton } from "@shared/ui";
 
 export default function HttpCacheDemo() {
   const [activeScenario, setActiveScenario] = useState(0);
@@ -109,27 +109,27 @@ export default function HttpCacheDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="실행" onReset={handleReset} />
-
-            {/* Action Buttons */}
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              <ActionButton
-                variant="cyan"
-                onClick={handlePlayAll}
-                disabled={isPlaying}
-              >
-                {isPlaying ? "재생 중..." : "전체 재생"}
-              </ActionButton>
-              <ActionButton
-                variant="green"
-                onClick={handleNextStep}
-                disabled={isPlaying || currentStep >= scenario.steps.length - 1}
-              >
-                다음 단계 →
-              </ActionButton>
-            </div>
-
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                <ActionButton
+                  variant="cyan"
+                  onClick={handlePlayAll}
+                  disabled={isPlaying}
+                >
+                  {isPlaying ? "재생 중..." : "전체 재생"}
+                </ActionButton>
+                <ActionButton
+                  variant="green"
+                  onClick={handleNextStep}
+                  disabled={isPlaying || currentStep >= scenario.steps.length - 1}
+                >
+                  다음 단계 →
+                </ActionButton>
+              </>
+            }
+          >
             {/* Status Legend */}
             <div className="px-4 py-3 border-b border-border-subtle flex items-center gap-3">
               {(
@@ -174,7 +174,7 @@ export default function HttpCacheDemo() {
                 ))
               )}
             </div>
-          </>
+          </RightPanel>
         }
       >
         {/* Scenario Description */}

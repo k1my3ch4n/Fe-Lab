@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { PROTOCOLS } from "../model/constants";
-import { TabBar, DemoLayout, PanelHeader, SectionHeader } from "@shared/ui";
+import { TabBar, DemoLayout, RightPanel, SectionHeader } from "@shared/ui";
 import { useSimulation } from "./hooks/useSimulation";
 import { ComparisonTable } from "./components/ComparisonTable";
 import { SimulationView } from "./components/SimulationView";
@@ -42,11 +42,10 @@ export default function WebSocketSseDemo() {
         <DemoLayout
           rightWidth="300px"
           rightPanel={
-            <>
-              <PanelHeader label="시뮬레이션" onReset={reset} />
-
-              {/* Controls */}
-              <div className="p-4 border-b border-border-subtle">
+            <RightPanel
+              label="시뮬레이션"
+              onReset={reset}
+              actions={
                 <button
                   onClick={isRunning ? stopSimulation : startSimulation}
                   className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border cursor-pointer transition-all duration-200"
@@ -58,8 +57,8 @@ export default function WebSocketSseDemo() {
                 >
                   {isRunning ? "중지" : "시뮬레이션 시작"}
                 </button>
-              </div>
-
+              }
+            >
               {/* Use Cases */}
               <div className="p-4 border-b border-border-subtle">
                 <SectionHeader>Use Cases</SectionHeader>
@@ -105,7 +104,7 @@ export default function WebSocketSseDemo() {
                   ))}
                 </div>
               </div>
-            </>
+            </RightPanel>
           }
         >
           <SimulationView

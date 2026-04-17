@@ -6,7 +6,7 @@ import { DELAY_OPTIONS, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
 } from "@shared/ui";
@@ -91,39 +91,40 @@ export default function DebounceThrottleDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="설정" onReset={handleReset} />
-
-            {/* Delay selector */}
-            <div className="p-4 border-b border-border-subtle">
-              <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-2">
-                Delay
-              </div>
-              <div className="flex flex-col gap-2">
-                {DELAY_OPTIONS.map((opt) => (
-                  <button
-                    key={opt.value}
-                    onClick={() => {
-                      setDelay(opt.value);
-                      handleReset();
-                    }}
-                    className={`w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2 rounded-lg border cursor-pointer transition-all duration-200 ${
-                      delay === opt.value
-                        ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
-                        : "border-border-subtle text-text-muted hover:text-text-secondary"
-                    }`}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
+          <RightPanel
+            label="설정"
+            onReset={handleReset}
+            actions={
+              <>
+                <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+                  Delay
+                </div>
+                <div className="flex flex-col gap-2">
+                  {DELAY_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.value}
+                      onClick={() => {
+                        setDelay(opt.value);
+                        handleReset();
+                      }}
+                      className={`w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2 rounded-lg border cursor-pointer transition-all duration-200 ${
+                        delay === opt.value
+                          ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
+                          : "border-border-subtle text-text-muted hover:text-text-secondary"
+                      }`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+              </>
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"이벤트 영역을 빠르게\n클릭하여 차이를 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Input area */}

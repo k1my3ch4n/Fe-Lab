@@ -9,7 +9,7 @@ import {
   GRID_TEMPLATE_OPTIONS,
   DEMO_ITEMS,
 } from "../model/constants";
-import { TabBar, PanelHeader, SectionHeader } from "@shared/ui";
+import { TabBar, RightPanel, SectionHeader } from "@shared/ui";
 
 type Mode = "flexbox" | "grid";
 
@@ -124,8 +124,7 @@ gap: ${gridGap}px;`;
 
         {/* Right: Controls */}
         <div className="border-l border-border-subtle flex flex-col">
-          <PanelHeader label="속성 조절" onReset={handleReset} />
-
+          <RightPanel label="속성 조절" onReset={handleReset}>
           <div className="p-4 flex flex-col gap-4 overflow-y-auto flex-1">
             {mode === "flexbox" ? (
               <>
@@ -271,6 +270,7 @@ gap: ${gridGap}px;`;
               </>
             )}
           </div>
+          </RightPanel>
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { A11Y_TABS } from "../model/constants";
 import type { A11yTabId } from "../model/types";
-import { TabBar, DemoLayout, PanelHeader, LogPanel } from "@shared/ui";
+import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
 import { useSemanticTab } from "./tabs/SemanticTab";
 import { useAriaTab } from "./tabs/AriaTab";
@@ -45,14 +45,12 @@ export default function WebAccessibilityDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader label="로그" onReset={handleReset} />
-
+          <RightPanel label="로그" onReset={handleReset}>
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하거나\n키보드를 사용해보세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {activeTab === "semantic" && semanticTab.content}

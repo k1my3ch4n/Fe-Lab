@@ -12,7 +12,7 @@ import type { PromiseState, PromiseItem } from "../model/types";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -108,54 +108,54 @@ export default function PromiseDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader onReset={handleReset} />
-
-            {/* Action buttons */}
-            <div className="p-4 border-b border-border-subtle">
-              {activeTab === 0 && (
-                <div className="flex flex-col gap-2">
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                {activeTab === 0 && (
+                  <>
+                    <ActionButton
+                      variant="green"
+                      onClick={() => {
+                        clearLogs();
+                        addLog("new Promise(resolve => ...)");
+                        setTimeout(
+                          () => addLog("→ resolve('성공!') → fulfilled"),
+                          1000,
+                        );
+                        setTimeout(() => addLog(".then(v => '성공!')"), 1200);
+                      }}
+                    >
+                      resolve() 실행
+                    </ActionButton>
+                    <ActionButton
+                      variant="magenta"
+                      onClick={() => {
+                        clearLogs();
+                        addLog("new Promise((_, reject) => ...)");
+                        setTimeout(
+                          () => addLog("→ reject('실패!') → rejected"),
+                          1000,
+                        );
+                        setTimeout(() => addLog(".catch(e => '실패!')"), 1200);
+                      }}
+                    >
+                      reject() 실행
+                    </ActionButton>
+                  </>
+                )}
+                {activeTab > 0 && (
                   <ActionButton
-                    variant="green"
-                    onClick={() => {
-                      clearLogs();
-                      addLog("new Promise(resolve => ...)");
-                      setTimeout(
-                        () => addLog("→ resolve('성공!') → fulfilled"),
-                        1000,
-                      );
-                      setTimeout(() => addLog(".then(v => '성공!')"), 1200);
-                    }}
+                    variant="cyan"
+                    onClick={runSimulation}
+                    disabled={isRunning}
                   >
-                    resolve() 실행
+                    {isRunning ? "실행 중..." : `${method.label} 시뮬레이션`}
                   </ActionButton>
-                  <ActionButton
-                    variant="magenta"
-                    onClick={() => {
-                      clearLogs();
-                      addLog("new Promise((_, reject) => ...)");
-                      setTimeout(
-                        () => addLog("→ reject('실패!') → rejected"),
-                        1000,
-                      );
-                      setTimeout(() => addLog(".catch(e => '실패!')"), 1200);
-                    }}
-                  >
-                    reject() 실행
-                  </ActionButton>
-                </div>
-              )}
-              {activeTab > 0 && (
-                <ActionButton
-                  variant="cyan"
-                  onClick={runSimulation}
-                  disabled={isRunning}
-                >
-                  {isRunning ? "실행 중..." : `${method.label} 시뮬레이션`}
-                </ActionButton>
-              )}
-            </div>
-
+                )}
+              </>
+            }
+          >
             {/* Description */}
             <div className="p-4 border-b border-border-subtle">
               <div className="text-[11px] text-text-secondary leading-[1.8]">
@@ -167,7 +167,7 @@ export default function PromiseDemo() {
               logs={logs}
               emptyMessage={"버튼을 클릭하여\nPromise 동작을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Code */}

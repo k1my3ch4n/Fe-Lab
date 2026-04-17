@@ -6,7 +6,7 @@ import { REF_EXAMPLES, TABS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
@@ -52,91 +52,94 @@ export default function UseRefDemo() {
 
       <DemoLayout
         rightPanel={
-          <>
-            <PanelHeader onReset={handleReset} />
-
-            <div className="p-4 border-b border-border-subtle flex flex-col gap-2">
-              {activeExample === 0 && (
-                <>
-                  <ActionButton
-                    variant="cyan"
-                    onClick={() => {
-                      setStateCount((c) => c + 1);
-                      addLog(`setState → ${stateCount + 1} (리렌더링 O)`);
-                    }}
-                  >
-                    setState +1
-                  </ActionButton>
-                  <ActionButton
-                    variant="violet"
-                    onClick={() => {
-                      refCount.current += 1;
-                      addLog(`ref.current → ${refCount.current} (리렌더링 X)`);
-                    }}
-                  >
-                    ref.current +1
-                  </ActionButton>
-                </>
-              )}
-              {activeExample === 1 && (
-                <>
-                  <ActionButton
-                    variant="green"
-                    onClick={() => {
-                      inputRef.current?.focus();
-                      addLog("inputRef.current.focus()");
-                    }}
-                  >
-                    focus()
-                  </ActionButton>
-                  <ActionButton
-                    variant="amber"
-                    onClick={() => {
-                      inputRef.current?.blur();
-                      addLog("inputRef.current.blur()");
-                    }}
-                  >
-                    blur()
-                  </ActionButton>
-                </>
-              )}
-              {activeExample === 2 && (
-                <>
-                  <ActionButton
-                    variant="cyan"
-                    onClick={() => {
-                      const next = inputValue + 1;
-                      addLog(
-                        `값 변경: ${inputValue} → ${next} (이전 값: ${prevDisplay ?? "없음"})`,
-                      );
-                      setPrevDisplay(inputValue);
-                      setInputValue(next);
-                    }}
-                  >
-                    값 +1
-                  </ActionButton>
-                  <ActionButton
-                    variant="amber"
-                    onClick={() => {
-                      const next = inputValue + 10;
-                      addLog(
-                        `값 변경: ${inputValue} → ${next} (이전 값: ${prevDisplay ?? "없음"})`,
-                      );
-                      setPrevDisplay(inputValue);
-                      setInputValue(next);
-                    }}
-                  >
-                    값 +10
-                  </ActionButton>
-                </>
-              )}
-            </div>
-
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <>
+                {activeExample === 0 && (
+                  <>
+                    <ActionButton
+                      variant="cyan"
+                      onClick={() => {
+                        setStateCount((c) => c + 1);
+                        addLog(`setState → ${stateCount + 1} (리렌더링 O)`);
+                      }}
+                    >
+                      setState +1
+                    </ActionButton>
+                    <ActionButton
+                      variant="violet"
+                      onClick={() => {
+                        refCount.current += 1;
+                        addLog(
+                          `ref.current → ${refCount.current} (리렌더링 X)`,
+                        );
+                      }}
+                    >
+                      ref.current +1
+                    </ActionButton>
+                  </>
+                )}
+                {activeExample === 1 && (
+                  <>
+                    <ActionButton
+                      variant="green"
+                      onClick={() => {
+                        inputRef.current?.focus();
+                        addLog("inputRef.current.focus()");
+                      }}
+                    >
+                      focus()
+                    </ActionButton>
+                    <ActionButton
+                      variant="amber"
+                      onClick={() => {
+                        inputRef.current?.blur();
+                        addLog("inputRef.current.blur()");
+                      }}
+                    >
+                      blur()
+                    </ActionButton>
+                  </>
+                )}
+                {activeExample === 2 && (
+                  <>
+                    <ActionButton
+                      variant="cyan"
+                      onClick={() => {
+                        const next = inputValue + 1;
+                        addLog(
+                          `값 변경: ${inputValue} → ${next} (이전 값: ${prevDisplay ?? "없음"})`,
+                        );
+                        setPrevDisplay(inputValue);
+                        setInputValue(next);
+                      }}
+                    >
+                      값 +1
+                    </ActionButton>
+                    <ActionButton
+                      variant="amber"
+                      onClick={() => {
+                        const next = inputValue + 10;
+                        addLog(
+                          `값 변경: ${inputValue} → ${next} (이전 값: ${prevDisplay ?? "없음"})`,
+                        );
+                        setPrevDisplay(inputValue);
+                        setInputValue(next);
+                      }}
+                    >
+                      값 +10
+                    </ActionButton>
+                  </>
+                )}
+              </>
+            }
+          >
             <LogPanel
               logs={logs}
               emptyMessage={"버튼을 클릭하여\nuseRef 동작을 확인하세요"}
             />
-          </>
+          </RightPanel>
         }
       >
         {/* Description */}
