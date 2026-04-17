@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { SectionHeader } from "@shared/ui";
+import { SectionHeader, CodeBlock } from "@shared/ui";
 
 interface UseKeyboardTabOptions {
   addLog: (text: string) => void;
@@ -96,7 +96,7 @@ export function useKeyboardTab({ addLog }: UseKeyboardTabOptions) {
       {/* Focus management example */}
       <div>
         <SectionHeader>포커스 관리 코드</SectionHeader>
-        <pre className="font-[family-name:var(--font-mono)] text-[11px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto">
+        <CodeBlock className="text-[11px]">
           {`// roving tabindex 패턴
 // 그룹 내 하나만 tabIndex=0, 나머지는 -1
 <div role="menubar">
@@ -110,7 +110,7 @@ onKeyDown={(e) => {
   if (e.key === 'ArrowRight') focusNext();
   if (e.key === 'ArrowLeft') focusPrev();
 }`}
-        </pre>
+        </CodeBlock>
       </div>
     </>
   );

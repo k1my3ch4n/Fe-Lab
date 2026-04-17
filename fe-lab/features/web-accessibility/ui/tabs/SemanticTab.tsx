@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { SEMANTIC_COMPARISON } from "../../model/constants";
-import { SectionHeader } from "@shared/ui";
+import { SectionHeader, CodeBlock } from "@shared/ui";
 
 interface UseSemanticTabOptions {
   addLog: (text: string) => void;
@@ -43,29 +43,25 @@ export function useSemanticTab({ addLog }: UseSemanticTabOptions) {
           <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-magenta uppercase tracking-wider mb-2">
             {SEMANTIC_COMPARISON.bad.label}
           </div>
-          <pre
-            className={`font-[family-name:var(--font-mono)] text-[11px] bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto transition-opacity duration-300 ${
-              showGoodVersion ? "opacity-40" : "opacity-100"
-            }`}
+          <CodeBlock
+            className={`text-[11px] transition-opacity duration-300 ${showGoodVersion ? "opacity-40" : "opacity-100"}`}
           >
             <code className="text-accent-magenta">
               {SEMANTIC_COMPARISON.bad.code}
             </code>
-          </pre>
+          </CodeBlock>
         </div>
         <div>
           <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-green uppercase tracking-wider mb-2">
             {SEMANTIC_COMPARISON.good.label}
           </div>
-          <pre
-            className={`font-[family-name:var(--font-mono)] text-[11px] bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto transition-opacity duration-300 ${
-              showGoodVersion ? "opacity-100" : "opacity-40"
-            }`}
+          <CodeBlock
+            className={`text-[11px] transition-opacity duration-300 ${showGoodVersion ? "opacity-100" : "opacity-40"}`}
           >
             <code className="text-accent-green">
               {SEMANTIC_COMPARISON.good.code}
             </code>
-          </pre>
+          </CodeBlock>
         </div>
       </div>
 

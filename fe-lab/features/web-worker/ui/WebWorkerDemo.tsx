@@ -7,6 +7,7 @@ import {
   RightPanel,
   SectionHeader,
   ActionButton,
+  CodeBlock,
 } from "@shared/ui";
 
 function fibonacci(n: number): number {
@@ -272,7 +273,7 @@ export default function WebWorkerDemo() {
         </div>
 
         {/* Code Preview */}
-        <pre className="font-[family-name:var(--font-mono)] text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto">
+        <CodeBlock>
           {activeTab === "main"
             ? `// 메인 스레드에서 피보나치 계산
 function fibonacci(n) {
@@ -286,7 +287,7 @@ worker.postMessage(38);
 worker.onmessage = (e) => {
   console.log(e.data); // UI는 정상 동작
 };`}
-        </pre>
+        </CodeBlock>
       </DemoLayout>
     </>
   );

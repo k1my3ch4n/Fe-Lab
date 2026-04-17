@@ -9,6 +9,7 @@ import {
   LogPanel,
   SectionHeader,
   ActionButton,
+  CodeBlock,
 } from "@shared/ui";
 import { useLog } from "@shared/hooks";
 
@@ -164,9 +165,9 @@ export default function ScopeContextDemo() {
         }
       >
         {/* Code */}
-        <pre className="font-[family-name:var(--font-mono)] text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto">
+        <CodeBlock>
           {example.code}
-        </pre>
+        </CodeBlock>
 
         {/* this Value Indicator */}
         <div className="flex items-center gap-3 p-3 rounded-lg border border-border-subtle bg-bg-surface">

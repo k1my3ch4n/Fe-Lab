@@ -10,6 +10,8 @@ import {
   ActionButton,
   LogPanel,
   SectionHeader,
+  CodeBlock,
+  StepFlowBox,
 } from "@shared/ui";
 
 export default function XssCsrfDemo() {
@@ -167,9 +169,9 @@ export default function XssCsrfDemo() {
         }
       >
         {/* Code */}
-        <pre className="font-[family-name:var(--font-mono)] text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto">
+        <CodeBlock>
           {scenario.code}
-        </pre>
+        </CodeBlock>
 
         {/* XSS Input Demo (only for XSS tab) */}
         {activeTab === 0 && xssInput && (
@@ -201,31 +203,11 @@ export default function XssCsrfDemo() {
         {/* Attack Flow Visualization */}
         <div>
           <SectionHeader>Attack Flow</SectionHeader>
-          <div className="flex flex-col gap-2">
-            {scenario.steps.map((step, i) => (
-              <div
-                key={i}
-                className="rounded-lg border p-3 transition-all duration-300"
-                style={{
-                  borderColor:
-                    activeStep >= i ? `${step.color}88` : `${step.color}22`,
-                  background:
-                    activeStep >= i ? `${step.color}15` : `${step.color}05`,
-                  marginLeft: `${i * 16}px`,
-                }}
-              >
-                <div
-                  className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
-                  style={{ color: step.color }}
-                >
-                  {i + 1}. {step.label}
-                </div>
-                <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mt-1">
-                  {step.description}
-                </div>
-              </div>
-            ))}
-          </div>
+          <StepFlowBox
+            steps={scenario.steps}
+            activeStep={activeStep}
+            indentMultiplier={16}
+          />
         </div>
       </DemoLayout>
     </>

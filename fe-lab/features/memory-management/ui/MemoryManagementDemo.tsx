@@ -13,6 +13,7 @@ import {
   RightPanel,
   LogPanel,
   ActionButton,
+  CodeBlock,
 } from "@shared/ui";
 import { useLog, useTimers } from "@shared/hooks";
 
@@ -149,9 +150,9 @@ export default function MemoryManagementDemo() {
         }
       >
         {/* Code */}
-        <pre className="font-[family-name:var(--font-mono)] text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto">
+        <CodeBlock>
           {pattern.code}
-        </pre>
+        </CodeBlock>
 
         {/* Severity + GC Phases */}
         <div className="flex gap-4">

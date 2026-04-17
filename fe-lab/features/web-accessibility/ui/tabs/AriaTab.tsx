@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ARIA_EXAMPLES } from "../../model/constants";
+import { CodeBlock } from "@shared/ui";
 
 interface UseAriaTabOptions {
   addLog: (text: string) => void;
@@ -48,15 +49,11 @@ export function useAriaTab({ addLog }: UseAriaTabOptions) {
             >
               {example.label}
             </div>
-            <pre
-              className={`font-[family-name:var(--font-mono)] text-[11px] bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto ${
-                example.id === "after"
-                  ? "text-accent-green"
-                  : "text-accent-magenta"
-              }`}
+            <CodeBlock
+              className={`text-[11px] ${example.id === "after" ? "text-accent-green" : "text-accent-magenta"}`}
             >
               {example.html}
-            </pre>
+            </CodeBlock>
             {example.issues.length > 0 && (
               <div className="mt-2 flex flex-col gap-1">
                 {example.issues.map((issue, i) => (

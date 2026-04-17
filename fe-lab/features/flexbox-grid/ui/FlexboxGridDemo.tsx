@@ -9,7 +9,7 @@ import {
   GRID_TEMPLATE_OPTIONS,
   DEMO_ITEMS,
 } from "../model/constants";
-import { TabBar, RightPanel, SectionHeader } from "@shared/ui";
+import { TabBar, RightPanel, SectionHeader, CodeBlock } from "@shared/ui";
 
 type Mode = "flexbox" | "grid";
 
@@ -117,9 +117,9 @@ gap: ${gridGap}px;`;
           </div>
 
           {/* Generated CSS */}
-          <pre className="font-[family-name:var(--font-mono)] text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto">
+          <CodeBlock>
             {mode === "flexbox" ? flexCode : gridCode}
-          </pre>
+          </CodeBlock>
         </div>
 
         {/* Right: Controls */}

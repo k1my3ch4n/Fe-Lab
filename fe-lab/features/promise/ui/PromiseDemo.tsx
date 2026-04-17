@@ -16,6 +16,7 @@ import {
   LogPanel,
   SectionHeader,
   ActionButton,
+  CodeBlock,
 } from "@shared/ui";
 
 export default function PromiseDemo() {
@@ -171,9 +172,9 @@ export default function PromiseDemo() {
         }
       >
         {/* Code */}
-        <pre className="font-[family-name:var(--font-mono)] text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto">
+        <CodeBlock>
           {method.code}
-        </pre>
+        </CodeBlock>
 
         {/* Promise State Visualization */}
         {activeTab > 0 && (
