@@ -11,7 +11,7 @@ export { TopicPageLayout, ScrollProgress } from "./layout";
 export { ThemeProvider, ThemeToggle } from "./theme";
 export {
   TabBar,
-  PanelHeader,
+  RightPanel,
   LogPanel,
   SectionHeader,
   ActionButton,
