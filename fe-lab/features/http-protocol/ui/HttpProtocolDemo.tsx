@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { PROTOCOL_FLOWS, TLS_HANDSHAKE_STEPS } from "../model/constants";
+import { PROTOCOL_FLOWS } from "../model/constants";
 import {
   TabBar,
   DemoLayout,
@@ -11,6 +11,7 @@ import {
   SectionHeader,
 } from "@shared/ui";
 import { useLog } from "@shared/hooks";
+import { ProtocolFlowCard, TlsHandshakeVisualization } from "./components";
 
 export default function HttpProtocolDemo() {
   const [activeTab, setActiveTab] = useState<"compare" | "tls">("compare");
@@ -167,75 +168,16 @@ export default function HttpProtocolDemo() {
       >
         {activeTab === "compare" ? (
           <>
-            {/* Protocol comparison */}
             <div className="flex flex-col gap-4">
               {PROTOCOL_FLOWS.map((flow, i) => (
-                <div
+                <ProtocolFlowCard
                   key={flow.version.id}
-                  className="rounded-lg border border-border-subtle bg-bg-deep p-4"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <span
-                      className="font-[family-name:var(--font-mono)] text-[13px] font-bold"
-                      style={{ color: flow.version.color }}
-                    >
-                      {flow.version.label}
-                    </span>
-                    <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-                      {flow.description}
-                    </span>
-                  </div>
-
-                  {/* Progress bar */}
-                  <div className="relative h-8 bg-bg-surface rounded overflow-hidden mb-2">
-                    {flow.steps.map((step, j) => {
-                      const widthPct = (step.duration / flow.totalTime) * 100;
-                      const leftPct = flow.steps
-                        .slice(0, j)
-                        .reduce(
-                          (a, s) => a + (s.duration / flow.totalTime) * 100,
-                          0,
-                        );
-                      const isActive =
-                        progress[i] > (j / flow.steps.length) * 100;
-                      return (
-                        <div
-                          key={j}
-                          className="absolute top-0 h-full flex items-center justify-center transition-opacity duration-300"
-                          style={{
-                            left: `${leftPct}%`,
-                            width: `${widthPct}%`,
-                            backgroundColor: `${step.color}${isActive ? "44" : "15"}`,
-                            borderRight:
-                              j < flow.steps.length - 1
-                                ? "1px solid var(--bg-deep)"
-                                : undefined,
-                          }}
-                        >
-                          <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted truncate px-1">
-                            {step.label}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Features */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {flow.features.map((f) => (
-                      <span
-                        key={f}
-                        className="font-[family-name:var(--font-mono)] text-[9px] px-2 py-0.5 rounded bg-bg-surface text-text-muted"
-                      >
-                        {f}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                  flow={flow}
+                  progress={progress[i]}
+                />
               ))}
             </div>
 
-            {/* Latency comparison */}
             <div className="rounded-lg border border-border-subtle bg-bg-deep p-4">
               <SectionHeader>총 소요 시간 비교</SectionHeader>
               <div className="flex gap-4">
@@ -256,62 +198,9 @@ export default function HttpProtocolDemo() {
             </div>
           </>
         ) : (
-          /* TLS Handshake visualization */
           <div className="flex flex-col gap-3">
             <SectionHeader>TLS 1.3 핸드셰이크 과정</SectionHeader>
-            <div className="flex gap-8">
-              {/* Client column */}
-              <div className="flex flex-col items-center gap-0 flex-1">
-                <div className="font-[family-name:var(--font-mono)] text-[11px] text-accent-cyan font-semibold mb-3 px-3 py-1.5 rounded-lg bg-accent-cyan-dim border border-accent-cyan/30">
-                  Client
-                </div>
-                <div className="w-px bg-border-subtle flex-1 min-h-[250px] relative">
-                  {TLS_HANDSHAKE_STEPS.map((step, i) => (
-                    <div
-                      key={i}
-                      className="absolute left-4 flex flex-col gap-0.5"
-                      style={{ top: `${i * 70 + 10}px` }}
-                    >
-                      <span
-                        className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
-                        style={{ color: step.color }}
-                      >
-                        {step.label}
-                      </span>
-                      <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
-                        {step.description}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Arrows */}
-              <div className="flex flex-col gap-0 w-20">
-                <div className="h-[35px]" />
-                {TLS_HANDSHAKE_STEPS.map((step, i) => (
-                  <div
-                    key={i}
-                    className="h-[70px] flex items-center justify-center"
-                  >
-                    <div
-                      className="font-[family-name:var(--font-mono)] text-[14px]"
-                      style={{ color: step.color }}
-                    >
-                      {i % 2 === 0 ? "→" : "←"}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Server column */}
-              <div className="flex flex-col items-center gap-0 flex-1">
-                <div className="font-[family-name:var(--font-mono)] text-[11px] text-accent-green font-semibold mb-3 px-3 py-1.5 rounded-lg bg-accent-green-dim border border-accent-green/30">
-                  Server
-                </div>
-                <div className="w-px bg-border-subtle flex-1 min-h-[250px]" />
-              </div>
-            </div>
+            <TlsHandshakeVisualization />
           </div>
         )}
       </DemoLayout>
