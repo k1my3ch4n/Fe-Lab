@@ -17,4 +17,6 @@ export {
   ActionButton,
   DemoLayout,
   InfoCard,
+  CodeBlock,
+  StepFlowBox,
 } from "./demo";
