@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { EVENT_LOOP_SCENARIOS } from "../model/constants";
 import { LogPanel } from "@shared/ui";
+import { EventLoopToolbar, QueueColumn } from "./components";
 
 export default function EventLoopDemo() {
   const [activeScenario, setActiveScenario] = useState(0);
@@ -80,56 +81,18 @@ export default function EventLoopDemo() {
 
   return (
     <>
-      {/* Toolbar - custom layout with playback controls */}
-      <div className="flex items-center justify-between border-b border-border-subtle bg-bg-elevated">
-        <div className="flex items-center gap-0">
-          {EVENT_LOOP_SCENARIOS.map((sc, i) => (
-            <button
-              key={sc.id}
-              onClick={() => handleScenarioChange(i)}
-              className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
-                i === activeScenario
-                  ? "border-accent-cyan text-accent-cyan bg-bg-surface"
-                  : "border-transparent text-text-muted hover:text-text-secondary"
-              }`}
-            >
-              {sc.label}
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center gap-1 pr-3">
-          <button
-            onClick={handlePrev}
-            disabled={currentStep === 0}
-            className="font-[family-name:var(--font-mono)] text-[10px] px-2.5 py-1.5 rounded cursor-pointer bg-transparent border-none text-text-muted transition-all duration-200 hover:text-text-primary hover:bg-bg-hover disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            ◀ 이전
-          </button>
-          <button
-            onClick={handleAutoplay}
-            className={`font-[family-name:var(--font-mono)] text-[10px] px-3 py-1.5 rounded cursor-pointer border transition-all duration-200 ${
-              isPlaying
-                ? "border-accent-magenta text-accent-magenta bg-accent-magenta-dim"
-                : "border-accent-green text-accent-green bg-accent-green-dim hover:bg-[#00e67633]"
-            }`}
-          >
-            {isPlaying ? "⏸ 정지" : "▶ 자동재생"}
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={currentStep >= totalSteps - 1}
-            className="font-[family-name:var(--font-mono)] text-[10px] px-2.5 py-1.5 rounded cursor-pointer bg-transparent border-none text-text-muted transition-all duration-200 hover:text-text-primary hover:bg-bg-hover disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            다음 ▶
-          </button>
-          <button
-            onClick={handleReset}
-            className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted cursor-pointer bg-transparent border-none px-2 py-1.5 rounded transition-all duration-200 hover:text-accent-magenta hover:bg-accent-magenta-dim"
-          >
-            리셋
-          </button>
-        </div>
-      </div>
+      <EventLoopToolbar
+        scenarios={EVENT_LOOP_SCENARIOS}
+        activeScenario={activeScenario}
+        currentStep={currentStep}
+        totalSteps={totalSteps}
+        isPlaying={isPlaying}
+        onScenarioChange={handleScenarioChange}
+        onPrev={handlePrev}
+        onNext={handleNext}
+        onAutoplay={handleAutoplay}
+        onReset={handleReset}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] lg:min-h-[520px]">
         {/* Left: Visualization */}
@@ -152,97 +115,28 @@ export default function EventLoopDemo() {
             {step.description}
           </div>
 
-          {/* Three columns: Call Stack, Microtask Queue, Task Queue */}
           <div className="grid grid-cols-3 gap-4 flex-1">
-            {/* Call Stack */}
-            <div className="flex flex-col">
-              <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold text-accent-cyan uppercase tracking-wider mb-3 text-center">
-                Call Stack
-              </div>
-              <div className="flex-1 bg-bg-deep rounded-lg border border-[#00e5ff22] p-3 flex flex-col justify-end gap-1.5 min-h-[240px]">
-                {step.callStack.length === 0 ? (
-                  <div className="text-center text-text-muted font-[family-name:var(--font-mono)] text-[10px] py-4 opacity-50">
-                    (비어있음)
-                  </div>
-                ) : (
-                  [...step.callStack].reverse().map((item, i) => (
-                    <div
-                      key={`${currentStep}-cs-${i}`}
-                      className="font-[family-name:var(--font-mono)] text-[10px] px-3 py-2 rounded border text-center animate-[logSlide_0.3s_ease]"
-                      style={{
-                        color: item.color,
-                        borderColor: `${item.color}44`,
-                        background: `${item.color}12`,
-                      }}
-                    >
-                      {item.label}
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
-
-            {/* Microtask Queue */}
-            <div className="flex flex-col">
-              <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold text-accent-violet uppercase tracking-wider mb-3 text-center">
-                Microtask Queue
-              </div>
-              <div className="flex-1 bg-bg-deep rounded-lg border border-[#b388ff22] p-3 flex flex-col gap-1.5 min-h-[240px]">
-                {step.microtaskQueue.length === 0 ? (
-                  <div className="text-center text-text-muted font-[family-name:var(--font-mono)] text-[10px] py-4 opacity-50">
-                    (비어있음)
-                  </div>
-                ) : (
-                  step.microtaskQueue.map((item, i) => (
-                    <div
-                      key={`${currentStep}-mq-${i}`}
-                      className="font-[family-name:var(--font-mono)] text-[10px] px-3 py-2 rounded border text-center animate-[logSlide_0.3s_ease]"
-                      style={{
-                        color: item.color,
-                        borderColor: `${item.color}44`,
-                        background: `${item.color}12`,
-                      }}
-                    >
-                      {item.label}
-                    </div>
-                  ))
-                )}
-              </div>
-              <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted text-center mt-1.5">
-                Promise.then, queueMicrotask
-              </div>
-            </div>
-
-            {/* Task Queue */}
-            <div className="flex flex-col">
-              <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold text-accent-amber uppercase tracking-wider mb-3 text-center">
-                Task Queue
-              </div>
-              <div className="flex-1 bg-bg-deep rounded-lg border border-[#ffb80022] p-3 flex flex-col gap-1.5 min-h-[240px]">
-                {step.taskQueue.length === 0 ? (
-                  <div className="text-center text-text-muted font-[family-name:var(--font-mono)] text-[10px] py-4 opacity-50">
-                    (비어있음)
-                  </div>
-                ) : (
-                  step.taskQueue.map((item, i) => (
-                    <div
-                      key={`${currentStep}-tq-${i}`}
-                      className="font-[family-name:var(--font-mono)] text-[10px] px-3 py-2 rounded border text-center animate-[logSlide_0.3s_ease]"
-                      style={{
-                        color: item.color,
-                        borderColor: `${item.color}44`,
-                        background: `${item.color}12`,
-                      }}
-                    >
-                      {item.label}
-                    </div>
-                  ))
-                )}
-              </div>
-              <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted text-center mt-1.5">
-                setTimeout, setInterval
-              </div>
-            </div>
+            <QueueColumn
+              title="Call Stack"
+              items={[...step.callStack].reverse()}
+              borderColor="#00e5ff"
+              stepKey={`${currentStep}-cs`}
+              justify="end"
+            />
+            <QueueColumn
+              title="Microtask Queue"
+              items={step.microtaskQueue}
+              borderColor="#b388ff"
+              stepKey={`${currentStep}-mq`}
+              hint="Promise.then, queueMicrotask"
+            />
+            <QueueColumn
+              title="Task Queue"
+              items={step.taskQueue}
+              borderColor="#ffb800"
+              stepKey={`${currentStep}-tq`}
+              hint="setTimeout, setInterval"
+            />
           </div>
         </div>
 
