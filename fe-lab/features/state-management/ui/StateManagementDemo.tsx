@@ -11,6 +11,7 @@ import {
   CodeBlock,
 } from "@shared/ui";
 import { STATE_APPROACHES, PROP_DRILLING_LEVELS } from "../model/constants";
+import { PropDrillingVisualization, ArchitectureLayers } from "./components";
 
 export default function StateManagementDemo() {
   const [activeTab, setActiveTab] = useState(0);
@@ -172,78 +173,21 @@ export default function StateManagementDemo() {
           /* Prop Drilling Visualization */
           <div>
             <SectionHeader>Prop Drilling</SectionHeader>
-            <div className="flex flex-col gap-2">
-              {PROP_DRILLING_LEVELS.map((level, i) => (
-                <div
-                  key={i}
-                  className="rounded-lg border p-3 transition-all duration-300"
-                  style={{
-                    borderColor:
-                      showDrilling && i <= highlightLevel
-                        ? `${level.color}88`
-                        : `${level.color}22`,
-                    background:
-                      showDrilling && i <= highlightLevel
-                        ? `${level.color}15`
-                        : `${level.color}05`,
-                    marginLeft: `${i * 24}px`,
-                  }}
-                >
-                  <span
-                    className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
-                    style={{ color: level.color }}
-                  >
-                    {"<"}
-                    {level.name}
-                    {">"}
-                  </span>
-                  {level.hasState && (
-                    <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted ml-2">
-                      state: user
-                    </span>
-                  )}
-                  {!level.hasState && showDrilling && i <= highlightLevel && (
-                    <span className="font-[family-name:var(--font-mono)] text-[10px] text-accent-magenta ml-2">
-                      props.user ↓
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
+            <PropDrillingVisualization
+              levels={PROP_DRILLING_LEVELS}
+              showDrilling={showDrilling}
+              highlightLevel={highlightLevel}
+            />
           </div>
         ) : (
           <>
             {/* Code */}
-            <CodeBlock>
-              {approach.code}
-            </CodeBlock>
+            <CodeBlock>{approach.code}</CodeBlock>
 
             {/* Architecture Layers */}
             <div>
               <SectionHeader>Architecture</SectionHeader>
-              <div className="flex flex-col gap-2">
-                {approach.layers.map((layer, i) => (
-                  <div
-                    key={i}
-                    className="rounded-lg border p-3 transition-all duration-300"
-                    style={{
-                      borderColor: `${layer.color}44`,
-                      background: `${layer.color}08`,
-                      marginLeft: `${i * 16}px`,
-                    }}
-                  >
-                    <div
-                      className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
-                      style={{ color: layer.color }}
-                    >
-                      {layer.name}
-                    </div>
-                    <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mt-1">
-                      {layer.description}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <ArchitectureLayers layers={approach.layers} />
             </div>
           </>
         )}
