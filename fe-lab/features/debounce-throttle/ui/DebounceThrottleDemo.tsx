@@ -3,7 +3,13 @@
 import { useState, useRef } from "react";
 import { useLog } from "@shared/hooks";
 import { DELAY_OPTIONS, TABS } from "../model/constants";
-import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
+import {
+  TabBar,
+  DemoLayout,
+  RightPanel,
+  LogPanel,
+  SectionHeader,
+} from "@shared/ui";
 import { TimelineVisualization } from "./components/TimelineVisualization";
 
 type TimelineEvent = { time: number; type: "raw" | "debounce" | "throttle" };

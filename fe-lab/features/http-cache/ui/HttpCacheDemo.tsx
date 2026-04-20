@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { CACHE_SCENARIOS, TABS } from "../model/constants";
+import { ACTOR_CONFIG, CACHE_SCENARIOS, TABS } from "../model/constants";
 import { TabBar, DemoLayout, RightPanel, ActionButton } from "@shared/ui";
 import { StatusLegend } from "./components/StatusLegend";
 import { StepVisualization } from "./components/StepVisualization";
@@ -108,7 +108,9 @@ export default function HttpCacheDemo() {
                 <ActionButton
                   variant="green"
                   onClick={handleNextStep}
-                  disabled={isPlaying || currentStep >= scenario.steps.length - 1}
+                  disabled={
+                    isPlaying || currentStep >= scenario.steps.length - 1
+                  }
                 >
                   다음 단계 →
                 </ActionButton>
