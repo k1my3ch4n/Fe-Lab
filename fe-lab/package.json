@@ -17,6 +17,9 @@
     "shiki": "^4.0.2",
     "zustand": "^5.0.12"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
