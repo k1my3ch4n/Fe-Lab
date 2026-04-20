@@ -37,14 +37,7 @@ export default function TopicsLayout({
       {/* Main content */}
       <main
         ref={mainRef}
-        className="flex-1 overflow-y-auto relative"
-        style={{
-          background: `
-            radial-gradient(ellipse 600px 400px at 70% 10%, var(--accent-cyan-dim) 0%, transparent 100%),
-            radial-gradient(ellipse 400px 300px at 30% 80%, var(--accent-magenta-dim) 0%, transparent 100%),
-            var(--bg-deep)
-          `,
-        }}
+        className="flex-1 overflow-y-auto relative topic-main-bg"
       >
         <ScrollProgress containerRef={mainRef} />
 
