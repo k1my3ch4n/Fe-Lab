@@ -6,6 +6,7 @@
 }
 
 @theme {
+  --text-section-title: 1.75rem;
   --color-bg-deep: #0a0a0f;
   --color-bg-surface: #12121a;
   --color-bg-elevated: #1a1a26;
