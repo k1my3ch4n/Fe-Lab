@@ -5,9 +5,9 @@ import { A11Y_TABS } from "../model/constants";
 import type { A11yTabId } from "../model/types";
 import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
-import { useSemanticTab } from "./tabs/SemanticTab";
-import { useAriaTab } from "./tabs/AriaTab";
-import { useKeyboardTab } from "./tabs/KeyboardTab";
+import { useSemanticTab } from "./hooks/useSemanticTab";
+import { useAriaTab } from "./hooks/useAriaTab";
+import { useKeyboardTab } from "./hooks/useKeyboardTab";
 
 export default function WebAccessibilityDemo() {
   const [activeTab, setActiveTab] = useState<A11yTabId>("semantic");

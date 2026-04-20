@@ -5,9 +5,9 @@ import { TAB_ITEMS } from "../model/constants";
 import type { TabId } from "../model/types";
 import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
-import { useObserveTab } from "./tabs/ObserveTab";
-import { useLazyLoadTab } from "./tabs/LazyLoadTab";
-import { useInfiniteScrollTab } from "./tabs/InfiniteScrollTab";
+import { useObserveTab } from "./hooks/useObserveTab";
+import { useLazyLoadTab } from "./hooks/useLazyLoadTab";
+import { useInfiniteScrollTab } from "./hooks/useInfiniteScrollTab";
 
 export default function IntersectionObserverDemo() {
   const [activeTab, setActiveTab] = useState<TabId>("observe");

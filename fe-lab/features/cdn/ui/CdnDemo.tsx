@@ -4,9 +4,9 @@ import { useState } from "react";
 import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
 import { TABS } from "../model/constants";
-import { useFlowTab } from "./tabs/FlowTab";
-import { useEdgeTab } from "./tabs/EdgeTab";
-import { useInvalidationTab } from "./tabs/InvalidationTab";
+import { useFlowTab } from "./hooks/useFlowTab";
+import { useEdgeTab } from "./hooks/useEdgeTab";
+import { useInvalidationTab } from "./hooks/useInvalidationTab";
 
 export default function CdnDemo() {
   const [activeTab, setActiveTab] = useState<"flow" | "edge" | "invalidation">(

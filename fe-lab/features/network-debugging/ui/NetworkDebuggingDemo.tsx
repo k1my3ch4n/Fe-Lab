@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { TabBar, DemoLayout, RightPanel, LogPanel } from "@shared/ui";
 import { useLog } from "@shared/hooks";
-import { useWaterfallTab } from "./tabs/WaterfallTab";
-import { useStatusCodesTab } from "./tabs/StatusCodesTab";
+import { useWaterfallTab } from "./hooks/useWaterfallTab";
+import { useStatusCodesTab } from "./hooks/useStatusCodesTab";
 
 export default function NetworkDebuggingDemo() {
   const [activeTab, setActiveTab] = useState<"waterfall" | "status">(
