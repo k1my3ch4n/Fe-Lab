@@ -1,1 +1,1 @@
-export { default as ScopeContextDemo } from "./ScopeContextDemo";
+export { default as ScopeContextDemo } from "./ui/ScopeContextDemo";

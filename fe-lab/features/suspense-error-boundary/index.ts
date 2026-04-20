@@ -1,1 +1,1 @@
-export { default as SuspenseErrorBoundaryDemo } from "./SuspenseErrorBoundaryDemo";
+export { default as SuspenseErrorBoundaryDemo } from "./ui/SuspenseErrorBoundaryDemo";

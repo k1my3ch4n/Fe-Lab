@@ -1,1 +1,1 @@
-export { default as WebWorkerDemo } from "./WebWorkerDemo";
+export { default as WebWorkerDemo } from "./ui/WebWorkerDemo";

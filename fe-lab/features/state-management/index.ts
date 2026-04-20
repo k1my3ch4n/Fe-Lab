@@ -1,1 +1,1 @@
-export { default as StateManagementDemo } from "./StateManagementDemo";
+export { default as StateManagementDemo } from "./ui/StateManagementDemo";

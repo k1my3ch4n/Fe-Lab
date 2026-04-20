@@ -19,7 +19,7 @@ export default function CodeSection({ examples }: CodeSectionProps) {
   return (
     <section className="mb-14">
       <SectionLabel number="03" label="Code Example" variant="code" />
-      <h2 className="font-[family-name:var(--font-display)] text-[28px] font-bold tracking-tight mb-3">
+      <h2 className="font-display text-[28px] font-bold tracking-tight mb-3">
         코드 예시
       </h2>
       <p className="text-sm text-text-secondary leading-[1.7] max-w-full lg:max-w-[700px]">
@@ -38,7 +38,7 @@ export default function CodeSection({ examples }: CodeSectionProps) {
               aria-selected={i === activeTab}
               onClick={() => setActiveTab(i)}
               className={`
-                font-[family-name:var(--font-mono)] text-[11px] px-4 py-3
+                font-mono text-[11px] px-4 py-3
                 border-b-2 transition-all duration-200 cursor-pointer
                 ${
                   i === activeTab
@@ -53,7 +53,7 @@ export default function CodeSection({ examples }: CodeSectionProps) {
         </div>
         {/* Code block */}
         <pre className="p-5 overflow-x-auto">
-          <code className="font-[family-name:var(--font-mono)] text-[12px] leading-[1.8] text-accent-cyan">
+          <code className="font-mono text-[12px] leading-[1.8] text-accent-cyan">
             {examples[activeTab].code}
           </code>
         </pre>

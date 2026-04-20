@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR, JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import ThemeProvider from "@shared/ui/ThemeProvider";
+import { ThemeProvider } from "@shared/ui";
 import "./globals.css";
 
 const notoSansKR = Noto_Sans_KR({

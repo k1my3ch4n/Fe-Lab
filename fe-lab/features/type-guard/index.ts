@@ -1,1 +1,1 @@
-export { default as TypeGuardDemo } from "./TypeGuardDemo";
+export { default as TypeGuardDemo } from "./ui/TypeGuardDemo";

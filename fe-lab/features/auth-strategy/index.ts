@@ -1,1 +1,1 @@
-export { default as AuthStrategyDemo } from "./AuthStrategyDemo";
+export { default as AuthStrategyDemo } from "./ui/AuthStrategyDemo";

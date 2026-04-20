@@ -1,1 +1,1 @@
-export { default as FlexboxGridDemo } from "./FlexboxGridDemo";
+export { default as FlexboxGridDemo } from "./ui/FlexboxGridDemo";

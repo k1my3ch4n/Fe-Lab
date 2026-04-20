@@ -1,1 +1,1 @@
-export { default as ReconciliationDemo } from "./ReconciliationDemo";
+export { default as ReconciliationDemo } from "./ui/ReconciliationDemo";

@@ -1,1 +1,1 @@
-export { default as GenericsDemo } from "./GenericsDemo";
+export { default as GenericsDemo } from "./ui/GenericsDemo";

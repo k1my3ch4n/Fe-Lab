@@ -16,7 +16,7 @@ export default function LogPanel({
     <div
       role="log"
       aria-live="polite"
-      className="flex-1 overflow-y-auto max-h-[300px] p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed"
+      className="flex-1 overflow-y-auto max-h-[300px] p-3 font-mono text-[11px] leading-relaxed"
     >
       {logs.length === 0 ? (
         <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8] whitespace-pre-line">

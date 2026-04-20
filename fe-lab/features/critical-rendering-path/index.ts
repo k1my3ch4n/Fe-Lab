@@ -1,1 +1,1 @@
-export { default as CriticalRenderingPathDemo } from "./CriticalRenderingPathDemo";
+export { default as CriticalRenderingPathDemo } from "./ui/CriticalRenderingPathDemo";

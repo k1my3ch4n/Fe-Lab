@@ -1,1 +1,1 @@
-export { default as RenderingPatternsDemo } from "./RenderingPatternsDemo";
+export { default as RenderingPatternsDemo } from "./ui/RenderingPatternsDemo";

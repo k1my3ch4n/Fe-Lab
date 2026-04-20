@@ -1,1 +1,1 @@
-export { default as HttpProtocolDemo } from "./HttpProtocolDemo";
+export { default as HttpProtocolDemo } from "./ui/HttpProtocolDemo";

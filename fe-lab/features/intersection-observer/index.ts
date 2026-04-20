@@ -1,1 +1,1 @@
-export { default as IntersectionObserverDemo } from "./IntersectionObserverDemo";
+export { default as IntersectionObserverDemo } from "./ui/IntersectionObserverDemo";

@@ -1,1 +1,1 @@
-export { default as DebounceThrottleDemo } from "./DebounceThrottleDemo";
+export { default as DebounceThrottleDemo } from "./ui/DebounceThrottleDemo";

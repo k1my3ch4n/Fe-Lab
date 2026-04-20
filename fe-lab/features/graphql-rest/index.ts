@@ -1,1 +1,1 @@
-export { default as GraphqlRestDemo } from "./GraphqlRestDemo";
+export { default as GraphqlRestDemo } from "./ui/GraphqlRestDemo";

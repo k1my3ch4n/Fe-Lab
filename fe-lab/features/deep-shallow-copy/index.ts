@@ -1,1 +1,1 @@
-export { default as DeepShallowCopyDemo } from "./DeepShallowCopyDemo";
+export { default as DeepShallowCopyDemo } from "./ui/DeepShallowCopyDemo";

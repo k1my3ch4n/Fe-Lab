@@ -1,1 +1,1 @@
-export { default as CdnDemo } from "./CdnDemo";
+export { default as CdnDemo } from "./ui/CdnDemo";
