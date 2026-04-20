@@ -3,8 +3,7 @@
 import { useRef } from "react";
 import { Sidebar } from "@widgets/sidebar";
 import { useSidebarStore, useViewportStore } from "@shared/stores";
-import { ScrollProgress } from "@shared/ui";
-import MenuIcon from "@shared/ui/icons/MenuIcon";
+import { ScrollProgress, MenuIcon } from "@shared/ui";
 
 export default function TopicsLayout({
   children,
@@ -59,7 +58,7 @@ export default function TopicsLayout({
             >
               <MenuIcon />
             </button>
-            <span className="font-[family-name:var(--font-display)] text-sm font-bold text-text-primary">
+            <span className="font-display text-sm font-bold text-text-primary">
               FE Lab
             </span>
           </div>

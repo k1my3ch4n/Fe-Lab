@@ -1,3 +1,4 @@
+export { SearchIcon, MenuIcon, SunIcon, MoonIcon } from "./icons";
 export {
   ConceptSection,
   DemoSection,
