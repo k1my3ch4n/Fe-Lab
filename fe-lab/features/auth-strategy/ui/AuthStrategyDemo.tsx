@@ -9,10 +9,10 @@ import {
   RightPanel,
   ActionButton,
   LogPanel,
-  SectionHeader,
   CodeBlock,
-  StepFlowBox,
 } from "@shared/ui";
+import { AuthProsCons } from "./components/AuthProsCons";
+import { AuthFlowVisualization } from "./components/AuthFlowVisualization";
 
 export default function AuthStrategyDemo() {
   const [activeTab, setActiveTab] = useState(0);
@@ -44,9 +44,7 @@ export default function AuthStrategyDemo() {
     const runStep = () => {
       if (step < steps.length) {
         setActiveStep(step);
-        addLog(
-          `${step + 1}. [${steps[step].label}] ${steps[step].description}`,
-        );
+        addLog(`${step + 1}. [${steps[step].label}] ${steps[step].description}`);
         step++;
         addTimer(runStep, 500);
       } else {
@@ -116,32 +114,7 @@ export default function AuthStrategyDemo() {
                 <ActionButton variant="green" onClick={handleRefreshFlow}>
                   리프레시 토큰 흐름
                 </ActionButton>
-
-                {/* Pros / Cons */}
-                <div className="mt-2">
-                  <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-green mb-1">
-                    장점
-                  </div>
-                  {method.pros.map((p, i) => (
-                    <div
-                      key={i}
-                      className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted leading-[1.8]"
-                    >
-                      + {p}
-                    </div>
-                  ))}
-                  <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-magenta mt-2 mb-1">
-                    단점
-                  </div>
-                  {method.cons.map((c, i) => (
-                    <div
-                      key={i}
-                      className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted leading-[1.8]"
-                    >
-                      - {c}
-                    </div>
-                  ))}
-                </div>
+                <AuthProsCons pros={method.pros} cons={method.cons} />
               </>
             }
           >
@@ -152,20 +125,9 @@ export default function AuthStrategyDemo() {
           </RightPanel>
         }
       >
-        {/* Code */}
-        <CodeBlock>
-          {method.code}
-        </CodeBlock>
+        <CodeBlock>{method.code}</CodeBlock>
 
-        {/* Auth Flow Visualization */}
-        <div>
-          <SectionHeader>Auth Flow</SectionHeader>
-          <StepFlowBox
-            steps={method.steps}
-            activeStep={activeStep}
-            indentMultiplier={14}
-          />
-        </div>
+        <AuthFlowVisualization steps={method.steps} activeStep={activeStep} />
       </DemoLayout>
     </>
   );
