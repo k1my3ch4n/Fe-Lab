@@ -11,14 +11,15 @@ interface ActionButtonProps {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  cyan: "border-accent-cyan text-accent-cyan bg-accent-cyan-dim hover:bg-[#00e5ff33]",
+  cyan: "border-accent-cyan text-accent-cyan bg-accent-cyan-dim hover:bg-accent-cyan/20",
   green:
-    "border-accent-green text-accent-green bg-accent-green-dim hover:bg-[#00e67633]",
+    "border-accent-green text-accent-green bg-accent-green-dim hover:bg-accent-green/20",
   amber:
-    "border-accent-amber text-accent-amber bg-accent-amber-dim hover:bg-[#ffb80033]",
+    "border-accent-amber text-accent-amber bg-accent-amber-dim hover:bg-accent-amber/20",
   magenta:
-    "border-accent-magenta text-accent-magenta bg-accent-magenta-dim hover:bg-[#ff2d8a33]",
-  violet: "border-[#b388ff] text-[#b388ff] bg-[#b388ff11] hover:bg-[#b388ff33]",
+    "border-accent-magenta text-accent-magenta bg-accent-magenta-dim hover:bg-accent-magenta/20",
+  violet:
+    "border-accent-violet text-accent-violet bg-accent-violet-dim hover:bg-accent-violet/20",
 };
 
 export default function ActionButton({
