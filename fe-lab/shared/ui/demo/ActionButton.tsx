@@ -33,7 +33,7 @@ export default function ActionButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`w-full font-mono text-[12px] px-4 py-2.5 rounded-lg border cursor-pointer transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed ${variantStyles[variant]} ${className}`}
+      className={`w-full font-mono text-[12px] px-4 py-2.5 rounded-lg border cursor-pointer transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current ${variantStyles[variant]} ${className}`}
     >
       {children}
     </button>
