@@ -50,9 +50,9 @@ export function FlexboxControls({
   onGridAlignChange,
 }: FlexboxControlsProps) {
   const selectClass =
-    "w-full font-mono text-[11px] bg-bg-deep text-text-primary border border-border-subtle rounded px-2 py-1.5";
+    "w-full font-mono text-label bg-bg-deep text-text-primary border border-border-subtle rounded px-2 py-1.5";
   const labelClass =
-    "font-mono text-[10px] text-text-muted block mb-1";
+    "font-mono text-caption text-text-muted block mb-1";
 
   return (
     <div className="p-4 flex flex-col gap-4 overflow-y-auto flex-1">

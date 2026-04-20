@@ -149,7 +149,7 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
                   }
                 }}
               >
-                <span className="font-mono text-[10px] text-text-primary truncate">
+                <span className="font-mono text-caption text-text-primary truncate">
                   {resource.name}
                 </span>
                 <span className="font-mono text-[9px] text-text-muted">
@@ -199,7 +199,7 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
       {/* Selected resource detail */}
       {selectedResource !== null && (
         <div className="rounded-lg border border-border-subtle bg-bg-deep p-4">
-          <div className="font-mono text-[11px] text-text-primary font-semibold mb-2">
+          <div className="font-mono text-label text-text-primary font-semibold mb-2">
             {WATERFALL_RESOURCES[selectedResource].name}
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -213,12 +213,12 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
                   style={{ backgroundColor: phase.color }}
                 />
                 <span
-                  className="font-mono text-[10px]"
+                  className="font-mono text-caption"
                   style={{ color: phase.color }}
                 >
                   {phase.name}
                 </span>
-                <span className="font-mono text-[10px] text-text-muted">
+                <span className="font-mono text-caption text-text-muted">
                   {phase.duration}ms
                 </span>
               </div>

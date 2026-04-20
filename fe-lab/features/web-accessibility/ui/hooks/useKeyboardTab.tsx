@@ -58,7 +58,7 @@ export function useKeyboardTab({ addLog }: UseKeyboardTabOptions) {
 
   const content = (
     <>
-      <div className="font-mono text-[11px] text-text-secondary leading-[1.8] bg-bg-deep rounded-lg p-4">
+      <div className="font-mono text-label text-text-secondary leading-[1.8] bg-bg-deep rounded-lg p-4">
         <span className="text-accent-cyan">Tab</span> — 포커스 이동 |{" "}
         <span className="text-accent-cyan">Arrow</span> — 항목 간 이동 |{" "}
         <span className="text-accent-cyan">Enter/Space</span> — 선택 |{" "}
@@ -96,7 +96,7 @@ export function useKeyboardTab({ addLog }: UseKeyboardTabOptions) {
       {/* Focus management example */}
       <div>
         <SectionHeader>포커스 관리 코드</SectionHeader>
-        <CodeBlock className="text-[11px]">
+        <CodeBlock className="text-label">
           {`// roving tabindex 패턴
 // 그룹 내 하나만 tabIndex=0, 나머지는 -1
 <div role="menubar">

@@ -14,7 +14,7 @@ export function MessageArrow({ message }: { message: SimMessage }) {
         style={{ background: color }}
       />
       <div
-        className="flex-1 font-mono text-[10px] px-2 py-1 rounded"
+        className="flex-1 font-mono text-caption px-2 py-1 rounded"
         style={{
           background: `${color}11`,
           borderLeft: isClient ? `2px solid ${color}66` : "none",

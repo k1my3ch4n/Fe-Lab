@@ -64,7 +64,7 @@ export function useFlowTab({ addLog }: UseFlowTabOptions) {
                 setActiveFlow(type);
                 setActiveStep(-1);
               }}
-              className={`font-mono text-[11px] px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+              className={`font-mono text-label px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
                 activeFlow === type
                   ? "bg-bg-surface"
                   : "border-transparent bg-bg-deep text-text-muted hover:text-text-secondary"
@@ -99,7 +99,7 @@ export function useFlowTab({ addLog }: UseFlowTabOptions) {
                 style={{ opacity: isActive ? 1 : 0.3 }}
               >
                 <span
-                  className="font-mono text-[10px] font-bold w-12 text-right shrink-0"
+                  className="font-mono text-caption font-bold w-12 text-right shrink-0"
                   style={{ color: step.color }}
                 >
                   {step.latency}
@@ -108,7 +108,7 @@ export function useFlowTab({ addLog }: UseFlowTabOptions) {
                   className="w-2 h-2 rounded-full shrink-0"
                   style={{ backgroundColor: step.color }}
                 />
-                <span className="font-mono text-[11px] text-text-secondary">
+                <span className="font-mono text-label text-text-secondary">
                   {step.label}
                 </span>
               </div>
@@ -139,7 +139,7 @@ export function useFlowTab({ addLog }: UseFlowTabOptions) {
             className="flex-1 rounded-lg border border-border-subtle bg-bg-deep p-3"
           >
             <div
-              className="font-mono text-[10px] font-bold mb-1"
+              className="font-mono text-caption font-bold mb-1"
               style={{ color: r.color }}
             >
               {r.label}

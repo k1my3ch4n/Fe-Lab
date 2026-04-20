@@ -65,7 +65,7 @@ export function useStatusCodesTab({
       <div className="flex gap-2">
         <button
           onClick={() => setSelectedCategory(null)}
-          className={`font-mono text-[10px] px-2.5 py-1 rounded border transition-all duration-200 cursor-pointer ${
+          className={`font-mono text-caption px-2.5 py-1 rounded border transition-all duration-200 cursor-pointer ${
             selectedCategory === null
               ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
               : "border-transparent bg-bg-deep text-text-muted hover:text-text-secondary"
@@ -77,7 +77,7 @@ export function useStatusCodesTab({
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`font-mono text-[10px] px-2.5 py-1 rounded border transition-all duration-200 cursor-pointer ${
+            className={`font-mono text-caption px-2.5 py-1 rounded border transition-all duration-200 cursor-pointer ${
               selectedCategory === cat
                 ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
                 : "border-transparent bg-bg-deep text-text-muted hover:text-text-secondary"
@@ -109,7 +109,7 @@ export function useStatusCodesTab({
               >
                 {status.code}
               </span>
-              <span className="font-mono text-[10px] text-text-secondary">
+              <span className="font-mono text-caption text-text-secondary">
                 {status.name}
               </span>
             </div>

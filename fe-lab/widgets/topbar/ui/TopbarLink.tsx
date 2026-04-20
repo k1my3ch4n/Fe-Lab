@@ -17,7 +17,7 @@ export default function TopbarLink({
     <Link
       href={href}
       className={`
-        font-mono text-[11px] px-3.5 py-1.5 rounded-md
+        font-mono text-label px-3.5 py-1.5 rounded-md
         border transition-all duration-200 no-underline
         ${
           isActive

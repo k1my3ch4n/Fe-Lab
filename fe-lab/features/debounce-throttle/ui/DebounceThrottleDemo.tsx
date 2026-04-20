@@ -94,7 +94,7 @@ export default function DebounceThrottleDemo() {
             onReset={handleReset}
             actions={
               <>
-                <div className="font-mono text-[10px] text-text-muted">
+                <div className="font-mono text-caption text-text-muted">
                   Delay
                 </div>
                 <div className="flex flex-col gap-2">
@@ -139,7 +139,7 @@ export default function DebounceThrottleDemo() {
         {/* Counters */}
         <div className="grid grid-cols-3 gap-3">
           <div className="rounded-lg border border-border-subtle p-3 text-center">
-            <div className="font-mono text-[10px] text-text-muted mb-1">
+            <div className="font-mono text-caption text-text-muted mb-1">
               Raw
             </div>
             <div className="font-mono text-[24px] font-bold text-accent-cyan">
@@ -147,7 +147,7 @@ export default function DebounceThrottleDemo() {
             </div>
           </div>
           <div className="rounded-lg border border-border-subtle p-3 text-center">
-            <div className="font-mono text-[10px] text-text-muted mb-1">
+            <div className="font-mono text-caption text-text-muted mb-1">
               Debounce
             </div>
             <div className="font-mono text-[24px] font-bold text-accent-green">
@@ -155,7 +155,7 @@ export default function DebounceThrottleDemo() {
             </div>
           </div>
           <div className="rounded-lg border border-border-subtle p-3 text-center">
-            <div className="font-mono text-[10px] text-text-muted mb-1">
+            <div className="font-mono text-caption text-text-muted mb-1">
               Throttle
             </div>
             <div className="font-mono text-[24px] font-bold text-accent-amber">

@@ -66,7 +66,7 @@ export default function WebSocketSseDemo() {
                   {protocol.useCases.map((uc, i) => (
                     <div
                       key={i}
-                      className="font-mono text-[11px] text-text-secondary flex items-center gap-1.5"
+                      className="font-mono text-label text-text-secondary flex items-center gap-1.5"
                     >
                       <span style={{ color: protocol.color }}>*</span>
                       {uc}
@@ -78,26 +78,26 @@ export default function WebSocketSseDemo() {
               {/* Pros / Cons */}
               <div className="flex-1 overflow-y-auto p-4">
                 <div className="mb-3">
-                  <div className="font-mono text-[10px] text-accent-green uppercase tracking-wider mb-1.5">
+                  <div className="font-mono text-caption text-accent-green uppercase tracking-wider mb-1.5">
                     Pros
                   </div>
                   {protocol.pros.map((p, i) => (
                     <div
                       key={i}
-                      className="font-mono text-[11px] text-text-secondary mb-1"
+                      className="font-mono text-label text-text-secondary mb-1"
                     >
                       + {p}
                     </div>
                   ))}
                 </div>
                 <div>
-                  <div className="font-mono text-[10px] text-accent-magenta uppercase tracking-wider mb-1.5">
+                  <div className="font-mono text-caption text-accent-magenta uppercase tracking-wider mb-1.5">
                     Cons
                   </div>
                   {protocol.cons.map((c, i) => (
                     <div
                       key={i}
-                      className="font-mono text-[11px] text-text-secondary mb-1"
+                      className="font-mono text-label text-text-secondary mb-1"
                     >
                       - {c}
                     </div>

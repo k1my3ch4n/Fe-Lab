@@ -46,7 +46,7 @@ export function CrpTimeline({ scenario }: CrpTimelineProps) {
 
           return (
             <div key={index} className="flex items-center gap-3 h-7">
-              <div className="w-[180px] shrink-0 font-mono text-[10px] text-text-muted text-right truncate">
+              <div className="w-[180px] shrink-0 font-mono text-caption text-text-muted text-right truncate">
                 {resource.label}
               </div>
               <div className="flex-1 relative h-full">
@@ -79,7 +79,7 @@ export function CrpTimeline({ scenario }: CrpTimelineProps) {
           }}
         >
           <div className="w-0.5 h-4 bg-accent-green" />
-          <div className="font-mono text-[10px] font-bold text-accent-green whitespace-nowrap mt-0.5">
+          <div className="font-mono text-caption font-bold text-accent-green whitespace-nowrap mt-0.5">
             FCP {scenario.fcp}ms
           </div>
         </div>

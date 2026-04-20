@@ -32,7 +32,7 @@ export function EventLoopToolbar({
           <button
             key={sc.id}
             onClick={() => onScenarioChange(i)}
-            className={`font-mono text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
+            className={`font-mono text-label px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
               i === activeScenario
                 ? "border-accent-cyan text-accent-cyan bg-bg-surface"
                 : "border-transparent text-text-muted hover:text-text-secondary"
@@ -46,13 +46,13 @@ export function EventLoopToolbar({
         <button
           onClick={onPrev}
           disabled={currentStep === 0}
-          className="font-mono text-[10px] px-2.5 py-1.5 rounded cursor-pointer bg-transparent border-none text-text-muted transition-all duration-200 hover:text-text-primary hover:bg-bg-hover disabled:opacity-30 disabled:cursor-not-allowed"
+          className="font-mono text-caption px-2.5 py-1.5 rounded cursor-pointer bg-transparent border-none text-text-muted transition-all duration-200 hover:text-text-primary hover:bg-bg-hover disabled:opacity-30 disabled:cursor-not-allowed"
         >
           ◀ 이전
         </button>
         <button
           onClick={onAutoplay}
-          className={`font-mono text-[10px] px-3 py-1.5 rounded cursor-pointer border transition-all duration-200 ${
+          className={`font-mono text-caption px-3 py-1.5 rounded cursor-pointer border transition-all duration-200 ${
             isPlaying
               ? "border-accent-magenta text-accent-magenta bg-accent-magenta-dim"
               : "border-accent-green text-accent-green bg-accent-green-dim hover:bg-[#00e67633]"
@@ -63,13 +63,13 @@ export function EventLoopToolbar({
         <button
           onClick={onNext}
           disabled={currentStep >= totalSteps - 1}
-          className="font-mono text-[10px] px-2.5 py-1.5 rounded cursor-pointer bg-transparent border-none text-text-muted transition-all duration-200 hover:text-text-primary hover:bg-bg-hover disabled:opacity-30 disabled:cursor-not-allowed"
+          className="font-mono text-caption px-2.5 py-1.5 rounded cursor-pointer bg-transparent border-none text-text-muted transition-all duration-200 hover:text-text-primary hover:bg-bg-hover disabled:opacity-30 disabled:cursor-not-allowed"
         >
           다음 ▶
         </button>
         <button
           onClick={onReset}
-          className="font-mono text-[10px] text-text-muted cursor-pointer bg-transparent border-none px-2 py-1.5 rounded transition-all duration-200 hover:text-accent-magenta hover:bg-accent-magenta-dim"
+          className="font-mono text-caption text-text-muted cursor-pointer bg-transparent border-none px-2 py-1.5 rounded transition-all duration-200 hover:text-accent-magenta hover:bg-accent-magenta-dim"
         >
           리셋
         </button>

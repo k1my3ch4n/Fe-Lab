@@ -20,7 +20,7 @@ export function MediaQueryPreview({ viewportWidth }: MediaQueryPreviewProps) {
         {["Header", "Sidebar", "Main", "Footer"].map((area, i) => (
           <div
             key={area}
-            className="rounded px-3 py-2 font-mono text-[10px] text-center"
+            className="rounded px-3 py-2 font-mono text-caption text-center"
             style={{
               background: `${BREAKPOINTS[i % BREAKPOINTS.length].color}33`,
               color: BREAKPOINTS[i % BREAKPOINTS.length].color,

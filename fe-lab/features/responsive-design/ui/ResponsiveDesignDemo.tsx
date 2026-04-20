@@ -69,7 +69,7 @@ export default function ResponsiveDesignDemo() {
                     className="w-full font-mono text-[12px] px-4 py-2.5 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33] flex items-center justify-between"
                   >
                     <span>{preset.label}</span>
-                    <span className="text-text-muted text-[10px]">
+                    <span className="text-text-muted text-caption">
                       {preset.width}px
                     </span>
                   </button>

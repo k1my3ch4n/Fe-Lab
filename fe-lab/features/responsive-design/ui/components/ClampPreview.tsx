@@ -16,13 +16,13 @@ export function ClampPreview({ clampFontSize, clampPadding }: ClampPreviewProps)
         >
           Fluid Text
         </div>
-        <div className="font-mono text-[10px] text-text-muted">
+        <div className="font-mono text-caption text-text-muted">
           font-size: clamp(1rem, 2vw, 2rem)
         </div>
-        <div className="font-mono text-[10px] text-text-muted">
+        <div className="font-mono text-caption text-text-muted">
           padding: clamp(0.5rem, 3vw, 3rem)
         </div>
-        <div className="font-mono text-[10px] text-accent-amber mt-2">
+        <div className="font-mono text-caption text-accent-amber mt-2">
           현재: {clampFontSize.toFixed(1)}px / {clampPadding.toFixed(1)}px
         </div>
       </div>

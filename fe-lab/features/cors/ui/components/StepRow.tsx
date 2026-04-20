@@ -30,7 +30,7 @@ export function StepRow({
       }`}
     >
       <div
-        className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center font-mono text-[10px] font-bold ${
+        className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center font-mono text-caption font-bold ${
           current
             ? isError
               ? "bg-accent-magenta/20 text-accent-magenta"
@@ -57,7 +57,7 @@ export function StepRow({
 
       <div className="flex-1 min-w-0">
         <div
-          className={`font-mono text-[11px] font-semibold ${
+          className={`font-mono text-label font-semibold ${
             current
               ? isError
                 ? "text-accent-magenta"

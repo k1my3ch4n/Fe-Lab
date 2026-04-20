@@ -24,7 +24,7 @@ export function OverfetchComparison() {
               <div className="font-mono text-[9px] text-text-muted uppercase mb-1">
                 Request
               </div>
-              <pre className="font-mono text-[10px] text-accent-cyan bg-bg-surface p-2 rounded leading-[1.6] overflow-x-auto">
+              <pre className="font-mono text-caption text-accent-cyan bg-bg-surface p-2 rounded leading-[1.6] overflow-x-auto">
                 {ex.request}
               </pre>
             </div>
@@ -34,7 +34,7 @@ export function OverfetchComparison() {
               <div className="font-mono text-[9px] text-text-muted uppercase mb-1">
                 Response
               </div>
-              <pre className="font-mono text-[10px] text-accent-green bg-bg-surface p-2 rounded leading-[1.6] overflow-x-auto">
+              <pre className="font-mono text-caption text-accent-green bg-bg-surface p-2 rounded leading-[1.6] overflow-x-auto">
                 {ex.response}
               </pre>
             </div>
@@ -63,7 +63,7 @@ export function OverfetchComparison() {
 
       {/* Waste indicator */}
       <div className="rounded-lg border border-accent-magenta/30 bg-accent-magenta-dim p-3 text-center">
-        <span className="font-mono text-[11px] text-accent-magenta">
+        <span className="font-mono text-label text-accent-magenta">
           REST: 불필요한 6개 필드 전송 (Over-fetching)
         </span>
       </div>

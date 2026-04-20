@@ -87,7 +87,7 @@ export default function CorsDemo() {
             }
           >
             {/* Current step detail */}
-            <div className="flex-1 overflow-y-auto p-3 font-mono text-[11px] leading-relaxed">
+            <div className="flex-1 overflow-y-auto p-3 font-mono text-label leading-relaxed">
               {currentStep === -1 ? (
                 <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
                   버튼을 클릭하여
@@ -101,7 +101,7 @@ export default function CorsDemo() {
                   <div className="text-accent-cyan font-semibold text-[12px]">
                     {scenario.steps[currentStep].label}
                   </div>
-                  <div className="text-text-secondary text-[11px] leading-[1.8]">
+                  <div className="text-text-secondary text-label leading-[1.8]">
                     {scenario.steps[currentStep].description}
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -112,7 +112,7 @@ export default function CorsDemo() {
                       >
                         <span style={{ color: h.color }}>{h.name}</span>
                         <span className="text-text-muted">: </span>
-                        <span className="text-text-primary text-[10px]">
+                        <span className="text-text-primary text-caption">
                           {h.value}
                         </span>
                       </div>
@@ -159,7 +159,7 @@ export default function CorsDemo() {
         )}
 
         {/* Summary */}
-        <div className="font-mono text-[11px] text-text-muted bg-bg-deep rounded-lg p-3 leading-[1.8]">
+        <div className="font-mono text-label text-text-muted bg-bg-deep rounded-lg p-3 leading-[1.8]">
           {scenario.summary}
         </div>
       </DemoLayout>

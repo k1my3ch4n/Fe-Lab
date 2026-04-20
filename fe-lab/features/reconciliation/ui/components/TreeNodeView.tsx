@@ -47,7 +47,7 @@ export default function TreeNodeView({
     >
       <div className="flex items-center gap-2">
         <span
-          className="font-mono text-[11px] font-semibold"
+          className="font-mono text-label font-semibold"
           style={{ color: highlight?.color ?? "#ffffff88" }}
         >
           {"<"}
@@ -87,7 +87,7 @@ export default function TreeNodeView({
       )}
 
       {node.text && (
-        <div className="font-mono text-[10px] text-text-secondary mt-1 pl-2">
+        <div className="font-mono text-caption text-text-secondary mt-1 pl-2">
           &quot;{node.text}&quot;
         </div>
       )}

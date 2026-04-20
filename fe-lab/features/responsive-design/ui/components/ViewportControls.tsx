@@ -16,7 +16,7 @@ export function ViewportControls({
     <>
       {/* Viewport width indicator */}
       <div className="flex items-center gap-3">
-        <span className="font-mono text-[10px] text-text-muted">
+        <span className="font-mono text-caption text-text-muted">
           Viewport:
         </span>
         <span
@@ -26,7 +26,7 @@ export function ViewportControls({
           {viewportWidth}px
         </span>
         <span
-          className="font-mono text-[10px] px-2 py-0.5 rounded"
+          className="font-mono text-caption px-2 py-0.5 rounded"
           style={{
             color: activeBreakpoint?.color,
             background: `${activeBreakpoint?.color}22`,

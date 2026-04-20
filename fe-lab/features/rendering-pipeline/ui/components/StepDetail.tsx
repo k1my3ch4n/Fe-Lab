@@ -22,7 +22,7 @@ export default function StepDetail({ step }: StepDetailProps) {
       <div className="text-[13px] text-text-secondary leading-[1.8]">
         {step.desc}
       </div>
-      <CodeBlock className="mt-4 text-[11px]">
+      <CodeBlock className="mt-4 text-label">
         {step.visual}
       </CodeBlock>
     </>

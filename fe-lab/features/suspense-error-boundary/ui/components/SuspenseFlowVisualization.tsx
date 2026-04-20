@@ -29,12 +29,12 @@ export function SuspenseFlowVisualization({
             }}
           >
             <div
-              className="font-mono text-[10px] font-semibold"
+              className="font-mono text-caption font-semibold"
               style={{ color: step.color }}
             >
               {index + 1}. {step.label}
             </div>
-            <div className="font-mono text-[10px] text-text-muted mt-1">
+            <div className="font-mono text-caption text-text-muted mt-1">
               {step.description}
             </div>
           </div>

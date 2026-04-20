@@ -11,7 +11,7 @@ export default function InfoCard({ label, value, color }: InfoCardProps) {
       style={{ borderColor: `${color}44`, background: `${color}08` }}
     >
       <div
-        className="font-mono text-[10px] font-semibold mb-1"
+        className="font-mono text-caption font-semibold mb-1"
         style={{ color }}
       >
         {label}

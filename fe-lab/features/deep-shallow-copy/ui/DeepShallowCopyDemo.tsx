@@ -85,7 +85,7 @@ export default function DeepShallowCopyDemo() {
             }
           >
             <div className="p-4 border-b border-border-subtle">
-              <div className="text-[11px] text-text-secondary leading-[1.8]">
+              <div className="text-label text-text-secondary leading-[1.8]">
                 {method.description}
               </div>
             </div>

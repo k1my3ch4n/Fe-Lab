@@ -27,7 +27,7 @@ export default function CodeSectionTabs({ examples }: CodeSectionTabsProps) {
             aria-selected={i === activeTab}
             onClick={() => setActiveTab(i)}
             className={`
-              font-mono text-[11px] px-4 py-3
+              font-mono text-label px-4 py-3
               border-b-2 transition-all duration-200 cursor-pointer
               ${
                 i === activeTab

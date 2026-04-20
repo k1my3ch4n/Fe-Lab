@@ -37,7 +37,7 @@ export default function SidebarNav({
       <nav className="flex-1 p-3 overflow-y-auto">
         {filteredCategories.map((category) => (
           <div key={category.name} className="mb-5">
-            <div className="font-mono text-[10px] font-semibold text-text-muted uppercase tracking-[2px] px-2 mb-1.5">
+            <div className="font-mono text-caption font-semibold text-text-muted uppercase tracking-[2px] px-2 mb-1.5">
               {category.name}
             </div>
             {category.topics.map((topic) => (

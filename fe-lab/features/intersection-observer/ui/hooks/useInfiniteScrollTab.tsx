@@ -82,7 +82,7 @@ export function useInfiniteScrollTab({ addLog }: UseInfiniteScrollTabOptions) {
   const actions = (
     <button
       onClick={handleInfiniteScroll}
-      className="self-start font-mono text-[11px] px-4 py-1.5 rounded-lg border border-accent-violet text-accent-violet bg-accent-violet-dim cursor-pointer transition-all duration-200 hover:bg-[#b388ff33]"
+      className="self-start font-mono text-label px-4 py-1.5 rounded-lg border border-accent-violet text-accent-violet bg-accent-violet-dim cursor-pointer transition-all duration-200 hover:bg-[#b388ff33]"
     >
       무한 스크롤 시작
     </button>
@@ -108,11 +108,11 @@ export function useInfiniteScrollTab({ addLog }: UseInfiniteScrollTabOptions) {
         className="min-h-[40px] flex items-center justify-center"
       >
         {isLoadingMore ? (
-          <span className="font-mono text-[11px] text-accent-amber animate-pulse">
+          <span className="font-mono text-label text-accent-amber animate-pulse">
             로딩 중...
           </span>
         ) : (
-          <span className="font-mono text-[10px] text-text-muted">
+          <span className="font-mono text-caption text-text-muted">
             ↓ 센티널 요소
           </span>
         )}

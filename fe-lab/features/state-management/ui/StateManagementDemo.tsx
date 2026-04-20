@@ -105,24 +105,24 @@ export default function StateManagementDemo() {
             </ActionButton>
             {/* Pros / Cons inline */}
             <div className="mt-2">
-              <div className="font-mono text-[10px] text-accent-green mb-1">
+              <div className="font-mono text-caption text-accent-green mb-1">
                 장점
               </div>
               {approach.pros.map((p, i) => (
                 <div
                   key={i}
-                  className="font-mono text-[10px] text-text-muted leading-[1.8]"
+                  className="font-mono text-caption text-text-muted leading-[1.8]"
                 >
                   + {p}
                 </div>
               ))}
-              <div className="font-mono text-[10px] text-accent-magenta mt-2 mb-1">
+              <div className="font-mono text-caption text-accent-magenta mt-2 mb-1">
                 단점
               </div>
               {approach.cons.map((c, i) => (
                 <div
                   key={i}
-                  className="font-mono text-[10px] text-text-muted leading-[1.8]"
+                  className="font-mono text-caption text-text-muted leading-[1.8]"
                 >
                   - {c}
                 </div>
@@ -147,7 +147,7 @@ export default function StateManagementDemo() {
           <button
             key={ap.id}
             onClick={() => handleTabChange(i)}
-            className={`font-mono text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
+            className={`font-mono text-label px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
               i === activeTab
                 ? "border-accent-cyan text-accent-cyan bg-bg-surface"
                 : "border-transparent text-text-muted hover:text-text-secondary"
@@ -158,7 +158,7 @@ export default function StateManagementDemo() {
         ))}
         <button
           onClick={() => handleTabChange(-1)}
-          className={`font-mono text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
+          className={`font-mono text-label px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
             activeTab === -1
               ? "border-accent-magenta text-accent-magenta bg-bg-surface"
               : "border-transparent text-text-muted hover:text-text-secondary"

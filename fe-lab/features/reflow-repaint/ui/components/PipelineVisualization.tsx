@@ -40,7 +40,7 @@ export function PipelineVisualization({
               }}
             >
               <div
-                className="font-mono text-[11px] font-semibold"
+                className="font-mono text-label font-semibold"
                 style={{ color: colors.text }}
               >
                 {stage.label}

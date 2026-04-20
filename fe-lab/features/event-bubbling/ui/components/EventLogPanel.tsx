@@ -20,7 +20,7 @@ export default function EventLogPanel({
         ref={logRef}
         role="log"
         aria-live="polite"
-        className="flex-1 overflow-y-auto p-2 font-mono text-[11px] leading-relaxed"
+        className="flex-1 overflow-y-auto p-2 font-mono text-label leading-relaxed"
       >
         {logs.length === 0 ? (
           <div className="text-text-muted text-center px-4 py-10 text-xs leading-[1.8]">

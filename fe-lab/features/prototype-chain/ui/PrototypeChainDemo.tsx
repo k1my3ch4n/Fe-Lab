@@ -52,7 +52,7 @@ export default function PrototypeChainDemo() {
         {/* Left: Chain Visualization */}
         <div className="p-6 flex flex-col gap-5">
           <div>
-            <div className="font-mono text-[10px] text-text-muted uppercase tracking-wider mb-3">
+            <div className="font-mono text-caption text-text-muted uppercase tracking-wider mb-3">
               Prototype Chain
             </div>
             <div className="flex flex-col gap-0">
@@ -80,7 +80,7 @@ export default function PrototypeChainDemo() {
         {/* Right: Property Lookup Panel */}
         <div className="border-l border-border-subtle flex flex-col">
           <div className="px-4 py-3 border-b border-border-subtle">
-            <span className="font-mono text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
+            <span className="font-mono text-label font-semibold text-text-secondary uppercase tracking-wider">
               프로퍼티 탐색
             </span>
           </div>
@@ -100,7 +100,7 @@ export default function PrototypeChainDemo() {
               />
               <button
                 type="submit"
-                className="font-mono text-[11px] px-3 py-2 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33]"
+                className="font-mono text-label px-3 py-2 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33]"
               >
                 탐색
               </button>
@@ -109,7 +109,7 @@ export default function PrototypeChainDemo() {
 
           {/* Suggestions */}
           <div className="p-4 border-b border-border-subtle">
-            <div className="font-mono text-[10px] text-text-muted mb-2">
+            <div className="font-mono text-caption text-text-muted mb-2">
               추천 프로퍼티
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -120,7 +120,7 @@ export default function PrototypeChainDemo() {
                     setPropertyInput(s);
                     lookupProperty(s);
                   }}
-                  className="font-mono text-[10px] px-2.5 py-1.5 rounded border border-border-subtle text-text-secondary bg-bg-deep cursor-pointer transition-all duration-200 hover:border-accent-cyan hover:text-accent-cyan"
+                  className="font-mono text-caption px-2.5 py-1.5 rounded border border-border-subtle text-text-secondary bg-bg-deep cursor-pointer transition-all duration-200 hover:border-accent-cyan hover:text-accent-cyan"
                 >
                   .{s}
                 </button>
@@ -129,7 +129,7 @@ export default function PrototypeChainDemo() {
           </div>
 
           {/* Result */}
-          <div className="flex-1 p-4 font-mono text-[11px] leading-relaxed">
+          <div className="flex-1 p-4 font-mono text-label leading-relaxed">
             {lookupResult === null && animatingIndex < 0 ? (
               <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
                 프로퍼티 이름을 입력하여
@@ -147,7 +147,7 @@ export default function PrototypeChainDemo() {
                   {lookupResult.property}{" "}
                   <span className="text-text-muted">발견!</span>
                 </div>
-                <div className="text-text-secondary text-[10px] leading-[1.8]">
+                <div className="text-text-secondary text-caption leading-[1.8]">
                   <span
                     className="font-semibold"
                     style={{
@@ -158,7 +158,7 @@ export default function PrototypeChainDemo() {
                   </span>
                   에서 발견
                 </div>
-                <div className="text-text-muted text-[10px]">
+                <div className="text-text-muted text-caption">
                   탐색 단계: {lookupResult.traversed.length}단계
                 </div>
               </div>
@@ -170,7 +170,7 @@ export default function PrototypeChainDemo() {
                   <span className="text-text-muted">= </span>
                   undefined
                 </div>
-                <div className="text-text-secondary text-[10px] leading-[1.8]">
+                <div className="text-text-secondary text-caption leading-[1.8]">
                   체인 끝(null)까지 탐색했지만
                   <br />
                   프로퍼티를 찾지 못했습니다

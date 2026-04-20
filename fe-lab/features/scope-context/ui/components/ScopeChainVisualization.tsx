@@ -34,7 +34,7 @@ export function ScopeChainVisualization({
             }}
           >
             <div
-              className="font-mono text-[10px] font-semibold mb-1.5"
+              className="font-mono text-caption font-semibold mb-1.5"
               style={{ color: scope.color }}
             >
               {scope.name}
@@ -43,7 +43,7 @@ export function ScopeChainVisualization({
               {scope.variables.map((v, j) => (
                 <span
                   key={j}
-                  className="font-mono text-[10px] bg-bg-deep px-2 py-1 rounded"
+                  className="font-mono text-caption bg-bg-deep px-2 py-1 rounded"
                 >
                   <span style={{ color: scope.color }}>{v.name}</span>
                   <span className="text-text-muted"> = </span>
