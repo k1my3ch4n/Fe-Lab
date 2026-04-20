@@ -46,9 +46,7 @@ export function useSemanticTab({ addLog }: UseSemanticTabOptions) {
           <CodeBlock
             className={`text-label transition-opacity duration-300 ${showGoodVersion ? "opacity-40" : "opacity-100"}`}
           >
-            <code className="text-accent-magenta">
-              {SEMANTIC_COMPARISON.bad.code}
-            </code>
+            {SEMANTIC_COMPARISON.bad.code}
           </CodeBlock>
         </div>
         <div>
@@ -58,9 +56,7 @@ export function useSemanticTab({ addLog }: UseSemanticTabOptions) {
           <CodeBlock
             className={`text-label transition-opacity duration-300 ${showGoodVersion ? "opacity-100" : "opacity-40"}`}
           >
-            <code className="text-accent-green">
-              {SEMANTIC_COMPARISON.good.code}
-            </code>
+            {SEMANTIC_COMPARISON.good.code}
           </CodeBlock>
         </div>
       </div>
