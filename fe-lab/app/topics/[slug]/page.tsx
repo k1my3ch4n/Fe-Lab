@@ -1,8 +1,14 @@
 import { notFound } from "next/navigation";
 import { Topbar } from "@widgets/topbar";
 import { TopicPageLayout } from "@shared/ui";
-import { getTopic } from "@entities/topic";
+import { getTopic, getCategories } from "@entities/topic";
 import { featureConfigs } from "@shared/config/featureConfigs";
+
+export function generateStaticParams() {
+  return getCategories()
+    .flatMap((category) => category.topics)
+    .map((topic) => ({ slug: topic.id }));
+}
 
 export default async function TopicPage({
   params,
