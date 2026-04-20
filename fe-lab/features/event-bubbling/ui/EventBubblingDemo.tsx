@@ -15,7 +15,7 @@ export default function EventBubblingDemo() {
   const [stopAtTarget, setStopAtTarget] = useState(false);
   const [flashingBoxes, setFlashingBoxes] = useState<Set<string>>(new Set());
   const logRef = useRef<HTMLDivElement>(null);
-  const { addTimer } = useTimers();
+  const { addTimer, clearTimers } = useTimers();
 
   const flashBox = useCallback(
     (id: string, delay: number) => {
@@ -53,6 +53,8 @@ export default function EventBubblingDemo() {
 
   const handleClick = useCallback(
     (clickedIndex: number) => {
+      clearTimers();
+      setFlashingBoxes(new Set());
       const logsToAdd: { text: string; type: LogType; delay: number }[] = [];
       let delay = 0;
 
@@ -130,7 +132,7 @@ export default function EventBubblingDemo() {
 
       addLogs(logsToAdd);
     },
-    [showCapture, stopProp, stopAtTarget, flashBox, addLogs],
+    [showCapture, stopProp, stopAtTarget, flashBox, addLogs, clearTimers],
   );
 
   return (
@@ -157,7 +159,7 @@ export default function EventBubblingDemo() {
       </div>
 
       {/* Demo body */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] lg:min-h-[380px]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] lg:h-[460px]">
         <NestedBoxes flashingBoxes={flashingBoxes} onBoxClick={handleClick} />
         <EventLogPanel
           logs={logs}

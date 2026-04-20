@@ -14,7 +14,7 @@ export default function EventLogPanel({
   onClear,
 }: EventLogPanelProps) {
   return (
-    <div className="border-l border-border-subtle flex flex-col">
+    <div className="border-l border-border-subtle flex flex-col lg:h-full lg:overflow-hidden">
       <RightPanel label="Event Log" onReset={onClear}>
       <div
         ref={logRef}
