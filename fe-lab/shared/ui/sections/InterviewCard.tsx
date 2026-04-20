@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronDownIcon } from "@shared/ui/icons";
 
 interface InterviewCardProps {
   index: number;
@@ -29,16 +30,18 @@ export default function InterviewCard({
           {question}
         </div>
         <span
-          className={`text-lg text-text-muted transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          className={`text-text-muted transition-transform duration-300 shrink-0 ml-4 ${open ? "rotate-180" : ""}`}
         >
-          ▾
+          <ChevronDownIcon />
         </span>
       </button>
       <div
-        className={`overflow-hidden transition-[max-height] duration-400 ease-in-out ${open ? "max-h-[500px]" : "max-h-0"}`}
+        className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
-        <div className="px-6 pb-6 pl-[58px] text-[13px] text-text-secondary leading-[1.8]">
-          {children}
+        <div className="overflow-hidden">
+          <div className="px-6 pb-6 pl-[58px] text-[13px] text-text-secondary leading-[1.8]">
+            {children}
+          </div>
         </div>
       </div>
     </article>
