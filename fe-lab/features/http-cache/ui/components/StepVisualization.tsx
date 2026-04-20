@@ -23,7 +23,7 @@ function StatusBadge({ status }: { status: CacheStatus }) {
   const config = STATUS_COLORS[status];
   return (
     <span
-      className={`${config.bg} ${config.text} font-mono text-[10px] px-2 py-0.5 rounded-full font-semibold`}
+      className={`${config.bg} ${config.text} font-mono text-caption px-2 py-0.5 rounded-full font-semibold`}
     >
       {config.label}
     </span>
@@ -38,7 +38,7 @@ export function StepVisualization({ steps, currentStep }: StepVisualizationProps
         {(["browser", "cache", "server"] as const).map((actor) => (
           <div key={actor} className="text-center">
             <div
-              className="font-mono text-[11px] font-semibold px-3 py-1.5 rounded-lg inline-block"
+              className="font-mono text-label font-semibold px-3 py-1.5 rounded-lg inline-block"
               style={{
                 color: ACTOR_CONFIG[actor].color,
                 background: `${ACTOR_CONFIG[actor].color}15`,
@@ -99,7 +99,7 @@ export function StepVisualization({ steps, currentStep }: StepVisualizationProps
                       >
                         <div className="flex items-center gap-2 mb-1">
                           <span
-                            className="font-mono text-[11px] font-semibold"
+                            className="font-mono text-label font-semibold"
                             style={{ color: actorConfig.color }}
                           >
                             {step.label}
@@ -108,7 +108,7 @@ export function StepVisualization({ steps, currentStep }: StepVisualizationProps
                             <StatusBadge status={step.status} />
                           )}
                         </div>
-                        <div className="font-mono text-[10px] text-text-muted leading-relaxed">
+                        <div className="font-mono text-caption text-text-muted leading-relaxed">
                           {step.description}
                         </div>
                         {step.headers && isActive && (
@@ -116,7 +116,7 @@ export function StepVisualization({ steps, currentStep }: StepVisualizationProps
                             {step.headers.map((h, j) => (
                               <div
                                 key={j}
-                                className="font-mono text-[10px] bg-bg-deep px-2 py-1 rounded"
+                                className="font-mono text-caption bg-bg-deep px-2 py-1 rounded"
                               >
                                 <span className="text-accent-cyan">{h.key}</span>
                                 <span className="text-text-muted">: </span>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type Difficulty, difficultyConfig } from "@entities/topic";
+import type { Difficulty } from "@entities/topic";
 
 interface NavItemProps {
   id: string;
@@ -16,12 +16,10 @@ export default function NavItem({
   id,
   name,
   color,
-  difficulty,
   implemented,
 }: NavItemProps) {
   const pathname = usePathname();
   const isActive = pathname === `/topics/${id}`;
-  const badge = difficultyConfig[difficulty];
 
   return (
     <Link
@@ -34,7 +32,7 @@ export default function NavItem({
             ? "bg-accent-cyan-dim text-accent-cyan font-medium"
             : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
         }
-        ${!implemented ? "opacity-60" : ""}
+        ${!implemented ? "opacity-60 cursor-not-allowed pointer-events-none" : ""}
       `}
     >
       {isActive && (
@@ -45,14 +43,6 @@ export default function NavItem({
         style={{ background: color }}
       />
       {name}
-      <span
-        className={`
-          font-[var(--font-mono)] text-[9px] font-semibold px-1.5 py-0.5
-          rounded ml-auto tracking-wider ${badge.className}
-        `}
-      >
-        {badge.label}
-      </span>
     </Link>
   );
 }

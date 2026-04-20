@@ -29,7 +29,7 @@ export function useAriaTab({ addLog }: UseAriaTabOptions) {
     <>
       <button
         onClick={handleAriaToggle}
-        className="self-start font-mono text-[11px] px-4 py-2 rounded-lg border border-accent-amber text-accent-amber bg-accent-amber-dim cursor-pointer transition-all duration-200 hover:bg-[#ffb80033]"
+        className="self-start font-mono text-label px-4 py-2 rounded-lg border border-accent-amber text-accent-amber bg-accent-amber-dim cursor-pointer transition-all duration-200 hover:bg-[#ffb80033]"
         aria-expanded={ariaExpanded}
         aria-controls="demo-menu"
       >
@@ -41,7 +41,7 @@ export function useAriaTab({ addLog }: UseAriaTabOptions) {
         {ARIA_EXAMPLES.map((example) => (
           <div key={example.id}>
             <div
-              className={`font-mono text-[10px] uppercase tracking-wider mb-2 ${
+              className={`font-mono text-caption uppercase tracking-wider mb-2 ${
                 example.id === "after"
                   ? "text-accent-green"
                   : "text-accent-magenta"
@@ -50,7 +50,7 @@ export function useAriaTab({ addLog }: UseAriaTabOptions) {
               {example.label}
             </div>
             <CodeBlock
-              className={`text-[11px] ${example.id === "after" ? "text-accent-green" : "text-accent-magenta"}`}
+              className={`text-label ${example.id === "after" ? "text-accent-green" : "text-accent-magenta"}`}
             >
               {example.html}
             </CodeBlock>
@@ -59,7 +59,7 @@ export function useAriaTab({ addLog }: UseAriaTabOptions) {
                 {example.issues.map((issue, i) => (
                   <div
                     key={i}
-                    className="font-mono text-[10px] text-accent-magenta"
+                    className="font-mono text-caption text-accent-magenta"
                   >
                     ⚠️ {issue}
                   </div>
@@ -81,7 +81,7 @@ export function useAriaTab({ addLog }: UseAriaTabOptions) {
             : "opacity-30 max-h-[40px] overflow-hidden"
         }`}
       >
-        <div className="font-mono text-[10px] text-text-muted mb-2">
+        <div className="font-mono text-caption text-text-muted mb-2">
           aria-hidden={String(!ariaExpanded)}
         </div>
         <div className="flex gap-2">
@@ -91,7 +91,7 @@ export function useAriaTab({ addLog }: UseAriaTabOptions) {
               role="menuitem"
               tabIndex={ariaExpanded ? 0 : -1}
               onClick={() => addLog(`✅ "${item}" 클릭 (role="menuitem")`)}
-              className="font-mono text-[11px] px-3 py-1.5 rounded border border-border-subtle text-text-secondary bg-bg-surface cursor-pointer hover:border-accent-cyan hover:text-accent-cyan transition-all"
+              className="font-mono text-label px-3 py-1.5 rounded border border-border-subtle text-text-secondary bg-bg-surface cursor-pointer hover:border-accent-cyan hover:text-accent-cyan transition-all"
             >
               {item}
             </button>

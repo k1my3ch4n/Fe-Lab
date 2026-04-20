@@ -131,15 +131,15 @@ export default function GraphqlRestDemo() {
                 </div>
                 {UNDER_FETCH_EXAMPLE.rest.requests.map((req, i) => (
                   <div key={i} className="rounded bg-bg-surface p-2">
-                    <span className="font-mono text-[10px] text-accent-amber">
+                    <span className="font-mono text-caption text-accent-amber">
                       요청 {i + 1}:
                     </span>
-                    <span className="font-mono text-[10px] text-accent-cyan ml-2">
+                    <span className="font-mono text-caption text-accent-cyan ml-2">
                       {req}
                     </span>
                   </div>
                 ))}
-                <div className="font-mono text-[10px] text-accent-magenta mt-1">
+                <div className="font-mono text-caption text-accent-magenta mt-1">
                   → 3번의 왕복(round trip) 필요
                 </div>
               </div>
@@ -152,10 +152,10 @@ export default function GraphqlRestDemo() {
                 >
                   GraphQL (단일 요청)
                 </div>
-                <pre className="font-mono text-[10px] text-accent-cyan bg-bg-surface p-2 rounded leading-[1.6]">
+                <pre className="font-mono text-caption text-accent-cyan bg-bg-surface p-2 rounded leading-[1.6]">
                   {UNDER_FETCH_EXAMPLE.graphql.query}
                 </pre>
-                <div className="font-mono text-[10px] text-accent-green mt-1">
+                <div className="font-mono text-caption text-accent-green mt-1">
                   → 1번의 요청으로 모든 데이터 조회 ✓
                 </div>
               </div>

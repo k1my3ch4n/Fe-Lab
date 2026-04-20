@@ -134,7 +134,7 @@ export default function WebWorkerDemo() {
       }
     >
       {/* Result */}
-      <div className="flex-1 overflow-y-auto p-3 font-mono text-[11px] leading-relaxed">
+      <div className="flex-1 overflow-y-auto p-3 font-mono text-label leading-relaxed">
         {result === null ? (
           <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8] whitespace-pre-line">
             {"실행 버튼을 클릭하여\n스레드 차이를 확인하세요"}

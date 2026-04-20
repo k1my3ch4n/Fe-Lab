@@ -18,7 +18,7 @@ export default function SectionLabel({
 }: SectionLabelProps) {
   return (
     <div
-      className={`font-mono text-[10px] font-semibold uppercase tracking-[3px] mb-4 flex items-center gap-2 ${variantColors[variant]}`}
+      className={`font-mono text-caption font-semibold uppercase tracking-[3px] mb-4 flex items-center gap-2 ${variantColors[variant]}`}
     >
       {number} · {label}
       <span className="flex-1 h-px bg-border-subtle" />

@@ -11,12 +11,12 @@ export function CookieAttributesList() {
           className="rounded-lg border border-border-subtle bg-bg-deep p-3 flex items-center gap-3"
         >
           <span
-            className="font-mono text-[11px] font-semibold shrink-0"
+            className="font-mono text-label font-semibold shrink-0"
             style={{ color: attr.color }}
           >
             {attr.name}
           </span>
-          <span className="font-mono text-[10px] text-text-muted">
+          <span className="font-mono text-caption text-text-muted">
             {attr.description}
           </span>
         </div>
@@ -25,7 +25,7 @@ export function CookieAttributesList() {
       {/* Cookie in request diagram */}
       <div className="rounded-lg border border-border-subtle bg-bg-deep p-4 mt-2">
         <SectionHeader>요청마다 쿠키 자동 전송</SectionHeader>
-        <pre className="font-mono text-[11px] text-accent-cyan leading-[1.8]">
+        <pre className="font-mono text-label text-accent-cyan leading-[1.8]">
           {`GET /api/user HTTP/1.1
 Host: example.com
 Cookie: sid=abc123; theme=dark

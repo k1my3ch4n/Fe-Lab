@@ -20,7 +20,7 @@ export function BundleSizeSummary({
           background: "var(--accent-magenta-dim)",
         }}
       >
-        <div className="font-mono text-[10px] text-text-muted mb-1">
+        <div className="font-mono text-caption text-text-muted mb-1">
           최적화 전
         </div>
         <div
@@ -37,7 +37,7 @@ export function BundleSizeSummary({
           background: showOptimized ? "var(--accent-green-dim)" : "#ffffff04",
         }}
       >
-        <div className="font-mono text-[10px] text-text-muted mb-1">
+        <div className="font-mono text-caption text-text-muted mb-1">
           최적화 후
         </div>
         <div

@@ -6,6 +6,9 @@
 }
 
 @theme {
+  --text-section-title: 1.75rem;
+  --text-label: 0.6875rem;
+  --text-caption: 0.625rem;
   --color-bg-deep: #0a0a0f;
   --color-bg-surface: #12121a;
   --color-bg-elevated: #1a1a26;
@@ -78,6 +81,22 @@ body {
   color: var(--text-primary);
   overflow: hidden;
   height: 100vh;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Topic main background */
+.topic-main-bg {
+  background:
+    radial-gradient(ellipse 600px 400px at 70% 10%, var(--accent-cyan-dim) 0%, transparent 100%),
+    radial-gradient(ellipse 400px 300px at 30% 80%, var(--accent-magenta-dim) 0%, transparent 100%),
+    var(--bg-deep);
 }
 
 /* Scrollbar */

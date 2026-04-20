@@ -32,7 +32,7 @@ export function SimulationView({
               className="flex items-center gap-2 text-[12px] font-mono"
             >
               <span
-                className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
+                className="w-5 h-5 rounded-full flex items-center justify-center text-caption font-bold shrink-0"
                 style={{
                   background: `${protocol.color}22`,
                   color: protocol.color,
@@ -55,7 +55,7 @@ export function SimulationView({
           <div className="flex justify-between mb-4">
             <div className="flex flex-col items-center gap-1">
               <div
-                className="w-16 h-16 rounded-lg border-2 flex items-center justify-center text-[11px] font-bold font-mono"
+                className="w-16 h-16 rounded-lg border-2 flex items-center justify-center text-label font-bold font-mono"
                 style={{
                   borderColor: "#00e5ff66",
                   background: "#00e5ff11",
@@ -68,7 +68,7 @@ export function SimulationView({
             <div className="flex-1 flex items-center justify-center">
               <div className="flex flex-col items-center gap-0.5">
                 <span
-                  className="font-mono text-[10px] font-semibold"
+                  className="font-mono text-caption font-semibold"
                   style={{ color: protocol.color }}
                 >
                   {activeTab === "websocket" ? "ws://" : "HTTP (SSE)"}
@@ -84,7 +84,7 @@ export function SimulationView({
             </div>
             <div className="flex flex-col items-center gap-1">
               <div
-                className="w-16 h-16 rounded-lg border-2 flex items-center justify-center text-[11px] font-bold font-mono"
+                className="w-16 h-16 rounded-lg border-2 flex items-center justify-center text-label font-bold font-mono"
                 style={{
                   borderColor: "#00e67666",
                   background: "#00e67611",
@@ -105,7 +105,7 @@ export function SimulationView({
           </div>
 
           {messages.length === 0 && !isRunning && (
-            <div className="text-text-muted text-center text-[11px] font-mono py-6">
+            <div className="text-text-muted text-center text-label font-mono py-6">
               시뮬레이션을 시작하세요
             </div>
           )}

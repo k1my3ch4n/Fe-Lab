@@ -55,12 +55,12 @@ export function ChainNode({
       >
         <div className="flex items-center gap-2 mb-1.5">
           {isAnimating && (
-            <span className="text-[10px] text-accent-cyan animate-pulse">
+            <span className="text-caption text-accent-cyan animate-pulse">
               {">>"}
             </span>
           )}
           <span
-            className="font-mono text-[11px] font-semibold"
+            className="font-mono text-label font-semibold"
             style={{ color: node.color }}
           >
             {isNull ? "null (체인 끝)" : node.name}
@@ -83,7 +83,7 @@ export function ChainNode({
               return (
                 <span
                   key={p.name}
-                  className="font-mono text-[10px] px-2 py-1 rounded transition-all duration-200"
+                  className="font-mono text-caption px-2 py-1 rounded transition-all duration-200"
                   style={{
                     background: isMatch ? "#00e67620" : "var(--bg-deep)",
                     border: isMatch
@@ -131,7 +131,7 @@ export function ChainNode({
             }`}
           />
           <span
-            className={`text-[10px] leading-none transition-colors duration-300 ${
+            className={`text-caption leading-none transition-colors duration-300 ${
               isTraversed ? "text-accent-cyan" : "text-text-muted"
             }`}
           >

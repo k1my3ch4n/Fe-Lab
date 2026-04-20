@@ -34,7 +34,7 @@ export function PropDrillingVisualization({
           }}
         >
           <span
-            className="font-mono text-[11px] font-semibold"
+            className="font-mono text-label font-semibold"
             style={{ color: level.color }}
           >
             {"<"}
@@ -42,12 +42,12 @@ export function PropDrillingVisualization({
             {">"}
           </span>
           {level.hasState && (
-            <span className="font-mono text-[10px] text-text-muted ml-2">
+            <span className="font-mono text-caption text-text-muted ml-2">
               state: user
             </span>
           )}
           {!level.hasState && showDrilling && i <= highlightLevel && (
-            <span className="font-mono text-[10px] text-accent-magenta ml-2">
+            <span className="font-mono text-caption text-accent-magenta ml-2">
               props.user ↓
             </span>
           )}

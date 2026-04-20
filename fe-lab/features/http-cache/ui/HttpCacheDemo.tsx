@@ -120,7 +120,7 @@ export default function HttpCacheDemo() {
             <StatusLegend />
 
             {/* Log */}
-            <div className="flex-1 overflow-y-auto p-3 font-mono text-[11px] leading-relaxed">
+            <div className="flex-1 overflow-y-auto p-3 font-mono text-label leading-relaxed">
               {logs.length === 0 ? (
                 <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8] whitespace-pre-line">
                   {"버튼을 클릭하여\n캐시 흐름을 확인하세요"}

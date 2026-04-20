@@ -4,7 +4,7 @@ interface InlineCodeProps {
 }
 
 export default function InlineCode({ children, size = "sm" }: InlineCodeProps) {
-  const sizeClass = size === "sm" ? "text-[11px]" : "text-[12px]";
+  const sizeClass = size === "sm" ? "text-label" : "text-[12px]";
 
   return (
     <code

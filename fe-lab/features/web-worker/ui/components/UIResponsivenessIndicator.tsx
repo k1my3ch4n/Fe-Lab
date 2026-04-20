@@ -25,7 +25,7 @@ export function UIResponsivenessIndicator({
           카운터 (50ms)
         </div>
       </div>
-      <div className="font-mono text-[10px] text-text-muted">
+      <div className="font-mono text-caption text-text-muted">
         {uiBlocked
           ? "⚠ UI 멈춤 — 메인 스레드 블로킹"
           : isRunning

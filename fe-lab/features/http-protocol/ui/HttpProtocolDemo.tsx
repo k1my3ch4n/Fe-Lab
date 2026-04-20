@@ -189,7 +189,7 @@ export default function HttpProtocolDemo() {
                     >
                       {flow.totalTime}ms
                     </div>
-                    <div className="font-mono text-[10px] text-text-muted">
+                    <div className="font-mono text-caption text-text-muted">
                       {flow.version.label}
                     </div>
                   </div>

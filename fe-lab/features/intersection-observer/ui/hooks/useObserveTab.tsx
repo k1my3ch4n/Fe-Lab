@@ -68,7 +68,7 @@ export function useObserveTab({ addLog }: UseObserveTabOptions) {
 
   const actions = (
     <div className="flex items-center gap-3">
-      <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider">
+      <span className="font-mono text-caption text-text-muted uppercase tracking-wider">
         Threshold
       </span>
       <div className="flex gap-1">
@@ -76,7 +76,7 @@ export function useObserveTab({ addLog }: UseObserveTabOptions) {
           <button
             key={t}
             onClick={() => setThreshold(t)}
-            className={`font-mono text-[11px] px-3 py-1.5 rounded border cursor-pointer transition-all duration-200 ${
+            className={`font-mono text-label px-3 py-1.5 rounded border cursor-pointer transition-all duration-200 ${
               threshold === t
                 ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
                 : "border-border-subtle text-text-muted hover:text-text-secondary"
@@ -88,7 +88,7 @@ export function useObserveTab({ addLog }: UseObserveTabOptions) {
       </div>
       <button
         onClick={handleStartObserving}
-        className="ml-auto font-mono text-[11px] px-4 py-1.5 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
+        className="ml-auto font-mono text-label px-4 py-1.5 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
       >
         감지 시작
       </button>

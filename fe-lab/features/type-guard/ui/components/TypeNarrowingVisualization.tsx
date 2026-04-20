@@ -21,10 +21,10 @@ export function TypeNarrowingVisualization({
           background: "#ffffff08",
         }}
       >
-        <div className="font-mono text-[10px] font-semibold mb-1 text-text-muted">
+        <div className="font-mono text-caption font-semibold mb-1 text-text-muted">
           Before Guard
         </div>
-        <div className="font-mono text-[11px] text-text-primary">
+        <div className="font-mono text-label text-text-primary">
           {beforeType}
         </div>
       </div>
@@ -52,12 +52,12 @@ export function TypeNarrowingVisualization({
         }}
       >
         <div
-          className="font-mono text-[10px] font-semibold mb-1"
+          className="font-mono text-caption font-semibold mb-1"
           style={{ color: color }}
         >
           After Guard
         </div>
-        <div className="font-mono text-[11px] text-text-primary whitespace-pre-line">
+        <div className="font-mono text-label text-text-primary whitespace-pre-line">
           {narrowedType ?? afterType}
         </div>
       </div>

@@ -15,7 +15,7 @@ export function PropertySelectorPanel({
   return (
     <div className="border-l border-border-subtle flex flex-col">
       <div className="px-4 py-3 border-b border-border-subtle">
-        <span className="font-mono text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
+        <span className="font-mono text-label font-semibold text-text-secondary uppercase tracking-wider">
           CSS 속성 선택
         </span>
       </div>
@@ -65,13 +65,13 @@ export function PropertySelectorPanel({
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-accent-amber" />
-            <span className="font-mono text-[10px] text-text-muted">
+            <span className="font-mono text-caption text-text-muted">
               실행됨 (비용 발생)
             </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-accent-green" />
-            <span className="font-mono text-[10px] text-text-muted">
+            <span className="font-mono text-caption text-text-muted">
               건너뜀 (최적화)
             </span>
           </div>

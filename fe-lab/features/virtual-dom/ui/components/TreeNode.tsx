@@ -59,11 +59,11 @@ export default function TreeNode({ node, step, depth = 0 }: TreeNodeProps) {
             : "border-border-subtle bg-bg-deep text-text-secondary"
         } ${status === "removed" ? "opacity-40 line-through" : ""}`}
       >
-        <span className="font-mono text-[11px] font-semibold">
+        <span className="font-mono text-label font-semibold">
           &lt;{node.tag}&gt;
         </span>
         {node.text && (
-          <span className="font-mono text-[10px] text-text-muted">
+          <span className="font-mono text-caption text-text-muted">
             {step >= 1 && status === "modified"
               ? (DIFF_RESULT.find((d) => d.id === node.id)?.detail ?? node.text)
               : `"${node.text}"`}

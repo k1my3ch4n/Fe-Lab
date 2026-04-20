@@ -29,7 +29,7 @@ export function CurryingStepVisualization({
             style={{ opacity: currentStep >= index ? 1 : 0.3 }}
           >
             <div
-              className="w-6 h-6 rounded-full flex items-center justify-center font-mono text-[10px] font-bold flex-shrink-0"
+              className="w-6 h-6 rounded-full flex items-center justify-center font-mono text-caption font-bold flex-shrink-0"
               style={{
                 background: currentStep >= index ? `${color}33` : "#ffffff08",
                 color: currentStep >= index ? color : "#666",
@@ -46,11 +46,11 @@ export function CurryingStepVisualization({
                   currentStep >= index ? `${color}08` : "transparent",
               }}
             >
-              <div className="font-mono text-[10px] text-text-muted">
+              <div className="font-mono text-caption text-text-muted">
                 {step.args.join(" → ")}
               </div>
               <div
-                className="font-mono text-[11px] font-semibold"
+                className="font-mono text-label font-semibold"
                 style={{ color: currentStep >= index ? color : "#666" }}
               >
                 → {step.result}

@@ -31,7 +31,7 @@ export default function SidebarHeader({
         <Logo />
         <div>
           FE Lab
-          <div className="text-[11px] text-text-muted font-normal mt-1 tracking-[2px] uppercase">
+          <div className="text-label text-text-muted font-normal mt-1 tracking-[2px] uppercase">
             Interview Prep
           </div>
         </div>

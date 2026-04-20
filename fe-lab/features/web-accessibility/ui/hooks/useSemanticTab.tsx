@@ -29,7 +29,7 @@ export function useSemanticTab({ addLog }: UseSemanticTabOptions) {
     <>
       <button
         onClick={handleToggle}
-        className={`self-start font-mono text-[11px] px-4 py-2 rounded-lg border cursor-pointer transition-all duration-200 ${
+        className={`self-start font-mono text-label px-4 py-2 rounded-lg border cursor-pointer transition-all duration-200 ${
           showGoodVersion
             ? "border-accent-green text-accent-green bg-accent-green-dim hover:bg-[#00e67633]"
             : "border-accent-magenta text-accent-magenta bg-accent-magenta-dim hover:bg-[#ff2d8a33]"
@@ -40,27 +40,23 @@ export function useSemanticTab({ addLog }: UseSemanticTabOptions) {
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <div className="font-mono text-[10px] text-accent-magenta uppercase tracking-wider mb-2">
+          <div className="font-mono text-caption text-accent-magenta uppercase tracking-wider mb-2">
             {SEMANTIC_COMPARISON.bad.label}
           </div>
           <CodeBlock
-            className={`text-[11px] transition-opacity duration-300 ${showGoodVersion ? "opacity-40" : "opacity-100"}`}
+            className={`text-label transition-opacity duration-300 ${showGoodVersion ? "opacity-40" : "opacity-100"}`}
           >
-            <code className="text-accent-magenta">
-              {SEMANTIC_COMPARISON.bad.code}
-            </code>
+            {SEMANTIC_COMPARISON.bad.code}
           </CodeBlock>
         </div>
         <div>
-          <div className="font-mono text-[10px] text-accent-green uppercase tracking-wider mb-2">
+          <div className="font-mono text-caption text-accent-green uppercase tracking-wider mb-2">
             {SEMANTIC_COMPARISON.good.label}
           </div>
           <CodeBlock
-            className={`text-[11px] transition-opacity duration-300 ${showGoodVersion ? "opacity-100" : "opacity-40"}`}
+            className={`text-label transition-opacity duration-300 ${showGoodVersion ? "opacity-100" : "opacity-40"}`}
           >
-            <code className="text-accent-green">
-              {SEMANTIC_COMPARISON.good.code}
-            </code>
+            {SEMANTIC_COMPARISON.good.code}
           </CodeBlock>
         </div>
       </div>
@@ -70,14 +66,14 @@ export function useSemanticTab({ addLog }: UseSemanticTabOptions) {
         <SectionHeader>스크린 리더 인식 결과</SectionHeader>
         <div className="bg-bg-deep rounded-lg p-4 border border-border-subtle">
           {showGoodVersion ? (
-            <div className="font-mono text-[11px] text-accent-green leading-[2]">
+            <div className="font-mono text-label text-accent-green leading-[2]">
               <div>📢 banner: &quot;사이트명&quot; (heading level 1)</div>
               <div>📢 navigation: 2개 링크 발견</div>
               <div>📢 main: article &quot;제목&quot; (heading level 2)</div>
               <div>📢 contentinfo: &quot;© 2024&quot;</div>
             </div>
           ) : (
-            <div className="font-mono text-[11px] text-accent-magenta leading-[2]">
+            <div className="font-mono text-label text-accent-magenta leading-[2]">
               <div>📢 group: &quot;사이트명&quot; (구조 불명)</div>
               <div>📢 group: &quot;홈&quot; &quot;소개&quot; (역할 불명)</div>
               <div>

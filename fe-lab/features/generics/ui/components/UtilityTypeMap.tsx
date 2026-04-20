@@ -13,7 +13,7 @@ export function UtilityTypeMap() {
           }}
         >
           <span
-            className="font-mono text-[10px] font-semibold"
+            className="font-mono text-caption font-semibold"
             style={{ color: ut.color }}
           >
             {ut.name}

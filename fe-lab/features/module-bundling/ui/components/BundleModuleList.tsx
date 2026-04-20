@@ -39,7 +39,7 @@ export function BundleModuleList({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span
-                    className="font-mono text-[11px] font-semibold"
+                    className="font-mono text-label font-semibold"
                     style={{ color: module.color }}
                   >
                     {module.name}
@@ -51,7 +51,7 @@ export function BundleModuleList({
                   )}
                 </div>
                 {module.size > 0 && (
-                  <span className="font-mono text-[10px] text-text-muted">
+                  <span className="font-mono text-caption text-text-muted">
                     {module.size}KB
                   </span>
                 )}

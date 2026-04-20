@@ -27,7 +27,7 @@ export default function TabBar({
           role="tab"
           aria-selected={i === activeIndex}
           onClick={() => onTabChange(i)}
-          className={`font-mono text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
+          className={`font-mono text-label px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
             i === activeIndex
               ? "border-accent-cyan text-accent-cyan bg-bg-surface"
               : "border-transparent text-text-muted hover:text-text-secondary"

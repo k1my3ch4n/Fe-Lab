@@ -3,16 +3,16 @@ import { PROTOCOLS, COMPARISON_TABLE } from "../../model/constants";
 export function ComparisonTable() {
   return (
     <div className="p-6 overflow-x-auto">
-      <table className="w-full font-mono text-[11px] border-collapse">
+      <table className="w-full font-mono text-label border-collapse">
         <thead>
           <tr>
-            <th className="text-left text-text-muted text-[10px] uppercase tracking-wider py-2 px-3 border-b border-border-subtle">
+            <th className="text-left text-text-muted text-caption uppercase tracking-wider py-2 px-3 border-b border-border-subtle">
               항목
             </th>
             {PROTOCOLS.map((p) => (
               <th
                 key={p.id}
-                className="text-left text-[10px] uppercase tracking-wider py-2 px-3 border-b border-border-subtle"
+                className="text-left text-caption uppercase tracking-wider py-2 px-3 border-b border-border-subtle"
                 style={{ color: p.color }}
               >
                 {p.label}
@@ -54,14 +54,14 @@ export function ComparisonTable() {
             >
               {p.fullName}
             </div>
-            <div className="font-mono text-[10px] text-text-muted mb-3">
+            <div className="font-mono text-caption text-text-muted mb-3">
               {p.direction}
             </div>
             <div className="flex flex-col gap-1">
               {p.useCases.slice(0, 3).map((uc, i) => (
                 <div
                   key={i}
-                  className="font-mono text-[10px] text-text-secondary"
+                  className="font-mono text-caption text-text-secondary"
                 >
                   * {uc}
                 </div>

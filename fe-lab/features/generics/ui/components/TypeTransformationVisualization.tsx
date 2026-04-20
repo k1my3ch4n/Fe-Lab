@@ -22,12 +22,12 @@ export function TypeTransformationVisualization({
         }}
       >
         <div
-          className="font-mono text-[10px] font-semibold mb-1"
+          className="font-mono text-caption font-semibold mb-1"
           style={{ color: color }}
         >
           Input Type
         </div>
-        <div className="font-mono text-[11px] text-text-primary">
+        <div className="font-mono text-label text-text-primary">
           {inputType}
         </div>
       </div>
@@ -44,12 +44,12 @@ export function TypeTransformationVisualization({
         }}
       >
         <div
-          className="font-mono text-[10px] font-semibold mb-1"
+          className="font-mono text-caption font-semibold mb-1"
           style={{ color: color }}
         >
           Output Type
         </div>
-        <div className="font-mono text-[11px] text-text-primary">
+        <div className="font-mono text-label text-text-primary">
           {resolvedType ?? outputType}
         </div>
       </div>

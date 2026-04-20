@@ -18,12 +18,12 @@ export function ArchitectureLayers({ layers }: ArchitectureLayersProps) {
           }}
         >
           <div
-            className="font-mono text-[10px] font-semibold"
+            className="font-mono text-caption font-semibold"
             style={{ color: layer.color }}
           >
             {layer.name}
           </div>
-          <div className="font-mono text-[10px] text-text-muted mt-1">
+          <div className="font-mono text-caption text-text-muted mt-1">
             {layer.description}
           </div>
         </div>

@@ -160,7 +160,7 @@ export default function PromiseDemo() {
           >
             {/* Description */}
             <div className="p-4 border-b border-border-subtle">
-              <div className="text-[11px] text-text-secondary leading-[1.8]">
+              <div className="text-label text-text-secondary leading-[1.8]">
                 {method.description}
               </div>
             </div>
@@ -202,15 +202,15 @@ export default function PromiseDemo() {
                             : "none",
                       }}
                     />
-                    <span className="font-mono text-[11px] text-text-primary">
+                    <span className="font-mono text-label text-text-primary">
                       {p.label}
                     </span>
-                    <span className="font-mono text-[10px] text-text-muted">
+                    <span className="font-mono text-caption text-text-muted">
                       ({p.delay}ms)
                     </span>
                   </div>
                   <span
-                    className="font-mono text-[10px] font-semibold"
+                    className="font-mono text-caption font-semibold"
                     style={{ color: STATE_COLORS[p.state] }}
                   >
                     {p.state}

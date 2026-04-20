@@ -76,7 +76,7 @@ export default function HooksLifecycleDemo() {
               }
             >
               {/* Log */}
-              <div className="flex-1 overflow-y-auto p-3 font-mono text-[11px] leading-relaxed">
+              <div className="flex-1 overflow-y-auto p-3 font-mono text-label leading-relaxed">
                 {logs.length === 0 ? (
                   <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
                     버튼을 클릭하여
@@ -106,7 +106,7 @@ export default function HooksLifecycleDemo() {
               <button
                 key={phase.id}
                 onClick={() => selectPhase(phase.id)}
-                className={`font-mono text-[11px] px-3 py-1.5 rounded-md border transition-all duration-200 cursor-pointer ${
+                className={`font-mono text-label px-3 py-1.5 rounded-md border transition-all duration-200 cursor-pointer ${
                   activePhase === phase.id
                     ? "bg-bg-surface"
                     : "border-border-subtle text-text-muted hover:text-text-secondary"
@@ -153,7 +153,7 @@ export default function HooksLifecycleDemo() {
                 >
                   {/* Order number */}
                   <span
-                    className="font-mono text-[10px] w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all duration-300"
+                    className="font-mono text-caption w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all duration-300"
                     style={{
                       background: isActive ? `${timing.color}30` : "#1a1a2e",
                       color: isActive
@@ -181,7 +181,7 @@ export default function HooksLifecycleDemo() {
 
                   {/* Description */}
                   <span
-                    className="font-mono text-[10px] transition-all duration-300"
+                    className="font-mono text-caption transition-all duration-300"
                     style={{
                       color: isActive
                         ? "var(--text-secondary)"

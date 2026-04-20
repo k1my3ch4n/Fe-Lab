@@ -103,7 +103,7 @@ export function useEdgeTab({ addLog, clearLogs }: UseEdgeTabOptions) {
                     top: `${edge.y - 8}%`,
                   }}
                 >
-                  <div className="font-mono text-[10px] text-text-primary">
+                  <div className="font-mono text-caption text-text-primary">
                     {edge.name}
                   </div>
                   <div className="font-mono text-[8px] text-text-muted">

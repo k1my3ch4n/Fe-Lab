@@ -139,19 +139,19 @@ export default function WebStorageDemo() {
         <div className="flex gap-2">
           <button
             onClick={handleSet}
-            className="font-mono text-[11px] px-4 py-2 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
+            className="font-mono text-label px-4 py-2 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
           >
             setItem
           </button>
           <button
             onClick={handleGet}
-            className="font-mono text-[11px] px-4 py-2 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33]"
+            className="font-mono text-label px-4 py-2 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33]"
           >
             getItem
           </button>
           <button
             onClick={handleClear}
-            className="font-mono text-[11px] px-4 py-2 rounded-lg border border-accent-magenta text-accent-magenta bg-accent-magenta-dim cursor-pointer transition-all duration-200 hover:bg-[#ff2d8a33]"
+            className="font-mono text-label px-4 py-2 rounded-lg border border-accent-magenta text-accent-magenta bg-accent-magenta-dim cursor-pointer transition-all duration-200 hover:bg-[#ff2d8a33]"
           >
             clear
           </button>

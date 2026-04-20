@@ -33,7 +33,7 @@ export function CrpScenarioStats({
             }`}
           >
             <div
-              className={`font-mono text-[10px] mb-1 ${
+              className={`font-mono text-caption mb-1 ${
                 isActive ? "text-accent-cyan" : "text-text-muted"
               }`}
             >
@@ -45,12 +45,12 @@ export function CrpScenarioStats({
               }`}
             >
               {scenario.fcp}
-              <span className="text-[11px] font-normal text-text-muted ml-0.5">
+              <span className="text-label font-normal text-text-muted ml-0.5">
                 ms
               </span>
             </div>
             {improvement !== null && (
-              <div className="font-mono text-[10px] text-accent-green mt-0.5">
+              <div className="font-mono text-caption text-accent-green mt-0.5">
                 -{improvement}% 개선
               </div>
             )}

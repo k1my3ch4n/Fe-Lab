@@ -152,7 +152,7 @@ export default function ScopeContextDemo() {
           >
             {/* Explanation */}
             <div className="p-4 border-b border-border-subtle">
-              <div className="text-[11px] text-text-secondary leading-[1.8]">
+              <div className="text-label text-text-secondary leading-[1.8]">
                 {example.explanation}
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function ScopeContextDemo() {
 
         {/* this Value Indicator */}
         <div className="flex items-center gap-3 p-3 rounded-lg border border-border-subtle bg-bg-surface">
-          <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider">
+          <span className="font-mono text-caption text-text-muted uppercase tracking-wider">
             this →
           </span>
           <span

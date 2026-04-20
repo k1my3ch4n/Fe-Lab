@@ -20,7 +20,7 @@ export function ThreadDiagram({
       >
         <div className="flex items-center justify-between mb-2">
           <span
-            className="font-mono text-[10px] font-semibold"
+            className="font-mono text-caption font-semibold"
             style={{ color: uiBlocked ? "#ff2d8a" : "#00e5ff" }}
           >
             Main Thread
@@ -35,7 +35,7 @@ export function ThreadDiagram({
             {uiBlocked ? "BLOCKED" : "IDLE"}
           </span>
         </div>
-        <div className="font-mono text-[11px] text-text-secondary">
+        <div className="font-mono text-label text-text-secondary">
           UI 렌더링, 이벤트 처리, DOM 조작
         </div>
       </div>
@@ -50,7 +50,7 @@ export function ThreadDiagram({
         >
           <div className="flex items-center justify-between mb-2">
             <span
-              className="font-mono text-[10px] font-semibold"
+              className="font-mono text-caption font-semibold"
               style={{ color: isRunning ? "#00e676" : "#b388ff" }}
             >
               Worker Thread
@@ -65,7 +65,7 @@ export function ThreadDiagram({
               {isRunning ? "COMPUTING" : "READY"}
             </span>
           </div>
-          <div className="font-mono text-[11px] text-text-secondary">
+          <div className="font-mono text-label text-text-secondary">
             별도 스레드에서 연산 수행, UI 블로킹 없음
           </div>
         </div>

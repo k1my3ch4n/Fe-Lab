@@ -12,13 +12,13 @@ export default function ComparisonView() {
         <div className="rounded-lg border border-border-subtle overflow-hidden min-w-[500px]">
           {/* Header */}
           <div className="grid grid-cols-[1fr_1fr_1.2fr] bg-bg-elevated border-b border-border-subtle">
-            <div className="px-4 py-2.5 font-mono text-[10px] text-accent-magenta font-semibold uppercase tracking-wider">
+            <div className="px-4 py-2.5 font-mono text-caption text-accent-magenta font-semibold uppercase tracking-wider">
               Class Method
             </div>
-            <div className="px-4 py-2.5 font-mono text-[10px] text-accent-cyan font-semibold uppercase tracking-wider">
+            <div className="px-4 py-2.5 font-mono text-caption text-accent-cyan font-semibold uppercase tracking-wider">
               Hook Equivalent
             </div>
-            <div className="px-4 py-2.5 font-mono text-[10px] text-text-muted font-semibold uppercase tracking-wider">
+            <div className="px-4 py-2.5 font-mono text-caption text-text-muted font-semibold uppercase tracking-wider">
               설명
             </div>
           </div>
@@ -33,13 +33,13 @@ export default function ComparisonView() {
                   : ""
               }`}
             >
-              <div className="px-4 py-3 font-mono text-[11px] text-accent-magenta">
+              <div className="px-4 py-3 font-mono text-label text-accent-magenta">
                 {mapping.classMethod}
               </div>
-              <div className="px-4 py-3 font-mono text-[11px] text-accent-cyan">
+              <div className="px-4 py-3 font-mono text-label text-accent-cyan">
                 {mapping.hookEquivalent}
               </div>
-              <div className="px-4 py-3 font-mono text-[11px] text-text-secondary">
+              <div className="px-4 py-3 font-mono text-label text-text-secondary">
                 {mapping.description}
               </div>
             </div>
@@ -54,7 +54,7 @@ export default function ComparisonView() {
           {FLOW_STEPS.map((step, i, arr) => (
             <div key={i} className="flex items-center gap-2">
               <span
-                className="font-mono text-[10px] px-2.5 py-1.5 rounded-md border"
+                className="font-mono text-caption px-2.5 py-1.5 rounded-md border"
                 style={{
                   color: step.color,
                   borderColor: `${step.color}44`,
@@ -64,7 +64,7 @@ export default function ComparisonView() {
                 {step.label}
               </span>
               {i < arr.length - 1 && (
-                <span className="text-text-muted text-[10px]">&rarr;</span>
+                <span className="text-text-muted text-caption">&rarr;</span>
               )}
             </div>
           ))}

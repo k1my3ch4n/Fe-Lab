@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import SearchIcon from "@shared/ui/icons/SearchIcon";
+import CloseIcon from "@shared/ui/icons/CloseIcon";
 
 interface SearchInputProps {
   value: string;
@@ -20,7 +21,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="토픽 검색... (/ 키로 포커스)"
-            className="w-full font-mono text-[11px]
+            className="w-full font-mono text-label
               bg-bg-deep border border-border-subtle rounded-md
               pl-8 pr-3 py-2 text-text-primary placeholder:text-text-muted
               outline-none transition-all duration-200
@@ -29,9 +30,10 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           {value && (
             <button
               onClick={() => onChange("")}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary cursor-pointer bg-transparent border-none text-xs"
+              aria-label="검색어 지우기"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary cursor-pointer bg-transparent border-none flex items-center justify-center"
             >
-              ✕
+              <CloseIcon />
             </button>
           )}
         </div>

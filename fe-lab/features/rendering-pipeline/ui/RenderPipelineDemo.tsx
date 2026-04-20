@@ -89,7 +89,7 @@ export default function RenderPipelineDemo() {
             style={{ width: `${progress}%` }}
           />
         </div>
-        <span className="font-mono text-[10px] text-text-muted whitespace-nowrap">
+        <span className="font-mono text-caption text-text-muted whitespace-nowrap">
           {currentStep + 1} / {pipelineData.length}
         </span>
         <button onClick={pipelineReset} className="pipe-btn">

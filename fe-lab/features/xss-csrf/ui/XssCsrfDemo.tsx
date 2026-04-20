@@ -179,19 +179,19 @@ export default function XssCsrfDemo() {
             <SectionHeader>XSS 시뮬레이션</SectionHeader>
             <div className="flex flex-col gap-2">
               <div className="rounded border border-accent-magenta/30 p-2 bg-accent-magenta-dim">
-                <span className="font-mono text-[10px] text-accent-magenta">
+                <span className="font-mono text-caption text-accent-magenta">
                   innerHTML:
                 </span>
-                <span className="font-mono text-[11px] text-text-primary ml-2">
+                <span className="font-mono text-label text-text-primary ml-2">
                   {xssInput}
                 </span>
               </div>
               {showEscaped && (
                 <div className="rounded border border-accent-green/30 p-2 bg-accent-green-dim">
-                  <span className="font-mono text-[10px] text-accent-green">
+                  <span className="font-mono text-caption text-accent-green">
                     textContent:
                   </span>
-                  <span className="font-mono text-[11px] text-text-primary ml-2">
+                  <span className="font-mono text-label text-text-primary ml-2">
                     {XSS_EXAMPLES.escaped}
                   </span>
                 </div>

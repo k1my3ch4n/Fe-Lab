@@ -107,7 +107,7 @@ export default function ReconciliationDemo() {
       }
     >
       {/* Step info */}
-      <div className="flex-1 overflow-y-auto p-3 font-mono text-[11px] leading-relaxed">
+      <div className="flex-1 overflow-y-auto p-3 font-mono text-label leading-relaxed">
         {visibleOps.length === 0 ? (
           <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
             버튼을 클릭하여
@@ -124,7 +124,7 @@ export default function ReconciliationDemo() {
               <span className="font-bold">{op.type}</span>{" "}
               <span className="text-text-muted">{op.target}</span>
               <br />
-              <span className="text-text-secondary text-[10px]">
+              <span className="text-text-secondary text-caption">
                 {op.detail}
               </span>
             </div>
@@ -153,7 +153,7 @@ export default function ReconciliationDemo() {
         <div className="grid grid-cols-2 gap-4">
           {/* Old Tree */}
           <div>
-            <div className="font-mono text-[10px] text-text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
+            <div className="font-mono text-caption text-text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
               <span
                 className="w-2 h-2 rounded-full"
                 style={{ background: "var(--accent-magenta)" }}
@@ -169,7 +169,7 @@ export default function ReconciliationDemo() {
 
           {/* New Tree */}
           <div>
-            <div className="font-mono text-[10px] text-text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
+            <div className="font-mono text-caption text-text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
               <span
                 className="w-2 h-2 rounded-full"
                 style={{ background: "var(--accent-green)" }}
@@ -191,7 +191,7 @@ export default function ReconciliationDemo() {
             {operations.map((op, i) => (
               <div
                 key={i}
-                className="flex items-center gap-2 font-mono text-[11px] rounded-lg px-3 py-2 transition-all duration-500"
+                className="flex items-center gap-2 font-mono text-label rounded-lg px-3 py-2 transition-all duration-500"
                 style={{
                   opacity: i <= currentStep ? 1 : 0.2,
                   background:

@@ -15,7 +15,7 @@ export function ProtocolFlowCard({ flow, progress }: ProtocolFlowCardProps) {
         >
           {flow.version.label}
         </span>
-        <span className="font-mono text-[10px] text-text-muted">
+        <span className="font-mono text-caption text-text-muted">
           {flow.description}
         </span>
       </div>

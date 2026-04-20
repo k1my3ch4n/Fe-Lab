@@ -12,7 +12,7 @@ export default function ToggleSwitch({
   onChange,
 }: ToggleSwitchProps) {
   return (
-    <label className="font-mono text-[11px] text-text-secondary flex items-center gap-1.5 cursor-pointer">
+    <label className="font-mono text-label text-text-secondary flex items-center gap-1.5 cursor-pointer">
       <div
         onClick={() => onChange(!checked)}
         className={`relative w-9 h-5 rounded-full transition-all duration-300 border cursor-pointer ${
