@@ -6,10 +6,11 @@ import {
   DemoLayout,
   RightPanel,
   LogPanel,
-  SectionHeader,
   ActionButton,
 } from "@shared/ui";
 import { BUNDLE_EXAMPLES, TABS } from "../model/constants";
+import { BundleModuleList } from "./components/BundleModuleList";
+import { BundleSizeSummary } from "./components/BundleSizeSummary";
 
 export default function ModuleBundlingDemo() {
   const [activeExample, setActiveExample] = useState(0);
@@ -20,7 +21,6 @@ export default function ModuleBundlingDemo() {
 
   const handleToggleOptimize = () => {
     const next = !showOptimized;
-
     setShowOptimized(next);
 
     if (next) {
@@ -56,143 +56,49 @@ export default function ModuleBundlingDemo() {
     handleReset();
   };
 
-  const rightPanel = (
-    <RightPanel
-      onReset={handleReset}
-      actions={
-        <ActionButton
-          variant={showOptimized ? "magenta" : "green"}
-          onClick={handleToggleOptimize}
-        >
-          {showOptimized ? "최적화 해제" : "최적화 적용"}
-        </ActionButton>
-      }
-    >
-      <LogPanel
-        logs={logs}
-        emptyMessage={"최적화를 적용하여\n번들 변화를 확인하세요"}
-      />
-    </RightPanel>
-  );
-
   return (
     <>
-      {/* Toolbar */}
       <TabBar
         tabs={TABS}
         activeIndex={activeExample}
         onTabChange={handleExampleChange}
       />
 
-      <DemoLayout rightPanel={rightPanel}>
-        {/* Description */}
+      <DemoLayout
+        rightPanel={
+          <RightPanel
+            onReset={handleReset}
+            actions={
+              <ActionButton
+                variant={showOptimized ? "magenta" : "green"}
+                onClick={handleToggleOptimize}
+              >
+                {showOptimized ? "최적화 해제" : "최적화 적용"}
+              </ActionButton>
+            }
+          >
+            <LogPanel
+              logs={logs}
+              emptyMessage={"최적화를 적용하여\n번들 변화를 확인하세요"}
+            />
+          </RightPanel>
+        }
+      >
         <div className="text-sm text-text-secondary leading-[1.8]">
           {example.description}
         </div>
 
-        {/* Module Blocks */}
-        <div>
-          <SectionHeader>
-            {activeExample === 2
-              ? "Module Format Comparison"
-              : "Bundle Analysis"}
-          </SectionHeader>
-          <div className="flex flex-col gap-2">
-            {example.modules.map((mod, i) => {
-              const isHidden = showOptimized && !mod.used;
-              return (
-                <div
-                  key={i}
-                  className="rounded-lg border p-3 transition-all duration-500"
-                  style={{
-                    borderColor: `${mod.color}44`,
-                    background: `${mod.color}08`,
-                    opacity: isHidden ? 0.2 : 1,
-                    transform: isHidden ? "scaleY(0.5)" : "scaleY(1)",
-                    transformOrigin: "top",
-                  }}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
-                        style={{ color: mod.color }}
-                      >
-                        {mod.name}
-                      </span>
-                      {isHidden && (
-                        <span className="font-[family-name:var(--font-mono)] text-[9px] px-1.5 py-0.5 rounded bg-[#ff2d8a22] text-[#ff2d8a]">
-                          REMOVED
-                        </span>
-                      )}
-                    </div>
-                    {mod.size > 0 && (
-                      <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
-                        {mod.size}KB
-                      </span>
-                    )}
-                  </div>
-                  {/* Size bar */}
-                  {mod.size > 0 && (
-                    <div className="mt-2 h-2 bg-bg-deep rounded overflow-hidden">
-                      <div
-                        className="h-full rounded transition-all duration-500"
-                        style={{
-                          width: `${(mod.size / Math.max(...example.modules.map((m) => m.size))) * 100}%`,
-                          background: isHidden ? "#ffffff11" : `${mod.color}66`,
-                        }}
-                      />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <BundleModuleList
+          activeExample={activeExample}
+          modules={example.modules}
+          showOptimized={showOptimized}
+        />
 
-        {/* Size Summary */}
-        <div className="flex gap-4">
-          <div
-            className="flex-1 rounded-lg border p-3"
-            style={{
-              borderColor: "var(--accent-magenta-dim)",
-              background: "var(--accent-magenta-dim)",
-            }}
-          >
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
-              최적화 전
-            </div>
-            <div
-              className="font-[family-name:var(--font-mono)] text-[20px] font-bold"
-              style={{ color: "var(--accent-magenta)" }}
-            >
-              {example.totalSize}KB
-            </div>
-          </div>
-          <div
-            className="flex-1 rounded-lg border p-3 transition-all duration-300"
-            style={{
-              borderColor: showOptimized
-                ? "var(--accent-green-dim)"
-                : "#ffffff11",
-              background: showOptimized
-                ? "var(--accent-green-dim)"
-                : "#ffffff04",
-            }}
-          >
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
-              최적화 후
-            </div>
-            <div
-              className="font-[family-name:var(--font-mono)] text-[20px] font-bold transition-colors duration-300"
-              style={{
-                color: showOptimized ? "var(--accent-green)" : "#ffffff33",
-              }}
-            >
-              {showOptimized ? `${example.optimizedSize}KB` : "—"}
-            </div>
-          </div>
-        </div>
+        <BundleSizeSummary
+          totalSize={example.totalSize}
+          optimizedSize={example.optimizedSize}
+          showOptimized={showOptimized}
+        />
       </DemoLayout>
     </>
   );
