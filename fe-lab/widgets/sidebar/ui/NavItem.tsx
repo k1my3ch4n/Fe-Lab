@@ -32,7 +32,7 @@ export default function NavItem({
             ? "bg-accent-cyan-dim text-accent-cyan font-medium"
             : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
         }
-        ${!implemented ? "opacity-60" : ""}
+        ${!implemented ? "opacity-60 cursor-not-allowed pointer-events-none" : ""}
       `}
     >
       {isActive && (
