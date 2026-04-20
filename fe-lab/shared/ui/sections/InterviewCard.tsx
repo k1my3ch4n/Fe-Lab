@@ -39,7 +39,7 @@ export default function InterviewCard({
         className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
         <div className="overflow-hidden">
-          <div className="px-6 pb-6 pl-[58px] text-[13px] text-text-secondary leading-[1.8]">
+          <div className="px-6 pt-4 pb-6 pl-[58px] text-[13px] text-text-secondary leading-[1.8]">
             {children}
           </div>
         </div>
