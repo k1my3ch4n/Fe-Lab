@@ -1,6 +1,6 @@
 "use client";
 
-import { type RefObject, useState, useEffect } from "react";
+import { type RefObject, useState } from "react";
 import { type Category } from "@entities/topic";
 import { ThemeToggle } from "@shared/ui";
 import NavItem from "./NavItem";
@@ -22,12 +22,7 @@ export default function SidebarNav({
   filteredCategories,
 }: SidebarNavProps) {
   const [collapsedCategories, setCollapsedCategories] = useState<Set<string>>(new Set());
-
-  useEffect(() => {
-    if (search) {
-      setCollapsedCategories(new Set());
-    }
-  }, [search]);
+  const effectiveCollapsed = search ? new Set<string>() : collapsedCategories;
 
   const toggleCategory = (name: string) => {
     setCollapsedCategories((prev) => {
@@ -58,7 +53,7 @@ export default function SidebarNav({
       />
       <nav className="flex-1 p-3 overflow-y-auto">
         {filteredCategories.map((category) => {
-          const isCollapsedCategory = collapsedCategories.has(category.name);
+          const isCollapsedCategory = effectiveCollapsed.has(category.name);
           return (
             <div key={category.name} className="mb-3">
               <button
