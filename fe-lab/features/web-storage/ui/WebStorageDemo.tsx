@@ -124,14 +124,14 @@ export default function WebStorageDemo() {
             value={keyInput}
             onChange={(e) => setKeyInput(e.target.value)}
             placeholder="key"
-            className="flex-1 font-[family-name:var(--font-mono)] text-[12px] px-3 py-2 rounded-lg border border-border-subtle bg-bg-deep text-text-primary placeholder:text-text-muted outline-none focus:border-accent-cyan transition-colors"
+            className="flex-1 font-mono text-[12px] px-3 py-2 rounded-lg border border-border-subtle bg-bg-deep text-text-primary placeholder:text-text-muted outline-none focus:border-accent-cyan transition-colors"
           />
           <input
             type="text"
             value={valueInput}
             onChange={(e) => setValueInput(e.target.value)}
             placeholder="value"
-            className="flex-1 font-[family-name:var(--font-mono)] text-[12px] px-3 py-2 rounded-lg border border-border-subtle bg-bg-deep text-text-primary placeholder:text-text-muted outline-none focus:border-accent-cyan transition-colors"
+            className="flex-1 font-mono text-[12px] px-3 py-2 rounded-lg border border-border-subtle bg-bg-deep text-text-primary placeholder:text-text-muted outline-none focus:border-accent-cyan transition-colors"
           />
         </div>
 
@@ -139,19 +139,19 @@ export default function WebStorageDemo() {
         <div className="flex gap-2">
           <button
             onClick={handleSet}
-            className="font-[family-name:var(--font-mono)] text-[11px] px-4 py-2 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
+            className="font-mono text-[11px] px-4 py-2 rounded-lg border border-accent-green text-accent-green bg-accent-green-dim cursor-pointer transition-all duration-200 hover:bg-[#00e67633]"
           >
             setItem
           </button>
           <button
             onClick={handleGet}
-            className="font-[family-name:var(--font-mono)] text-[11px] px-4 py-2 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33]"
+            className="font-mono text-[11px] px-4 py-2 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33]"
           >
             getItem
           </button>
           <button
             onClick={handleClear}
-            className="font-[family-name:var(--font-mono)] text-[11px] px-4 py-2 rounded-lg border border-accent-magenta text-accent-magenta bg-accent-magenta-dim cursor-pointer transition-all duration-200 hover:bg-[#ff2d8a33]"
+            className="font-mono text-[11px] px-4 py-2 rounded-lg border border-accent-magenta text-accent-magenta bg-accent-magenta-dim cursor-pointer transition-all duration-200 hover:bg-[#ff2d8a33]"
           >
             clear
           </button>
@@ -159,7 +159,7 @@ export default function WebStorageDemo() {
 
         {/* Query result */}
         {queryResult !== null && (
-          <div className="font-[family-name:var(--font-mono)] text-[12px] bg-bg-deep rounded-lg p-3 border border-border-subtle">
+          <div className="font-mono text-[12px] bg-bg-deep rounded-lg p-3 border border-border-subtle">
             <span className="text-text-muted">결과: </span>
             <span className="text-accent-amber">{queryResult}</span>
           </div>

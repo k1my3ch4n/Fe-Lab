@@ -89,7 +89,7 @@ export default function RenderPipelineDemo() {
             style={{ width: `${progress}%` }}
           />
         </div>
-        <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted whitespace-nowrap">
+        <span className="font-mono text-[10px] text-text-muted whitespace-nowrap">
           {currentStep + 1} / {pipelineData.length}
         </span>
         <button onClick={pipelineReset} className="pipe-btn">
@@ -135,7 +135,7 @@ export default function RenderPipelineDemo() {
             <StepDetail step={activeStep} />
           ) : (
             <>
-              <div className="font-[family-name:var(--font-display)] text-base font-semibold mb-2">
+              <div className="font-display text-base font-semibold mb-2">
                 ▶ 재생 버튼을 누르거나 &apos;다음&apos;을 클릭하세요
               </div>
               <div className="text-[13px] text-text-muted">

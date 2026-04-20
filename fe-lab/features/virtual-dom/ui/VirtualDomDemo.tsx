@@ -63,7 +63,7 @@ export default function VirtualDomDemo() {
           <button
             onClick={handleStep}
             disabled={step >= 3}
-            className={`w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+            className={`w-full font-mono text-[12px] px-4 py-2.5 rounded-lg border transition-all duration-200 cursor-pointer ${
               step >= 3
                 ? "border-border-subtle text-text-muted bg-bg-deep cursor-not-allowed"
                 : step === 0
@@ -82,7 +82,7 @@ export default function VirtualDomDemo() {
                   : "✓ 완료"}
           </button>
           {step < 3 && (
-            <p className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted text-center">
+            <p className="font-mono text-[10px] text-text-muted text-center">
               {step === 0
                 ? "클릭하여 상태를 변경하세요"
                 : step === 1
@@ -107,7 +107,7 @@ export default function VirtualDomDemo() {
         {STEP_LABELS.map((label, i) => (
           <div
             key={i}
-            className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 ${
+            className={`font-mono text-[11px] px-4 py-3 border-b-2 transition-all duration-200 ${
               i === step
                 ? "border-accent-cyan text-accent-cyan bg-bg-surface"
                 : i < step
@@ -124,17 +124,17 @@ export default function VirtualDomDemo() {
       <DemoLayout rightPanel={rightPanel}>
         {/* Comparison Table */}
         <div>
-          <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-3">
+          <div className="font-mono text-[10px] text-text-muted uppercase tracking-wider mb-3">
             Real DOM vs Virtual DOM
           </div>
           <div className="grid grid-cols-3 gap-px bg-border-subtle rounded-lg overflow-hidden text-[11px]">
-            <div className="bg-bg-elevated px-3 py-2 font-semibold text-text-muted font-[family-name:var(--font-mono)]">
+            <div className="bg-bg-elevated px-3 py-2 font-semibold text-text-muted font-mono">
               비교 항목
             </div>
-            <div className="bg-bg-elevated px-3 py-2 font-semibold text-accent-magenta font-[family-name:var(--font-mono)]">
+            <div className="bg-bg-elevated px-3 py-2 font-semibold text-accent-magenta font-mono">
               Real DOM
             </div>
-            <div className="bg-bg-elevated px-3 py-2 font-semibold text-accent-cyan font-[family-name:var(--font-mono)]">
+            <div className="bg-bg-elevated px-3 py-2 font-semibold text-accent-cyan font-mono">
               Virtual DOM
             </div>
             {DOM_COMPARISON.map((row) => (
@@ -164,7 +164,7 @@ export default function VirtualDomDemo() {
 
         {/* Virtual DOM Tree */}
         <div>
-          <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider mb-3">
+          <div className="font-mono text-[10px] text-text-muted uppercase tracking-wider mb-3">
             {step === 0
               ? "Current Virtual DOM"
               : step === 1
@@ -183,13 +183,13 @@ export default function VirtualDomDemo() {
                 className="mb-1.5"
               >
                 <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-md border border-text-muted/40 bg-text-muted/5 text-text-muted opacity-40 line-through">
-                  <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold">
+                  <span className="font-mono text-[11px] font-semibold">
                     &lt;p&gt;
                   </span>
-                  <span className="font-[family-name:var(--font-mono)] text-[10px]">
+                  <span className="font-mono text-[10px]">
                     &quot;Footer&quot;
                   </span>
-                  <span className="font-[family-name:var(--font-mono)] text-[9px] px-1.5 py-0.5 rounded-full bg-text-muted/5 text-text-muted no-underline animate-[logSlide_0.3s_ease]">
+                  <span className="font-mono text-[9px] px-1.5 py-0.5 rounded-full bg-text-muted/5 text-text-muted no-underline animate-[logSlide_0.3s_ease]">
                     삭제
                   </span>
                 </div>
@@ -214,7 +214,7 @@ export default function VirtualDomDemo() {
                               : "bg-text-muted"
                       }`}
                     />
-                    <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+                    <span className="font-mono text-[10px] text-text-muted">
                       {
                         {
                           unchanged: "유지",

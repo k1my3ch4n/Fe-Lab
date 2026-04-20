@@ -20,7 +20,7 @@ export default function Topbar({ topicId }: TopbarProps) {
     <header className="flex items-center justify-between mb-10 pb-6 border-b border-border-subtle">
       <nav
         aria-label="breadcrumb"
-        className="font-[family-name:var(--font-mono)] text-xs text-text-muted"
+        className="font-mono text-xs text-text-muted"
       >
         {topic.category} /{" "}
         <span className="text-accent-cyan">{topic.name}</span>

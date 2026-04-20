@@ -29,12 +29,12 @@ export function RenderFlowVisualization({
             }}
           >
             <div
-              className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
+              className="font-mono text-[10px] font-semibold"
               style={{ color: phase.color }}
             >
               {index + 1}. {phase.label}
             </div>
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mt-1">
+            <div className="font-mono text-[10px] text-text-muted mt-1">
               {phase.description}
             </div>
           </div>

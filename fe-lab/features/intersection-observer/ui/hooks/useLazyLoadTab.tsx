@@ -63,7 +63,7 @@ export function useLazyLoadTab({ addLog }: UseLazyLoadTabOptions) {
   const actions = (
     <button
       onClick={handleLazyLoad}
-      className="self-start font-[family-name:var(--font-mono)] text-[11px] px-4 py-1.5 rounded-lg border border-accent-amber text-accent-amber bg-accent-amber-dim cursor-pointer transition-all duration-200 hover:bg-[#ffb80033]"
+      className="self-start font-mono text-[11px] px-4 py-1.5 rounded-lg border border-accent-amber text-accent-amber bg-accent-amber-dim cursor-pointer transition-all duration-200 hover:bg-[#ffb80033]"
     >
       Lazy Loading 시작
     </button>
@@ -88,12 +88,12 @@ export function useLazyLoadTab({ addLog }: UseLazyLoadTabOptions) {
           {loadedImages.has(id) ? (
             <div className="text-center">
               <div className="text-2xl mb-1">🖼️</div>
-              <span className="font-[family-name:var(--font-mono)] text-[11px] text-accent-green">
+              <span className="font-mono text-[11px] text-accent-green">
                 이미지 {id} 로딩 완료
               </span>
             </div>
           ) : (
-            <span className="font-[family-name:var(--font-mono)] text-[11px] text-text-muted">
+            <span className="font-mono text-[11px] text-text-muted">
               이미지 {id} (대기 중...)
             </span>
           )}

@@ -23,7 +23,7 @@ export default function InterviewCard({
         className="w-full px-6 py-5 flex items-center justify-between cursor-pointer transition-all duration-200 hover:bg-bg-hover bg-transparent border-none text-left"
       >
         <div className="text-sm font-medium text-text-primary flex items-center gap-2.5">
-          <span className="font-[family-name:var(--font-mono)] text-[10px] font-bold w-6 h-6 rounded-md flex items-center justify-center bg-accent-magenta-dim text-accent-magenta shrink-0">
+          <span className="font-mono text-[10px] font-bold w-6 h-6 rounded-md flex items-center justify-center bg-accent-magenta-dim text-accent-magenta shrink-0">
             Q{index}
           </span>
           {question}

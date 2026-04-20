@@ -59,11 +59,11 @@ export default function TreeNode({ node, step, depth = 0 }: TreeNodeProps) {
             : "border-border-subtle bg-bg-deep text-text-secondary"
         } ${status === "removed" ? "opacity-40 line-through" : ""}`}
       >
-        <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold">
+        <span className="font-mono text-[11px] font-semibold">
           &lt;{node.tag}&gt;
         </span>
         {node.text && (
-          <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+          <span className="font-mono text-[10px] text-text-muted">
             {step >= 1 && status === "modified"
               ? (DIFF_RESULT.find((d) => d.id === node.id)?.detail ?? node.text)
               : `"${node.text}"`}
@@ -71,7 +71,7 @@ export default function TreeNode({ node, step, depth = 0 }: TreeNodeProps) {
         )}
         {isHighlighted && (
           <span
-            className={`font-[family-name:var(--font-mono)] text-[9px] px-1.5 py-0.5 rounded-full ${colors.bg} ${colors.text} animate-[logSlide_0.3s_ease]`}
+            className={`font-mono text-[9px] px-1.5 py-0.5 rounded-full ${colors.bg} ${colors.text} animate-[logSlide_0.3s_ease]`}
           >
             {colors.label}
           </span>

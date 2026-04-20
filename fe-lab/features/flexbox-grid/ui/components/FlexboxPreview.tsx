@@ -37,7 +37,7 @@ export function FlexboxPreview({
       {items.map((item, i) => (
         <div
           key={i}
-          className="rounded-md px-4 py-3 font-[family-name:var(--font-mono)] text-[12px] font-bold text-bg-deep min-w-[48px] text-center"
+          className="rounded-md px-4 py-3 font-mono text-[12px] font-bold text-bg-deep min-w-[48px] text-center"
           style={{ background: item.color }}
         >
           {item.label}

@@ -103,10 +103,10 @@ export function useEdgeTab({ addLog, clearLogs }: UseEdgeTabOptions) {
                     top: `${edge.y - 8}%`,
                   }}
                 >
-                  <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-primary">
+                  <div className="font-mono text-[10px] text-text-primary">
                     {edge.name}
                   </div>
-                  <div className="font-[family-name:var(--font-mono)] text-[8px] text-text-muted">
+                  <div className="font-mono text-[8px] text-text-muted">
                     {edge.region}
                   </div>
                 </div>
@@ -121,7 +121,7 @@ export function useEdgeTab({ addLog, clearLogs }: UseEdgeTabOptions) {
               className="w-3 h-3 rounded-full"
               style={{ backgroundColor: "var(--accent-magenta)" }}
             />
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+            <span className="font-mono text-[9px] text-text-muted">
               Origin
             </span>
           </div>
@@ -136,7 +136,7 @@ export function useEdgeTab({ addLog, clearLogs }: UseEdgeTabOptions) {
                 className="w-2 h-2 rounded-full"
                 style={{ backgroundColor: r.color }}
               />
-              <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+              <span className="font-mono text-[9px] text-text-muted">
                 {r.label}
               </span>
             </div>

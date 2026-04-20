@@ -79,7 +79,7 @@ export default function ReflowRepaintDemo() {
               const first = CSS_PROPERTIES.find((p) => p.category === cat);
               if (first) handlePropertyClick(first);
             }}
-            className={`font-[family-name:var(--font-mono)] text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
+            className={`font-mono text-[11px] px-4 py-3 border-b-2 transition-all duration-200 cursor-pointer ${
               activeProperty.category === cat
                 ? "bg-bg-surface"
                 : "border-transparent text-text-muted hover:text-text-secondary"
@@ -120,7 +120,7 @@ export default function ReflowRepaintDemo() {
 
           {/* Performance indicator */}
           <div className="flex items-center gap-3 bg-bg-deep rounded-lg px-4 py-3">
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider">
+            <div className="font-mono text-[10px] text-text-muted uppercase tracking-wider">
               성능 영향
             </div>
             <div className="flex items-center gap-2">
@@ -129,13 +129,13 @@ export default function ReflowRepaintDemo() {
                 style={{ background: costMeta.color }}
               />
               <span
-                className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
+                className="font-mono text-[11px] font-semibold"
                 style={{ color: costMeta.color }}
               >
                 {costMeta.label}
               </span>
             </div>
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted ml-2">
+            <div className="font-mono text-[10px] text-text-muted ml-2">
               — {activeProperty.label} 변경 시{" "}
               {activeProperty.triggeredStages.length}단계 실행
             </div>

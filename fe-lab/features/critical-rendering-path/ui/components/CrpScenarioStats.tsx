@@ -33,14 +33,14 @@ export function CrpScenarioStats({
             }`}
           >
             <div
-              className={`font-[family-name:var(--font-mono)] text-[10px] mb-1 ${
+              className={`font-mono text-[10px] mb-1 ${
                 isActive ? "text-accent-cyan" : "text-text-muted"
               }`}
             >
               {scenario.label}
             </div>
             <div
-              className={`font-[family-name:var(--font-mono)] text-[18px] font-bold ${
+              className={`font-mono text-[18px] font-bold ${
                 isActive ? "text-accent-cyan" : "text-text-primary"
               }`}
             >
@@ -50,7 +50,7 @@ export function CrpScenarioStats({
               </span>
             </div>
             {improvement !== null && (
-              <div className="font-[family-name:var(--font-mono)] text-[10px] text-accent-green mt-0.5">
+              <div className="font-mono text-[10px] text-accent-green mt-0.5">
                 -{improvement}% 개선
               </div>
             )}

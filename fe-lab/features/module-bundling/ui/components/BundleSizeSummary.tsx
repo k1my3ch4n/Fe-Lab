@@ -20,11 +20,11 @@ export function BundleSizeSummary({
           background: "var(--accent-magenta-dim)",
         }}
       >
-        <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
+        <div className="font-mono text-[10px] text-text-muted mb-1">
           최적화 전
         </div>
         <div
-          className="font-[family-name:var(--font-mono)] text-[20px] font-bold"
+          className="font-mono text-[20px] font-bold"
           style={{ color: "var(--accent-magenta)" }}
         >
           {totalSize}KB
@@ -37,11 +37,11 @@ export function BundleSizeSummary({
           background: showOptimized ? "var(--accent-green-dim)" : "#ffffff04",
         }}
       >
-        <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
+        <div className="font-mono text-[10px] text-text-muted mb-1">
           최적화 후
         </div>
         <div
-          className="font-[family-name:var(--font-mono)] text-[20px] font-bold transition-colors duration-300"
+          className="font-mono text-[20px] font-bold transition-colors duration-300"
           style={{
             color: showOptimized ? "var(--accent-green)" : "#ffffff33",
           }}

@@ -10,12 +10,12 @@ export function ProtocolFlowCard({ flow, progress }: ProtocolFlowCardProps) {
     <div className="rounded-lg border border-border-subtle bg-bg-deep p-4">
       <div className="flex items-center gap-3 mb-3">
         <span
-          className="font-[family-name:var(--font-mono)] text-[13px] font-bold"
+          className="font-mono text-[13px] font-bold"
           style={{ color: flow.version.color }}
         >
           {flow.version.label}
         </span>
-        <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+        <span className="font-mono text-[10px] text-text-muted">
           {flow.description}
         </span>
       </div>
@@ -45,7 +45,7 @@ export function ProtocolFlowCard({ flow, progress }: ProtocolFlowCardProps) {
                     : undefined,
               }}
             >
-              <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted truncate px-1">
+              <span className="font-mono text-[9px] text-text-muted truncate px-1">
                 {step.label}
               </span>
             </div>
@@ -57,7 +57,7 @@ export function ProtocolFlowCard({ flow, progress }: ProtocolFlowCardProps) {
         {flow.features.map((feature) => (
           <span
             key={feature}
-            className="font-[family-name:var(--font-mono)] text-[9px] px-2 py-0.5 rounded bg-bg-surface text-text-muted"
+            className="font-mono text-[9px] px-2 py-0.5 rounded bg-bg-surface text-text-muted"
           >
             {feature}
           </span>

@@ -9,7 +9,7 @@ export default function CodeBlock({
 }: CodeBlockProps) {
   return (
     <pre
-      className={`font-[family-name:var(--font-mono)] text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto ${className}`}
+      className={`font-mono text-[12px] text-accent-cyan bg-bg-deep p-4 rounded-lg leading-[1.8] overflow-x-auto ${className}`}
     >
       {children}
     </pre>

@@ -15,7 +15,7 @@ export function PropertySelectorPanel({
   return (
     <div className="border-l border-border-subtle flex flex-col">
       <div className="px-4 py-3 border-b border-border-subtle">
-        <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
+        <span className="font-mono text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
           CSS 속성 선택
         </span>
       </div>
@@ -28,7 +28,7 @@ export function PropertySelectorPanel({
             <button
               key={prop.name}
               onClick={() => onPropertyClick(prop)}
-              className={`w-full text-left font-[family-name:var(--font-mono)] text-[12px] px-3 py-2.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+              className={`w-full text-left font-mono text-[12px] px-3 py-2.5 rounded-lg border transition-all duration-200 cursor-pointer ${
                 isActive
                   ? "bg-bg-surface"
                   : "bg-transparent hover:bg-bg-surface"
@@ -59,19 +59,19 @@ export function PropertySelectorPanel({
 
       {/* Legend */}
       <div className="p-3 border-t border-border-subtle">
-        <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase tracking-wider mb-2">
+        <div className="font-mono text-[9px] text-text-muted uppercase tracking-wider mb-2">
           파이프라인 상태
         </div>
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-accent-amber" />
-            <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+            <span className="font-mono text-[10px] text-text-muted">
               실행됨 (비용 발생)
             </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-accent-green" />
-            <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+            <span className="font-mono text-[10px] text-text-muted">
               건너뜀 (최적화)
             </span>
           </div>

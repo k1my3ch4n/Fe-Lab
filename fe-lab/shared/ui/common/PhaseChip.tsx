@@ -20,7 +20,7 @@ const dotColors: Record<PhaseVariant, string> = {
 export default function PhaseChip({ label, variant }: PhaseChipProps) {
   return (
     <div
-      className={`font-[family-name:var(--font-mono)] text-[11px] px-3.5 py-1.5 rounded-full flex items-center gap-1.5 border ${styles[variant]}`}
+      className={`font-mono text-[11px] px-3.5 py-1.5 rounded-full flex items-center gap-1.5 border ${styles[variant]}`}
     >
       <span
         className={`inline-block w-1.5 h-1.5 rounded-full ${dotColors[variant]}`}

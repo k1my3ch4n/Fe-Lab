@@ -13,7 +13,7 @@ export function OverfetchComparison() {
             className="rounded-lg border border-border-subtle bg-bg-deep p-4 flex flex-col gap-3"
           >
             <div
-              className="font-[family-name:var(--font-mono)] text-[12px] font-bold"
+              className="font-mono text-[12px] font-bold"
               style={{ color: ex.style.color }}
             >
               {ex.style.label}
@@ -21,20 +21,20 @@ export function OverfetchComparison() {
 
             {/* Request */}
             <div>
-              <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase mb-1">
+              <div className="font-mono text-[9px] text-text-muted uppercase mb-1">
                 Request
               </div>
-              <pre className="font-[family-name:var(--font-mono)] text-[10px] text-accent-cyan bg-bg-surface p-2 rounded leading-[1.6] overflow-x-auto">
+              <pre className="font-mono text-[10px] text-accent-cyan bg-bg-surface p-2 rounded leading-[1.6] overflow-x-auto">
                 {ex.request}
               </pre>
             </div>
 
             {/* Response */}
             <div>
-              <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase mb-1">
+              <div className="font-mono text-[9px] text-text-muted uppercase mb-1">
                 Response
               </div>
-              <pre className="font-[family-name:var(--font-mono)] text-[10px] text-accent-green bg-bg-surface p-2 rounded leading-[1.6] overflow-x-auto">
+              <pre className="font-mono text-[10px] text-accent-green bg-bg-surface p-2 rounded leading-[1.6] overflow-x-auto">
                 {ex.response}
               </pre>
             </div>
@@ -53,7 +53,7 @@ export function OverfetchComparison() {
                   }}
                 />
               </div>
-              <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+              <span className="font-mono text-[9px] text-text-muted">
                 {ex.neededFields}/{ex.totalFields} 필드
               </span>
             </div>
@@ -63,7 +63,7 @@ export function OverfetchComparison() {
 
       {/* Waste indicator */}
       <div className="rounded-lg border border-accent-magenta/30 bg-accent-magenta-dim p-3 text-center">
-        <span className="font-[family-name:var(--font-mono)] text-[11px] text-accent-magenta">
+        <span className="font-mono text-[11px] text-accent-magenta">
           REST: 불필요한 6개 필드 전송 (Over-fetching)
         </span>
       </div>

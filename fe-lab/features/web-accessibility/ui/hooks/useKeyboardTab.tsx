@@ -58,7 +58,7 @@ export function useKeyboardTab({ addLog }: UseKeyboardTabOptions) {
 
   const content = (
     <>
-      <div className="font-[family-name:var(--font-mono)] text-[11px] text-text-secondary leading-[1.8] bg-bg-deep rounded-lg p-4">
+      <div className="font-mono text-[11px] text-text-secondary leading-[1.8] bg-bg-deep rounded-lg p-4">
         <span className="text-accent-cyan">Tab</span> — 포커스 이동 |{" "}
         <span className="text-accent-cyan">Arrow</span> — 항목 간 이동 |{" "}
         <span className="text-accent-cyan">Enter/Space</span> — 선택 |{" "}
@@ -81,7 +81,7 @@ export function useKeyboardTab({ addLog }: UseKeyboardTabOptions) {
               onKeyDown={(e) => handleKeyboardNav(e, i)}
               onFocus={() => handleFocusItem(i)}
               onClick={() => addLog(`✅ "${item}" 클릭`)}
-              className={`font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+              className={`font-mono text-[12px] px-4 py-2.5 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
                 focusedIndex === i
                   ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
                   : "border-border-subtle text-text-secondary bg-bg-surface hover:border-accent-cyan/50"

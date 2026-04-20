@@ -22,12 +22,12 @@ export function ReferenceDiagram({ method, mutated }: ReferenceDiagramProps) {
       <div className="grid grid-cols-2 gap-4">
         {/* Original */}
         <div className="rounded-lg border border-[#00e5ff44] bg-[#00e5ff08] p-3">
-          <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold text-accent-cyan mb-2">
+          <div className="font-mono text-[10px] font-semibold text-accent-cyan mb-2">
             original
           </div>
           {ORIGINAL_OBJECT.map((node) => (
             <div key={node.key} className="flex items-center gap-2 mb-1">
-              <span className="font-[family-name:var(--font-mono)] text-[10px] bg-bg-deep px-2 py-0.5 rounded">
+              <span className="font-mono text-[10px] bg-bg-deep px-2 py-0.5 rounded">
                 <span style={{ color: node.color }}>{node.key}</span>
                 <span className="text-text-muted">: </span>
                 <span className="text-text-primary">
@@ -56,14 +56,14 @@ export function ReferenceDiagram({ method, mutated }: ReferenceDiagramProps) {
           }}
         >
           <div
-            className="font-[family-name:var(--font-mono)] text-[10px] font-semibold mb-2"
+            className="font-mono text-[10px] font-semibold mb-2"
             style={{ color: method.color }}
           >
             copy ({method.isDeep ? "깊은 복사" : "얕은 복사"})
           </div>
           {ORIGINAL_OBJECT.map((node) => (
             <div key={node.key} className="flex items-center gap-2 mb-1">
-              <span className="font-[family-name:var(--font-mono)] text-[10px] bg-bg-deep px-2 py-0.5 rounded">
+              <span className="font-mono text-[10px] bg-bg-deep px-2 py-0.5 rounded">
                 <span style={{ color: node.color }}>{node.key}</span>
                 <span className="text-text-muted">: </span>
                 <span className="text-text-primary">
@@ -89,10 +89,10 @@ export function ReferenceDiagram({ method, mutated }: ReferenceDiagramProps) {
 
       {/* Legend */}
       <div className="flex gap-4 mt-3">
-        <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+        <span className="font-mono text-[9px] text-text-muted">
           ◆→ 참조 공유 (얕은 복사)
         </span>
-        <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+        <span className="font-mono text-[9px] text-text-muted">
           ◇ 독립 복사 (깊은 복사)
         </span>
       </div>

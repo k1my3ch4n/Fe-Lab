@@ -12,13 +12,13 @@ export default function Home() {
     <div className="min-h-screen overflow-y-auto bg-bg-deep">
       {/* Hero */}
       <section className="flex flex-col items-center justify-center px-6 pt-24 pb-16 text-center">
-        <h1 className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4">
+        <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4">
           <span className="bg-gradient-to-r from-accent-cyan to-accent-magenta bg-clip-text text-transparent">
             FE Lab
           </span>
         </h1>
 
-        <p className="font-[family-name:var(--font-display)] text-lg sm:text-xl text-text-secondary mb-3">
+        <p className="font-display text-lg sm:text-xl text-text-secondary mb-3">
           프론트엔드 면접 대비 인터랙티브 학습 플랫폼
         </p>
 
@@ -31,7 +31,7 @@ export default function Home() {
 
         <Link
           href="/topics/event-bubbling"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent-cyan-dim border border-accent-cyan text-accent-cyan font-[family-name:var(--font-mono)] text-sm font-medium transition-all hover:bg-accent-cyan hover:text-bg-deep"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent-cyan-dim border border-accent-cyan text-accent-cyan font-mono text-sm font-medium transition-all hover:bg-accent-cyan hover:text-bg-deep"
         >
           학습 시작하기
           <span aria-hidden="true">&rarr;</span>
@@ -40,7 +40,7 @@ export default function Home() {
 
       {/* Category Grid */}
       <section className="max-w-6xl mx-auto px-6 pb-24">
-        <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-text-primary mb-6">
+        <h2 className="font-display text-xl font-semibold text-text-primary mb-6">
           카테고리
         </h2>
 
@@ -54,11 +54,11 @@ export default function Home() {
                 className="group block rounded-xl border border-border-subtle bg-bg-surface p-5 transition-all hover:border-border-active hover:bg-bg-elevated"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-bg-elevated border border-border-subtle text-text-secondary font-[family-name:var(--font-mono)] text-xs font-semibold group-hover:border-border-active">
+                  <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-bg-elevated border border-border-subtle text-text-secondary font-mono text-xs font-semibold group-hover:border-border-active">
                     {categoryIcons[category.name] ?? "??"}
                   </span>
                   <div>
-                    <h3 className="font-[family-name:var(--font-display)] text-base font-semibold text-text-primary">
+                    <h3 className="font-display text-base font-semibold text-text-primary">
                       {category.name}
                     </h3>
                     <span className="text-text-muted text-xs">

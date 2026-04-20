@@ -184,12 +184,12 @@ export default function HttpProtocolDemo() {
                 {PROTOCOL_FLOWS.map((flow) => (
                   <div key={flow.version.id} className="flex-1 text-center">
                     <div
-                      className="font-[family-name:var(--font-mono)] text-[18px] font-bold"
+                      className="font-mono text-[18px] font-bold"
                       style={{ color: flow.version.color }}
                     >
                       {flow.totalTime}ms
                     </div>
-                    <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+                    <div className="font-mono text-[10px] text-text-muted">
                       {flow.version.label}
                     </div>
                   </div>

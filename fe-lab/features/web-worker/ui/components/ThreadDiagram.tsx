@@ -20,13 +20,13 @@ export function ThreadDiagram({
       >
         <div className="flex items-center justify-between mb-2">
           <span
-            className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
+            className="font-mono text-[10px] font-semibold"
             style={{ color: uiBlocked ? "#ff2d8a" : "#00e5ff" }}
           >
             Main Thread
           </span>
           <span
-            className="font-[family-name:var(--font-mono)] text-[9px] px-2 py-0.5 rounded"
+            className="font-mono text-[9px] px-2 py-0.5 rounded"
             style={{
               background: uiBlocked ? "#ff2d8a22" : "#00e67622",
               color: uiBlocked ? "#ff2d8a" : "#00e676",
@@ -35,7 +35,7 @@ export function ThreadDiagram({
             {uiBlocked ? "BLOCKED" : "IDLE"}
           </span>
         </div>
-        <div className="font-[family-name:var(--font-mono)] text-[11px] text-text-secondary">
+        <div className="font-mono text-[11px] text-text-secondary">
           UI 렌더링, 이벤트 처리, DOM 조작
         </div>
       </div>
@@ -50,13 +50,13 @@ export function ThreadDiagram({
         >
           <div className="flex items-center justify-between mb-2">
             <span
-              className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
+              className="font-mono text-[10px] font-semibold"
               style={{ color: isRunning ? "#00e676" : "#b388ff" }}
             >
               Worker Thread
             </span>
             <span
-              className="font-[family-name:var(--font-mono)] text-[9px] px-2 py-0.5 rounded"
+              className="font-mono text-[9px] px-2 py-0.5 rounded"
               style={{
                 background: isRunning ? "#ffb80022" : "#b388ff22",
                 color: isRunning ? "#ffb800" : "#b388ff",
@@ -65,7 +65,7 @@ export function ThreadDiagram({
               {isRunning ? "COMPUTING" : "READY"}
             </span>
           </div>
-          <div className="font-[family-name:var(--font-mono)] text-[11px] text-text-secondary">
+          <div className="font-mono text-[11px] text-text-secondary">
             별도 스레드에서 연산 수행, UI 블로킹 없음
           </div>
         </div>

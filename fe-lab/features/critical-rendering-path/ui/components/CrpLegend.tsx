@@ -13,7 +13,7 @@ export function CrpLegend() {
               className="w-3 h-3 rounded-sm"
               style={{ backgroundColor: RESOURCE_COLORS[type] }}
             />
-            <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+            <span className="font-mono text-[10px] text-text-muted">
               {RESOURCE_LABELS[type]}
             </span>
           </div>

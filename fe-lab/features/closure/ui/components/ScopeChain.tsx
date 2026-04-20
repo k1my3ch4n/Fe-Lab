@@ -25,7 +25,7 @@ export function ScopeChain({ scopes, activeExample, counterValue }: ScopeChainPr
             }}
           >
             <div
-              className="font-[family-name:var(--font-mono)] text-[10px] font-semibold mb-1.5"
+              className="font-mono text-[10px] font-semibold mb-1.5"
               style={{ color: scope.color }}
             >
               {scope.name}
@@ -34,7 +34,7 @@ export function ScopeChain({ scopes, activeExample, counterValue }: ScopeChainPr
               {scope.variables.map((variable, varIndex) => (
                 <span
                   key={varIndex}
-                  className="font-[family-name:var(--font-mono)] text-[10px] bg-bg-deep px-2 py-1 rounded"
+                  className="font-mono text-[10px] bg-bg-deep px-2 py-1 rounded"
                 >
                   <span style={{ color: scope.color }}>{variable.name}</span>
                   <span className="text-text-muted"> = </span>

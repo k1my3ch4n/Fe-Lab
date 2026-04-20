@@ -39,19 +39,19 @@ export function BundleModuleList({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span
-                    className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
+                    className="font-mono text-[11px] font-semibold"
                     style={{ color: module.color }}
                   >
                     {module.name}
                   </span>
                   {isHidden && (
-                    <span className="font-[family-name:var(--font-mono)] text-[9px] px-1.5 py-0.5 rounded bg-[#ff2d8a22] text-[#ff2d8a]">
+                    <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-[#ff2d8a22] text-[#ff2d8a]">
                       REMOVED
                     </span>
                   )}
                 </div>
                 {module.size > 0 && (
-                  <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+                  <span className="font-mono text-[10px] text-text-muted">
                     {module.size}KB
                   </span>
                 )}

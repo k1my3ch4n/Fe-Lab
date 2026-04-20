@@ -19,7 +19,7 @@ export function CrpTimeline({ scenario }: CrpTimelineProps) {
         {TIME_TICKS.map((tick) => (
           <span
             key={tick}
-            className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted"
+            className="font-mono text-[9px] text-text-muted"
           >
             {tick}ms
           </span>
@@ -46,7 +46,7 @@ export function CrpTimeline({ scenario }: CrpTimelineProps) {
 
           return (
             <div key={index} className="flex items-center gap-3 h-7">
-              <div className="w-[180px] shrink-0 font-[family-name:var(--font-mono)] text-[10px] text-text-muted text-right truncate">
+              <div className="w-[180px] shrink-0 font-mono text-[10px] text-text-muted text-right truncate">
                 {resource.label}
               </div>
               <div className="flex-1 relative h-full">
@@ -59,7 +59,7 @@ export function CrpTimeline({ scenario }: CrpTimelineProps) {
                     boxShadow: `0 0 8px ${RESOURCE_COLORS[resource.type]}33`,
                   }}
                 >
-                  <span className="font-[family-name:var(--font-mono)] text-[8px] text-white/80 whitespace-nowrap overflow-hidden">
+                  <span className="font-mono text-[8px] text-white/80 whitespace-nowrap overflow-hidden">
                     {resource.end - resource.start}ms
                   </span>
                 </div>
@@ -79,7 +79,7 @@ export function CrpTimeline({ scenario }: CrpTimelineProps) {
           }}
         >
           <div className="w-0.5 h-4 bg-accent-green" />
-          <div className="font-[family-name:var(--font-mono)] text-[10px] font-bold text-accent-green whitespace-nowrap mt-0.5">
+          <div className="font-mono text-[10px] font-bold text-accent-green whitespace-nowrap mt-0.5">
             FCP {scenario.fcp}ms
           </div>
         </div>

@@ -30,10 +30,10 @@ export function UseRefVisualization({
           <InfoCard label="useRef" value={refDisplay} color="#b388ff" />
         </div>
         <div className="flex gap-4 mt-2">
-          <div className="flex-1 font-[family-name:var(--font-mono)] text-[9px] text-text-muted pl-3">
+          <div className="flex-1 font-mono text-[9px] text-text-muted pl-3">
             렌더링 횟수: {renderCount}
           </div>
-          <div className="flex-1 font-[family-name:var(--font-mono)] text-[9px] text-text-muted pl-3">
+          <div className="flex-1 font-mono text-[9px] text-text-muted pl-3">
             리렌더링 없음
           </div>
         </div>
@@ -56,7 +56,7 @@ export function UseRefVisualization({
             ref={inputRef}
             type="text"
             placeholder="useRef로 포커스 대상"
-            className="w-full bg-bg-deep text-text-primary font-[family-name:var(--font-mono)] text-[12px] px-3 py-2 rounded border border-border-subtle outline-none focus:border-accent-cyan transition-colors"
+            className="w-full bg-bg-deep text-text-primary font-mono text-[12px] px-3 py-2 rounded border border-border-subtle outline-none focus:border-accent-cyan transition-colors"
           />
         </div>
       </div>

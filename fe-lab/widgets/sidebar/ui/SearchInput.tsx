@@ -20,7 +20,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="토픽 검색... (/ 키로 포커스)"
-            className="w-full font-[family-name:var(--font-mono)] text-[11px]
+            className="w-full font-mono text-[11px]
               bg-bg-deep border border-border-subtle rounded-md
               pl-8 pr-3 py-2 text-text-primary placeholder:text-text-muted
               outline-none transition-all duration-200

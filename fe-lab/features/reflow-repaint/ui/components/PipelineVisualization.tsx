@@ -40,13 +40,13 @@ export function PipelineVisualization({
               }}
             >
               <div
-                className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
+                className="font-mono text-[11px] font-semibold"
                 style={{ color: colors.text }}
               >
                 {stage.label}
               </div>
               <div
-                className="font-[family-name:var(--font-mono)] text-[9px] mt-1"
+                className="font-mono text-[9px] mt-1"
                 style={{ color: colors.text, opacity: 0.7 }}
               >
                 {triggered ? "실행됨" : "건너뜀"}

@@ -27,7 +27,7 @@ export default function SidebarHeader({
 
   return (
     <header className="px-5 pt-6 pb-5 border-b border-border-subtle flex items-center justify-between">
-      <div className="font-[family-name:var(--font-display)] text-[22px] font-bold tracking-tight flex items-center gap-2">
+      <div className="font-display text-[22px] font-bold tracking-tight flex items-center gap-2">
         <Logo />
         <div>
           FE Lab

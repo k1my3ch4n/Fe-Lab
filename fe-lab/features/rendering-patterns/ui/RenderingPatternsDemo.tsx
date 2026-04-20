@@ -12,12 +12,12 @@ export default function RenderingPatternsDemo() {
   const rightPanel = (
     <>
       <div className="px-4 py-3 border-b border-border-subtle">
-        <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
+        <span className="font-mono text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
           비교
         </span>
       </div>
 
-      <div className="p-4 flex flex-col gap-3 font-[family-name:var(--font-mono)] text-[11px]">
+      <div className="p-4 flex flex-col gap-3 font-mono text-[11px]">
         {[
           { label: "초기 로딩", values: ["느림", "보통", "빠름", "빠름"] },
           { label: "SEO", values: ["나쁨", "좋음", "좋음", "좋음"] },
@@ -55,10 +55,10 @@ export default function RenderingPatternsDemo() {
 
       {/* Use case */}
       <div className="mt-auto p-4 border-t border-border-subtle">
-        <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-2">
+        <div className="font-mono text-[10px] text-text-muted mb-2">
           적합한 사용처
         </div>
-        <div className="font-[family-name:var(--font-mono)] text-[11px] text-accent-amber leading-[1.6]">
+        <div className="font-mono text-[11px] text-accent-amber leading-[1.6]">
           {activePattern === 0 && "SPA, 대시보드, 관리자 페이지"}
           {activePattern === 1 && "SNS, 실시간 데이터 페이지"}
           {activePattern === 2 && "블로그, 문서 사이트, 랜딩 페이지"}
@@ -90,7 +90,7 @@ export default function RenderingPatternsDemo() {
             {pattern.steps.map((step, i) => (
               <div key={i} className="flex items-center gap-3">
                 <span
-                  className="font-[family-name:var(--font-mono)] text-[10px] w-[120px] shrink-0 text-right"
+                  className="font-mono text-[10px] w-[120px] shrink-0 text-right"
                   style={{ color: step.color }}
                 >
                   {step.label}
@@ -111,7 +111,7 @@ export default function RenderingPatternsDemo() {
           </div>
           {/* Time axis */}
           <div className="flex items-center mt-2 ml-[132px]">
-            <div className="flex-1 flex justify-between font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+            <div className="flex-1 flex justify-between font-mono text-[9px] text-text-muted">
               <span>요청</span>
               <span>FCP</span>
               <span>TTI</span>
@@ -125,10 +125,10 @@ export default function RenderingPatternsDemo() {
           <div className="flex flex-col gap-1.5">
             {pattern.flow.map((step, i) => (
               <div key={i} className="flex items-start gap-2">
-                <span className="font-[family-name:var(--font-mono)] text-[10px] text-accent-cyan shrink-0">
+                <span className="font-mono text-[10px] text-accent-cyan shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="font-[family-name:var(--font-mono)] text-[11px] text-text-secondary">
+                <span className="font-mono text-[11px] text-text-secondary">
                   {step}
                 </span>
               </div>

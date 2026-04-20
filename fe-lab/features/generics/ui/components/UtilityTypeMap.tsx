@@ -13,12 +13,12 @@ export function UtilityTypeMap() {
           }}
         >
           <span
-            className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
+            className="font-mono text-[10px] font-semibold"
             style={{ color: ut.color }}
           >
             {ut.name}
           </span>
-          <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+          <span className="font-mono text-[9px] text-text-muted">
             {ut.desc}
           </span>
         </div>

@@ -29,7 +29,7 @@ export function GridPreview({
       {items.map((item, i) => (
         <div
           key={i}
-          className="rounded-md px-4 py-3 font-[family-name:var(--font-mono)] text-[12px] font-bold text-bg-deep text-center"
+          className="rounded-md px-4 py-3 font-mono text-[12px] font-bold text-bg-deep text-center"
           style={{ background: item.color }}
         >
           {item.label}

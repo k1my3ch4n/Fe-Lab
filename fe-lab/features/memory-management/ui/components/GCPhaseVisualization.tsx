@@ -13,11 +13,11 @@ export function GCPhaseVisualization({
     <div className="flex gap-4">
       {/* Severity */}
       <div className="flex items-center gap-2 p-3 rounded-lg border border-border-subtle bg-bg-surface">
-        <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase">
+        <span className="font-mono text-[10px] text-text-muted uppercase">
           위험도:
         </span>
         <span
-          className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
+          className="font-mono text-[11px] font-semibold"
           style={{ color: SEVERITY_COLORS[severity] }}
         >
           {severity.toUpperCase()}
@@ -39,7 +39,7 @@ export function GCPhaseVisualization({
             }}
           >
             <div
-              className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
+              className="font-mono text-[10px] font-semibold"
               style={{
                 color: gcPhase === i ? phase.color : `${phase.color}66`,
               }}

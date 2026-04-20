@@ -202,15 +202,15 @@ export default function PromiseDemo() {
                             : "none",
                       }}
                     />
-                    <span className="font-[family-name:var(--font-mono)] text-[11px] text-text-primary">
+                    <span className="font-mono text-[11px] text-text-primary">
                       {p.label}
                     </span>
-                    <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+                    <span className="font-mono text-[10px] text-text-muted">
                       ({p.delay}ms)
                     </span>
                   </div>
                   <span
-                    className="font-[family-name:var(--font-mono)] text-[10px] font-semibold"
+                    className="font-mono text-[10px] font-semibold"
                     style={{ color: STATE_COLORS[p.state] }}
                   >
                     {p.state}

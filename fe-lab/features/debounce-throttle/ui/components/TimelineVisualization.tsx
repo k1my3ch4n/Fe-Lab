@@ -20,7 +20,7 @@ export function TimelineVisualization({
       <div className="bg-bg-deep rounded-lg p-4 min-h-[120px]">
         {/* Raw events */}
         <div className="flex items-center gap-2 mb-2">
-          <span className="font-[family-name:var(--font-mono)] text-[9px] text-accent-cyan w-16">
+          <span className="font-mono text-[9px] text-accent-cyan w-16">
             Raw
           </span>
           <div className="flex-1 relative h-4 bg-bg-surface rounded">
@@ -38,7 +38,7 @@ export function TimelineVisualization({
 
         {/* Debounce events */}
         <div className="flex items-center gap-2 mb-2">
-          <span className="font-[family-name:var(--font-mono)] text-[9px] text-accent-green w-16">
+          <span className="font-mono text-[9px] text-accent-green w-16">
             Debounce
           </span>
           <div className="flex-1 relative h-4 bg-bg-surface rounded">
@@ -56,7 +56,7 @@ export function TimelineVisualization({
 
         {/* Throttle events */}
         <div className="flex items-center gap-2">
-          <span className="font-[family-name:var(--font-mono)] text-[9px] text-accent-amber w-16">
+          <span className="font-mono text-[9px] text-accent-amber w-16">
             Throttle
           </span>
           <div className="flex-1 relative h-4 bg-bg-surface rounded">

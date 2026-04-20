@@ -92,7 +92,7 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
               className="w-3 h-1.5 rounded-sm"
               style={{ backgroundColor: p.color }}
             />
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+            <span className="font-mono text-[9px] text-text-muted">
               {p.name}
             </span>
           </div>
@@ -104,16 +104,16 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
         <div className="rounded-lg border border-border-subtle bg-bg-deep overflow-hidden min-w-[500px]">
           {/* Header */}
           <div className="grid grid-cols-[140px_60px_1fr_60px] border-b border-border-subtle px-3 py-2">
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase">
+            <span className="font-mono text-[9px] text-text-muted uppercase">
               Name
             </span>
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase">
+            <span className="font-mono text-[9px] text-text-muted uppercase">
               Type
             </span>
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase">
+            <span className="font-mono text-[9px] text-text-muted uppercase">
               Waterfall
             </span>
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted uppercase text-right">
+            <span className="font-mono text-[9px] text-text-muted uppercase text-right">
               Size
             </span>
           </div>
@@ -149,10 +149,10 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
                   }
                 }}
               >
-                <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-primary truncate">
+                <span className="font-mono text-[10px] text-text-primary truncate">
                   {resource.name}
                 </span>
-                <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+                <span className="font-mono text-[9px] text-text-muted">
                   {resource.type}
                 </span>
                 <div className="h-4 relative">
@@ -181,13 +181,13 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
                   })}
                   {/* Total time label */}
                   <span
-                    className="absolute top-0 font-[family-name:var(--font-mono)] text-[8px] text-text-muted"
+                    className="absolute top-0 font-mono text-[8px] text-text-muted"
                     style={{ left: `${(totalWidth / scale) * 100 + 1}%` }}
                   >
                     {resource.totalTime}ms
                   </span>
                 </div>
-                <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted text-right">
+                <span className="font-mono text-[9px] text-text-muted text-right">
                   {resource.size}
                 </span>
               </div>
@@ -199,7 +199,7 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
       {/* Selected resource detail */}
       {selectedResource !== null && (
         <div className="rounded-lg border border-border-subtle bg-bg-deep p-4">
-          <div className="font-[family-name:var(--font-mono)] text-[11px] text-text-primary font-semibold mb-2">
+          <div className="font-mono text-[11px] text-text-primary font-semibold mb-2">
             {WATERFALL_RESOURCES[selectedResource].name}
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -213,12 +213,12 @@ export function useWaterfallTab({ addLog, clearLogs }: UseWaterfallTabOptions) {
                   style={{ backgroundColor: phase.color }}
                 />
                 <span
-                  className="font-[family-name:var(--font-mono)] text-[10px]"
+                  className="font-mono text-[10px]"
                   style={{ color: phase.color }}
                 >
                   {phase.name}
                 </span>
-                <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+                <span className="font-mono text-[10px] text-text-muted">
                   {phase.duration}ms
                 </span>
               </div>

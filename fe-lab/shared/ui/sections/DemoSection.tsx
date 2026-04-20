@@ -14,7 +14,7 @@ export default function DemoSection({
   return (
     <section className="mb-14">
       <SectionLabel number="02" label="Interactive Demo" variant="demo" />
-      <h2 className="font-[family-name:var(--font-display)] text-[28px] font-bold tracking-tight mb-3">
+      <h2 className="font-display text-[28px] font-bold tracking-tight mb-3">
         {title}
       </h2>
       <p className="text-sm text-text-secondary leading-[1.7] max-w-full lg:max-w-[700px]">

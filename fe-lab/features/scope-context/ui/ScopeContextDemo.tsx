@@ -171,11 +171,11 @@ export default function ScopeContextDemo() {
 
         {/* this Value Indicator */}
         <div className="flex items-center gap-3 p-3 rounded-lg border border-border-subtle bg-bg-surface">
-          <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider">
+          <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider">
             this →
           </span>
           <span
-            className="font-[family-name:var(--font-mono)] text-[12px] font-semibold"
+            className="font-mono text-[12px] font-semibold"
             style={{ color: example.color }}
           >
             {example.thisValue}

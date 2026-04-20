@@ -48,7 +48,7 @@ export default function NestedBoxes({
             e.stopPropagation();
             onBoxClick(3);
           }}
-          className={`flex items-center justify-center rounded-lg cursor-pointer transition-all duration-300 w-[140px] h-[52px] border-2 font-[family-name:var(--font-display)] text-[13px] font-semibold text-accent-amber tracking-wide ${
+          className={`flex items-center justify-center rounded-lg cursor-pointer transition-all duration-300 w-[140px] h-[52px] border-2 font-display text-[13px] font-semibold text-accent-amber tracking-wide ${
             isButtonFlashing
               ? "border-accent-amber shadow-[0_0_30px_#ffb80033] bg-gradient-to-br from-[#ffb80033] to-[#ff2d8a33]"
               : "border-[#ffb80055] bg-gradient-to-br from-[#ffb80022] to-[#ff2d8a22]"

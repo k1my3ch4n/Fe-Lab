@@ -65,7 +65,7 @@ export function useStatusCodesTab({
       <div className="flex gap-2">
         <button
           onClick={() => setSelectedCategory(null)}
-          className={`font-[family-name:var(--font-mono)] text-[10px] px-2.5 py-1 rounded border transition-all duration-200 cursor-pointer ${
+          className={`font-mono text-[10px] px-2.5 py-1 rounded border transition-all duration-200 cursor-pointer ${
             selectedCategory === null
               ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
               : "border-transparent bg-bg-deep text-text-muted hover:text-text-secondary"
@@ -77,7 +77,7 @@ export function useStatusCodesTab({
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`font-[family-name:var(--font-mono)] text-[10px] px-2.5 py-1 rounded border transition-all duration-200 cursor-pointer ${
+            className={`font-mono text-[10px] px-2.5 py-1 rounded border transition-all duration-200 cursor-pointer ${
               selectedCategory === cat
                 ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
                 : "border-transparent bg-bg-deep text-text-muted hover:text-text-secondary"
@@ -104,16 +104,16 @@ export function useStatusCodesTab({
           >
             <div className="flex items-center gap-2">
               <span
-                className="font-[family-name:var(--font-mono)] text-[14px] font-bold"
+                className="font-mono text-[14px] font-bold"
                 style={{ color: status.color }}
               >
                 {status.code}
               </span>
-              <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-secondary">
+              <span className="font-mono text-[10px] text-text-secondary">
                 {status.name}
               </span>
             </div>
-            <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted mt-1">
+            <div className="font-mono text-[9px] text-text-muted mt-1">
               {status.description}
             </div>
           </div>

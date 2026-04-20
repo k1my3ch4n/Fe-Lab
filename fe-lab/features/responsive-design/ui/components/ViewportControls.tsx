@@ -16,17 +16,17 @@ export function ViewportControls({
     <>
       {/* Viewport width indicator */}
       <div className="flex items-center gap-3">
-        <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+        <span className="font-mono text-[10px] text-text-muted">
           Viewport:
         </span>
         <span
-          className="font-[family-name:var(--font-mono)] text-[14px] font-bold"
+          className="font-mono text-[14px] font-bold"
           style={{ color: activeBreakpoint?.color }}
         >
           {viewportWidth}px
         </span>
         <span
-          className="font-[family-name:var(--font-mono)] text-[10px] px-2 py-0.5 rounded"
+          className="font-mono text-[10px] px-2 py-0.5 rounded"
           style={{
             color: activeBreakpoint?.color,
             background: `${activeBreakpoint?.color}22`,
@@ -57,7 +57,7 @@ export function ViewportControls({
           return (
             <div
               key={bp.name}
-              className="absolute top-0 h-full flex items-center justify-center font-[family-name:var(--font-mono)] text-[9px] font-semibold border-r border-bg-surface"
+              className="absolute top-0 h-full flex items-center justify-center font-mono text-[9px] font-semibold border-r border-bg-surface"
               style={{
                 left: `${left}%`,
                 width: `${width}%`,

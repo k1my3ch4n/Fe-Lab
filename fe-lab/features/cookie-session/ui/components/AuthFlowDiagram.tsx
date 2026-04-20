@@ -36,7 +36,7 @@ export function AuthFlowDiagram({
           <button
             key={f.method.id}
             onClick={() => onFlowChange(i)}
-            className={`font-[family-name:var(--font-mono)] text-[11px] px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+            className={`font-mono text-[11px] px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
               i === activeFlow
                 ? "bg-bg-surface"
                 : "border-transparent bg-bg-deep text-text-muted hover:text-text-secondary"
@@ -57,14 +57,14 @@ export function AuthFlowDiagram({
 
       {/* Flow diagram */}
       <div className="rounded-lg border border-border-subtle bg-bg-deep p-4">
-        <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
+        <div className="font-mono text-[10px] text-text-muted mb-1">
           {flow.description}
         </div>
 
         <div className="flex gap-6 mt-4">
           {/* Client */}
           <div className="w-20 text-center">
-            <div className="font-[family-name:var(--font-mono)] text-[11px] text-accent-cyan font-semibold px-2 py-1.5 rounded-lg bg-accent-cyan-dim border border-accent-cyan/30">
+            <div className="font-mono text-[11px] text-accent-cyan font-semibold px-2 py-1.5 rounded-lg bg-accent-cyan-dim border border-accent-cyan/30">
               Client
             </div>
           </div>
@@ -83,19 +83,19 @@ export function AuthFlowDiagram({
                   style={{ opacity: isActive ? 1 : 0.3 }}
                 >
                   <span
-                    className="font-[family-name:var(--font-mono)] text-[12px] w-5 text-center"
+                    className="font-mono text-[12px] w-5 text-center"
                     style={{ color: step.color }}
                   >
                     {step.from === "client" ? "→" : "←"}
                   </span>
                   <div>
                     <div
-                      className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
+                      className="font-mono text-[11px] font-semibold"
                       style={{ color: step.color }}
                     >
                       {step.label}
                     </div>
-                    <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+                    <div className="font-mono text-[9px] text-text-muted">
                       {step.detail}
                     </div>
                   </div>
@@ -106,7 +106,7 @@ export function AuthFlowDiagram({
 
           {/* Server */}
           <div className="w-20 text-center">
-            <div className="font-[family-name:var(--font-mono)] text-[11px] text-accent-green font-semibold px-2 py-1.5 rounded-lg bg-accent-green-dim border border-accent-green/30">
+            <div className="font-mono text-[11px] text-accent-green font-semibold px-2 py-1.5 rounded-lg bg-accent-green-dim border border-accent-green/30">
               Server
             </div>
           </div>

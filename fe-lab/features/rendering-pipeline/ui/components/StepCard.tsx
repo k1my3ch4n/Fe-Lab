@@ -43,10 +43,10 @@ export default function StepCard({
           />
         )}
       </div>
-      <div className="font-[family-name:var(--font-mono)] text-[10px] font-semibold text-text-primary mb-1">
+      <div className="font-mono text-[10px] font-semibold text-text-primary mb-1">
         {step.name}
       </div>
-      <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+      <div className="font-mono text-[9px] text-text-muted">
         {step.time}
       </div>
     </div>

@@ -15,7 +15,7 @@ export function BundleSizeIndicator({
 
   return (
     <div className="flex items-center gap-3 bg-bg-deep rounded-lg p-3">
-      <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+      <span className="font-mono text-[10px] text-text-muted">
         Bundle:
       </span>
       <div className="flex-1 h-2 bg-bg-surface rounded-full overflow-hidden">
@@ -24,7 +24,7 @@ export function BundleSizeIndicator({
           style={{ width: barWidth, background: barColor }}
         />
       </div>
-      <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-secondary">
+      <span className="font-mono text-[10px] text-text-secondary">
         {bundleSize}
       </span>
     </div>

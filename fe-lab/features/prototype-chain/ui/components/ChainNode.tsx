@@ -60,18 +60,18 @@ export function ChainNode({
             </span>
           )}
           <span
-            className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
+            className="font-mono text-[11px] font-semibold"
             style={{ color: node.color }}
           >
             {isNull ? "null (체인 끝)" : node.name}
           </span>
           {isFound && (
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-accent-green bg-accent-green-dim px-1.5 py-0.5 rounded">
+            <span className="font-mono text-[9px] text-accent-green bg-accent-green-dim px-1.5 py-0.5 rounded">
               FOUND
             </span>
           )}
           {isNotFoundEnd && (
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-accent-magenta bg-accent-magenta-dim px-1.5 py-0.5 rounded">
+            <span className="font-mono text-[9px] text-accent-magenta bg-accent-magenta-dim px-1.5 py-0.5 rounded">
               NOT FOUND
             </span>
           )}
@@ -83,7 +83,7 @@ export function ChainNode({
               return (
                 <span
                   key={p.name}
-                  className="font-[family-name:var(--font-mono)] text-[10px] px-2 py-1 rounded transition-all duration-200"
+                  className="font-mono text-[10px] px-2 py-1 rounded transition-all duration-200"
                   style={{
                     background: isMatch ? "#00e67620" : "var(--bg-deep)",
                     border: isMatch
@@ -119,7 +119,7 @@ export function ChainNode({
             }`}
           />
           <span
-            className={`font-[family-name:var(--font-mono)] text-[9px] leading-none transition-colors duration-300 ${
+            className={`font-mono text-[9px] leading-none transition-colors duration-300 ${
               isTraversed ? "text-accent-cyan" : "text-text-muted"
             }`}
           >

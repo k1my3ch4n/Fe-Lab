@@ -94,7 +94,7 @@ export default function DebounceThrottleDemo() {
             onReset={handleReset}
             actions={
               <>
-                <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted">
+                <div className="font-mono text-[10px] text-text-muted">
                   Delay
                 </div>
                 <div className="flex flex-col gap-2">
@@ -105,7 +105,7 @@ export default function DebounceThrottleDemo() {
                         setDelay(opt.value);
                         handleReset();
                       }}
-                      className={`w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2 rounded-lg border cursor-pointer transition-all duration-200 ${
+                      className={`w-full font-mono text-[12px] px-4 py-2 rounded-lg border cursor-pointer transition-all duration-200 ${
                         delay === opt.value
                           ? "border-accent-cyan text-accent-cyan bg-accent-cyan-dim"
                           : "border-border-subtle text-text-muted hover:text-text-secondary"
@@ -130,7 +130,7 @@ export default function DebounceThrottleDemo() {
           <SectionHeader>이벤트 발생 영역 (빠르게 클릭하세요)</SectionHeader>
           <button
             onClick={handleInput}
-            className="w-full h-16 rounded-lg border-2 border-dashed border-accent-cyan text-accent-cyan font-[family-name:var(--font-mono)] text-[14px] bg-accent-cyan-dim cursor-pointer transition-all duration-100 hover:bg-[#00e5ff22] active:scale-[0.98]"
+            className="w-full h-16 rounded-lg border-2 border-dashed border-accent-cyan text-accent-cyan font-mono text-[14px] bg-accent-cyan-dim cursor-pointer transition-all duration-100 hover:bg-[#00e5ff22] active:scale-[0.98]"
           >
             Click / Tap 이벤트 발생
           </button>
@@ -139,26 +139,26 @@ export default function DebounceThrottleDemo() {
         {/* Counters */}
         <div className="grid grid-cols-3 gap-3">
           <div className="rounded-lg border border-border-subtle p-3 text-center">
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
+            <div className="font-mono text-[10px] text-text-muted mb-1">
               Raw
             </div>
-            <div className="font-[family-name:var(--font-mono)] text-[24px] font-bold text-accent-cyan">
+            <div className="font-mono text-[24px] font-bold text-accent-cyan">
               {rawCount}
             </div>
           </div>
           <div className="rounded-lg border border-border-subtle p-3 text-center">
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
+            <div className="font-mono text-[10px] text-text-muted mb-1">
               Debounce
             </div>
-            <div className="font-[family-name:var(--font-mono)] text-[24px] font-bold text-accent-green">
+            <div className="font-mono text-[24px] font-bold text-accent-green">
               {debounceCount}
             </div>
           </div>
           <div className="rounded-lg border border-border-subtle p-3 text-center">
-            <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted mb-1">
+            <div className="font-mono text-[10px] text-text-muted mb-1">
               Throttle
             </div>
-            <div className="font-[family-name:var(--font-mono)] text-[24px] font-bold text-accent-amber">
+            <div className="font-mono text-[24px] font-bold text-accent-amber">
               {throttleCount}
             </div>
           </div>

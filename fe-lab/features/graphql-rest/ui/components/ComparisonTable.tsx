@@ -6,13 +6,13 @@ export function ComparisonTable() {
       <table className="w-full">
         <thead>
           <tr className="border-b border-border-subtle">
-            <th className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted text-left p-3 uppercase tracking-wider">
+            <th className="font-mono text-[10px] text-text-muted text-left p-3 uppercase tracking-wider">
               비교 항목
             </th>
-            <th className="font-[family-name:var(--font-mono)] text-[10px] text-accent-amber text-left p-3 uppercase tracking-wider">
+            <th className="font-mono text-[10px] text-accent-amber text-left p-3 uppercase tracking-wider">
               REST
             </th>
-            <th className="font-[family-name:var(--font-mono)] text-[10px] text-accent-cyan text-left p-3 uppercase tracking-wider">
+            <th className="font-mono text-[10px] text-accent-cyan text-left p-3 uppercase tracking-wider">
               GraphQL
             </th>
           </tr>
@@ -27,13 +27,13 @@ export function ComparisonTable() {
                   : ""
               }
             >
-              <td className="font-[family-name:var(--font-mono)] text-[10px] text-text-secondary p-3 font-semibold">
+              <td className="font-mono text-[10px] text-text-secondary p-3 font-semibold">
                 {row.aspect}
               </td>
-              <td className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted p-3">
+              <td className="font-mono text-[10px] text-text-muted p-3">
                 {row.rest}
               </td>
-              <td className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted p-3">
+              <td className="font-mono text-[10px] text-text-muted p-3">
                 {row.graphql}
               </td>
             </tr>

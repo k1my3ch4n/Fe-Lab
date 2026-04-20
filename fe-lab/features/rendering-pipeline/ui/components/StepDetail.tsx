@@ -14,7 +14,7 @@ export default function StepDetail({ step }: StepDetailProps) {
   return (
     <>
       <div
-        className="font-[family-name:var(--font-display)] text-base font-semibold mb-2 flex items-center gap-2"
+        className="font-display text-base font-semibold mb-2 flex items-center gap-2"
         style={{ color: step.color }}
       >
         {step.icon} {step.title}

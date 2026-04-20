@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
 @theme {
   --color-bg-deep: #0a0a0f;
   --color-bg-surface: #12121a;

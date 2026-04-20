@@ -64,7 +64,7 @@ export function useFlowTab({ addLog }: UseFlowTabOptions) {
                 setActiveFlow(type);
                 setActiveStep(-1);
               }}
-              className={`font-[family-name:var(--font-mono)] text-[11px] px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
+              className={`font-mono text-[11px] px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
                 activeFlow === type
                   ? "bg-bg-surface"
                   : "border-transparent bg-bg-deep text-text-muted hover:text-text-secondary"
@@ -99,7 +99,7 @@ export function useFlowTab({ addLog }: UseFlowTabOptions) {
                 style={{ opacity: isActive ? 1 : 0.3 }}
               >
                 <span
-                  className="font-[family-name:var(--font-mono)] text-[10px] font-bold w-12 text-right shrink-0"
+                  className="font-mono text-[10px] font-bold w-12 text-right shrink-0"
                   style={{ color: step.color }}
                 >
                   {step.latency}
@@ -108,7 +108,7 @@ export function useFlowTab({ addLog }: UseFlowTabOptions) {
                   className="w-2 h-2 rounded-full shrink-0"
                   style={{ backgroundColor: step.color }}
                 />
-                <span className="font-[family-name:var(--font-mono)] text-[11px] text-text-secondary">
+                <span className="font-mono text-[11px] text-text-secondary">
                   {step.label}
                 </span>
               </div>
@@ -120,7 +120,7 @@ export function useFlowTab({ addLog }: UseFlowTabOptions) {
         {activeStep >= steps.length - 1 && (
           <div className="mt-3 pt-3 border-t border-border-subtle text-center">
             <span
-              className="font-[family-name:var(--font-mono)] text-[12px] font-bold"
+              className="font-mono text-[12px] font-bold"
               style={{
                 color: activeFlow === "hit" ? "#00e676" : "#ffb800",
               }}
@@ -139,12 +139,12 @@ export function useFlowTab({ addLog }: UseFlowTabOptions) {
             className="flex-1 rounded-lg border border-border-subtle bg-bg-deep p-3"
           >
             <div
-              className="font-[family-name:var(--font-mono)] text-[10px] font-bold mb-1"
+              className="font-mono text-[10px] font-bold mb-1"
               style={{ color: r.color }}
             >
               {r.label}
             </div>
-            <div className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted leading-[1.6]">
+            <div className="font-mono text-[9px] text-text-muted leading-[1.6]">
               {r.description}
             </div>
           </div>

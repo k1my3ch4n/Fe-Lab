@@ -8,7 +8,7 @@ export default function InlineCode({ children, size = "sm" }: InlineCodeProps) {
 
   return (
     <code
-      className={`font-[family-name:var(--font-mono)] ${sizeClass} bg-bg-elevated px-1.5 py-0.5 rounded text-accent-cyan`}
+      className={`font-mono ${sizeClass} bg-bg-elevated px-1.5 py-0.5 rounded text-accent-cyan`}
     >
       {children}
     </code>

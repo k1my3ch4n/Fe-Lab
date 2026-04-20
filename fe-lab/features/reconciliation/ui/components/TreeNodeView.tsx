@@ -47,7 +47,7 @@ export default function TreeNodeView({
     >
       <div className="flex items-center gap-2">
         <span
-          className="font-[family-name:var(--font-mono)] text-[11px] font-semibold"
+          className="font-mono text-[11px] font-semibold"
           style={{ color: highlight?.color ?? "#ffffff88" }}
         >
           {"<"}
@@ -62,7 +62,7 @@ export default function TreeNodeView({
         </span>
         {showBadge && (
           <span
-            className="font-[family-name:var(--font-mono)] text-[9px] px-1.5 py-0.5 rounded-full"
+            className="font-mono text-[9px] px-1.5 py-0.5 rounded-full"
             style={{
               background: `${highlight.color}25`,
               color: highlight.color,
@@ -78,7 +78,7 @@ export default function TreeNodeView({
           {Object.entries(node.props).map(([k, v]) => (
             <span
               key={k}
-              className="font-[family-name:var(--font-mono)] text-[9px] bg-bg-deep px-1.5 py-0.5 rounded text-text-muted"
+              className="font-mono text-[9px] bg-bg-deep px-1.5 py-0.5 rounded text-text-muted"
             >
               {k}=&quot;{v}&quot;
             </span>
@@ -87,7 +87,7 @@ export default function TreeNodeView({
       )}
 
       {node.text && (
-        <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-secondary mt-1 pl-2">
+        <div className="font-mono text-[10px] text-text-secondary mt-1 pl-2">
           &quot;{node.text}&quot;
         </div>
       )}

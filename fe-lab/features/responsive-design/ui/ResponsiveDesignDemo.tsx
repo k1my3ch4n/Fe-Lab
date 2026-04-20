@@ -66,7 +66,7 @@ export default function ResponsiveDesignDemo() {
                   <button
                     key={preset.label}
                     onClick={() => handlePresetClick(preset.width, preset.label)}
-                    className="w-full font-[family-name:var(--font-mono)] text-[12px] px-4 py-2.5 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33] flex items-center justify-between"
+                    className="w-full font-mono text-[12px] px-4 py-2.5 rounded-lg border border-accent-cyan text-accent-cyan bg-accent-cyan-dim cursor-pointer transition-all duration-200 hover:bg-[#00e5ff33] flex items-center justify-between"
                   >
                     <span>{preset.label}</span>
                     <span className="text-text-muted text-[10px]">

@@ -87,7 +87,7 @@ export default function CorsDemo() {
             }
           >
             {/* Current step detail */}
-            <div className="flex-1 overflow-y-auto p-3 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed">
+            <div className="flex-1 overflow-y-auto p-3 font-mono text-[11px] leading-relaxed">
               {currentStep === -1 ? (
                 <div className="text-text-muted text-center px-4 py-8 text-xs leading-[1.8]">
                   버튼을 클릭하여
@@ -146,7 +146,7 @@ export default function CorsDemo() {
         {/* Result */}
         {currentStep === scenario.steps.length - 1 && (
           <div
-            className={`rounded-lg border p-3 text-center font-[family-name:var(--font-mono)] text-[12px] transition-all duration-300 animate-[logSlide_0.3s_ease] ${
+            className={`rounded-lg border p-3 text-center font-mono text-[12px] transition-all duration-300 animate-[logSlide_0.3s_ease] ${
               scenario.success
                 ? "border-accent-green/40 bg-accent-green/10 text-accent-green"
                 : "border-accent-magenta/40 bg-accent-magenta/10 text-accent-magenta"
@@ -159,7 +159,7 @@ export default function CorsDemo() {
         )}
 
         {/* Summary */}
-        <div className="font-[family-name:var(--font-mono)] text-[11px] text-text-muted bg-bg-deep rounded-lg p-3 leading-[1.8]">
+        <div className="font-mono text-[11px] text-text-muted bg-bg-deep rounded-lg p-3 leading-[1.8]">
           {scenario.summary}
         </div>
       </DemoLayout>

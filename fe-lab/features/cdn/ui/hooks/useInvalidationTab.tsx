@@ -54,12 +54,12 @@ export function useInvalidationTab({
           className="rounded-lg border border-border-subtle bg-bg-deep p-4"
         >
           <div
-            className="font-[family-name:var(--font-mono)] text-[12px] font-bold mb-1"
+            className="font-mono text-[12px] font-bold mb-1"
             style={{ color: strategy.color }}
           >
             {strategy.name}
           </div>
-          <div className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted leading-[1.6]">
+          <div className="font-mono text-[10px] text-text-muted leading-[1.6]">
             {strategy.description}
           </div>
         </div>
@@ -68,7 +68,7 @@ export function useInvalidationTab({
       {/* Fingerprinting example */}
       <div className="rounded-lg border border-border-subtle bg-bg-deep p-4">
         <SectionHeader>에셋 핑거프린팅 예시</SectionHeader>
-        <pre className="font-[family-name:var(--font-mono)] text-[10px] text-accent-cyan leading-[1.8]">
+        <pre className="font-mono text-[10px] text-accent-cyan leading-[1.8]">
           {`// 빌드 시 파일명에 해시 포함
 app.js      → app.a1b2c3d4.js
 style.css   → style.e5f6g7h8.css

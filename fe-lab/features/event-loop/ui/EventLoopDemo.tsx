@@ -99,7 +99,7 @@ export default function EventLoopDemo() {
         <div className="p-6 flex flex-col gap-5">
           {/* Step indicator */}
           <div className="flex items-center gap-3">
-            <span className="font-[family-name:var(--font-mono)] text-[10px] text-text-muted uppercase tracking-wider">
+            <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider">
               Step {currentStep + 1} / {totalSteps}
             </span>
             <div className="flex-1 h-1 bg-bg-deep rounded-full overflow-hidden">
@@ -111,7 +111,7 @@ export default function EventLoopDemo() {
           </div>
 
           {/* Description */}
-          <div className="font-[family-name:var(--font-mono)] text-[12px] text-text-secondary leading-[1.8] bg-bg-deep px-4 py-3 rounded-lg border border-border-subtle">
+          <div className="font-mono text-[12px] text-text-secondary leading-[1.8] bg-bg-deep px-4 py-3 rounded-lg border border-border-subtle">
             {step.description}
           </div>
 
@@ -143,19 +143,19 @@ export default function EventLoopDemo() {
         {/* Right: Code + Console */}
         <div className="border-l border-border-subtle flex flex-col">
           <div className="px-4 py-3 border-b border-border-subtle">
-            <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
+            <span className="font-mono text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
               코드
             </span>
           </div>
-          <pre className="font-[family-name:var(--font-mono)] text-[11px] text-accent-cyan leading-[1.8] p-4 overflow-x-auto flex-shrink-0 border-b border-border-subtle bg-bg-deep">
+          <pre className="font-mono text-[11px] text-accent-cyan leading-[1.8] p-4 overflow-x-auto flex-shrink-0 border-b border-border-subtle bg-bg-deep">
             {scenario.code}
           </pre>
 
           <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
-            <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
+            <span className="font-mono text-[11px] font-semibold text-text-secondary uppercase tracking-wider">
               Console
             </span>
-            <span className="font-[family-name:var(--font-mono)] text-[9px] text-text-muted">
+            <span className="font-mono text-[9px] text-text-muted">
               {step.console.length > 0 ? `${step.console.length}개 출력` : ""}
             </span>
           </div>

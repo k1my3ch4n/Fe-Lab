@@ -6,7 +6,7 @@ export function StorageTable() {
     <div>
       <SectionHeader>Storage 비교</SectionHeader>
       <div className="overflow-x-auto rounded-lg border border-border-subtle">
-        <table className="w-full font-[family-name:var(--font-mono)] text-[10px]">
+        <table className="w-full font-mono text-[10px]">
           <thead>
             <tr className="bg-bg-elevated">
               <th className="text-left px-3 py-2 text-text-muted font-normal">

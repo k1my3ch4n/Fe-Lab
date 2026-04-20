@@ -12,7 +12,7 @@ export function StatusLegend() {
       ).map(([key, config]) => (
         <span
           key={key}
-          className={`${config.bg} ${config.text} font-[family-name:var(--font-mono)] text-[9px] px-2 py-0.5 rounded-full font-semibold`}
+          className={`${config.bg} ${config.text} font-mono text-[9px] px-2 py-0.5 rounded-full font-semibold`}
         >
           {config.label}
         </span>

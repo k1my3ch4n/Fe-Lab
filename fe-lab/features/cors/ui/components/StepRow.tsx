@@ -30,7 +30,7 @@ export function StepRow({
       }`}
     >
       <div
-        className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center font-[family-name:var(--font-mono)] text-[10px] font-bold ${
+        className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center font-mono text-[10px] font-bold ${
           current
             ? isError
               ? "bg-accent-magenta/20 text-accent-magenta"
@@ -44,7 +44,7 @@ export function StepRow({
       </div>
 
       <div
-        className={`font-[family-name:var(--font-mono)] text-[12px] flex-shrink-0 ${
+        className={`font-mono text-[12px] flex-shrink-0 ${
           current
             ? isError
               ? "text-accent-magenta"
@@ -57,7 +57,7 @@ export function StepRow({
 
       <div className="flex-1 min-w-0">
         <div
-          className={`font-[family-name:var(--font-mono)] text-[11px] font-semibold ${
+          className={`font-mono text-[11px] font-semibold ${
             current
               ? isError
                 ? "text-accent-magenta"
@@ -72,7 +72,7 @@ export function StepRow({
             {step.headers.map((header, j) => (
               <span
                 key={j}
-                className="font-[family-name:var(--font-mono)] text-[9px] bg-bg-deep px-1.5 py-0.5 rounded"
+                className="font-mono text-[9px] bg-bg-deep px-1.5 py-0.5 rounded"
               >
                 <span style={{ color: header.color }}>{header.name}</span>
               </span>
@@ -82,7 +82,7 @@ export function StepRow({
       </div>
 
       <div
-        className={`font-[family-name:var(--font-mono)] text-[9px] flex-shrink-0 uppercase tracking-wider ${
+        className={`font-mono text-[9px] flex-shrink-0 uppercase tracking-wider ${
           isRight
             ? "text-accent-cyan"
             : isError
