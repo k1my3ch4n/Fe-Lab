@@ -1,17 +1,17 @@
 # AI Action Tracker — Todo
 
 ## Phase 1: 프로젝트 초기 세팅
-- [ ] Vite + React + TypeScript 프로젝트 생성
-- [ ] Tailwind CSS 설치 및 설정
-- [ ] Zustand, Groq SDK 패키지 설치
-- [ ] `manifest.json` 작성 (Side Panel, Popup 권한 포함)
-- [ ] `vite.config.ts` 크롬 익스텐션 빌드 설정
-- [ ] FSD 디렉토리 구조 스캐폴딩
+- [x] Vite + React + TypeScript 프로젝트 생성
+- [x] Tailwind CSS 설치 및 설정
+- [x] Zustand, Groq SDK 패키지 설치
+- [x] `manifest.json` 작성 (Side Panel, Popup 권한 포함)
+- [x] `vite.config.ts` 크롬 익스텐션 빌드 설정
+- [x] FSD 디렉토리 구조 스캐폴딩
 
 ## Phase 2: shared 레이어
-- [ ] `shared/api` — Groq API 클라이언트 (Whisper STT, Llama 3 호출)
-- [ ] `shared/lib` — Web Audio API 헬퍼 (MediaRecorder 래퍼, chunk 처리)
-- [ ] `shared/ui` — 기본 컴포넌트 (Button, Badge)
+- [x] `shared/api` — Groq API 클라이언트 (Whisper STT, Llama 3 호출)
+- [x] `shared/lib` — Web Audio API 헬퍼 (MediaRecorder 래퍼, chunk 처리)
+- [x] `shared/ui` — 기본 컴포넌트 (Button, Badge)
 
 ## Phase 3: entities 레이어
 - [ ] `entities/action-item/model` — ActionItem 타입 정의 + Zustand store
