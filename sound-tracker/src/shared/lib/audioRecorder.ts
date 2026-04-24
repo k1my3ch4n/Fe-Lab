@@ -10,6 +10,8 @@ export class AudioRecorder {
   private chunkTimer: ReturnType<typeof setTimeout> | null = null;
   private isActive = false;
   private readonly options: Required<AudioRecorderOptions>;
+  private audioContext: AudioContext | null = null;
+  private analyserNode: AnalyserNode | null = null;
 
   constructor(options: AudioRecorderOptions) {
     this.options = {
@@ -21,6 +23,13 @@ export class AudioRecorder {
 
   async start(): Promise<void> {
     this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+    this.audioContext = new AudioContext();
+    this.analyserNode = this.audioContext.createAnalyser();
+    this.analyserNode.fftSize = 256;
+    const source = this.audioContext.createMediaStreamSource(this.stream);
+    source.connect(this.analyserNode);
+
     this.isActive = true;
     this.startChunk();
   }
@@ -39,10 +48,18 @@ export class AudioRecorder {
       this.stream?.getTracks().forEach((track) => track.stop());
       this.options.onStop();
     }
+
+    this.audioContext?.close();
+    this.audioContext = null;
+    this.analyserNode = null;
   }
 
   get recording(): boolean {
     return this.isActive;
+  }
+
+  getAnalyserNode(): AnalyserNode | null {
+    return this.analyserNode;
   }
 
   private startChunk(): void {

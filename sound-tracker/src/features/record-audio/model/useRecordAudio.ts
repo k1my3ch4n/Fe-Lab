@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import { AudioRecorder } from '@/shared/lib';
 import { useAudioStreamStore } from '@/entities/audio-stream/model';
 
@@ -9,6 +9,7 @@ interface UseRecordAudioOptions {
 export function useRecordAudio({ onChunk }: UseRecordAudioOptions) {
   const recorderRef = useRef<AudioRecorder | null>(null);
   const isActiveRef = useRef(false);
+  const [analyserNode, setAnalyserNode] = useState<AnalyserNode | null>(null);
 
   const setStatus = useAudioStreamStore(state => state.setStatus);
   const setError = useAudioStreamStore(state => state.setError);
@@ -36,6 +37,7 @@ export function useRecordAudio({ onChunk }: UseRecordAudioOptions) {
       await recorder.start();
       isActiveRef.current = true;
       recorderRef.current = recorder;
+      setAnalyserNode(recorder.getAnalyserNode());
       setStatus('recording');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to start recording');
@@ -46,8 +48,9 @@ export function useRecordAudio({ onChunk }: UseRecordAudioOptions) {
     isActiveRef.current = false;
     recorderRef.current?.stop();
     recorderRef.current = null;
+    setAnalyserNode(null);
     setStatus('idle');
   }, [setStatus]);
 
-  return { startRecording, stopRecording, status };
+  return { startRecording, stopRecording, status, analyserNode };
 }
