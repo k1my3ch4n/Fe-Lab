@@ -15,6 +15,7 @@ export default defineConfig({
       input: {
         sidepanel: resolve(__dirname, 'sidepanel.html'),
         popup: resolve(__dirname, 'popup.html'),
+        options: resolve(__dirname, 'options.html'),
       },
     },
   },
