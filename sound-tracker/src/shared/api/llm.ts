@@ -1,4 +1,4 @@
-import { groqClient } from './groqClient';
+import { getGroqClient } from './groqClient';
 
 export interface RawActionItem {
   content: string;
@@ -21,23 +21,29 @@ export async function extractActionItems(transcript: string): Promise<RawActionI
     return [];
   }
 
-  const completion = await groqClient.chat.completions.create({
-    model: 'llama-3.3-70b-versatile',
-    messages: [
-      { role: 'system', content: SYSTEM_PROMPT },
-      { role: 'user', content: transcript },
-    ],
-    temperature: 0.1,
-    max_tokens: 1024,
-    response_format: { type: 'json_object' },
-  });
-
-  const text = completion.choices[0]?.message?.content ?? '{"items":[]}';
+  const client = await getGroqClient();
 
   try {
-    const parsed = JSON.parse(text) as LlmResponse;
-    return Array.isArray(parsed.items) ? parsed.items : [];
-  } catch {
-    return [];
+    const completion = await client.chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: transcript },
+      ],
+      temperature: 0.1,
+      max_tokens: 1024,
+      response_format: { type: 'json_object' },
+    });
+
+    const text = completion.choices[0]?.message?.content ?? '{"items":[]}';
+
+    try {
+      const parsed = JSON.parse(text) as LlmResponse;
+      return Array.isArray(parsed.items) ? parsed.items : [];
+    } catch {
+      return [];
+    }
+  } catch (error) {
+    throw new Error(`액션 아이템 추출 실패: ${error instanceof Error ? error.message : '알 수 없는 오류'}`);
   }
 }
