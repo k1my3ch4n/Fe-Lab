@@ -5,13 +5,15 @@ on:
     branches: [main, feature]
     paths:
       - 'fe-lab/**'
+      - 'sound-tracker/**'
   pull_request:
     branches: [main]
     paths:
       - 'fe-lab/**'
+      - 'sound-tracker/**'
 
 jobs:
-  build:
+  build-fe-lab:
     runs-on: ubuntu-latest
 
     defaults:
@@ -35,6 +37,31 @@ jobs:
 
       - name: Lint
         run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+  build-sound-tracker:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: sound-tracker
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: sound-tracker/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npx tsc --noEmit
 
       - name: Build
         run: npm run build

@@ -12,8 +12,8 @@ user-invocable: true
 
 ## PR 제목 예시
 
-- `Phase {number}: {간결한 변경 사항 설명}`
-- 예시: `Phase 1: 프로젝트 초기 세팅 완료`
+- `{Project Name}: {간결한 변경 사항 설명}`
+- 예시: `fe-lab: 프로젝트 초기 세팅 완료`
 
 ## PR 본문 예시
 
