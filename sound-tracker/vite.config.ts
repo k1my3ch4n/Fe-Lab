@@ -14,8 +14,14 @@ export default defineConfig({
     rollupOptions: {
       input: {
         sidepanel: resolve(__dirname, 'sidepanel.html'),
-        popup: resolve(__dirname, 'popup.html'),
         options: resolve(__dirname, 'options.html'),
+        background: resolve(__dirname, 'src/app/background.ts'),
+      },
+      output: {
+        entryFileNames: (chunk) => {
+          if (chunk.name === 'background') { return '[name].js'; }
+          return 'assets/[name]-[hash].js';
+        },
       },
     },
   },
