@@ -5,6 +5,7 @@ import { AudioVisualizer } from '@/widgets/audio-visualizer'
 import { ActionItemCardList } from '@/widgets/action-item-card-list'
 import { useAudioStreamStore } from '@/entities/audio-stream/model'
 import { useActionItemStore } from '@/entities/action-item/model'
+import { ErrorBoundary } from '@/shared/ui'
 
 export function SidePanelPage() {
   const { processChunk } = useExtractActionItem()
@@ -53,7 +54,9 @@ export function SidePanelPage() {
       </header>
 
       <section className="px-4 pt-4">
-        <AudioVisualizer analyserNode={analyserNode} />
+        <ErrorBoundary>
+          <AudioVisualizer analyserNode={analyserNode} />
+        </ErrorBoundary>
       </section>
 
       <section className="px-4 py-3 flex flex-col items-center gap-2">
@@ -62,7 +65,9 @@ export function SidePanelPage() {
       </section>
 
       <section className="flex-1 px-4 pb-4 min-h-0">
-        <ActionItemCardList />
+        <ErrorBoundary>
+          <ActionItemCardList />
+        </ErrorBoundary>
       </section>
     </main>
   )
