@@ -15,6 +15,10 @@ You may receive previous context to help understand incomplete sentences, and a 
 Extract action items ONLY from the new transcript segment, using the context only to understand broken sentences.
 Respond with a JSON object in this exact format:
 {"items": [{"content": "action description", "assignee": "person or null", "dueDate": "date string or null"}]}
+Rules:
+- "assignee" must be null if no specific person is explicitly mentioned.
+- "dueDate" must be null if no specific date or deadline is explicitly mentioned.
+- Do not infer or guess assignee or dueDate from context.
 If there are no action items in the new segment, return: {"items": []}`;
 
 export async function extractActionItems(transcript: string, context?: string): Promise<RawActionItem[]> {
