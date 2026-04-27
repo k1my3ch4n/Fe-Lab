@@ -4,6 +4,7 @@ import { Button } from "@/shared/ui";
 
 type SaveStatus = "idle" | "saved" | "error";
 type MicStatus = "unknown" | "granted" | "denied" | "requesting";
+type CustomPermissionName = PermissionName | "microphone";
 
 export function OptionsPage() {
   const [apiKey, setApiKey] = useState("");
@@ -11,7 +12,7 @@ export function OptionsPage() {
   const [micStatus, setMicStatus] = useState<MicStatus>("unknown");
 
   useEffect(() => {
-    navigator.permissions.query({ name: "microphone" as PermissionName }).then((result) => {
+    navigator.permissions.query({ name: "microphone" as CustomPermissionName }).then((result) => {
       setMicStatus(result.state as MicStatus);
       result.addEventListener("change", () => {
         setMicStatus(result.state as MicStatus);
@@ -72,7 +73,7 @@ export function OptionsPage() {
               {micStatus === "granted" && "✅ 허용됨"}
               {micStatus === "denied" && "❌ 차단됨 — 브라우저 설정에서 직접 허용해주세요"}
               {micStatus === "requesting" && "요청 중..."}
-              {(micStatus === "unknown" || micStatus === "prompt" as MicStatus) && "권한이 필요합니다"}
+              {(micStatus === "unknown" || micStatus === ("prompt" as MicStatus)) && "권한이 필요합니다"}
             </span>
             {micStatus !== "granted" && micStatus !== "denied" && (
               <Button
