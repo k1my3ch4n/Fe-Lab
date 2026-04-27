@@ -11,15 +11,20 @@ interface LlmResponse {
 }
 
 const SYSTEM_PROMPT = `You are an assistant that extracts action items from meeting transcripts.
-Extract any action items, tasks, or to-dos mentioned in the given text.
+You may receive previous context to help understand incomplete sentences, and a new transcript segment.
+Extract action items ONLY from the new transcript segment, using the context only to understand broken sentences.
 Respond with a JSON object in this exact format:
 {"items": [{"content": "action description", "assignee": "person or null", "dueDate": "date string or null"}]}
-If there are no action items, return: {"items": []}`;
+If there are no action items in the new segment, return: {"items": []}`;
 
-export async function extractActionItems(transcript: string): Promise<RawActionItem[]> {
+export async function extractActionItems(transcript: string, context?: string): Promise<RawActionItem[]> {
   if (!transcript.trim()) {
     return [];
   }
+
+  const userContent = context
+    ? `[이전 대화 컨텍스트]\n${context}\n\n[새 발화 내용]\n${transcript}`
+    : transcript;
 
   const client = await getGroqClient();
 
@@ -28,7 +33,7 @@ export async function extractActionItems(transcript: string): Promise<RawActionI
       model: 'llama-3.3-70b-versatile',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
-        { role: 'user', content: transcript },
+        { role: 'user', content: userContent },
       ],
       temperature: 0.1,
       max_tokens: 1024,
