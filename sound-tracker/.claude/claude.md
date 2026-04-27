@@ -1,6 +1,6 @@
 ## 프로젝트 개요
 
-- 프로젝트 명: AI Action Tracker (가제)
+- 프로젝트 명: VoxTask
 
 - 기술 스택: React, Vite, Tailwind CSS, TypeScript, Zustand, Groq API (Whisper & Llama 3)
 

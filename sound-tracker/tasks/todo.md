@@ -1,4 +1,4 @@
-# AI Action Tracker — Todo
+# VoxTask — Todo
 
 ## Phase 1: 프로젝트 초기 세팅
 - [x] Vite + React + TypeScript 프로젝트 생성
@@ -14,21 +14,21 @@
 - [x] `shared/ui` — 기본 컴포넌트 (Button, Badge)
 
 ## Phase 3: entities 레이어
-- [ ] `entities/action-item/model` — ActionItem 타입 정의 + Zustand store
-- [ ] `entities/action-item/ui` — 기본 ActionItem 카드 컴포넌트
-- [ ] `entities/audio-stream/model` — 녹음 상태 store (idle / recording / processing)
+- [x] `entities/action-item/model` — ActionItem 타입 정의 + Zustand store
+- [x] `entities/action-item/ui` — 기본 ActionItem 카드 컴포넌트
+- [x] `entities/audio-stream/model` — 녹음 상태 store (idle / recording / processing)
 
 ## Phase 4: features 레이어
-- [ ] `features/record-audio` — 마이크 권한 요청, 녹음 시작/중지, chunk 스트리밍
-- [ ] `features/extract-action-item` — chunk → Whisper STT → Llama 3 파싱 → store 저장
+- [x] `features/record-audio` — 마이크 권한 요청, 녹음 시작/중지, chunk 스트리밍
+- [x] `features/extract-action-item` — chunk → Whisper STT → Llama 3 파싱 → store 저장
 
 ## Phase 5: widgets 레이어
-- [ ] `widgets/action-item-card-list` — ActionItem 목록 렌더링
-- [ ] `widgets/audio-visualizer` — 실시간 음성 파형 시각화
+- [x] `widgets/action-item-card-list` — ActionItem 목록 렌더링
+- [x] `widgets/audio-visualizer` — 실시간 음성 파형 시각화
 
 ## Phase 6: pages 레이어
-- [ ] `pages/sidepanel` — 메인 대시보드 (Visualizer + CardList + 녹음 컨트롤)
-- [ ] `pages/popup` — 간단한 상태 표시 및 녹음 토글
+- [x] `pages/sidepanel` — 메인 대시보드 (Visualizer + CardList + 녹음 컨트롤)
+- [x] `pages/popup` — 간단한 상태 표시 및 녹음 토글
 
 ## Phase 7: 통합 및 검증
 - [ ] 발화 → 카드 생성 E2E 흐름 확인 (목표: 2초 이내)
