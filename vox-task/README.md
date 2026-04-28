@@ -2,6 +2,8 @@
 
 회의 중 말한 내용을 자동으로 분석해 **Action Item(할 일)** 을 추출해주는 Chrome 익스텐션입니다.
 
+![시연 영상](https://github.com/user-attachments/assets/721db4a0-1e7c-4211-bf6d-e42540fde3e1)
+
 ---
 
 ## 이런 분께 추천해요
@@ -24,13 +26,9 @@
 
 ## 설치 방법
 
-> 현재 Chrome 웹 스토어 미출시 상태로, 직접 로드 방식으로 설치합니다.
-
-1. 이 저장소의 [Releases](../../releases) 페이지에서 최신 `dist.zip` 다운로드
-2. 압축 해제
-3. Chrome에서 `chrome://extensions` 접속
-4. 우측 상단 **개발자 모드** 켜기
-5. **압축 해제된 확장 프로그램 로드** 클릭 → 압축 해제한 폴더 선택
+1. [Chrome 웹 스토어](https://chrome.google.com/webstore)에서 **VoxTask** 검색
+2. **Chrome에 추가** 클릭
+3. 팝업에서 **확장 프로그램 추가** 확인
 
 ---
 
