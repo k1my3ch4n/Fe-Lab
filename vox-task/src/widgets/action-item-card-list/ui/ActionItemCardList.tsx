@@ -13,7 +13,7 @@ const FILTER_TABS: { label: string; value: FilterTab }[] = [
 ];
 
 export function ActionItemCardList() {
-  const { items, updateStatus, removeItem, clearAll } = useActionItemStore();
+  const { items, updateStatus, updateItem, removeItem, clearAll } = useActionItemStore();
   const [activeFilter, setActiveFilter] = useState<FilterTab>('all');
 
   const filteredItems = activeFilter === 'all'
@@ -74,6 +74,7 @@ export function ActionItemCardList() {
                 item={item}
                 onStatusChange={updateStatus}
                 onRemove={removeItem}
+                onUpdate={updateItem}
               />
             </li>
           ))
