@@ -80,10 +80,10 @@ export function ActionItemCard({ item, onStatusChange, onRemove, onUpdate }: Act
               placeholder="담당자 (선택)"
             />
             <input
+              type="date"
               className="flex-1 rounded border border-gray-200 px-2 py-1 text-xs text-gray-700 focus:border-blue-400 focus:outline-none"
               value={draft.dueDate}
               onChange={(event) => setDraft((prev) => ({ ...prev, dueDate: event.target.value }))}
-              placeholder="마감일 (선택)"
             />
           </div>
           <nav className="flex justify-end gap-2">
