@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#5B21B6"/>
+    </linearGradient>
+    <linearGradient id="capsule" x1="0" y1="0" x2="0" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EDE9FE"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+
+  <!-- Microphone capsule body -->
+  <rect x="47" y="10" width="34" height="50" rx="17" fill="url(#capsule)"/>
+
+  <!-- Grille lines on capsule -->
+  <line x1="55" y1="22" x2="73" y2="22" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="55" y1="31" x2="73" y2="31" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="55" y1="40" x2="73" y2="40" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="55" y1="49" x2="73" y2="49" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Short neck connecting capsule to V -->
+  <rect x="60" y="60" width="8" height="12" rx="4" fill="white"/>
+
+  <!-- V left arm -->
+  <line x1="64" y1="72" x2="20" y2="108" stroke="white" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- V right arm -->
+  <line x1="64" y1="72" x2="108" y2="108" stroke="white" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Horizontal base -->
+  <line x1="14" y1="116" x2="114" y2="116" stroke="white" stroke-width="8.5" stroke-linecap="round"/>
+</svg>
