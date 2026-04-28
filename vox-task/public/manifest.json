@@ -3,7 +3,7 @@
   "name": "VoxTask",
   "version": "0.0.1",
   "description": "음성을 실시간으로 캡처하여 Action Item을 자동 추출하는 크롬 익스텐션",
-  "permissions": ["sidePanel", "activeTab", "storage", "microphone"],
+  "permissions": ["sidePanel", "activeTab", "storage"],
   "background": {
     "service_worker": "background.js"
   },
