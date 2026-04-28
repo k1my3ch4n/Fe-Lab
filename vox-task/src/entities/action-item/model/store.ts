@@ -14,17 +14,47 @@ interface ActionItemStore {
 const chromeLocalStorage = {
   getItem: (name: string) =>
     new Promise<string | null>((resolve) => {
-      chrome.storage.local.get(name, (result) => {
-        resolve((result[name] as string) ?? null);
-      });
+      try {
+        chrome.storage.local.get(name, (result) => {
+          if (chrome.runtime.lastError) {
+            console.error('[storage] getItem 실패:', chrome.runtime.lastError.message);
+            resolve(null);
+            return;
+          }
+          resolve((result[name] as string) ?? null);
+        });
+      } catch (error) {
+        console.error('[storage] getItem 예외:', error);
+        resolve(null);
+      }
     }),
   setItem: (name: string, value: string) =>
     new Promise<void>((resolve) => {
-      chrome.storage.local.set({ [name]: value }, resolve);
+      try {
+        chrome.storage.local.set({ [name]: value }, () => {
+          if (chrome.runtime.lastError) {
+            console.error('[storage] setItem 실패:', chrome.runtime.lastError.message);
+          }
+          resolve();
+        });
+      } catch (error) {
+        console.error('[storage] setItem 예외:', error);
+        resolve();
+      }
     }),
   removeItem: (name: string) =>
     new Promise<void>((resolve) => {
-      chrome.storage.local.remove(name, resolve);
+      try {
+        chrome.storage.local.remove(name, () => {
+          if (chrome.runtime.lastError) {
+            console.error('[storage] removeItem 실패:', chrome.runtime.lastError.message);
+          }
+          resolve();
+        });
+      } catch (error) {
+        console.error('[storage] removeItem 예외:', error);
+        resolve();
+      }
     }),
 };
 
