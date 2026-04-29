@@ -2,7 +2,7 @@
 
 회의 중 말한 내용을 자동으로 분석해 **Action Item(할 일)** 을 추출해주는 Chrome 익스텐션입니다.
 
-![시연 영상](https://github.com/user-attachments/assets/721db4a0-1e7c-4211-bf6d-e42540fde3e1)
+https://github.com/user-attachments/assets/721db4a0-1e7c-4211-bf6d-e42540fde3e1
 
 ---
 
