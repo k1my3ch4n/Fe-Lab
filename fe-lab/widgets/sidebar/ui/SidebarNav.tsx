@@ -51,7 +51,7 @@ export default function SidebarNav({
         value={search}
         onChange={onSearchChange}
       />
-      <nav className="flex-1 p-3 overflow-y-auto">
+      <nav className="flex-1 min-h-0 p-3 overflow-y-auto scrollbar-hide">
         {filteredCategories.map((category) => {
           const isCollapsedCategory = effectiveCollapsed.has(category.name);
           return (

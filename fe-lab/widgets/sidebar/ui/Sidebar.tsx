@@ -12,7 +12,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`bg-bg-surface border-r border-border-subtle flex flex-col overflow-hidden transition-[width] duration-300 ${isCollapsed ? "w-[60px]" : "w-[260px]"}`}
+      className={`bg-bg-surface border-r border-border-subtle flex flex-col overflow-hidden h-screen transition-[width] duration-300 ${isCollapsed ? "w-[60px]" : "w-[260px]"}`}
     >
       <SidebarHeader isCollapsed={isCollapsed} onToggle={handleToggle} />
       <SidebarNav
