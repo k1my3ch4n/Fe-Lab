@@ -9,7 +9,7 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen overflow-y-auto bg-bg-deep">
+    <div className="h-screen overflow-y-auto bg-bg-deep">
       {/* Hero */}
       <section className="flex flex-col items-center justify-center px-6 pt-24 pb-16 text-center">
         <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4">
