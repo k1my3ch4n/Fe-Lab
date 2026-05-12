@@ -43,7 +43,7 @@ export default function TopicsLayout({
       {/* Main content */}
       <main
         ref={mainRef}
-        className="flex-1 overflow-y-auto relative topic-main-bg"
+        className="flex-1 overflow-y-auto relative topic-main-bg [overflow-anchor:none]"
       >
         <ScrollProgress containerRef={mainRef} />
 
