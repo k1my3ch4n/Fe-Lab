@@ -126,16 +126,13 @@ export const interviewQuestions: InterviewQuestion[] = [
         <InlineCode size="md">console.log</InlineCode>,{" "}
         <InlineCode size="md">setTimeout</InlineCode>,{" "}
         <InlineCode size="md">Promise</InlineCode>가 혼합된 코드의 실행 순서:
-        <br />
-        <br />
-        1. <strong>동기 코드</strong>가 먼저 실행됩니다 — 콜 스택에서 즉시 처리.{" "}
-        2. <InlineCode size="md">setTimeout</InlineCode>은 콜백을{" "}
-        <strong>태스크 큐</strong>에 등록만 합니다. 3.{" "}
-        <InlineCode size="md">Promise.then</InlineCode>은 콜백을{" "}
-        <strong>마이크로태스크 큐</strong>에 등록합니다. 4. 동기 코드가 모두
-        끝나면 <strong>마이크로태스크 큐를 먼저 비웁니다</strong>. 5. 마지막으로{" "}
-        <strong>태스크 큐</strong>의 콜백이 실행됩니다.
-        <br />
+        <ol>
+          <li><strong>동기 코드</strong>가 먼저 실행됩니다 — 콜 스택에서 즉시 처리.</li>
+          <li><InlineCode size="md">setTimeout</InlineCode>은 콜백을 <strong>태스크 큐</strong>에 등록만 합니다.</li>
+          <li><InlineCode size="md">Promise.then</InlineCode>은 콜백을 <strong>마이크로태스크 큐</strong>에 등록합니다.</li>
+          <li>동기 코드가 모두 끝나면 <strong>마이크로태스크 큐를 먼저 비웁니다</strong>.</li>
+          <li>마지막으로 <strong>태스크 큐</strong>의 콜백이 실행됩니다.</li>
+        </ol>
         <br />
         핵심: 동기 &gt; 마이크로태스크 &gt; 매크로태스크 순서이며, 이는 이벤트
         루프의 우선순위 규칙에 의한 것입니다.

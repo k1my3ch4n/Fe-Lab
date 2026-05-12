@@ -110,13 +110,20 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "GraphQL의 장단점을 설명해주세요.",
     answer: (
       <>
-        <strong>장점:</strong> 1. 필요한 데이터만 요청 (네트워크 효율) 2. 스키마
-        기반 타입 시스템으로 자동 문서화 3. 단일 요청으로 관련 데이터 조회 4.{" "}
-        <InlineCode size="md">Subscription</InlineCode>으로 실시간 기능 내장.
-        <br />
-        <br />
-        <strong>단점:</strong> 1. 학습 곡선이 높음 2. HTTP 캐싱 활용 어려움 3.
-        파일 업로드 처리 복잡 4. N+1 문제 발생 가능 (DataLoader로 해결).
+        <strong>장점:</strong>
+        <ol>
+          <li>필요한 데이터만 요청 (네트워크 효율)</li>
+          <li>스키마 기반 타입 시스템으로 자동 문서화</li>
+          <li>단일 요청으로 관련 데이터 조회</li>
+          <li><InlineCode size="md">Subscription</InlineCode>으로 실시간 기능 내장</li>
+        </ol>
+        <strong>단점:</strong>
+        <ol>
+          <li>학습 곡선이 높음</li>
+          <li>HTTP 캐싱 활용 어려움</li>
+          <li>파일 업로드 처리 복잡</li>
+          <li>N+1 문제 발생 가능 (DataLoader로 해결)</li>
+        </ol>
       </>
     ),
   },

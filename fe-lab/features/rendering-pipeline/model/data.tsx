@@ -59,11 +59,18 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "브라우저 주소창에 URL을 입력하면 어떤 일이 일어나나요?",
     answer: (
       <>
-        1. DNS 조회로 도메인을 IP로 변환 → 2. TCP 3-way handshake (HTTPS면 TLS
-        핸드셰이크 추가) → 3. HTTP 요청 전송 → 4. HTML 응답 수신 → 5. HTML
-        파싱하여 DOM 트리 구성 → 6. CSS 파싱하여 CSSOM 구성 → 7. DOM + CSSOM
-        결합하여 렌더 트리 생성 → 8. 레이아웃(각 요소의 위치/크기 계산) → 9.
-        페인트(픽셀 그리기) → 10. 합성(레이어 조합하여 화면 표시)
+        <ol>
+          <li>DNS 조회로 도메인을 IP로 변환</li>
+          <li>TCP 3-way handshake (HTTPS면 TLS 핸드셰이크 추가)</li>
+          <li>HTTP 요청 전송</li>
+          <li>HTML 응답 수신</li>
+          <li>HTML 파싱하여 DOM 트리 구성</li>
+          <li>CSS 파싱하여 CSSOM 구성</li>
+          <li>DOM + CSSOM 결합하여 렌더 트리 생성</li>
+          <li>레이아웃 (각 요소의 위치/크기 계산)</li>
+          <li>페인트 (픽셀 그리기)</li>
+          <li>합성 (레이어 조합하여 화면 표시)</li>
+        </ol>
       </>
     ),
   },
