@@ -90,16 +90,32 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "반응형 디자인 전략에는 어떤 것들이 있나요?",
     answer: (
       <>
-        1. <strong>미디어 쿼리</strong> — viewport 크기에 따른 breakpoint 기반
-        스타일 변경 2. <strong>유동적 단위</strong> —{" "}
-        <InlineCode>vw</InlineCode>, <InlineCode>vh</InlineCode>,{" "}
-        <InlineCode>%</InlineCode>, <InlineCode>rem</InlineCode> 등 상대 단위
-        사용 3. <strong>CSS 함수</strong> — <InlineCode>clamp()</InlineCode>,{" "}
-        <InlineCode>min()</InlineCode>, <InlineCode>max()</InlineCode>로 유동적
-        값 설정 4. <strong>Container Query</strong> — 부모 컨테이너 크기 기반
-        반응형 (최신) 5. <strong>반응형 이미지</strong> —{" "}
-        <InlineCode>srcset</InlineCode>,{" "}
-        <InlineCode>{"<picture>"}</InlineCode> 태그 활용
+        <ol>
+          <li>
+            <strong>미디어 쿼리</strong> — viewport 크기에 따른 breakpoint 기반
+            스타일 변경
+          </li>
+          <li>
+            <strong>유동적 단위</strong> —{" "}
+            <InlineCode>vw</InlineCode>, <InlineCode>vh</InlineCode>,{" "}
+            <InlineCode>%</InlineCode>, <InlineCode>rem</InlineCode> 등 상대
+            단위 사용
+          </li>
+          <li>
+            <strong>CSS 함수</strong> — <InlineCode>clamp()</InlineCode>,{" "}
+            <InlineCode>min()</InlineCode>, <InlineCode>max()</InlineCode>로
+            유동적 값 설정
+          </li>
+          <li>
+            <strong>Container Query</strong> — 부모 컨테이너 크기 기반 반응형
+            (최신)
+          </li>
+          <li>
+            <strong>반응형 이미지</strong> —{" "}
+            <InlineCode>srcset</InlineCode>,{" "}
+            <InlineCode>{"<picture>"}</InlineCode> 태그 활용
+          </li>
+        </ol>
       </>
     ),
   },

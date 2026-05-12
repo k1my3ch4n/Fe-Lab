@@ -146,16 +146,24 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "RSC의 장단점을 설명해주세요.",
     answer: (
       <>
-        <strong>장점</strong>: 1) 번들 사이즈 감소 — 서버 코드가 클라이언트로
-        전송되지 않음 2) 서버 리소스 직접 접근 — API 라우트 없이 DB, 파일시스템
-        사용 3) 자동 코드 분할 — Client Component만 필요할 때 로드 4) 스트리밍
-        렌더링 — Suspense와 연동하여 점진적 로딩
-        <br />
-        <br />
-        <strong>단점</strong>: 1) 인터랙션 불가 —{" "}
-        <InlineCode>useState</InlineCode>, 이벤트 핸들러 사용 불가 2) 학습 곡선
-        — Server/Client 경계 이해 필요 3) 직렬화 제한 — props로 함수, 클래스
-        인스턴스 등 전달 불가
+        <strong>장점</strong>:
+        <ol>
+          <li>번들 사이즈 감소 — 서버 코드가 클라이언트로 전송되지 않음</li>
+          <li>
+            서버 리소스 직접 접근 — API 라우트 없이 DB, 파일시스템 사용
+          </li>
+          <li>자동 코드 분할 — Client Component만 필요할 때 로드</li>
+          <li>스트리밍 렌더링 — Suspense와 연동하여 점진적 로딩</li>
+        </ol>
+        <strong>단점</strong>:
+        <ol>
+          <li>
+            인터랙션 불가 — <InlineCode>useState</InlineCode>, 이벤트 핸들러
+            사용 불가
+          </li>
+          <li>학습 곡선 — Server/Client 경계 이해 필요</li>
+          <li>직렬화 제한 — props로 함수, 클래스 인스턴스 등 전달 불가</li>
+        </ol>
       </>
     ),
   },

@@ -138,11 +138,21 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "디바운스/쓰로틀의 실제 사용 사례는?",
     answer: (
       <>
-        <strong>디바운스</strong>: 1. 검색 자동완성 (타이핑 멈춘 후 API 호출) 2.
-        윈도우 리사이즈 후 레이아웃 재계산 3. 폼 유효성 검사 (입력 완료 후 검증){" "}
-        <strong>쓰로틀</strong>: 1. 무한 스크롤 (스크롤 위치 확인) 2.{" "}
-        <InlineCode>mousemove</InlineCode> 이벤트 처리 3. 버튼 연타 방지 (결제
-        버튼) 4. 게임에서 FPS 제한
+        <strong>디바운스</strong>:
+        <ol>
+          <li>검색 자동완성 (타이핑 멈춘 후 API 호출)</li>
+          <li>윈도우 리사이즈 후 레이아웃 재계산</li>
+          <li>폼 유효성 검사 (입력 완료 후 검증)</li>
+        </ol>
+        <strong>쓰로틀</strong>:
+        <ol>
+          <li>무한 스크롤 (스크롤 위치 확인)</li>
+          <li>
+            <InlineCode>mousemove</InlineCode> 이벤트 처리
+          </li>
+          <li>버튼 연타 방지 (결제 버튼)</li>
+          <li>게임에서 FPS 제한</li>
+        </ol>
       </>
     ),
   },

@@ -116,14 +116,31 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "JavaScript에서 메모리 릭이 발생하는 주요 원인은 무엇인가요?",
     answer: (
       <>
-        1. <strong>해제되지 않은 이벤트 리스너</strong> — 등록 후
-        removeEventListener를 호출하지 않음 2.{" "}
-        <strong>클로저의 의도치 않은 참조</strong> — 불필요한 변수를 계속
-        참조하는 클로저 3. <strong>분리된 DOM 노드</strong> — DOM에서 제거했지만
-        JS 변수가 참조 유지 4. <strong>전역 변수</strong> — 실수로 전역에 할당된
-        변수 5. <strong>해제되지 않은 타이머/인터벌</strong> — clearInterval,
-        clearTimeout 미호출 6. <strong>콘솔 로그</strong> — 개발자 도구가 열린
-        상태에서 console.log의 참조 유지
+        <ol>
+          <li>
+            <strong>해제되지 않은 이벤트 리스너</strong> — 등록 후
+            removeEventListener를 호출하지 않음
+          </li>
+          <li>
+            <strong>클로저의 의도치 않은 참조</strong> — 불필요한 변수를 계속
+            참조하는 클로저
+          </li>
+          <li>
+            <strong>분리된 DOM 노드</strong> — DOM에서 제거했지만 JS 변수가
+            참조 유지
+          </li>
+          <li>
+            <strong>전역 변수</strong> — 실수로 전역에 할당된 변수
+          </li>
+          <li>
+            <strong>해제되지 않은 타이머/인터벌</strong> — clearInterval,
+            clearTimeout 미호출
+          </li>
+          <li>
+            <strong>콘솔 로그</strong> — 개발자 도구가 열린 상태에서
+            console.log의 참조 유지
+          </li>
+        </ol>
       </>
     ),
   },

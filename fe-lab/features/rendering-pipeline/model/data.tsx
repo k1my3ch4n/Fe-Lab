@@ -100,12 +100,22 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "크리티컬 렌더링 패스(Critical Rendering Path) 최적화 방법은?",
     answer: (
       <>
-        1. CSS는 <InlineCode>{"<head>"}</InlineCode>에 배치 (렌더 차단 리소스){" "}
-        2. JS는 <InlineCode>{"<body>"}</InlineCode> 하단 또는{" "}
-        <InlineCode>defer/async</InlineCode> 사용 3. 중요 CSS를 인라인으로 삽입{" "}
-        4. 불필요한 CSS/JS를 제거하여 크리티컬 리소스 최소화 5. 리소스 압축
-        (gzip/brotli) 및 캐시 활용 6. <InlineCode>preload</InlineCode>,{" "}
-        <InlineCode>prefetch</InlineCode>로 중요 리소스 우선 로드
+        <ol>
+          <li>
+            CSS는 <InlineCode>{"<head>"}</InlineCode>에 배치 (렌더 차단 리소스)
+          </li>
+          <li>
+            JS는 <InlineCode>{"<body>"}</InlineCode> 하단 또는{" "}
+            <InlineCode>defer/async</InlineCode> 사용
+          </li>
+          <li>중요 CSS를 인라인으로 삽입</li>
+          <li>불필요한 CSS/JS를 제거하여 크리티컬 리소스 최소화</li>
+          <li>리소스 압축 (gzip/brotli) 및 캐시 활용</li>
+          <li>
+            <InlineCode>preload</InlineCode>,{" "}
+            <InlineCode>prefetch</InlineCode>로 중요 리소스 우선 로드
+          </li>
+        </ol>
       </>
     ),
   },

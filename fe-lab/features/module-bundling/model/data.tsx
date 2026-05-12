@@ -112,14 +112,22 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "코드 스플릿팅의 구현 방법을 설명해주세요.",
     answer: (
       <>
-        1. <strong>라우트 기반</strong> — <InlineCode>React.lazy</InlineCode> +{" "}
-        <InlineCode>Suspense</InlineCode>로 페이지별 청크 분리 2.{" "}
-        <strong>컴포넌트 기반</strong> —{" "}
-        <InlineCode>dynamic import()</InlineCode>로 무거운 컴포넌트를 지연 로딩{" "}
-        3. <strong>라이브러리 기반</strong> — lodash 등 대형 라이브러리의 서브
-        모듈만 import
-        <br />
-        <br />
+        <ol>
+          <li>
+            <strong>라우트 기반</strong> —{" "}
+            <InlineCode>React.lazy</InlineCode> +{" "}
+            <InlineCode>Suspense</InlineCode>로 페이지별 청크 분리
+          </li>
+          <li>
+            <strong>컴포넌트 기반</strong> —{" "}
+            <InlineCode>dynamic import()</InlineCode>로 무거운 컴포넌트를 지연
+            로딩
+          </li>
+          <li>
+            <strong>라이브러리 기반</strong> — lodash 등 대형 라이브러리의 서브
+            모듈만 import
+          </li>
+        </ol>
         Next.js에서는 <InlineCode>next/dynamic</InlineCode>으로 SSR 여부까지
         제어할 수 있습니다.
       </>

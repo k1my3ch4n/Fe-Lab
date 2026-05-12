@@ -107,15 +107,28 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "브라우저 렌더링 성능을 최적화하는 방법을 설명해주세요.",
     answer: (
       <>
-        1. <strong>DOM 조작 최소화</strong> —{" "}
-        <InlineCode>DocumentFragment</InlineCode>나{" "}
-        <InlineCode>cssText</InlineCode>로 일괄 처리 2.{" "}
-        <strong>강제 동기 레이아웃 방지</strong> — 읽기/쓰기를 분리하고{" "}
-        <InlineCode>requestAnimationFrame</InlineCode>을 활용 3.{" "}
-        <strong>컴포지트 속성 사용</strong> — <InlineCode>transform</InlineCode>
-        과 <InlineCode>opacity</InlineCode>로 애니메이션 처리 4.{" "}
-        <strong>will-change</strong>로 필요한 요소만 GPU 레이어로 승격 5.{" "}
-        <InlineCode>contain</InlineCode> 속성으로 리플로우 범위를 제한
+        <ol>
+          <li>
+            <strong>DOM 조작 최소화</strong> —{" "}
+            <InlineCode>DocumentFragment</InlineCode>나{" "}
+            <InlineCode>cssText</InlineCode>로 일괄 처리
+          </li>
+          <li>
+            <strong>강제 동기 레이아웃 방지</strong> — 읽기/쓰기를 분리하고{" "}
+            <InlineCode>requestAnimationFrame</InlineCode>을 활용
+          </li>
+          <li>
+            <strong>컴포지트 속성 사용</strong> —{" "}
+            <InlineCode>transform</InlineCode>과{" "}
+            <InlineCode>opacity</InlineCode>로 애니메이션 처리
+          </li>
+          <li>
+            <strong>will-change</strong>로 필요한 요소만 GPU 레이어로 승격
+          </li>
+          <li>
+            <InlineCode>contain</InlineCode> 속성으로 리플로우 범위를 제한
+          </li>
+        </ol>
       </>
     ),
   },
@@ -141,17 +154,38 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "웹 렌더링 성능 최적화를 위한 종합적인 기법을 설명해주세요.",
     answer: (
       <>
-        1. <strong>DOM 조작 최소화</strong> — DocumentFragment 활용, 배치
-        업데이트 2. <strong>강제 동기 레이아웃 회피</strong> — 읽기/쓰기 분리 (
-        <InlineCode>offsetHeight</InlineCode> 읽기 후 스타일 변경) 3.{" "}
-        <strong>합성 속성 사용</strong> — <InlineCode>transform</InlineCode>,{" "}
-        <InlineCode>opacity</InlineCode>로 애니메이션 4.{" "}
-        <strong>레이어 관리</strong> — <InlineCode>will-change</InlineCode>,{" "}
-        <InlineCode>contain</InlineCode>으로 격리 5.{" "}
-        <strong>가상 스크롤링</strong> — 대량 리스트 렌더링 시 화면 밖 요소 제거{" "}
-        6. <strong>디바운스/쓰로틀</strong> — scroll, resize 이벤트 핸들링
-        최적화 7. <InlineCode>requestAnimationFrame</InlineCode> — 프레임 단위
-        작업 스케줄링
+        <ol>
+          <li>
+            <strong>DOM 조작 최소화</strong> — DocumentFragment 활용, 배치
+            업데이트
+          </li>
+          <li>
+            <strong>강제 동기 레이아웃 회피</strong> — 읽기/쓰기 분리 (
+            <InlineCode>offsetHeight</InlineCode> 읽기 후 스타일 변경)
+          </li>
+          <li>
+            <strong>합성 속성 사용</strong> —{" "}
+            <InlineCode>transform</InlineCode>,{" "}
+            <InlineCode>opacity</InlineCode>로 애니메이션
+          </li>
+          <li>
+            <strong>레이어 관리</strong> —{" "}
+            <InlineCode>will-change</InlineCode>,{" "}
+            <InlineCode>contain</InlineCode>으로 격리
+          </li>
+          <li>
+            <strong>가상 스크롤링</strong> — 대량 리스트 렌더링 시 화면 밖 요소
+            제거
+          </li>
+          <li>
+            <strong>디바운스/쓰로틀</strong> — scroll, resize 이벤트 핸들링
+            최적화
+          </li>
+          <li>
+            <InlineCode>requestAnimationFrame</InlineCode> — 프레임 단위 작업
+            스케줄링
+          </li>
+        </ol>
       </>
     ),
   },
@@ -168,11 +202,24 @@ export const interviewQuestions: InterviewQuestion[] = [
         <InlineCode>will-change: transform</InlineCode> 설정, 완료 후 제거.
         <br />
         <br />
-        <strong>주의사항</strong>: 1. <strong>남용 금지</strong> — 모든 요소에
-        적용하면 메모리 과다 사용 (레이어마다 GPU 메모리 소비) 2.{" "}
-        <strong>정적 선언 지양</strong> — CSS에 항상 두지 말고, JS로 동적
-        적용/해제 3. 이미 합성 속성(<InlineCode>transform</InlineCode>)을 사용
-        중이면 중복 불필요 4. 모바일 기기는 GPU 메모리가 제한적이므로 특히 주의
+        <strong>주의사항</strong>:
+        <ol>
+          <li>
+            <strong>남용 금지</strong> — 모든 요소에 적용하면 메모리 과다 사용
+            (레이어마다 GPU 메모리 소비)
+          </li>
+          <li>
+            <strong>정적 선언 지양</strong> — CSS에 항상 두지 말고, JS로 동적
+            적용/해제
+          </li>
+          <li>
+            이미 합성 속성(<InlineCode>transform</InlineCode>)을 사용 중이면
+            중복 불필요
+          </li>
+          <li>
+            모바일 기기는 GPU 메모리가 제한적이므로 특히 주의
+          </li>
+        </ol>
       </>
     ),
   },

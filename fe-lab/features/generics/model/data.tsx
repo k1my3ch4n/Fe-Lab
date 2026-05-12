@@ -92,13 +92,29 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "주요 유틸리티 타입의 종류와 사용법을 설명해주세요.",
     answer: (
       <>
-        1. <InlineCode>{"Partial<T>"}</InlineCode> — 모든 속성을 선택적으로 변환
-        (업데이트 함수에 유용) 2. <InlineCode>{"Pick<T,K>"}</InlineCode> — 특정
-        속성만 추출 (API 응답 가공) 3. <InlineCode>{"Omit<T,K>"}</InlineCode> —
-        특정 속성 제외 (민감 정보 제거) 4.{" "}
-        <InlineCode>{"Record<K,V>"}</InlineCode> — 키-값 매핑 타입 생성 5.{" "}
-        <InlineCode>{"ReturnType<T>"}</InlineCode> — 함수 반환 타입 추출 6.{" "}
-        <InlineCode>{"Required<T>"}</InlineCode> — 모든 속성을 필수로 변환
+        <ol>
+          <li>
+            <InlineCode>{"Partial<T>"}</InlineCode> — 모든 속성을 선택적으로
+            변환 (업데이트 함수에 유용)
+          </li>
+          <li>
+            <InlineCode>{"Pick<T,K>"}</InlineCode> — 특정 속성만 추출 (API 응답
+            가공)
+          </li>
+          <li>
+            <InlineCode>{"Omit<T,K>"}</InlineCode> — 특정 속성 제외 (민감 정보
+            제거)
+          </li>
+          <li>
+            <InlineCode>{"Record<K,V>"}</InlineCode> — 키-값 매핑 타입 생성
+          </li>
+          <li>
+            <InlineCode>{"ReturnType<T>"}</InlineCode> — 함수 반환 타입 추출
+          </li>
+          <li>
+            <InlineCode>{"Required<T>"}</InlineCode> — 모든 속성을 필수로 변환
+          </li>
+        </ol>
       </>
     ),
   },

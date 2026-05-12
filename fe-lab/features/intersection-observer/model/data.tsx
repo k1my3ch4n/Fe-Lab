@@ -131,18 +131,25 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "scroll 이벤트 대비 Intersection Observer의 장점은 무엇인가요?",
     answer: (
       <>
-        1. <strong>성능</strong> — scroll 이벤트는 매 프레임마다 발생하여{" "}
-        <InlineCode>getBoundingClientRect()</InlineCode> 호출 시 리플로우를
-        유발하지만, IO는 브라우저가 최적화하여 비동기로 처리합니다.
-        <br />
-        2. <strong>throttle/debounce 불필요</strong> — 자체적으로 최적화된
-        타이밍으로 콜백을 호출합니다.
-        <br />
-        3. <strong>선언적 API</strong> — observe/unobserve로 간단하게 관리할 수
-        있습니다.
-        <br />
-        4. <strong>정확한 교차 비율</strong> — threshold 옵션으로 정확한 가시성
-        비율을 감지합니다.
+        <ol>
+          <li>
+            <strong>성능</strong> — scroll 이벤트는 매 프레임마다 발생하여{" "}
+            <InlineCode>getBoundingClientRect()</InlineCode> 호출 시 리플로우를
+            유발하지만, IO는 브라우저가 최적화하여 비동기로 처리합니다.
+          </li>
+          <li>
+            <strong>throttle/debounce 불필요</strong> — 자체적으로 최적화된
+            타이밍으로 콜백을 호출합니다.
+          </li>
+          <li>
+            <strong>선언적 API</strong> — observe/unobserve로 간단하게 관리할
+            수 있습니다.
+          </li>
+          <li>
+            <strong>정확한 교차 비율</strong> — threshold 옵션으로 정확한
+            가시성 비율을 감지합니다.
+          </li>
+        </ol>
       </>
     ),
   },
@@ -151,20 +158,25 @@ export const interviewQuestions: InterviewQuestion[] = [
       "Intersection Observer를 활용한 lazy loading 구현 방법을 설명해주세요.",
     answer: (
       <>
-        1. 이미지에 <InlineCode>data-src</InlineCode>에 실제 URL을 저장하고{" "}
-        <InlineCode>src</InlineCode>는 placeholder로 설정합니다.
-        <br />
-        2. IO로 요소를 관찰하다가 뷰포트에 진입하면{" "}
-        <InlineCode>data-src</InlineCode>를 <InlineCode>src</InlineCode>로
-        복사합니다.
-        <br />
-        3. 로딩 완료 후 <InlineCode>unobserve()</InlineCode>로 감시를
-        해제합니다.
-        <br />
-        4. <InlineCode>rootMargin: &apos;200px&apos;</InlineCode>으로 미리
-        로딩하면 UX가 개선됩니다.
-        <br />
-        <br />
+        <ol>
+          <li>
+            이미지에 <InlineCode>data-src</InlineCode>에 실제 URL을 저장하고{" "}
+            <InlineCode>src</InlineCode>는 placeholder로 설정합니다.
+          </li>
+          <li>
+            IO로 요소를 관찰하다가 뷰포트에 진입하면{" "}
+            <InlineCode>data-src</InlineCode>를 <InlineCode>src</InlineCode>로
+            복사합니다.
+          </li>
+          <li>
+            로딩 완료 후 <InlineCode>unobserve()</InlineCode>로 감시를
+            해제합니다.
+          </li>
+          <li>
+            <InlineCode>rootMargin: &apos;200px&apos;</InlineCode>으로 미리
+            로딩하면 UX가 개선됩니다.
+          </li>
+        </ol>
         대안으로 네이티브 <InlineCode>loading=&quot;lazy&quot;</InlineCode>{" "}
         속성도 사용 가능하지만, 커스텀 로딩 UI나 애니메이션이 필요할 때는 IO가
         더 적합합니다.
