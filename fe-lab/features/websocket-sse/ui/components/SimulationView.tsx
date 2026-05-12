@@ -14,10 +14,12 @@ export function SimulationView({
   messages: SimMessage[];
   isRunning: boolean;
 }) {
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messages.length === 0) { return; }
+    const el = messagesContainerRef.current;
+    if (el) { el.scrollTop = el.scrollHeight; }
   }, [messages]);
 
   return (
@@ -97,11 +99,10 @@ export function SimulationView({
           </div>
 
           {/* Message Lines */}
-          <div className="flex flex-col gap-1.5 max-h-[140px] overflow-y-auto">
+          <div ref={messagesContainerRef} className="flex flex-col gap-1.5 max-h-[140px] overflow-y-auto">
             {messages.map((msg) => (
               <MessageArrow key={msg.id} message={msg} />
             ))}
-            <div ref={messagesEndRef} />
           </div>
 
           {messages.length === 0 && !isRunning && (
