@@ -90,8 +90,12 @@ export const interviewQuestions: InterviewQuestion[] = [
         <InlineCode>event.target</InlineCode>으로 실제 클릭된 요소를 판별합니다.
         <br />
         <br />
-        장점: 1. 메모리 효율 (리스너 수 감소) 2. 동적으로 추가되는 요소도 자동
-        처리 3. 관리 포인트가 하나로 집중
+        장점:
+        <ol>
+          <li>메모리 효율 (리스너 수 감소)</li>
+          <li>동적으로 추가되는 요소도 자동 처리</li>
+          <li>관리 포인트가 하나로 집중</li>
+        </ol>
       </>
     ),
   },

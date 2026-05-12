@@ -87,12 +87,21 @@ export const interviewQuestions: InterviewQuestion[] = [
       <>
         크리티컬 렌더링 패스는 브라우저가 HTML, CSS, JavaScript를 받아{" "}
         <strong>화면에 첫 픽셀을 그리기까지</strong>의 과정입니다. 주요 단계는:
-        1) HTML을 파싱하여 <InlineCode>DOM</InlineCode> 트리 생성 2) CSS를
-        파싱하여 <InlineCode>CSSOM</InlineCode> 트리 생성 3) DOM + CSSOM을
-        결합하여 <strong>렌더 트리</strong> 구성 4) Layout(리플로우)으로
-        위치/크기 계산 5) Paint로 실제 픽셀 그리기. CRP를 최적화하면{" "}
-        <InlineCode>FCP</InlineCode>(First Contentful Paint)를 단축할 수
-        있습니다.
+        <ol>
+          <li>
+            HTML을 파싱하여 <InlineCode>DOM</InlineCode> 트리 생성
+          </li>
+          <li>
+            CSS를 파싱하여 <InlineCode>CSSOM</InlineCode> 트리 생성
+          </li>
+          <li>
+            DOM + CSSOM을 결합하여 <strong>렌더 트리</strong> 구성
+          </li>
+          <li>Layout(리플로우)으로 위치/크기 계산</li>
+          <li>Paint로 실제 픽셀 그리기</li>
+        </ol>
+        CRP를 최적화하면 <InlineCode>FCP</InlineCode>(First Contentful Paint)를
+        단축할 수 있습니다.
       </>
     ),
   },
@@ -100,18 +109,33 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "렌더 차단 리소스를 최소화하는 방법을 설명해주세요.",
     answer: (
       <>
-        <strong>CSS 최적화</strong>: 1) Critical CSS를{" "}
-        <InlineCode>{"<style>"}</InlineCode> 태그로 인라인 2) 나머지 CSS는{" "}
-        <InlineCode>preload</InlineCode>로 비동기 로드 3){" "}
-        <InlineCode>media</InlineCode> 속성으로 조건부 로드 (print, screen
-        크기별).
-        <br />
-        <br />
-        <strong>JS 최적화</strong>: 1) <InlineCode>async</InlineCode> 속성 —
-        다운로드 중 파싱 계속, 다운로드 완료 시 즉시 실행 2){" "}
-        <InlineCode>defer</InlineCode> 속성 — 다운로드 중 파싱 계속, HTML 파싱
-        완료 후 실행 3) 중요하지 않은 JS는 <InlineCode>{"<body>"}</InlineCode>{" "}
-        끝에 배치.
+        <strong>CSS 최적화</strong>:
+        <ol>
+          <li>
+            Critical CSS를 <InlineCode>{"<style>"}</InlineCode> 태그로 인라인
+          </li>
+          <li>
+            나머지 CSS는 <InlineCode>preload</InlineCode>로 비동기 로드
+          </li>
+          <li>
+            <InlineCode>media</InlineCode> 속성으로 조건부 로드 (print, screen
+            크기별)
+          </li>
+        </ol>
+        <strong>JS 최적화</strong>:
+        <ol>
+          <li>
+            <InlineCode>async</InlineCode> 속성 — 다운로드 중 파싱 계속,
+            다운로드 완료 시 즉시 실행
+          </li>
+          <li>
+            <InlineCode>defer</InlineCode> 속성 — 다운로드 중 파싱 계속, HTML
+            파싱 완료 후 실행
+          </li>
+          <li>
+            중요하지 않은 JS는 <InlineCode>{"<body>"}</InlineCode> 끝에 배치
+          </li>
+        </ol>
       </>
     ),
   },

@@ -59,11 +59,18 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "브라우저 주소창에 URL을 입력하면 어떤 일이 일어나나요?",
     answer: (
       <>
-        1. DNS 조회로 도메인을 IP로 변환 → 2. TCP 3-way handshake (HTTPS면 TLS
-        핸드셰이크 추가) → 3. HTTP 요청 전송 → 4. HTML 응답 수신 → 5. HTML
-        파싱하여 DOM 트리 구성 → 6. CSS 파싱하여 CSSOM 구성 → 7. DOM + CSSOM
-        결합하여 렌더 트리 생성 → 8. 레이아웃(각 요소의 위치/크기 계산) → 9.
-        페인트(픽셀 그리기) → 10. 합성(레이어 조합하여 화면 표시)
+        <ol>
+          <li>DNS 조회로 도메인을 IP로 변환</li>
+          <li>TCP 3-way handshake (HTTPS면 TLS 핸드셰이크 추가)</li>
+          <li>HTTP 요청 전송</li>
+          <li>HTML 응답 수신</li>
+          <li>HTML 파싱하여 DOM 트리 구성</li>
+          <li>CSS 파싱하여 CSSOM 구성</li>
+          <li>DOM + CSSOM 결합하여 렌더 트리 생성</li>
+          <li>레이아웃 (각 요소의 위치/크기 계산)</li>
+          <li>페인트 (픽셀 그리기)</li>
+          <li>합성 (레이어 조합하여 화면 표시)</li>
+        </ol>
       </>
     ),
   },
@@ -93,12 +100,22 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "크리티컬 렌더링 패스(Critical Rendering Path) 최적화 방법은?",
     answer: (
       <>
-        1. CSS는 <InlineCode>{"<head>"}</InlineCode>에 배치 (렌더 차단 리소스){" "}
-        2. JS는 <InlineCode>{"<body>"}</InlineCode> 하단 또는{" "}
-        <InlineCode>defer/async</InlineCode> 사용 3. 중요 CSS를 인라인으로 삽입{" "}
-        4. 불필요한 CSS/JS를 제거하여 크리티컬 리소스 최소화 5. 리소스 압축
-        (gzip/brotli) 및 캐시 활용 6. <InlineCode>preload</InlineCode>,{" "}
-        <InlineCode>prefetch</InlineCode>로 중요 리소스 우선 로드
+        <ol>
+          <li>
+            CSS는 <InlineCode>{"<head>"}</InlineCode>에 배치 (렌더 차단 리소스)
+          </li>
+          <li>
+            JS는 <InlineCode>{"<body>"}</InlineCode> 하단 또는{" "}
+            <InlineCode>defer/async</InlineCode> 사용
+          </li>
+          <li>중요 CSS를 인라인으로 삽입</li>
+          <li>불필요한 CSS/JS를 제거하여 크리티컬 리소스 최소화</li>
+          <li>리소스 압축 (gzip/brotli) 및 캐시 활용</li>
+          <li>
+            <InlineCode>preload</InlineCode>,{" "}
+            <InlineCode>prefetch</InlineCode>로 중요 리소스 우선 로드
+          </li>
+        </ol>
       </>
     ),
   },

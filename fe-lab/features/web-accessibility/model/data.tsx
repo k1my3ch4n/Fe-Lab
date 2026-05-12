@@ -135,22 +135,25 @@ export const interviewQuestions: InterviewQuestion[] = [
       <>
         <strong>ARIA (Accessible Rich Internet Applications)</strong>는 HTML의
         접근성을 보완하는 속성 집합입니다.
-        <br />
-        1. <strong>역할(role)</strong> — 요소의 목적을 정의합니다:{" "}
-        <InlineCode>role=&quot;navigation&quot;</InlineCode>,{" "}
-        <InlineCode>role=&quot;alert&quot;</InlineCode>,{" "}
-        <InlineCode>role=&quot;dialog&quot;</InlineCode> 등.
-        <br />
-        2. <strong>속성(properties)</strong> — 요소의 특성을 설명합니다:{" "}
-        <InlineCode>aria-label</InlineCode>,{" "}
-        <InlineCode>aria-describedby</InlineCode>.
-        <br />
-        3. <strong>상태(states)</strong> — 현재 상태를 전달합니다:{" "}
-        <InlineCode>aria-expanded</InlineCode>,{" "}
-        <InlineCode>aria-hidden</InlineCode>,{" "}
-        <InlineCode>aria-disabled</InlineCode>.
-        <br />
-        <br />
+        <ol>
+          <li>
+            <strong>역할(role)</strong> — 요소의 목적을 정의합니다:{" "}
+            <InlineCode>role=&quot;navigation&quot;</InlineCode>,{" "}
+            <InlineCode>role=&quot;alert&quot;</InlineCode>,{" "}
+            <InlineCode>role=&quot;dialog&quot;</InlineCode> 등.
+          </li>
+          <li>
+            <strong>속성(properties)</strong> — 요소의 특성을 설명합니다:{" "}
+            <InlineCode>aria-label</InlineCode>,{" "}
+            <InlineCode>aria-describedby</InlineCode>.
+          </li>
+          <li>
+            <strong>상태(states)</strong> — 현재 상태를 전달합니다:{" "}
+            <InlineCode>aria-expanded</InlineCode>,{" "}
+            <InlineCode>aria-hidden</InlineCode>,{" "}
+            <InlineCode>aria-disabled</InlineCode>.
+          </li>
+        </ol>
         <strong>첫 번째 규칙</strong>: 네이티브 HTML 요소로 충분하면 ARIA를
         사용하지 마세요. <InlineCode>&lt;button&gt;</InlineCode>이{" "}
         <InlineCode>div role=&quot;button&quot;</InlineCode>보다 항상 낫습니다.
@@ -161,23 +164,31 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "키보드 접근성을 보장하는 방법을 설명해주세요.",
     answer: (
       <>
-        1. <strong>모든 인터랙티브 요소</strong>에 <InlineCode>Tab</InlineCode>
-        으로 접근 가능해야 합니다. 네이티브 요소(
-        <InlineCode>&lt;button&gt;</InlineCode>,{" "}
-        <InlineCode>&lt;a&gt;</InlineCode>)를 우선 사용하세요.
-        <br />
-        2. <strong>포커스 표시(focus indicator)</strong>를 제거하지 마세요.{" "}
-        <InlineCode>:focus-visible</InlineCode>로 키보드 포커스만 스타일링할 수
-        있습니다.
-        <br />
-        3. <strong>포커스 트랩</strong> — 모달, 드롭다운 등에서 포커스가 밖으로
-        빠져나가지 않도록 합니다.
-        <br />
-        4. <strong>Skip Navigation</strong> — 반복되는 네비게이션을 건너뛸 수
-        있는 링크를 제공합니다.
-        <br />
-        5. <strong>Roving tabindex</strong> — 그룹 내에서 Arrow 키로 이동하고
-        하나만 <InlineCode>tabIndex=0</InlineCode>을 유지합니다.
+        <ol>
+          <li>
+            <strong>모든 인터랙티브 요소</strong>에{" "}
+            <InlineCode>Tab</InlineCode>으로 접근 가능해야 합니다. 네이티브
+            요소(<InlineCode>&lt;button&gt;</InlineCode>,{" "}
+            <InlineCode>&lt;a&gt;</InlineCode>)를 우선 사용하세요.
+          </li>
+          <li>
+            <strong>포커스 표시(focus indicator)</strong>를 제거하지 마세요.{" "}
+            <InlineCode>:focus-visible</InlineCode>로 키보드 포커스만
+            스타일링할 수 있습니다.
+          </li>
+          <li>
+            <strong>포커스 트랩</strong> — 모달, 드롭다운 등에서 포커스가
+            밖으로 빠져나가지 않도록 합니다.
+          </li>
+          <li>
+            <strong>Skip Navigation</strong> — 반복되는 네비게이션을 건너뛸 수
+            있는 링크를 제공합니다.
+          </li>
+          <li>
+            <strong>Roving tabindex</strong> — 그룹 내에서 Arrow 키로 이동하고
+            하나만 <InlineCode>tabIndex=0</InlineCode>을 유지합니다.
+          </li>
+        </ol>
       </>
     ),
   },

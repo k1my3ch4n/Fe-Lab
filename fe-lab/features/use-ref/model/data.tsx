@@ -142,12 +142,27 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "useRef를 사용하는 대표적인 경우를 설명해주세요.",
     answer: (
       <>
-        1. <strong>DOM 요소 접근</strong> — input 포커스, 스크롤, 비디오 제어 등{" "}
-        2. <strong>타이머/인터벌 ID 저장</strong> — clearInterval/clearTimeout에
-        필요한 ID 3. <strong>이전 렌더링 값 저장</strong> — usePrevious 커스텀
-        훅 4. <strong>렌더링과 무관한 가변 값</strong> — 마운트 여부 추적, 렌더
-        횟수 카운팅 5. <strong>외부 라이브러리 인스턴스 저장</strong> — 차트, 맵
-        등의 인스턴스 참조
+        <ol>
+          <li>
+            <strong>DOM 요소 접근</strong> — input 포커스, 스크롤, 비디오 제어
+            등
+          </li>
+          <li>
+            <strong>타이머/인터벌 ID 저장</strong> —
+            clearInterval/clearTimeout에 필요한 ID
+          </li>
+          <li>
+            <strong>이전 렌더링 값 저장</strong> — usePrevious 커스텀 훅
+          </li>
+          <li>
+            <strong>렌더링과 무관한 가변 값</strong> — 마운트 여부 추적, 렌더
+            횟수 카운팅
+          </li>
+          <li>
+            <strong>외부 라이브러리 인스턴스 저장</strong> — 차트, 맵 등의
+            인스턴스 참조
+          </li>
+        </ol>
       </>
     ),
   },

@@ -137,18 +137,26 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "Web Storage 사용 시 보안 고려사항은 무엇인가요?",
     answer: (
       <>
-        1. <strong>XSS 취약점</strong> — JavaScript로 직접 접근 가능하므로 XSS
-        공격 시 모든 데이터가 노출됩니다. 민감한 데이터(토큰, 비밀번호)는
-        저장하지 않아야 합니다.
-        <br />
-        2. <strong>동일 출처 정책</strong> — 같은 origin에서만 접근 가능하지만,
-        서브도메인 간 공유는 불가합니다.
-        <br />
-        3. <strong>암호화 없음</strong> — 평문으로 저장되므로 개발자 도구에서
-        누구나 읽을 수 있습니다.
-        <br />
-        4. <strong>대안</strong> — 인증 토큰은 <InlineCode>HttpOnly</InlineCode>{" "}
-        쿠키에 저장하는 것이 더 안전합니다.
+        <ol>
+          <li>
+            <strong>XSS 취약점</strong> — JavaScript로 직접 접근 가능하므로
+            XSS 공격 시 모든 데이터가 노출됩니다. 민감한 데이터(토큰,
+            비밀번호)는 저장하지 않아야 합니다.
+          </li>
+          <li>
+            <strong>동일 출처 정책</strong> — 같은 origin에서만 접근
+            가능하지만, 서브도메인 간 공유는 불가합니다.
+          </li>
+          <li>
+            <strong>암호화 없음</strong> — 평문으로 저장되므로 개발자 도구에서
+            누구나 읽을 수 있습니다.
+          </li>
+          <li>
+            <strong>대안</strong> — 인증 토큰은{" "}
+            <InlineCode>HttpOnly</InlineCode> 쿠키에 저장하는 것이 더
+            안전합니다.
+          </li>
+        </ol>
       </>
     ),
   },

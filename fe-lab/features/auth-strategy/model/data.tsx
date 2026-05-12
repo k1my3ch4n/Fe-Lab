@@ -191,11 +191,24 @@ export const interviewQuestions: InterviewQuestion[] = [
         Refresh Token으로 새 Access Token을 발급받습니다.
         <br />
         <br />
-        보안 강화: 1) <strong>Refresh Token Rotation</strong> — 갱신 시 새
-        Refresh Token 발급 + 이전 토큰 무효화 2){" "}
-        <strong>Absolute Expiry</strong> — Refresh Token도 절대 만료 시간 설정
-        3) <strong>DB 저장</strong> — Refresh Token을 DB에 저장하여 즉시 무효화
-        가능 4) <InlineCode>httpOnly</InlineCode> 쿠키에 저장하여 XSS 방지
+        보안 강화:
+        <ol>
+          <li>
+            <strong>Refresh Token Rotation</strong> — 갱신 시 새 Refresh Token
+            발급 + 이전 토큰 무효화
+          </li>
+          <li>
+            <strong>Absolute Expiry</strong> — Refresh Token도 절대 만료 시간
+            설정
+          </li>
+          <li>
+            <strong>DB 저장</strong> — Refresh Token을 DB에 저장하여 즉시
+            무효화 가능
+          </li>
+          <li>
+            <InlineCode>httpOnly</InlineCode> 쿠키에 저장하여 XSS 방지
+          </li>
+        </ol>
       </>
     ),
   },

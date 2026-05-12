@@ -90,16 +90,32 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "반응형 디자인 전략에는 어떤 것들이 있나요?",
     answer: (
       <>
-        1. <strong>미디어 쿼리</strong> — viewport 크기에 따른 breakpoint 기반
-        스타일 변경 2. <strong>유동적 단위</strong> —{" "}
-        <InlineCode>vw</InlineCode>, <InlineCode>vh</InlineCode>,{" "}
-        <InlineCode>%</InlineCode>, <InlineCode>rem</InlineCode> 등 상대 단위
-        사용 3. <strong>CSS 함수</strong> — <InlineCode>clamp()</InlineCode>,{" "}
-        <InlineCode>min()</InlineCode>, <InlineCode>max()</InlineCode>로 유동적
-        값 설정 4. <strong>Container Query</strong> — 부모 컨테이너 크기 기반
-        반응형 (최신) 5. <strong>반응형 이미지</strong> —{" "}
-        <InlineCode>srcset</InlineCode>,{" "}
-        <InlineCode>{"<picture>"}</InlineCode> 태그 활용
+        <ol>
+          <li>
+            <strong>미디어 쿼리</strong> — viewport 크기에 따른 breakpoint 기반
+            스타일 변경
+          </li>
+          <li>
+            <strong>유동적 단위</strong> —{" "}
+            <InlineCode>vw</InlineCode>, <InlineCode>vh</InlineCode>,{" "}
+            <InlineCode>%</InlineCode>, <InlineCode>rem</InlineCode> 등 상대
+            단위 사용
+          </li>
+          <li>
+            <strong>CSS 함수</strong> — <InlineCode>clamp()</InlineCode>,{" "}
+            <InlineCode>min()</InlineCode>, <InlineCode>max()</InlineCode>로
+            유동적 값 설정
+          </li>
+          <li>
+            <strong>Container Query</strong> — 부모 컨테이너 크기 기반 반응형
+            (최신)
+          </li>
+          <li>
+            <strong>반응형 이미지</strong> —{" "}
+            <InlineCode>srcset</InlineCode>,{" "}
+            <InlineCode>{"<picture>"}</InlineCode> 태그 활용
+          </li>
+        </ol>
       </>
     ),
   },
@@ -126,8 +142,12 @@ export const interviewQuestions: InterviewQuestion[] = [
         <InlineCode>min-width</InlineCode> 미디어 쿼리로 확장합니다.{" "}
         <strong>데스크톱 퍼스트</strong>는 기본 스타일을 데스크톱용으로 작성하고{" "}
         <InlineCode>max-width</InlineCode> 미디어 쿼리로 축소합니다. 모바일
-        퍼스트가 권장되는 이유: 1. 모바일 사용자가 더 많음 2. 성능 최적화 (작은
-        화면에 불필요한 스타일 로드 방지) 3. 점진적 향상 원칙에 부합
+        퍼스트가 권장되는 이유:
+        <ol>
+          <li>모바일 사용자가 더 많음</li>
+          <li>성능 최적화 (작은 화면에 불필요한 스타일 로드 방지)</li>
+          <li>점진적 향상 원칙에 부합</li>
+        </ol>
       </>
     ),
   },

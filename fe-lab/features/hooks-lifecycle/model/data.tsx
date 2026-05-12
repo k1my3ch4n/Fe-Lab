@@ -166,11 +166,16 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "useEffect의 클린업 함수가 언제 실행되며, 왜 필요한가요?",
     answer: (
       <>
-        클린업 함수는 <strong>두 가지 시점</strong>에 실행됩니다: 1. 컴포넌트가{" "}
-        <strong>언마운트</strong>될 때 2. 의존성이 변경되어{" "}
-        <strong>다음 이펙트가 실행되기 직전</strong>에
-        <br />
-        <br />
+        클린업 함수는 <strong>두 가지 시점</strong>에 실행됩니다:
+        <ol>
+          <li>
+            컴포넌트가 <strong>언마운트</strong>될 때
+          </li>
+          <li>
+            의존성이 변경되어{" "}
+            <strong>다음 이펙트가 실행되기 직전</strong>에
+          </li>
+        </ol>
         필요한 이유: 타이머(<InlineCode>setInterval</InlineCode>), 이벤트
         리스너, 구독(subscription), WebSocket 연결 등
         <strong>외부 리소스를 정리</strong>하지 않으면 메모리 누수가 발생합니다.

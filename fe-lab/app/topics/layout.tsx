@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Sidebar } from "@widgets/sidebar";
 import { useSidebarStore, useViewportStore } from "@shared/stores";
 import { ScrollProgress, MenuIcon } from "@shared/ui";
@@ -11,8 +12,13 @@ export default function TopicsLayout({
   children: React.ReactNode;
 }) {
   const mainRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
   const { isMobile } = useViewportStore();
   const { drawerOpen, openDrawer, closeDrawer } = useSidebarStore();
+
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0 });
+  }, [pathname]);
 
   return (
     <div className="flex h-screen">
@@ -37,7 +43,7 @@ export default function TopicsLayout({
       {/* Main content */}
       <main
         ref={mainRef}
-        className="flex-1 overflow-y-auto relative topic-main-bg"
+        className="flex-1 overflow-y-auto relative topic-main-bg [overflow-anchor:none]"
       >
         <ScrollProgress containerRef={mainRef} />
 

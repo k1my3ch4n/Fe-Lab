@@ -100,7 +100,7 @@ export default function RenderPipelineDemo() {
       {/* Pipeline body */}
       <div className="p-8">
         {/* Steps */}
-        <div className="flex items-start overflow-x-auto pb-4">
+        <div className="flex items-start overflow-x-auto pb-4 pt-10">
           {pipelineData.map((step, i) => (
             <div key={i} className="flex items-start shrink-0">
               <StepCard

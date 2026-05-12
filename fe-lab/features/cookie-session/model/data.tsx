@@ -105,10 +105,20 @@ export const interviewQuestions: InterviewQuestion[] = [
       <>
         <InlineCode size="md">SameSite</InlineCode>는 크로스 사이트 요청 시 쿠키
         전송을 제어하는 속성입니다.
-        <strong>Strict</strong>: 같은 사이트 요청에서만 쿠키 전송 (가장 엄격).
-        <strong>Lax</strong>: 탑레벨 네비게이션(링크 클릭)에서는 허용 (기본값).
-        <strong>None</strong>: 모든 크로스 사이트에서 허용 (Secure 필수). CSRF
-        공격 방지에 효과적이며, Chrome은 기본값을{" "}
+        <ul>
+          <li>
+            <strong>Strict</strong>: 같은 사이트 요청에서만 쿠키 전송 (가장
+            엄격)
+          </li>
+          <li>
+            <strong>Lax</strong>: 탑레벨 네비게이션(링크 클릭)에서는 허용
+            (기본값)
+          </li>
+          <li>
+            <strong>None</strong>: 모든 크로스 사이트에서 허용 (Secure 필수)
+          </li>
+        </ul>
+        CSRF 공격 방지에 효과적이며, Chrome은 기본값을{" "}
         <InlineCode size="md">Lax</InlineCode>로 설정합니다.
       </>
     ),

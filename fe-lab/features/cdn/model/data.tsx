@@ -98,13 +98,25 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "캐시 무효화 전략에는 어떤 것이 있나요?",
     answer: (
       <>
-        1. <strong>TTL 기반</strong>: <InlineCode size="md">max-age</InlineCode>
-        로 만료 시간 설정 2. <strong>수동 퍼지</strong>: CDN API를 통해 특정
-        URL의 캐시를 삭제 3. <strong>에셋 핑거프린팅</strong>: 파일명에 해시를
-        포함하여 변경 시 새 URL 사용 4. <strong>Stale-While-Revalidate</strong>:
-        만료된 캐시를 제공하면서 백그라운드 갱신. 가장 효과적인 전략은
-        핑거프린팅 + 장기 캐시(immutable)이며, Next.js 등 프레임워크에서 기본
-        제공됩니다.
+        <ol>
+          <li>
+            <strong>TTL 기반</strong>:{" "}
+            <InlineCode size="md">max-age</InlineCode>로 만료 시간 설정
+          </li>
+          <li>
+            <strong>수동 퍼지</strong>: CDN API를 통해 특정 URL의 캐시를 삭제
+          </li>
+          <li>
+            <strong>에셋 핑거프린팅</strong>: 파일명에 해시를 포함하여 변경 시
+            새 URL 사용
+          </li>
+          <li>
+            <strong>Stale-While-Revalidate</strong>: 만료된 캐시를 제공하면서
+            백그라운드 갱신
+          </li>
+        </ol>
+        가장 효과적인 전략은 핑거프린팅 + 장기 캐시(immutable)이며, Next.js 등
+        프레임워크에서 기본 제공됩니다.
       </>
     ),
   },

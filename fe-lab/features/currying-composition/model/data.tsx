@@ -117,16 +117,29 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "커링과 함수 합성의 실전 사용 사례는?",
     answer: (
       <>
-        1. <strong>설정 팩토리</strong> —{" "}
-        <InlineCode>
-          createLogger(&quot;ERROR&quot;)(&quot;API&quot;)
-        </InlineCode>{" "}
-        처럼 설정을 단계별로 주입 2. <strong>데이터 파이프라인</strong> —{" "}
-        <InlineCode>pipe(filter, sort, take(10), format)</InlineCode> 3.{" "}
-        <strong>이벤트 핸들러</strong> —{" "}
-        <InlineCode>handleClick(userId)</InlineCode> 로 파라미터 바인딩 4.{" "}
-        <strong>유효성 검사</strong> — 검사 규칙을 합성하여 재사용 5.{" "}
-        <strong>React HOC / 미들웨어</strong> — 기능을 레이어별로 합성
+        <ol>
+          <li>
+            <strong>설정 팩토리</strong> —{" "}
+            <InlineCode>
+              createLogger(&quot;ERROR&quot;)(&quot;API&quot;)
+            </InlineCode>{" "}
+            처럼 설정을 단계별로 주입
+          </li>
+          <li>
+            <strong>데이터 파이프라인</strong> —{" "}
+            <InlineCode>pipe(filter, sort, take(10), format)</InlineCode>
+          </li>
+          <li>
+            <strong>이벤트 핸들러</strong> —{" "}
+            <InlineCode>handleClick(userId)</InlineCode>로 파라미터 바인딩
+          </li>
+          <li>
+            <strong>유효성 검사</strong> — 검사 규칙을 합성하여 재사용
+          </li>
+          <li>
+            <strong>React HOC / 미들웨어</strong> — 기능을 레이어별로 합성
+          </li>
+        </ol>
       </>
     ),
   },

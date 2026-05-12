@@ -98,15 +98,36 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "Cache-Control 디렉티브의 종류와 차이점을 설명해주세요.",
     answer: (
       <>
-        주요 디렉티브: <InlineCode>max-age</InlineCode> — 캐시 유효 시간(초),{" "}
-        <InlineCode>no-cache</InlineCode> — 캐시 저장하되 사용 전 반드시 서버
-        검증, <InlineCode>no-store</InlineCode> — 캐시 저장 자체를 금지,{" "}
-        <InlineCode>public</InlineCode> — CDN 등 공유 캐시에 저장 가능,{" "}
-        <InlineCode>private</InlineCode> — 브라우저 캐시에만 저장,{" "}
-        <InlineCode>must-revalidate</InlineCode> — 만료 후 반드시 서버 검증,{" "}
-        <InlineCode>immutable</InlineCode> — 리소스가 절대 변경되지 않음을 명시,{" "}
-        <InlineCode>stale-while-revalidate</InlineCode> — 만료된 캐시를
-        반환하면서 백그라운드에서 갱신합니다.
+        주요 디렉티브:
+        <ul>
+          <li>
+            <InlineCode>max-age</InlineCode> — 캐시 유효 시간(초)
+          </li>
+          <li>
+            <InlineCode>no-cache</InlineCode> — 캐시 저장하되 사용 전 반드시
+            서버 검증
+          </li>
+          <li>
+            <InlineCode>no-store</InlineCode> — 캐시 저장 자체를 금지
+          </li>
+          <li>
+            <InlineCode>public</InlineCode> — CDN 등 공유 캐시에 저장 가능
+          </li>
+          <li>
+            <InlineCode>private</InlineCode> — 브라우저 캐시에만 저장
+          </li>
+          <li>
+            <InlineCode>must-revalidate</InlineCode> — 만료 후 반드시 서버 검증
+          </li>
+          <li>
+            <InlineCode>immutable</InlineCode> — 리소스가 절대 변경되지 않음을
+            명시
+          </li>
+          <li>
+            <InlineCode>stale-while-revalidate</InlineCode> — 만료된 캐시를
+            반환하면서 백그라운드에서 갱신
+          </li>
+        </ul>
       </>
     ),
   },
@@ -114,15 +135,26 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "캐시 무효화(Cache Busting) 전략에는 어떤 것들이 있나요?",
     answer: (
       <>
-        1. <strong>파일명 해싱</strong> — 빌드 시 파일명에 해시를 포함 (예:{" "}
-        <InlineCode>app.a1b2c3.js</InlineCode>). 내용이 바뀌면 해시가 변경되어
-        새로운 URL이 됩니다. 2. <strong>쿼리 스트링</strong> — URL에 버전
-        파라미터 추가 (예: <InlineCode>style.css?v=2</InlineCode>). 간단하지만
-        일부 CDN에서 캐싱이 비효율적일 수 있습니다. 3.{" "}
-        <strong>서비스 워커</strong> — 프로그래밍 방식으로 캐시를 직접 관리.
-        오프라인 지원과 세밀한 캐시 전략 구현이 가능합니다. 4.{" "}
-        <strong>CDN Purge</strong> — CDN의 캐시를 강제로 삭제하여 새 콘텐츠를
-        배포합니다.
+        <ol>
+          <li>
+            <strong>파일명 해싱</strong> — 빌드 시 파일명에 해시를 포함 (예:{" "}
+            <InlineCode>app.a1b2c3.js</InlineCode>). 내용이 바뀌면 해시가
+            변경되어 새로운 URL이 됩니다.
+          </li>
+          <li>
+            <strong>쿼리 스트링</strong> — URL에 버전 파라미터 추가 (예:{" "}
+            <InlineCode>style.css?v=2</InlineCode>). 간단하지만 일부 CDN에서
+            캐싱이 비효율적일 수 있습니다.
+          </li>
+          <li>
+            <strong>서비스 워커</strong> — 프로그래밍 방식으로 캐시를 직접
+            관리. 오프라인 지원과 세밀한 캐시 전략 구현이 가능합니다.
+          </li>
+          <li>
+            <strong>CDN Purge</strong> — CDN의 캐시를 강제로 삭제하여 새
+            콘텐츠를 배포합니다.
+          </li>
+        </ol>
       </>
     ),
   },

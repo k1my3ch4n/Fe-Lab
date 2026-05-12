@@ -75,13 +75,27 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "클로저의 실용적 사용 사례를 설명해주세요.",
     answer: (
       <>
-        1. <strong>데이터 캡슐화/프라이빗 변수</strong> — 모듈 패턴에서 외부
-        접근을 차단 2. <strong>팩토리 함수</strong> — 설정을 기억하는 함수 생성
-        (커링, partial application) 3. <strong>이벤트 핸들러</strong> — 콜백에서
-        외부 상태 참조 4. <strong>메모이제이션</strong> — 이전 계산 결과를 캐싱{" "}
-        5. React의 <InlineCode>useState</InlineCode>,{" "}
-        <InlineCode>useEffect</InlineCode> 등 훅도 내부적으로 클로저를
-        활용합니다.
+        <ol>
+          <li>
+            <strong>데이터 캡슐화/프라이빗 변수</strong> — 모듈 패턴에서 외부
+            접근을 차단
+          </li>
+          <li>
+            <strong>팩토리 함수</strong> — 설정을 기억하는 함수 생성 (커링,
+            partial application)
+          </li>
+          <li>
+            <strong>이벤트 핸들러</strong> — 콜백에서 외부 상태 참조
+          </li>
+          <li>
+            <strong>메모이제이션</strong> — 이전 계산 결과를 캐싱
+          </li>
+          <li>
+            React의 <InlineCode>useState</InlineCode>,{" "}
+            <InlineCode>useEffect</InlineCode> 등 훅도 내부적으로 클로저를
+            활용합니다.
+          </li>
+        </ol>
       </>
     ),
   },
@@ -94,10 +108,17 @@ export const interviewQuestions: InterviewQuestion[] = [
         필요하지 않은데도 참조를 유지하면 메모리 누수가 발생할 수 있습니다.
         <br />
         <br />
-        예방법: 1. 불필요한 클로저 참조를 <InlineCode>null</InlineCode>로 해제{" "}
-        2. 이벤트 리스너 등록 시 반드시 해제 처리 3.{" "}
-        <InlineCode>WeakRef</InlineCode>나 <InlineCode>WeakMap</InlineCode> 활용
-        검토
+        예방법:
+        <ol>
+          <li>
+            불필요한 클로저 참조를 <InlineCode>null</InlineCode>로 해제
+          </li>
+          <li>이벤트 리스너 등록 시 반드시 해제 처리</li>
+          <li>
+            <InlineCode>WeakRef</InlineCode>나 <InlineCode>WeakMap</InlineCode>{" "}
+            활용 검토
+          </li>
+        </ol>
       </>
     ),
   },

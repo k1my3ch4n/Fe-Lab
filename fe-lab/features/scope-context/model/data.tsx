@@ -120,13 +120,23 @@ export const interviewQuestions: InterviewQuestion[] = [
     answer: (
       <>
         IIFE(Immediately Invoked Function Expression)는{" "}
-        <strong>선언과 동시에 실행</strong>되는 함수입니다. 주요 목적: 1.{" "}
-        <strong>전역 스코프 오염 방지</strong> — 변수를 함수 스코프 내에 격리 2.{" "}
-        <strong>모듈 패턴</strong> — 캡슐화된 프라이빗 상태와 퍼블릭 API 구현 3.{" "}
-        <strong>초기화 코드</strong> — 한 번만 실행되는 설정 로직. ES6 모듈(
-        <InlineCode>import</InlineCode>/<InlineCode>export</InlineCode>)이
-        도입되면서 사용 빈도가 줄었지만, 라이브러리 번들링이나 레거시 환경에서
-        여전히 활용됩니다.
+        <strong>선언과 동시에 실행</strong>되는 함수입니다. 주요 목적:
+        <ol>
+          <li>
+            <strong>전역 스코프 오염 방지</strong> — 변수를 함수 스코프 내에
+            격리
+          </li>
+          <li>
+            <strong>모듈 패턴</strong> — 캡슐화된 프라이빗 상태와 퍼블릭 API
+            구현
+          </li>
+          <li>
+            <strong>초기화 코드</strong> — 한 번만 실행되는 설정 로직
+          </li>
+        </ol>
+        ES6 모듈(<InlineCode>import</InlineCode>/<InlineCode>export</InlineCode>
+        )이 도입되면서 사용 빈도가 줄었지만, 라이브러리 번들링이나 레거시
+        환경에서 여전히 활용됩니다.
       </>
     ),
   },

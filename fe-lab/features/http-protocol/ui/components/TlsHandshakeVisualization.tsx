@@ -11,7 +11,7 @@ export function TlsHandshakeVisualization() {
           {TLS_HANDSHAKE_STEPS.map((step, i) => (
             <div
               key={i}
-              className="absolute left-4 flex flex-col gap-0.5"
+              className="absolute left-4 flex flex-col gap-0.5 whitespace-nowrap"
               style={{ top: `${i * 70 + 10}px` }}
             >
               <span

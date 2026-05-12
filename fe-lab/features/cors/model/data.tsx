@@ -115,19 +115,28 @@ export const interviewQuestions: InterviewQuestion[] = [
     question: "CORS 에러를 해결하는 방법은?",
     answer: (
       <>
-        1. <strong>서버 측 CORS 헤더 설정</strong> —{" "}
-        <InlineCode>Access-Control-Allow-Origin</InlineCode>,{" "}
-        <InlineCode>Access-Control-Allow-Methods</InlineCode>,{" "}
-        <InlineCode>Access-Control-Allow-Headers</InlineCode> 등을 적절히
-        설정합니다. 2. <strong>프록시 서버 사용</strong> — 개발 환경에서{" "}
-        <InlineCode>next.config.js</InlineCode>의{" "}
-        <InlineCode>rewrites</InlineCode>나 webpack의{" "}
-        <InlineCode>devServer.proxy</InlineCode>를 활용합니다. 3.{" "}
-        <strong>credentials 설정 시</strong> —{" "}
-        <InlineCode>Access-Control-Allow-Origin</InlineCode>에{" "}
-        <InlineCode>*</InlineCode> 대신 구체적인 출처를 명시하고{" "}
-        <InlineCode>Access-Control-Allow-Credentials: true</InlineCode>를
-        설정합니다.
+        <ol>
+          <li>
+            <strong>서버 측 CORS 헤더 설정</strong> —{" "}
+            <InlineCode>Access-Control-Allow-Origin</InlineCode>,{" "}
+            <InlineCode>Access-Control-Allow-Methods</InlineCode>,{" "}
+            <InlineCode>Access-Control-Allow-Headers</InlineCode> 등을 적절히
+            설정합니다.
+          </li>
+          <li>
+            <strong>프록시 서버 사용</strong> — 개발 환경에서{" "}
+            <InlineCode>next.config.js</InlineCode>의{" "}
+            <InlineCode>rewrites</InlineCode>나 webpack의{" "}
+            <InlineCode>devServer.proxy</InlineCode>를 활용합니다.
+          </li>
+          <li>
+            <strong>credentials 설정 시</strong> —{" "}
+            <InlineCode>Access-Control-Allow-Origin</InlineCode>에{" "}
+            <InlineCode>*</InlineCode> 대신 구체적인 출처를 명시하고{" "}
+            <InlineCode>Access-Control-Allow-Credentials: true</InlineCode>를
+            설정합니다.
+          </li>
+        </ol>
       </>
     ),
   },
